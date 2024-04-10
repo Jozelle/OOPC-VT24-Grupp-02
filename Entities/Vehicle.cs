@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Verkstad.Entities
 {
-    internal class Besök
+    internal class Vehicle
     {
     }
 }

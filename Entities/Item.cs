@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Verkstad.Entities
 {
-    internal class Kund
+    internal class Item
     {
 
-
-    }
+}
 }
