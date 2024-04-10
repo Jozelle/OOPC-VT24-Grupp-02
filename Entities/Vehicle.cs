@@ -19,6 +19,5 @@ namespace CarService.Entities
     //Necessery to create a constructor?
 
     //Need to create a method of choice
-    public void CreateMethod() 
-       {}
+    
 }
