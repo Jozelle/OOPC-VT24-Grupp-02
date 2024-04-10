@@ -5,6 +5,8 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Tjena, Johanna!");
+            Console.WriteLine("Hejhej, Carro!");
+            Console.WriteLine("Testar GitHub Desktop!");
         }
     }
 }
