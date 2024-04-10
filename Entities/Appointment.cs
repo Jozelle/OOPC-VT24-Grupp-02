@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Verkstad.Entities
+namespace CarService.Entities
 {
     internal class Appointment
     {

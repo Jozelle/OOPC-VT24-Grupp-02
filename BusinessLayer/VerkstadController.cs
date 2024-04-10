@@ -1,6 +1,6 @@
 ﻿namespace BusinessLayer
 {
-    public class VerkstadController
+    public class CarServiceController
     {
 
     }

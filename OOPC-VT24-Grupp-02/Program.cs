@@ -7,6 +7,7 @@
             Console.WriteLine("Tjena, Johanna!");
             Console.WriteLine("Hejhej, Carro!");
             Console.WriteLine("Testar GitHub Desktop!");
+            Console.WriteLine("Hej Jojo, har ändrat en massor, ska vi kika på det ihop?");
         }
     }
 }

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPC-VT24-Grupp-02", "OOPC-VT24-Grupp-02\OOPC-VT24-Grupp-02.csproj", "{1ABBCA75-8283-45AF-A48E-71BDA46482E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOPC-VT24-Grupp-02", "OOPC-VT24-Grupp-02\OOPC-VT24-Grupp-02.csproj", "{1ABBCA75-8283-45AF-A48E-71BDA46482E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verkstad.BusinessLayer", "BusinessLayer\Verkstad.BusinessLayer.csproj", "{65124A7C-EB3E-4054-8D83-051CAA3B6319}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.BusinessLayer", "BusinessLayer\CarService.BusinessLayer.csproj", "{65124A7C-EB3E-4054-8D83-051CAA3B6319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verkstad.DataLayer", "DataLayer\Verkstad.DataLayer.csproj", "{3015107C-C344-4137-A4E7-D192315B432B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.DataLayer", "DataLayer\CarService.DataLayer.csproj", "{3015107C-C344-4137-A4E7-D192315B432B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verkstad.Entities", "Entities\Verkstad.Entities.csproj", "{E91B810B-37D4-48BE-B591-DD1C547007E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.Entities", "Entities\CarService.Entities.csproj", "{E91B810B-37D4-48BE-B591-DD1C547007E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
