@@ -12,20 +12,25 @@ namespace Verkstad.Entities
        
 
         public int CustomerID {  get; set; }
-        public string Firstname {  get; set; }
-        public  string Lastname { get; set; }
+        public string FirstName {  get; set; }
+        public  string LastName { get; set; }
         public string Address { get; set; }
-        public string Phonenumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
         //Constructor based on customerID, firstname and lastname
-        public Customer(int customerID, string firstname, string lastname)
+        public Customer(int customerID, string firstname, string lastname, string phonenumber)
         {
             CustomerID = customerID;
-            Firstname = firstname;
-            Lastname = lastname;
+            FirstName = firstname;
+            LastName = lastname;
+            PhoneNumber = phonenumber;
+
         }
 
+        public void DisplayInfo() 
+        { 
+        }
 
     }
 }

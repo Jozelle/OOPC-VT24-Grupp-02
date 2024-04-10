@@ -8,5 +8,12 @@ namespace Verkstad.Entities
 {
     internal class Employee
     {
+        public int EmployeeID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Role { get; set; }
+        public string Specialisation { get; set; }
+        public string Password { get; set; }
+       
     }
 }

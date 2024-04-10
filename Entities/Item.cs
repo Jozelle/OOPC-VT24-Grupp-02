@@ -8,6 +8,9 @@ namespace Verkstad.Entities
 {
     internal class Item
     {
+  
+        public int ItemID { get; set; }
+        public string Description { get; set; }    
 
-}
+    }
 }
