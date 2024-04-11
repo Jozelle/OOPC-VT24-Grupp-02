@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CarService.Entities
 {
-    internal class Appointment
+    public class Appointment
     {
 
-        public string AppointmentNr { get; set; }
+        public string AppointmentId { get; set; }
 
         public DateTime SubmissionDate { get; set; }
 
