@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.DataLayer", "Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.Entities", "Entities\CarService.Entities.csproj", "{E91B810B-37D4-48BE-B591-DD1C547007E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarService.PresentationLayer.WPF", "Pizzeria.PresentationLayer.WPF\CarService.PresentationLayer.WPF.csproj", "{2912419D-19F5-49FA-8716-750F707713FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.PresentationLayer.WPF", "Pizzeria.PresentationLayer.WPF\CarService.PresentationLayer.WPF.csproj", "{2912419D-19F5-49FA-8716-750F707713FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
