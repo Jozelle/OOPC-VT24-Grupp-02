@@ -44,11 +44,45 @@ namespace CarService.DataLayer.Seed
             //Skapar anställda
             context.Employees.Add(new Employee()
             {
-                FirstName= ,
-                LastName= ,
-                RoleID= , 
-                Specialisation= ,
-                Password=
+                FirstName = "Pamela",
+                LastName = "Andersson",
+                RoleID = "690216",
+                Specialisation = "Pedaler",
+                Password = "ILoveCalifornia"
+            });
+
+            //Skapar items
+            context.Items.Add(new Item()
+            {
+                ItemID = 0101,
+                Description = "Broms"
+
+            });
+
+            context.Items.Add(new Item()
+            {
+                ItemID = 0102,
+                Description = "Koppling"
+
+            });
+
+            //Skapar Fordon
+            context.Vehicles.Add(new Vehicle()
+            {
+                RegistrationNumber = "MOM987",
+                Brand = "Mercedes",
+                Model = "C63 Sedan",
+                Year = "2015"
+
+             });
+
+            context.Vehicles.Add(new Vehicle()
+            {
+                RegistrationNumber = "DAD567",
+                Brand = "Audi",
+                Model = "rs6",
+                Year = "2018"
+
             });
         }
 
