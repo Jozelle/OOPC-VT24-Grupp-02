@@ -7,25 +7,26 @@ using System.Threading.Tasks;
 
 namespace CarService.Entities
 {
-    internal class Customer
+    public class Customer
     {
+       
 
-        public int CustomerID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int CustomerID {  get; set; }
+        public string FirstName {  get; set; }
+        public  string LastName { get; set; }
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
         //Constructor based on customerID, firstname and lastname
-        public Customer(int customerID, string firstname, string lastname, string phonenumber)
-        {
-            CustomerID = customerID;
-            FirstName = firstname;
-            LastName = lastname;
-            PhoneNumber = phonenumber;
+        //public Customer(int customerID, string firstname, string lastname, string phonenumber)
+        //{
+        //    CustomerID = customerID;
+        //    FirstName = firstname;
+        //    LastName = lastname;
+        //    PhoneNumber = phonenumber;
 
-        }
+        //}
 
         public string  GetCustomer()
         {

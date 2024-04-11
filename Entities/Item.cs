@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarService.Entities
 {
-    internal class Item
+    public class Item
     {
   
         public int ItemID { get; set; }

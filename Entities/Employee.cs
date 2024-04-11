@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CarService.Entities
 {
-    internal class Employee
+    public class Employee
     {
-        public int EmployeeID { get; set; }
+        public int EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string RoleID { get; set; }
