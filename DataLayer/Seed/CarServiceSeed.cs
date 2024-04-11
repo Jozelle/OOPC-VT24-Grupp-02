@@ -1,5 +1,6 @@
 ﻿using CarService.DataLayer.Context;
 using CarService.Entities;
+using CarService.Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,13 +33,18 @@ namespace CarService.DataLayer.Seed
             {
                 FirstName = "Anders",
                 LastName = "Andersson",
-                PhoneNumber = "0701234567"
+                PhoneNumber = "0701234567",
+                Address = "Andersgata 9",
+                Email = "andersandersson@mail.com"
             });
+        
             context.Customers.Add(new Customer()
             {
                 FirstName = "Bertil",
                 LastName = "Bertillson",
-                PhoneNumber = "0712345678"
+                PhoneNumber = "0712345678", 
+                Address = "Bertilsgata 5",
+                Email = "bertilbertillson@mail.com"
             });
 
             //Skapar anställda
@@ -46,7 +52,7 @@ namespace CarService.DataLayer.Seed
             {
                 FirstName = "Pamela",
                 LastName = "Andersson",
-                RoleID = "690216",
+                Role = Role.Mechanic,
                 Specialisation = "Pedaler",
                 Password = "ILoveCalifornia"
             });
@@ -54,14 +60,14 @@ namespace CarService.DataLayer.Seed
             //Skapar items
             context.Items.Add(new Item()
             {
-                ItemID = 0101,
+                
                 Description = "Broms"
 
             });
 
             context.Items.Add(new Item()
             {
-                ItemID = 0102,
+                
                 Description = "Koppling"
 
             });
@@ -70,7 +76,7 @@ namespace CarService.DataLayer.Seed
             context.Vehicles.Add(new Vehicle()
             {
                 RegistrationNumber = "MOM987",
-                Brand = "Mercedes",
+                Make = "Mercedes",
                 Model = "C63 Sedan",
                 Year = "2015"
 
@@ -79,11 +85,14 @@ namespace CarService.DataLayer.Seed
             context.Vehicles.Add(new Vehicle()
             {
                 RegistrationNumber = "DAD567",
-                Brand = "Audi",
+                Make = "Audi",
                 Model = "rs6",
                 Year = "2018"
 
             });
+
+            context.SaveChanges();
+
         }
 
 

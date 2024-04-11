@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CarService.Entities.Enums
 {
-    public enum Roles
+    public enum Role
     {
-        
+        Receptionist,
+        Mechanic
     }
 }

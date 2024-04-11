@@ -1,5 +1,5 @@
 ﻿using CarService.DataLayer.Context;
-
+using CarService.DataLayer.Seed;
 namespace OOPC_VT24_Grupp_02
 {
     internal class Program
@@ -14,6 +14,9 @@ namespace OOPC_VT24_Grupp_02
             CarServiceContext carServiceContext = new CarServiceContext();
             carServiceContext.Database.EnsureDeleted();
             carServiceContext.Database.EnsureCreated();
+
+            CarServiceSeed.Populate(carServiceContext);
+
 
             Console.WriteLine("Jag tog bort och la till databasen lokalt!");
         }

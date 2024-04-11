@@ -10,7 +10,9 @@ namespace CarService.Entities
     {
   
         public int ItemID { get; set; }
-        public string Description { get; set; }    
+        public string Description { get; set; }
+
+        public ICollection<Repair> Repairs { get; set; }
 
     }
 }

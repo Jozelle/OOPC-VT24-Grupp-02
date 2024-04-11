@@ -14,9 +14,15 @@ namespace CarService.Entities
         public int CustomerID {  get; set; }
         public string FirstName {  get; set; }
         public  string LastName { get; set; }
-        public string Address { get; set; }
+        public string SocialSecurityNumber { get; set; }
+        public string ? Address { get; set; }
         public string PhoneNumber { get; set; }
-        public string Email { get; set; }
+        public string ? Email { get; set; }
+
+
+        public ICollection<Appointment>? Appointments { get; set; }
+        public ICollection<Vehicle>? Vehicles { get; set; }
+
 
         //Constructor based on customerID, firstname and lastname
         //public Customer(int customerID, string firstname, string lastname, string phonenumber)
