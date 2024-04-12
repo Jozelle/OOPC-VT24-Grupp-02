@@ -19,10 +19,10 @@ namespace CarService.Entities
 
         public Vehicle Vehicle { get; set; }
         public Customer Customer { get; set; }
-        public Employee CreatedBy { get; set; }
+        public Receptionist CreatedBy { get; set; }
 
 
-        public ICollection<Repair> Repairs { get; set; }
+        public ICollection<Repair>? Repairs { get; set; }
 
     }
 
