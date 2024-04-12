@@ -128,11 +128,26 @@ namespace CarService.DataLayer.Seed
                 CreatedBy = rep1
             });
 
-            context.Repairs.Add(new Repair()
+            Repair repair1 = new Repair()
             {
                 Description = "Felsökt bromsar, bytt båda bromsskivorna bak.",
                 Appointment = app1,
                 RepairedBy = mek1
+            };
+            context.Repairs.Add(repair1);
+
+            context.RepairItems.Add(new RepairItem()
+            {
+                Item = item1,
+                Repair = repair1,
+                Quantity = 2,
+            });
+
+            context.RepairItems.Add(new RepairItem()
+            {
+                Item = item12,
+                Repair = repair1,
+                Quantity = 1,
             });
 
             context.SaveChanges();

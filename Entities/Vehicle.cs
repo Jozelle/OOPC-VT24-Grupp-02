@@ -9,8 +9,8 @@ namespace CarService.Entities
 {
     public class Vehicle
     {
-        [Key] public int Id { get; set; }
-        public string RegistrationNumber { get; set; }
+        //[Key] public int Id { get; set; }
+        [Key] public string RegistrationNumber { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
         public string Year { get; set; }

@@ -8,7 +8,7 @@ namespace CarService.Entities
 {
     public class Repair
     {
-        public int Id { get; set; }
+        public int RepairId { get; set; }
         public string Description { get; set; }
 
         public Appointment Appointment { get; set; }
