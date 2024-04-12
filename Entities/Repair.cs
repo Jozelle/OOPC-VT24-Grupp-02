@@ -13,6 +13,6 @@ namespace CarService.Entities
 
         public Appointment Appointment { get; set; }
         public ICollection<Item>? Items { get; set; }       
-        public ICollection<Employee> RepairedBy { get; set; }
+        public Mechanic RepairedBy { get; set; }
     }
 }
