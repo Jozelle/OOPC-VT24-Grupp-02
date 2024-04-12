@@ -15,7 +15,6 @@ namespace CarService.Entities
         public string Model { get; set; }
         public string Year { get; set; }
 
-        public Customer Owner { get; set; }
         public ICollection<Appointment>? Appointments { get; set; }
 
 

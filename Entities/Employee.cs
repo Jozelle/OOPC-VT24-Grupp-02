@@ -12,11 +12,19 @@ namespace CarService.Entities
         public int EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Specialisation { get; set; }
+        public Specialization Specialization { get; set; }
         public string Password { get; set; }
 
+       
+    }
+
+    public class Mechanic : Employee
+    {
         public ICollection<Repair>? HandledRepairs { get; set; }
-        public Role Role { get; set; }
+    }
+
+    public class Receptionist : Employee
+    {
         public ICollection<Appointment>? CreatedAppointments { get; set; }
     }
 }

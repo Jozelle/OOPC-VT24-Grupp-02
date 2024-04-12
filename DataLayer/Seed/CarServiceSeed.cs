@@ -48,12 +48,11 @@ namespace CarService.DataLayer.Seed
             });
 
             //Skapar anställda
-            context.Employees.Add(new Employee()
+            context.Mechanics.Add(new Mechanic()
             {
                 FirstName = "Pamela",
                 LastName = "Andersson",
-                Role = Role.Mechanic,
-                Specialisation = "Pedaler",
+                Specialization = Specialization.Breaks,
                 Password = "ILoveCalifornia"
             });
 

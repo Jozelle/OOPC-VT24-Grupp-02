@@ -21,7 +21,6 @@ namespace CarService.Entities
 
 
         public ICollection<Appointment>? Appointments { get; set; }
-        public ICollection<Vehicle>? Vehicles { get; set; }
 
 
         //Constructor based on customerID, firstname and lastname
