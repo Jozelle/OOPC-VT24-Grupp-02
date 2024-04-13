@@ -23,7 +23,6 @@ namespace CarService.DataLayer.Seed
                 Address = "Andersgata 9",
                 Email = "andersandersson@mail.com"
             };
-
             context.Customers.Add(kund1);
 
             Customer kund2 = new Customer()
@@ -37,6 +36,17 @@ namespace CarService.DataLayer.Seed
             };
             context.Customers.Add(kund2);
 
+            Customer kund3 = new Customer()
+            {
+                FirstName = "Curt",
+                LastName = "Curtsson",
+                PhoneNumber = "0701020304",
+                SocialSecurityNumber = "4004040404",
+                Address = "Curtvägen 3C",
+                Email = "cc@mail.com"
+            };
+            context.Customers.Add(kund3);
+
             //Skapar anställda
             Mechanic mek1 = new Mechanic()
             {
@@ -46,6 +56,14 @@ namespace CarService.DataLayer.Seed
                 Password = "ILoveCalifornia"
             };
             context.Mechanics.Add(mek1);
+
+            Mechanic mek2 = new Mechanic()
+            {
+                FirstName = "Cindy",
+                LastName = "Crawford",
+                Password = "Vogue"
+            };
+            context.Mechanics.Add(mek2);
 
             Receptionist rep1 = new Receptionist()
             {
@@ -106,15 +124,26 @@ namespace CarService.DataLayer.Seed
 
             };
 
+            Vehicle bil3 = new Vehicle()
+            {
+                RegistrationNumber = "ABC123",
+                Make = "Kia",
+                Model = "Ceed",
+                Year = "2004"
+
+            };
+
+
             //SKapar besök
             Appointment app1 = new Appointment()
             {
-                SubmissionDate = DateTime.Now,
+                SubmissionDate = DateTime.Now - TimeSpan.FromHours(1),
                 DeliveryDate = DateTime.Now + TimeSpan.FromHours(2),
                 Purpose = "Däckbyte",
                 Customer = kund1,
                 Vehicle = bil1,
-                CreatedBy = rep1
+                CreatedBy = rep1,
+                Status = AppointmentStatus.CarReceived
             };
             context.Appointments.Add(app1);
 
@@ -125,8 +154,21 @@ namespace CarService.DataLayer.Seed
                 Purpose = "Gnälliga bromsar",
                 Customer = kund2,
                 Vehicle = bil2,
-                CreatedBy = rep1
+                CreatedBy = rep1,
+                Status = AppointmentStatus.Booked
             });
+
+            Appointment app2 = new Appointment()
+            {
+                SubmissionDate = new DateTime(2024, 4, 25, 8, 30, 00),
+                DeliveryDate = new DateTime(2024, 4, 25, 9, 30, 00),
+                Purpose = "Service",
+                Customer = kund3,
+                Vehicle = bil3,
+                CreatedBy = rep1,
+                Status = AppointmentStatus.Booked
+            };
+            context.Appointments.Add(app2);
 
             Repair repair1 = new Repair()
             {
