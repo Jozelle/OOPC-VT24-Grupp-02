@@ -12,9 +12,9 @@ namespace CarService.DataLayer.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
 
-            optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test;Trusted_Connection=true;TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test;Trusted_Connection=true;TrustServerCertificate=true");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -28,6 +28,8 @@ namespace CarService.DataLayer.Context
         public DbSet<Repair> Repairs { get; set; }
 
         public DbSet<RepairItem> RepairItems { get; set; }
+
+        public DbSet<Payment> Payments { get; set; }    
 
     }
 }

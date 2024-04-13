@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarService.Entities.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,8 @@ namespace CarService.Entities
         public Vehicle Vehicle { get; set; }
         public Customer Customer { get; set; }
         public Receptionist CreatedBy { get; set; }
-
+        public AppointmentStatus Status { get; set; }
+        public Payment? Payment { get; set; }
 
         public ICollection<Repair>? Repairs { get; set; }
 
