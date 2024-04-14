@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarService.DataLayer.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,10 @@ namespace CarService.DataLayer
 {
     public interface IUnitOfWork : IDisposable
     {
+        IAppointmentRepository Appointments { get; }
+        ICustomerRepository Customers { get; }
+        IVehicleRepository Vehicles { get; }
 
+        int Complete();
     }
 }
