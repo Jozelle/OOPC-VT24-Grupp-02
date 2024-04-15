@@ -10,11 +10,11 @@ namespace CarService.Entities
 
 
 
-    [PrimaryKey(nameof(RepairId), nameof(ItemId))]
-    public class RepairItem
+    [PrimaryKey(nameof(AppointmentId), nameof(ItemId))]
+    public class UsedItem
     {
-        public int RepairId { get; set; }
-        public Repair Repair {  get; set; }
+        public int AppointmentId { get; set; }
+        public Appointment Appointment {  get; set; }
 
         public int ItemId { get; set; }
         public Item Item { get; set; }

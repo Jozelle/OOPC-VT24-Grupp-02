@@ -178,14 +178,14 @@ namespace CarService.DataLayer.Seed
             };
             context.Repairs.Add(repair1);
 
-            context.RepairItems.Add(new RepairItem()
+            context.RepairItems.Add(new UsedItem()
             {
                 Item = item1,
                 Repair = repair1,
                 Quantity = 2,
             });
 
-            context.RepairItems.Add(new RepairItem()
+            context.RepairItems.Add(new UsedItem()
             {
                 Item = item12,
                 Repair = repair1,
