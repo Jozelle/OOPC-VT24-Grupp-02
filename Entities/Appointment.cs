@@ -24,7 +24,7 @@ namespace CarService.Entities
         public AppointmentStatus Status { get; set; }
         public Payment? Payment { get; set; }
 
-        public ICollection<Repair>? Repairs { get; set; }
+        public ICollection<UsedItem>? UsedItems { get; set; }
 
     }
 

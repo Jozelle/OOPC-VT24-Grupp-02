@@ -12,7 +12,7 @@ namespace CarService.Entities
         public string Description { get; set; }
 
         public Appointment Appointment { get; set; }
-        public ICollection<RepairItem>? RepairItems { get; set; }       
+        public ICollection<UsedItem>? RepairItems { get; set; }       
         public Mechanic RepairedBy { get; set; }
     }
 }
