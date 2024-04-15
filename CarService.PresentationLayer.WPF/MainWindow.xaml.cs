@@ -20,5 +20,10 @@ namespace CarService.PresentationLayer.WPF
         {
             InitializeComponent();
         }
+
+        private void btnManage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
