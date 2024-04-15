@@ -45,25 +45,77 @@ namespace OOPC_VT24_Grupp_02
                     $"\nFelbeskrivning: {appointment.Purpose}" +
                     $"\nStatus: {appointment.Status}");
 
-                Vehicle bil = unitOfWork.Vehicles.GetByRegistrationNo("MOM987");
-
-                Console.WriteLine($"{bil.Make}");
-
                 Customer kund = unitOfWork.Customers.Get(1);
                 Console.WriteLine(kund.FirstName + " " + kund.LastName);
 
-                var besök = unitOfWork.Vehicles.GetJournal(bil);
+                Vehicle bil = unitOfWork.Vehicles.GetByRegistrationNo("DAD567");
 
-                foreach (var rep in besök)
+                Console.WriteLine($"{bil.Make}");
+
+                foreach (var rep in bil.Appointments)
                 {
-                    Console.WriteLine($"Felbeskrivning: {rep.Appointment.Purpose}" +
-                        $"\nKommentar: {rep.Description}" +
-                        $"\nMekaniker: {rep.RepairedBy.FirstName}");
+                    Console.WriteLine($"Felbeskrivning: {rep.Purpose}");
 
-                    foreach (var item in rep.RepairItems)
+                    if (rep.Comments != null)
                     {
-                        Console.WriteLine($"Artikel: {item.Item.Description}, {item.Quantity} st á {item.Item.Price} kr");
+                        foreach(var com in rep.Comments)
+                        {
+                            Console.WriteLine($"Kommentar: {com.Comment}" +
+                                $"\nMekaniker: {com.RepairedBy.FirstName} {com.RepairedBy.LastName}");
+
+                        }
                     }
+
+                    if (rep.UsedItems != null)
+                    {
+                        foreach (var item in rep.UsedItems)
+                        {
+                            Console.WriteLine($"Artikel: {item.Item.Description}, {item.Quantity} st á {item.Item.Price} kr");
+                        }
+                    }
+
+                }
+
+                Console.WriteLine("Vilken artikel vill du lägga till?");
+                int.TryParse(Console.ReadLine(), out int itemId);
+                Item itemToAdd = unitOfWork.Items.Get(itemId);
+
+                Console.WriteLine("Hur många?");
+                int.TryParse(Console.ReadLine(), out int quantity);
+
+                Appointment app1 = unitOfWork.Appointments.GetByRegNo("DAD567");
+
+                UsedItem usedItem = new UsedItem { Item = itemToAdd, Quantity = quantity };
+                app1.UsedItems.Add(usedItem);
+
+                unitOfWork.Complete();
+
+                Console.WriteLine("SPARAT!");
+
+                Vehicle bilIgen = unitOfWork.Vehicles.GetByRegistrationNo("DAD567");
+
+                foreach (var rep in bilIgen.Appointments)
+                {
+                    Console.WriteLine($"Felbeskrivning: {rep.Purpose}");
+
+                    if (rep.Comments != null)
+                    {
+                        foreach (var com in rep.Comments)
+                        {
+                            Console.WriteLine($"Kommentar: {com.Comment}" +
+                                $"\nMekaniker: {com.RepairedBy.FirstName} {com.RepairedBy.LastName}");
+
+                        }
+                    }
+
+                    if (rep.UsedItems != null)
+                    {
+                        foreach (var item in rep.UsedItems)
+                        {
+                            Console.WriteLine($"Artikel: {item.Item.Description}, {item.Quantity} st á {item.Item.Price} kr");
+                        }
+                    }
+
                 }
 
                 Console.WriteLine("-- Alla dagens besök --");
@@ -78,6 +130,7 @@ namespace OOPC_VT24_Grupp_02
                         $"\nFelbeskrivning: {a.Purpose}" +
                         $"\nStatus: {a.Status}");
                 }
+
 
             }
         }

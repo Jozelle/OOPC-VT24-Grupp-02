@@ -13,5 +13,9 @@ namespace CarService.DataLayer.Repositories.Interfaces
         //Unika metoder för besök
         
         IEnumerable<Appointment> GetTodaysAppointments();
+
+        Appointment GetByRegNo(string regNo);
+
+        void AddItem(Appointment app, Item item, int quantity);
     }
 }
