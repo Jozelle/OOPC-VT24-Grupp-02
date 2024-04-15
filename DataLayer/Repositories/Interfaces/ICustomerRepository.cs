@@ -12,5 +12,11 @@ namespace CarService.DataLayer.Repositories.Interfaces
     {
         //Unika metoder för kunder
 
+        Customer GetByFullName(string firstName, string lastName);
+
+        Customer GetBySocialSecurityNo(string socialSecurityNo);
+
+
+
     }
 }
