@@ -22,8 +22,8 @@ namespace OOPC_VT24_Grupp_02
 
             Console.WriteLine("Jag tog bort och la till databasen lokalt!");
 
-            //Console.WriteLine( "-- Alla bokade besök -- ");
-            //foreach (Appointment appointment in carServiceContext.Appointments) 
+            //Console.WriteLine("-- Alla bokade besök -- ");
+            //foreach (Appointment appointment in carServiceContext.Appointments)
             //{
             //    Console.WriteLine($"\nBesöksID: {appointment.AppointmentId}" +
             //        $"\nKund: {appointment.Customer.FirstName} {appointment.Customer.LastName}" +
@@ -52,19 +52,32 @@ namespace OOPC_VT24_Grupp_02
                 Customer kund = unitOfWork.Customers.Get(1);
                 Console.WriteLine(kund.FirstName + " " + kund.LastName);
 
-                //var besök = unitOfWork.Vehicles.GetJournal(bil);
+                var besök = unitOfWork.Vehicles.GetJournal(bil);
 
-                //foreach (var rep in besök)
-                //{
-                //    Console.WriteLine($"Felbeskrivning: {rep.Appointment.Purpose}" +
-                //        $"\nKommentar: {rep.Description}" +
-                //        $"\nMekaniker: {rep.RepairedBy.FirstName}");
+                foreach (var rep in besök)
+                {
+                    Console.WriteLine($"Felbeskrivning: {rep.Appointment.Purpose}" +
+                        $"\nKommentar: {rep.Description}" +
+                        $"\nMekaniker: {rep.RepairedBy.FirstName}");
 
-                //    foreach (var item in rep.RepairItems)
-                //    {
-                //        Console.WriteLine($"Artikel: {item.Item.Description}, {item.Quantity} st á {item.Item.Price}");
-                //    }
-                //}
+                    foreach (var item in rep.RepairItems)
+                    {
+                        Console.WriteLine($"Artikel: {item.Item.Description}, {item.Quantity} st á {item.Item.Price} kr");
+                    }
+                }
+
+                Console.WriteLine("-- Alla dagens besök --");
+
+                var appointments = unitOfWork.Appointments.GetTodaysAppointments();
+                foreach(var a in appointments)
+                {
+                    Console.WriteLine($"\nBesöksID: {a.AppointmentId}" +
+                        $"\nKund: {a.Customer.FirstName} {a.Customer.LastName}" +
+                        $"\nFordon: {a.Vehicle.RegistrationNumber} ({a.Vehicle.Make} {a.Vehicle.Model})" +
+                        $"\nInlämning: {a.SubmissionDate.ToString()}" +
+                        $"\nFelbeskrivning: {a.Purpose}" +
+                        $"\nStatus: {a.Status}");
+                }
 
             }
         }
