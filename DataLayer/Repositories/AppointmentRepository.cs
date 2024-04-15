@@ -18,12 +18,10 @@ namespace CarService.DataLayer.Repositories
 
         public IEnumerable<Appointment> GetTodaysAppointments()
         {
-            //Något är fel med denna queryn
-            
-            IEnumerable<Appointment> result = CarServiceContext.Appointments
-                .Where(c => c.SubmissionDate >= DateTime.Today).ToList();
+            IEnumerable<Appointment> result = Context.Set<Appointment>()
+                .Where(c => c.SubmissionDate == DateTime.Today)
+                .ToList();
             return result;
-
         }
 
         public CarServiceContext CarServiceContext 
