@@ -147,7 +147,7 @@ namespace CarService.DataLayer.Seed
             };
             context.Appointments.Add(app1);
 
-            context.Appointments.Add(new Appointment()
+            Appointment app2 = new Appointment()
             {
                 SubmissionDate = new DateTime(2024, 5, 1, 10, 00, 00),
                 DeliveryDate = new DateTime(2024, 5, 1, 12, 00, 00),
@@ -156,9 +156,10 @@ namespace CarService.DataLayer.Seed
                 Vehicle = bil2,
                 CreatedBy = rep1,
                 Status = AppointmentStatus.Booked
-            });
+            };
+            context.Appointments.Add(app2);
 
-            Appointment app2 = new Appointment()
+            Appointment app3 = new Appointment()
             {
                 SubmissionDate = new DateTime(2024, 4, 25, 8, 30, 00),
                 DeliveryDate = new DateTime(2024, 4, 25, 9, 30, 00),
@@ -168,30 +169,29 @@ namespace CarService.DataLayer.Seed
                 CreatedBy = rep1,
                 Status = AppointmentStatus.Booked
             };
-            context.Appointments.Add(app2);
+            context.Appointments.Add(app3);
 
-            Repair repair1 = new Repair()
-            {
-                Description = "Felsökt bromsar, bytt båda bromsskivorna bak.",
-                Appointment = app1,
-                RepairedBy = mek1
-            };
-            context.Repairs.Add(repair1);
-
-            context.RepairItems.Add(new UsedItem()
+            context.UsedItems.Add(new UsedItem()
             {
                 Item = item1,
-                Repair = repair1,
+                Appointment = app2,
                 Quantity = 2,
             });
 
-            context.RepairItems.Add(new UsedItem()
+            context.UsedItems.Add(new UsedItem()
             {
                 Item = item12,
-                Repair = repair1,
+                Appointment = app2,
                 Quantity = 1,
             });
 
+            context.MechanicComments.Add(new MechanicComment()
+            {
+                Appointment = app2,
+                RepairedBy = mek2,
+                Comment = "Bytt bromsskivor bak",
+                Time = DateTime.Now
+            });
             context.SaveChanges();
 
         }

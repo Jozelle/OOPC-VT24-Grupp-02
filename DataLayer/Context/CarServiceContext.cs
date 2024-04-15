@@ -25,11 +25,14 @@ namespace CarService.DataLayer.Context
         public DbSet<Item> Items { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
 
-        public DbSet<Repair> Repairs { get; set; }
+        //public DbSet<Repair> Repairs { get; set; }
 
-        public DbSet<UsedItem> RepairItems { get; set; }
+        public DbSet<UsedItem> UsedItems { get; set; }
 
         public DbSet<Payment> Payments { get; set; }    
+        public DbSet<MechanicComment> MechanicComments { get; set; }
+
+        public CarServiceContext() { }
 
     }
 }

@@ -12,6 +12,8 @@ namespace CarService.DataLayer
         IAppointmentRepository Appointments { get; }
         ICustomerRepository Customers { get; }
         IVehicleRepository Vehicles { get; }
+        IItemRepository Items { get; }
+        IUsedItemRepository UsedItems { get; }
 
         int Complete();
     }
