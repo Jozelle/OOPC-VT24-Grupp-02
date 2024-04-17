@@ -29,8 +29,6 @@ namespace BusinessLayer
 
         public Appointment handleAppointment(string regNo) 
         {
-            //CarServiceContext csc = new CarServiceContext();
-
             using (UnitOfWork uow = new UnitOfWork(csc))
             {
                 Appointment app = uow.Appointments.GetByRegNo(regNo);
@@ -41,14 +39,13 @@ namespace BusinessLayer
 
         public void enterItem(Appointment app, int itemId, int quantity)
         {
-            //CarServiceContext csc = new CarServiceContext();
-
             using (UnitOfWork uow = new UnitOfWork(csc))
             {
-                Item itemToAdd = uow.Items.Get(itemId);
-                UsedItem usedItem = new UsedItem { Item = itemToAdd, Quantity = quantity };
-                app.UsedItems.Add(usedItem);
+                Item pryl = uow.Items.Get(itemId);
+                uow.Appointments.AddItem(app, pryl, quantity);
             }
+
+            
         }
     }
 }
