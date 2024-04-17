@@ -7,125 +7,19 @@
         mc:Ignorable="d"
         Title="CreateAppointmentWindow" Height="500" Width="800"
         MinHeight="500" MinWidth="800" WindowStartupLocation="CenterScreen">
-    
-    
     <DockPanel LastChildFill="True">
-
-        <!-- DockPanel Top -->
-        <Menu DockPanel.Dock="Top" Background="MediumPurple" Margin="10,10,10,10">
-            <MenuItem Header="_Create Appointment">
-                <MenuItem x:Name="miExit" Header="E_xit" Click="miExit_Click" />
-            </MenuItem>
-        </Menu>
-
-
-        <!-- DockPanel Bottom -->
-
-        <StatusBar DockPanel.Dock="Bottom" Background="LightPink" Margin="10,10,10,10">
-            <StatusBarItem HorizontalAlignment="Center">
-                <TextBlock x:Name="tbStatus" Text="SPARA" />
-            </StatusBarItem>
-        </StatusBar>
+        <StackPanel Width="302">
         
-        
-        <!-- DockPanel Left -->
-
-        <StackPanel DockPanel.Dock="Left" Orientation="Vertical"
-            Background="LightPink" Margin="10,10,10,10">
-            <Border BorderThickness="2" BorderBrush="black">
-                <TextBlock Text="Create Appointment" TextAlignment="Left"
-                    FontFamily="Arial" FontSize="14" FontWeight="Bold"
-                    Foreground="Violet" Background="Purple"
-                    Margin="30,10,10,10" Padding="100,10,10,10" />
-            </Border>
-            
-            <ComboBox x:Name="cbMenus" Width="150" Margin="5,10,5,10"
-                    SelectionChanged="cbMenus_SelectionChanged" />
-            
-            <TextBlock Text="First name" FontWeight="Bold" Margin="5" />
-            <TextBox x:Name="tbMenuId" Text="" Margin="5"  />
-            
-            <TextBlock Text="Last name" FontWeight="Bold" Margin="5" />
-            <TextBox x:Name="tbMenuDescription" Text=""  Margin="5" />
-  
-            <TextBlock Text="Social Security No." FontWeight="Bold" Margin="5" />
-            <TextBox x:Name="tbMenuCreatedBy" Text="" Margin="5"  />
-            
-            <TextBlock Text="Address" FontWeight="Bold" Margin="5" />
-            <TextBox x:Name="tbMenuVerifiedBy" Text="" Margin="5"  />
-
-            <TextBlock Text="Phone No." FontWeight="Bold" Margin="5" />
-            <TextBox x:Name="" Text="" Margin="5"  />
-
-            <TextBlock Text="Email" FontWeight="Bold" Margin="5" />
-            <TextBox x:Name="tbMenu" Text="" Margin="5"  />
-
-
-            <TextBlock Text="Submisson date" FontWeight="Bold" Margin="5" />
-            <DatePicker x:Name="dpCreated" Text=""  Margin="5"/>
+            <Button x:Name="btnSelectDate" Content="Select date" FontSize="14" Width="200" Height="50"
+        Margin="10,30,10,15" Click="btnCreate_Click"/>
+            <Button x:Name="btnSearchCustomer" Content="Search customer" FontSize="14" Width="200" Height="50"
+        Margin="10,10,10,15" Click="btnSearch_Click"/>
+            <Button x:Name="btnSearchVehicle" Content="Search vehicle" FontSize="14" Width="200" Height="50"
+        Margin="10,10,10,15" Click="btnSubmission_Click"/>
+           
         </StackPanel>
-        
-        <!-- DockPanel Right -->
-
-        <StackPanel DockPanel.Dock="Right" Orientation="Vertical"
-            Background="LightGreen" Margin="0,10,10,10">
-                        <TextBlock Text="Ingredients" FontSize="14" FontWeight="Bold"
-            HorizontalAlignment="Center" />
-                        <Button x:Name="btnRemove" Content="Remove" FontSize="14" Width="100"
-            Margin="10,10,10,5" Click="btnRemove_Click" />
-                        <Button x:Name="btnAdd" Content="Add" FontSize="14" Width="100"
-            Margin="10,5,10,5" Click="btnAdd_Click" />
-                        <Button x:Name="btnSave" Content="Save" FontSize="14" Width="100"
-            Margin="10,15,10,5" Click="btnSave_Click" />
-                        <Button x:Name="btnManage" Content="Manage" FontSize="14" Width="100"
-            Margin="10,90,10,20" Click="btnManage_Click" />
-                    </StackPanel>
-        
-        <!-- DockPanel LastChildFill -->
-        <Grid Background="AliceBlue" ShowGridLines="True" Margin="10,10,10,10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <!-- Headings -->
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Dishes" FontSize="16" FontWeight="Bold" />
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="Ingredients"
-FontSize="16" FontWeight="Bold" />
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Dish Spiciness"
-FontSize="16" FontWeight="Bold" />
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="Available Ingredients"
-FontSize="16" FontWeight="Bold" />
-            <!-- Gridsplitters -->
-            <GridSplitter Grid.Column="1" Grid.RowSpan="5" Width="10" Background="Transparent"
-HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            <GridSplitter Grid.Row="2" Grid.ColumnSpan="3" Height="25" Background="Transparent"
-HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-            <!-- Dishes Datagrid -->
-            <DataGrid x:Name="dgDishes" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True"
-SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True"
-SelectionChanged="dgDishes_SelectionChanged">
-            </DataGrid>
-            <!-- Ingredients Datagrid -->
-            <DataGrid x:Name="dgIngredients" Grid.Row="1" Grid.Column="2" AutoGenerateColumns="True"
-SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True">
-            </DataGrid>
-            <!-- Spiciness Ellipse -->
-            <Ellipse x:Name="eSpiciness" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch"
-VerticalAlignment="Stretch" Margin="20" Stroke="DarkBlue" Fill="AliceBlue" />
-            <!-- Available Ingredients Datagrid -->
-            <DataGrid x:Name="dgAvailableIngredients" Grid.Row="3" Grid.Column="2"
-AutoGenerateColumns="True" SelectionMode="Single"
-SelectionUnit="FullRow" IsReadOnly="True">
-            </DataGrid>
-        </Grid>
-
-
+        <StackPanel Width="498"/>
     </DockPanel>
+
+
 </Window>
