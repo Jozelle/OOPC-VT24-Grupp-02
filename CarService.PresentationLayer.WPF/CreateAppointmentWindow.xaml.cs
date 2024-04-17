@@ -24,7 +24,25 @@ namespace CarService.PresentationLayer.WPF
             InitializeComponent();
         }
 
-        private void miExit_Click(object sender, RoutedEventArgs e)
+        
+
+       
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSubmission_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelivery_Click(object sender, RoutedEventArgs e)
         {
 
         }
