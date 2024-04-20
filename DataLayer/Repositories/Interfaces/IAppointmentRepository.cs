@@ -14,7 +14,7 @@ namespace CarService.DataLayer.Repositories.Interfaces
         
         IEnumerable<Appointment> GetTodaysAppointments();
 
-        Appointment GetByRegNo(string regNo);
+        List<Appointment> GetAppointmentsByRegNo(string regNo);
 
         void AddItem(Appointment app, Item item, int quantity);
     }

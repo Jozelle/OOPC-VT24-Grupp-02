@@ -2,6 +2,7 @@
 using CarService.DataLayer.Repositories.Base;
 using CarService.DataLayer.Repositories.Interfaces;
 using CarService.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,25 +21,33 @@ namespace CarService.DataLayer.Repositories
         {
             IEnumerable<Appointment> result = Context.Set<Appointment>()
                 .Where(c => c.SubmissionDate.Date == DateTime.Today)
+                .Include(c => c.Vehicle)
+                .Include(c => c.UsedItems)
+                .ThenInclude(c => c.Item)
                 .ToList();
+
             return result;
         }
 
-        public Appointment GetByRegNo(string regNo)
+        public List<Appointment> GetAppointmentsByRegNo(string regNo)
         {
-            Appointment currentAppointment = Context.Set<Appointment>()
-                .Single(r => r.Vehicle.RegistrationNumber == regNo);
+            List<Appointment> currentAppointment = Context.Set<Appointment>()
+                .Where(r => r.Vehicle.RegistrationNumber == regNo)
+                .Include(c => c.Vehicle)
+                .Include(c => c.UsedItems)
+                .ThenInclude(c => c.Item)
+                .ToList();
             return currentAppointment;
         }
 
         public void AddItem(Appointment app, Item item, int quantity)
         {
-            UsedItem usedItem = new UsedItem() {Item = item, Quantity=quantity };
+            UsedItem usedItem = new UsedItem() {Appointment = app, Item = item, Quantity=quantity };
             app.UsedItems.Add(usedItem);
         }
 
-        public CarServiceContext CarServiceContext 
-        { 
+        public CarServiceContext CarServiceContext
+        {
             get { return CarServiceContext as CarServiceContext; }
         }
     }

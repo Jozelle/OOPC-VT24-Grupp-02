@@ -1,13 +1,14 @@
 ﻿using CarService.Entities.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CarService.Entities
 {
-    public class Appointment
+    public class Appointment : INotifyPropertyChanged
     {
 
         public int AppointmentId { get; set; }
@@ -27,6 +28,13 @@ namespace CarService.Entities
         public ICollection<UsedItem>? UsedItems { get; set; }
 
         public ICollection<MechanicComment>? Comments { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public override string ToString()
+        {
+            return AppointmentId.ToString();
+        }
 
     }
 
