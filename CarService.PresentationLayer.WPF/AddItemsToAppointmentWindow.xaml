@@ -1,0 +1,21 @@
+﻿<Window x:Class="CarService.PresentationLayer.WPF.AddItemsToAppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
+        mc:Ignorable="d"
+        Title="AddItemsToAppointmentWindow" Height="643" Width="1092">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label Content="Sök fordon"/>
+            <TextBox x:Name="searchVehicleTB" TextWrapping="Wrap" Text="Ange registreringsnummer" />
+            <Button x:Name="searchVehicleButton" Content="Sök" Click="searchVehicleButton_Click"/>
+        </StackPanel>
+        <ListBox Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+    </Grid>
+</Window>

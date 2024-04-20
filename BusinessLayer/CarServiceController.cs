@@ -27,7 +27,7 @@ namespace BusinessLayer
             return appointment;
         }
 
-        public Appointment handleAppointment(string regNo) 
+        public Appointment getVehicle(string regNo) 
         {
             using (UnitOfWork uow = new UnitOfWork(csc))
             {
