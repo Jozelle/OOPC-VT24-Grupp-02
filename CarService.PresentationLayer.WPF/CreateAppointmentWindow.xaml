@@ -55,7 +55,7 @@
             <TextBox x:Name="tbMenuVerifiedBy" Text="" Margin="5"  />
 
             <TextBlock Text="Phone No." FontWeight="Bold" Margin="5" />
-            <TextBox x:Name="" Text="" Margin="5"  />
+            <TextBox x:Name="tbPhone" Text="" Margin="5"  />
 
             <TextBlock Text="Email" FontWeight="Bold" Margin="5" />
             <TextBox x:Name="tbMenu" Text="" Margin="5"  />

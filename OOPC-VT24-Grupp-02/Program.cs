@@ -34,7 +34,7 @@ namespace OOPC_VT24_Grupp_02
             //}
 
             //Testar UnitOfWork
-            using (var unitOfWork = new UnitOfWork(carServiceContext))
+            using (var unitOfWork = new UnitOfWork())
             {
                 Appointment appointment = unitOfWork.Appointments.Get(2);
 
@@ -83,10 +83,10 @@ namespace OOPC_VT24_Grupp_02
                 Console.WriteLine("Hur många?");
                 int.TryParse(Console.ReadLine(), out int quantity);
 
-                Appointment app1 = unitOfWork.Appointments.GetByRegNo("DAD567");
+                //Appointment app1 = unitOfWork.Appointments.GetByRegNo("DAD567");
 
-                UsedItem usedItem = new UsedItem { Item = itemToAdd, Quantity = quantity };
-                app1.UsedItems.Add(usedItem);
+                //UsedItem usedItem = new UsedItem { Item = itemToAdd, Quantity = quantity };
+                //app1.UsedItems.Add(usedItem);
 
                 unitOfWork.Complete();
 

@@ -137,7 +137,7 @@ namespace CarService.DataLayer.Seed
             //SKapar besök
             Appointment app1 = new Appointment()
             {
-                SubmissionDate = DateTime.Now - TimeSpan.FromHours(1),
+                SubmissionDate = DateTime.Now + TimeSpan.FromHours(1),
                 DeliveryDate = DateTime.Now + TimeSpan.FromHours(2),
                 Purpose = "Däckbyte",
                 Customer = kund1,

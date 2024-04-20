@@ -8,9 +8,8 @@ namespace BusinessLayer
 {
     public class CarServiceController
     {
+        UnitOfWork unitOfWork = new UnitOfWork();
         public CarServiceController() { }
-
-        CarServiceContext csc = new CarServiceContext();
 
         public Appointment createAppointment()
         {
@@ -27,25 +26,49 @@ namespace BusinessLayer
             return appointment;
         }
 
-        public Appointment getVehicle(string regNo) 
+
+        public List<Appointment> getAppointments(string regNo) 
         {
-            using (UnitOfWork uow = new UnitOfWork(csc))
+            using (UnitOfWork uow = new UnitOfWork())
             {
-                Appointment app = uow.Appointments.GetByRegNo(regNo);
+                List<Appointment> app = uow.Appointments.GetAppointmentsByRegNo(regNo);
                 return app;
             }
 
         }
 
-        public void enterItem(Appointment app, int itemId, int quantity)
+        public List<Appointment> getCurrentAppointments()
         {
-            using (UnitOfWork uow = new UnitOfWork(csc))
+            using (UnitOfWork uow = new UnitOfWork())
             {
-                Item pryl = uow.Items.Get(itemId);
-                uow.Appointments.AddItem(app, pryl, quantity);
+                List<Appointment> app = uow.Appointments.GetTodaysAppointments().ToList();
+                return app;
             }
 
-            
+        }
+
+        public Vehicle GetVehicle(string regNo)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Vehicles.GetByRegistrationNo(regNo);
+            }
+        }
+        public Item GetItem(int id) 
+        { 
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Items.Get(id);
+            }
+        }
+
+        public void EnterItem(Appointment app, Item itemId, int quantity)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                uow.Appointments.AddItem(app, itemId, quantity);
+                uow.Complete();
+            }
         }
     }
 }

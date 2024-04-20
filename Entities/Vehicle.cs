@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Identity.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,12 +17,12 @@ namespace CarService.Entities
 
         public ICollection<Appointment>? Appointments { get; set; }
 
-
+        public override string ToString()
+        {
+            return RegistrationNumber;
+        }
 
     }
 
-    //Necessery to create a constructor?
-
-    //Need to create a method of choice
 
 }
