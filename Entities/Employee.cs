@@ -21,7 +21,7 @@ namespace CarService.Entities
     public class Mechanic : Employee
     {
         public int MechanicId { get; set; }
-        public ICollection<Repair>? HandledRepairs { get; set; }
+        public ICollection<MechanicComment>? Comments { get; set; }
     }
 
     public class Receptionist : Employee
