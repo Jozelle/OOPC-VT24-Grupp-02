@@ -35,16 +35,16 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" Content="Registration number"/>
                 <TextBox Grid.Column="1" Grid.Row="0" x:Name="RegTB" />
-                <Label Grid.Column="0" Grid.Row="1" Content="Make"/>
-                <TextBox Grid.Column="1" Grid.Row="1" x:Name="MakeTB" />
-                <Label Grid.Column="0" Grid.Row="2" Content="Model"/>
-                <TextBox Grid.Column="1" Grid.Row="2" x:Name="ModelTB"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Car description"/>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="CarDescriptionTB" />
+                <Label Grid.Column="0" Grid.Row="2" Content="Description"/>
+                <TextBox Grid.Column="1" Grid.Row="2" x:Name="AppDescriptionTB"/>
                 <Label Grid.Row="3" Content="Add items:"/>
                 <Label Grid.Column="0" Grid.Row="4" Content="Item number"/>
                 <TextBox Grid.Column="1" Grid.Row="4" x:Name="ItemTB" />
                 <Button Grid.Column="1" Grid.Row="5" x:Name="SearchItemButton" Content="Search" Click="SearchItemButton_Click"/>
                 <Label Grid.Column="0" Grid.Row="6" Content="Item description"/>
-                <TextBox Grid.Column="1" Grid.Row="6" x:Name="DescriptionTB" />
+                <TextBox Grid.Column="1" Grid.Row="6" x:Name="ItemDescriptionTB" />
                 <Label Grid.Column="0" Grid.Row="7" Content="Quantity"/>
                 <TextBox Grid.Column="1" Grid.Row="7" x:Name="QuantityTB"/>
                 <Button Grid.Column="1" Grid.Row="8" x:Name="AddItemButton" Content="Add item" Click="AddItemButton_Click"/>

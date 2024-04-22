@@ -70,8 +70,8 @@ namespace CarService.PresentationLayer.WPF
 
 
             RegTB.Text = currentAppointment.Vehicle.RegistrationNumber;
-            MakeTB.Text = currentAppointment.Vehicle.Make;
-            ModelTB.Text = currentAppointment.Vehicle.Model;
+            CarDescriptionTB.Text = $"{currentAppointment.Vehicle.Make} {currentAppointment.Vehicle.Model}, {currentAppointment.Vehicle.Year}";
+            AppDescriptionTB.Text = currentAppointment.Purpose;
 
             addItem2LB.ItemsSource = currentAppointment.UsedItems;
 
@@ -89,7 +89,7 @@ namespace CarService.PresentationLayer.WPF
                 }
                 else
                 {
-                    DescriptionTB.Text = currentItem.Description;
+                    ItemDescriptionTB.Text = currentItem.Description;
                 }
             }
             else
