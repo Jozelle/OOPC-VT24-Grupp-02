@@ -88,6 +88,7 @@ namespace CarService.DataLayer.Seed
             Item item12 = new Item() { Description = "Stötdämpare", Price = 5000 };
             Item item13 = new Item() { Description = "Tändstift", Price = 75 };
             Item item14 = new Item() { Description = "Växellåda", Price = 10000 };
+            Item item15 = new Item() { Description = "Sommardäck", Price = 950 };
 
             context.Items.Add(item1);
             context.Items.Add(item2);
@@ -103,7 +104,7 @@ namespace CarService.DataLayer.Seed
             context.Items.Add(item12);
             context.Items.Add(item13);
             context.Items.Add(item14);
-
+            context.Items.Add(item15);
             //Skapar Fordon
             Vehicle bil1 = new Vehicle()
             {
@@ -146,6 +147,30 @@ namespace CarService.DataLayer.Seed
                 Status = AppointmentStatus.CarReceived
             };
             context.Appointments.Add(app1);
+
+            Appointment app11 = new Appointment()
+            {
+                SubmissionDate = new DateTime(2024, 2, 1, 10, 00, 00),
+                DeliveryDate = new DateTime(2024, 2, 1, 12, 00, 00),
+                Purpose = "Trasig framlykta",
+                Customer = kund1,
+                Vehicle = bil1,
+                CreatedBy = rep1,
+                Status = AppointmentStatus.Canceled
+            };
+            context.Appointments.Add(app11);
+
+            Appointment app12 = new Appointment()
+            {
+                SubmissionDate = new DateTime(2023, 4, 11, 10, 00, 00),
+                DeliveryDate = new DateTime(2023, 4, 11, 12, 00, 00),
+                Purpose = "Däckbyte",
+                Customer = kund1,
+                Vehicle = bil1,
+                CreatedBy = rep1,
+                Status = AppointmentStatus.Completed
+            };
+            context.Appointments.Add(app12);
 
             Appointment app2 = new Appointment()
             {
@@ -192,6 +217,38 @@ namespace CarService.DataLayer.Seed
                 Comment = "Bytt bromsskivor bak",
                 Time = DateTime.Now
             });
+
+            context.MechanicComments.Add(new MechanicComment()
+            {
+                Appointment = app11,
+                RepairedBy = mek2,
+                Comment = "Självläkt",
+                Time = new DateTime(2024, 1, 27, 10, 00, 00),
+            });
+
+            context.MechanicComments.Add(new MechanicComment()
+            {
+                Appointment = app12,
+                RepairedBy = mek2,
+                Comment = "Framdäck slitna, informerar kund om att nya däck behövs. Inväntar svar.",
+                Time = new DateTime(2023, 4, 11, 10, 15, 00),
+            });
+
+            context.MechanicComments.Add(new MechanicComment()
+            {
+                Appointment = app12,
+                RepairedBy = mek2,
+                Comment = "Kund önskar nya däck. Monterat nya däck på fälg, hjulinställning OK.",
+                Time = new DateTime(2023, 4, 11, 11, 20, 00),
+            });
+
+            context.UsedItems.Add(new UsedItem()
+            {
+                Item = item15,
+                Appointment = app12,
+                Quantity = 4,
+            });
+
             context.SaveChanges();
 
         }
