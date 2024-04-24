@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
 using CarService.Entities;
 using CarService.Entities.Enums;
+using Microsoft.Identity.Client.NativeInterop;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,11 +30,13 @@ namespace CarService.PresentationLayer.WPF
         internal Appointment? currentAppointment;
         internal Vehicle? currentVehicle;
         internal Item? currentItem;
+        internal Mechanic loggedInMechanic;
 
         public AddItemsToAppointmentWindow()
         {
             InitializeComponent();
-            _appointments = controller.getCurrentAppointments();
+            _appointments = controller.GetCurrentAppointments();
+            loggedInMechanic = controller.LoggedInMechanic(1);
 
             if (_appointments.Count > 0 && _appointments != null)
             {
@@ -47,7 +50,7 @@ namespace CarService.PresentationLayer.WPF
             if (searchVehicleTB.Text.Count() == 6)
             {
                 _appointments.Clear();
-                List<Appointment> nyLista = controller.getAppointments(searchVehicleTB.Text);
+                List<Appointment> nyLista = controller.GetAppointments(searchVehicleTB.Text);
                 addItemLB.ItemsSource = nyLista;
             }
             else
@@ -74,6 +77,7 @@ namespace CarService.PresentationLayer.WPF
             AppDescriptionTB.Text = currentAppointment.Purpose;
 
             addItem2LB.ItemsSource = currentAppointment.UsedItems;
+            addCommentLB.ItemsSource = currentAppointment.Comments;
 
         }
 
@@ -107,6 +111,22 @@ namespace CarService.PresentationLayer.WPF
                 MessageBox.Show($"{amount} piece(s) of the item {currentItem.Description} was added!");
             }
             
+        }
+
+        private void ItemTB_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            ItemTB.Text = "";
+        }
+
+        private void QuantityTB_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            QuantityTB.Text = "";
+        }
+
+        private void AddCommentButton_Click(object sender, RoutedEventArgs e)
+        {
+            controller.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, loggedInMechanic);
+            MessageBox.Show($"The comment was added!");
         }
     }
 }
