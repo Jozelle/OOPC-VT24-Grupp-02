@@ -27,6 +27,8 @@ namespace DataLayer
             Vehicles = new VehicleRepository(_context);
             Items = new ItemRepository(_context);
             UsedItems = new UsedItemRepository(_context);
+            Employees = new EmployeeRepository(_context);
+            MechanicComments = new MechanicCommentRepository(_context);
         }
 
         public IAppointmentRepository Appointments { get; private set; }
@@ -34,6 +36,7 @@ namespace DataLayer
         public IVehicleRepository Vehicles { get; private set; }
         public IItemRepository Items { get; private set; }
         public IUsedItemRepository UsedItems { get; private set; }
+        public IEmployeeRepository Employees { get; private set; }
         public IMechanicCommentRepository MechanicComments { get; private set; }
 
         public int Complete()
