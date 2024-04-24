@@ -13,6 +13,8 @@ namespace CarService.DataLayer
         ICustomerRepository Customers { get; }
         IVehicleRepository Vehicles { get; }
 
+        IReceptionistRepository Receptionists { get; }
+
         int Complete();
     }
 }

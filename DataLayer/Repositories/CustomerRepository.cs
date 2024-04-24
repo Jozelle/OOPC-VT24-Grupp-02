@@ -23,11 +23,13 @@ namespace CarService.DataLayer.Repositories
 
         public Customer GetBySocialSecurityNo(string socialSecurityNo)
         {
-            return Context.Set<Customer>().Find(socialSecurityNo);
+            return Context.Set<Customer>().Single(x => x.SocialSecurityNumber == socialSecurityNo);
 
-            //return Context.Set<Customer>().Find(socialSecurityNo) ?? throw new Exception("Kund med det angivna sociala säkerhetsnumret hittades inte.");
         }
-
+        public Customer GetByPhoneNo(string phoneNo)
+        {
+            return Context.Set<Customer>().Single(x => x.PhoneNumber == phoneNo);
+        }
         public CarServiceContext CarServiceContext
         {
             get { return CarServiceContext as CarServiceContext; }

@@ -24,25 +24,61 @@ namespace CarService.PresentationLayer.WPF
             InitializeComponent();
         }
 
-        
+       
 
        
-        private void btnCreate_Click(object sender, RoutedEventArgs e)
+
+        private void btn_SearchVehicle_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        private void btn_AddVehicle_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnSubmission_Click(object sender, RoutedEventArgs e)
+        private void btn_SaveVehicle_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnDelivery_Click(object sender, RoutedEventArgs e)
+        private void SelectionBox_DropDownOpened(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_SearchCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_AddCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_SaveCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_EditNotes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_SaveNotes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_DeleteNotes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
         }

@@ -8,7 +8,7 @@ namespace DataLayer
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly CarServiceContext _context;
+        private readonly CarServiceContext _context = new CarServiceContext();
 
         public UnitOfWork(CarServiceContext context)
         {
@@ -16,11 +16,22 @@ namespace DataLayer
             Appointments = new AppointmentRepository(_context);
             Customers = new CustomerRepository(_context);
             Vehicles = new VehicleRepository(_context);
+            Receptionists = new ReceptionistRepository(_context);
+        }
+
+        public UnitOfWork()
+        {
+            Appointments = new AppointmentRepository(_context);
+            Customers = new CustomerRepository(_context);
+            Vehicles = new VehicleRepository(_context);
+            Receptionists = new ReceptionistRepository(_context);
+
         }
 
         public IAppointmentRepository Appointments { get; private set; }
         public ICustomerRepository Customers { get; private set; }
         public IVehicleRepository Vehicles { get; private set; }
+        public IReceptionistRepository Receptionists { get; private set; }
 
         public int Complete()
         {

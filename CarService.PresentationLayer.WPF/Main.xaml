@@ -5,39 +5,99 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
         mc:Ignorable="d"
-        
-        Title="MainWindow" Height="500" Width="739"
-        MinHeight="500" MinWidth="800" WindowStartupLocation="CenterScreen">
+        Title="Main" Height="643" Width="1092">
 
-    <DockPanel LastChildFill="True">
-        <StackPanel Width="302">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
-            <Button x:Name="btnCreateBooking" Content="Create booking" FontSize="14" Width="200" Height="50"
-                Margin="10,30,10,15" Click="btnSelectDate_Click"/>
-            
-            <Button x:Name="btnSearchBooking" Content="Search booking" FontSize="14" Width="200" Height="50"
-                Margin="10,10,10,15" Click="btnCustomer_Click"/>
-            
-            <Button x:Name="btnSubmission" Content="Submission" FontSize="14" Width="200" Height="50"
-                Margin="10,10,10,15" Click="btnVehicle_Click"/>
-            
-            <Button x:Name="btnPickUpAndPayment" Content="Pick up and Payment" FontSize="14" Width="200" Height="50"
-                Margin="10,10,10,15" Click="btnSave_Click"/>
-            
-            <Button x:Name="btnClose" Content="Close" FontSize="14" Width="200" Height="50"
-                 Margin="10,10,10,15" Click="btnSave_Click"/>
+
+
+        <StackPanel>
+
+            <Button x:Name="btn_CreateBooking" Content="Create appointment" Click="btn_CreateBooking_Click" Height="40" Width="400" Margin="15"/>
+
+            <Label Content="Search for appointment:" FontWeight="Bold" />
+            <TextBox x:Name="SearchAppointmentTB" Text="" TextChanged="SearchAppointmentTB_TextChanged" Height="30" />
+            <Button x:Name="btn_SearchAppointment" Content="Search" Click="btn_SearchAppointment_Click" Height="30" Margin="0,0,0,10"/>
+
+            <Label Content="Submission of vehicle:" FontWeight="Bold"/>
+            <Grid Height="Auto" Name="Submission" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="SearchRegNoTB" TextChanged="RegNoTB_TextChanged" Grid.ColumnSpan="2" Margin="-9,0,182,0" GotKeyboardFocus="SearchRegNoTB_GotKeyboardFocus" />
+                <Button x:Name="btn_SearchRegNo" Click="btn_SearchRegNo_Click" Grid.Column="1" Content="Search" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182"/>
+
+
+                <Label Grid.Column="0" Grid.Row="1" Content="Click on the correct appointment on today's list and submit" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <TextBox Text="Select Registration No. from list" Grid.Column="0" Grid.Row="2" x:Name="ChosenRegNoTB" Grid.ColumnSpan="2" Margin="-9,0,182,0" />
+                <Button x:Name="btn_SubmitVehicle" Click="btn_SubmitVehicle_Click" Grid.Column="1" Content="Submit" HorizontalAlignment="Center" Grid.Row="2" Width="182"/>
+
+            </Grid>
+
+
+            <Label Content="Delivery of vehicle:" FontWeight="Bold"/>
+            <Grid Height="Auto" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Content="Proof of :"/>
+                <TextBox Grid.Column="1" Grid.Row="0" x:Name="RTB"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Date:"/>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="DeTB" />
+                <DatePicker Grid.Column="1" HorizontalAlignment="Center" Margin="0,1,0,1" Grid.Row="1" Width="363" CalendarOpened="DatePicker_CalendarOpened"/>
+                <Label Grid.Column="0" Grid.Row="2" Content="Payment method:" />
+
+                <RadioButton x:Name="rbtn_CardPayment" Click="rbtn_CardPayment_Click" Grid.Column="1" Content="Card" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="101" Margin="10,0,0,0" Checked="rbtn_CardPayment_Checked" />
+                <RadioButton x:Name="rbtn_CashPayment" Click="rbtn_CashPayment_Click" Grid.Column="1" Content="Cash" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="111" Checked="rbtn_CashPayment_Checked"/>
+                <RadioButton x:Name="rbtn_SwishPayment" Click="rbtn_SwishPayment_Click" Grid.Column="1" Content="Swish" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Width="111" Checked="rbtn_SwishPayment_Checked"/>
+
+            </Grid>
+
+            <Button x:Name="btn_CheckoutPayment" Content="Checkout" Click="btn_CheckoutPayment_Click" Height="30"/>
+
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Label Content="ToDo List" HorizontalAlignment="Center" FontWeight="Bold" />
+
+            <ListView Height="309" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListView_SelectionChanged" Width="545" FontSize="14">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Today" Width="260"/>
+
+                        <GridViewColumn Header="Tomorrow" Width="260"/>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Height="290">
+                <Border BorderBrush="Black" BorderThickness="1" Height="291" Width="548">
+                    <Grid>
+                        
+                        
+                    </Grid>
+                </Border>
+
+            </StackPanel>
         </StackPanel>
 
 
-        <StackPanel Width="498">
-            <Border BorderBrush="Black" BorderThickness="6" Height="484" Width="499">
-                
-                <TextBox TextWrapping="Wrap" Margin="10,118,10,332" Text="TextBox"/>
-                
-            </Border>
-        </StackPanel>
-    </DockPanel>
 
-
-
+    </Grid>
 </Window>
