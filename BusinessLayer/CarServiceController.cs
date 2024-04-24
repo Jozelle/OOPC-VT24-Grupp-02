@@ -10,6 +10,13 @@ namespace BusinessLayer
     {
         public CarServiceController() { }
 
+        public bool VerifyUser(int id, string password)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Employees.VerifyEmployee(id, password);
+            }
+        }
         //Placeholder tills login är implementerat
         public Mechanic LoggedInMechanic(int id) 
         { 

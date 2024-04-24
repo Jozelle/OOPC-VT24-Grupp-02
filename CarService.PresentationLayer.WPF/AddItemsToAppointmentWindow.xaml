@@ -5,18 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
         mc:Ignorable="d"
-        Title="AddItemsToAppointmentWindow" Height="533" Width="1075">
+        Title="Add items and comments to appointment" Height="586" Width="1122" Background="FloralWhite">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <Label Content="Search for appointment by vehicle registration number:" FontWeight="Bold" FontSize="14"/>
+            <TextBlock Text="Mechanic view" Style="{StaticResource titleText}"/>
+            <Label>
+                <TextBlock TextWrapping="WrapWithOverflow" FontSize="12" Text="Search for appointment by vehicle registration number or choose from the list to the right, confirm with OK!"/>
+            </Label>
             <TextBox x:Name="searchVehicleTB" TextWrapping="Wrap" Text=""   TextChanged="searchVehicleTB_TextChanged" />
-            <Button x:Name="searchVehicleButton" Content="Search" Click="searchVehicleButton_Click"/>
-            <Label Content="Click on the correct appointment in the list to the right, confirm with OK!"/>
-            <Button x:Name="chosenAppButton" Content="OK!" Click="chosenAppButton_Click"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="searchVehicleButton" Content="Search" Click="searchVehicleButton_Click" Style="{StaticResource fancyButton}"/>
+                <Button x:Name="chosenAppButton" Content="OK!" Click="chosenAppButton_Click" Style="{StaticResource fancyButton}" Grid.Column="1"/>
+            </Grid>
             <Grid Height="116" Name="CarDetailsGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
