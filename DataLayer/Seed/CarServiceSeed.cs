@@ -55,7 +55,7 @@ namespace CarService.DataLayer.Seed
                 Specialization = Specialization.Breaks,
                 Password = "ILoveCalifornia"
             };
-            context.Mechanics.Add(mek1);
+            context.Employees.Add(mek1);
 
             Mechanic mek2 = new Mechanic()
             {
@@ -63,15 +63,15 @@ namespace CarService.DataLayer.Seed
                 LastName = "Crawford",
                 Password = "Vogue"
             };
-            context.Mechanics.Add(mek2);
-
+            //context.Mechanics.Add(mek2);
+            context.Employees.Add(mek2);
             Receptionist rep1 = new Receptionist()
             {
                 FirstName = "Mulle",
                 LastName = "Meck",
                 Password = "Prylar",
             };
-            context.Receptionists.Add(rep1);
+            context.Employees.Add(rep1);
 
             //Skapar items
             Item item1 = new Item(){Description = "Broms", Price = 1000};

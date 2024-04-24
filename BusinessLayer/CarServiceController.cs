@@ -8,26 +8,19 @@ namespace BusinessLayer
 {
     public class CarServiceController
     {
-        UnitOfWork unitOfWork = new UnitOfWork();
         public CarServiceController() { }
 
-        public Appointment createAppointment()
-        {
-            //Byt vy/dialog? 
-            //välja tid
-            //Sök och välj kund
-            //Sök och völj bil
-
-            Appointment appointment = new Appointment()
+        //Placeholder tills login är implementerat
+        public Mechanic LoggedInMechanic(int id) 
+        { 
+            using (UnitOfWork uow = new UnitOfWork())
             {
-
-            };
-
-            return appointment;
+                Mechanic mech = uow.Employees.GetMechanic(id);
+                return mech;  
+            }
         }
 
-
-        public List<Appointment> getAppointments(string regNo) 
+        public List<Appointment> GetAppointments(string regNo) 
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
@@ -37,7 +30,7 @@ namespace BusinessLayer
 
         }
 
-        public List<Appointment> getCurrentAppointments()
+        public List<Appointment> GetCurrentAppointments()
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
@@ -67,6 +60,15 @@ namespace BusinessLayer
             using (UnitOfWork uow = new UnitOfWork())
             {
                 uow.Appointments.AddItem(app, itemId, quantity);
+                uow.Complete();
+            }
+        }
+
+        public void AddCommentToAppointment(Appointment app, string comment, Mechanic mechanic)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                uow.Appointments.AddComment(app, mechanic, comment);
                 uow.Complete();
             }
         }
