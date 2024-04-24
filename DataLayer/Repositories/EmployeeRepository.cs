@@ -44,5 +44,10 @@ namespace CarService.DataLayer.Repositories
             }
             else { return null; }
         }
+        public bool VerifyEmployee(int id, string password)
+        {
+            return Context.Set<Employee>()
+                .Any(x => x.EmployeeId == id && x.Password.Equals(password));
+        }
     }
 }
