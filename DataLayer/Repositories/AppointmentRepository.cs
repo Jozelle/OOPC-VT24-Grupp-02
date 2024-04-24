@@ -24,6 +24,7 @@ namespace CarService.DataLayer.Repositories
                 .Include(c => c.Vehicle)
                 .Include(c => c.UsedItems)
                 .ThenInclude(c => c.Item)
+                .Include(c => c.Comments)
                 .ToList();
 
             return result;
@@ -36,14 +37,29 @@ namespace CarService.DataLayer.Repositories
                 .Include(c => c.Vehicle)
                 .Include(c => c.UsedItems)
                 .ThenInclude(c => c.Item)
+                .Include(c => c.Comments)
                 .ToList();
             return currentAppointment;
         }
 
         public void AddItem(Appointment app, Item item, int quantity)
         {
-            UsedItem usedItem = new UsedItem() {Appointment = app, Item = item, Quantity=quantity };
+            UsedItem usedItem = new UsedItem() {AppointmentId = app.AppointmentId, ItemId = item.ItemId, Quantity=quantity };
             app.UsedItems.Add(usedItem);
+        }
+
+        public void AddComment(Appointment app, Mechanic mechanic, string comment)
+        {
+            MechanicComment newComment = new MechanicComment()
+            {
+                Appointment = app,
+                //MechanicId = mechanic.MechanicId,
+                RepairedByEmployeeId = mechanic.EmployeeId,
+                Comment = comment,
+                Time = DateTime.Now,
+            };
+
+            app.Comments.Add(newComment);
         }
 
         public CarServiceContext CarServiceContext
