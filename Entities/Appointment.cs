@@ -32,7 +32,7 @@ namespace CarService.Entities
 
         public ICollection<UsedItem>? UsedItems { get; set; }
 
-        public ICollection<MechanicComment>? Comments { get; set; }
+        public ICollection<Comment>? Comments { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

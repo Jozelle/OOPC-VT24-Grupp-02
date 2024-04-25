@@ -15,9 +15,7 @@ namespace CarService.DataLayer
         IItemRepository Items { get; }
         IUsedItemRepository UsedItems { get; }
         IEmployeeRepository Employees { get; }
-        IMechanicCommentRepository MechanicComments { get; }
-
-        IReceptionistRepository Receptionists { get; }
+        ICommentRepository Comments { get; }
 
         int Complete();
     }
