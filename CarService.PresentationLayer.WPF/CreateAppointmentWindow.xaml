@@ -16,7 +16,7 @@
 
         <StackPanel>
 
-            <Label Content="Search by vehicle:" FontWeight="Bold"/>
+            <Label Content="Search by vehicle" FontWeight="Bold"/>
             <Grid Height="Auto" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
@@ -26,7 +26,7 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-
+                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="RegNoTB"/>
                 <Button x:Name="btn_SearchVehicle" Grid.Column="1" Content="Search" Click="btn_SearchVehicle_Click" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.593,-0.246" Height="30" Width="182"/>
@@ -42,32 +42,33 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="btn_AddVehicle" Click="btn_AddVehicle_Click" Grid.Column="0" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.303,-0.061" Height="30" Width="273"/>
-                <Button x:Name="btn_SaveVehicle" Click="btn_SaveVehicle_Click" Grid.Column="1" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="273" />
+
+                <Button x:Name="btn_SaveVehicle" Click="btn_SaveVehicle_Click" Grid.Column="1" Content="Save vehicle" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="546" />
 
 
             </Grid>
 
 
 
-            <Label Content="Search by customer:" FontWeight="Bold"/>
+            <Label Content="Search by customer" FontWeight="Bold"/>
 
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="1" Content="Select here:" HorizontalContentAlignment="Center" FontSize="14"/>
-                <ComboBox x:Name="SelectionBox" DropDownOpened="SelectionBox_DropDownOpened" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="364" Height="30">
+                <Label Grid.Column="0" Grid.Row="1" Content="Select here:" HorizontalContentAlignment="Left"/>
+                <Button x:Name="btn_SearchCustomer" Click="btn_SearchCustomer_Click" Grid.Column="3" Grid.Row="0" Content="Search" HorizontalAlignment="Center" Width="181"/>
+                <ComboBox x:Name="SelectionBox" DropDownOpened="SelectionBox_DropDownOpened" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="274" Height="30" SelectionChanged="SelectionBox_SelectionChanged" >
                     <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
                     <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
                     <ComboBoxItem x:Name="FullName" Content="Full name"/>
@@ -85,57 +86,68 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
+
                 </Grid.RowDefinitions>
 
-                <TextBox Text="Type here..." Grid.Column="0" Grid.Row="0" x:Name="SearchTB" FontStyle="Italic"/>
-                <Button x:Name="btn_SearchCustomer" Click="btn_SearchCustomer_Click" Grid.Column="1" Content="Search" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="182"/>
+                <TextBox Text="First name" Grid.Column="0" Grid.Row="0" x:Name="FirstnameTB" Grid.ColumnSpan="2" />
 
-                <TextBox Text="First name" Grid.Column="0" Grid.Row="1" x:Name="FirstnameTB" Grid.ColumnSpan="2" />
+                <TextBox Text="Last name" Grid.Column="0" Grid.Row="1" x:Name="LastnameTB" Grid.ColumnSpan="2" />
 
-                <TextBox Text="Last name" Grid.Column="0" Grid.Row="2" x:Name="LastnameTB" Grid.ColumnSpan="2" />
+                <TextBox Text="Social Security No." Grid.Column="0" Grid.Row="2" x:Name="SSNumberTB" Grid.ColumnSpan="2"/>
 
-                <TextBox Text="Social Security No." Grid.Column="0" Grid.Row="3" x:Name="SSNumberTB" Grid.ColumnSpan="2"/>
+                <TextBox Text="Address" Grid.Column="0" Grid.Row="3" x:Name="AddressTB" Grid.ColumnSpan="2" />
 
-                <TextBox Text="Address" Grid.Column="0" Grid.Row="4" x:Name="AddressTB" Grid.ColumnSpan="2" />
+                <TextBox Text="Phone No." Grid.Column="0" Grid.Row="4" x:Name="PhoneNoTB" HorizontalAlignment="Left" Width="546" Grid.ColumnSpan="2"/>
 
-                <TextBox Text="Phone No." Grid.Column="0" Grid.Row="5" x:Name="PhoneNoTB" HorizontalAlignment="Left" Width="546" Grid.ColumnSpan="2"/>
-
-                <TextBox Text="Email" Grid.Column="0" Grid.Row="6" x:Name="EmailTB" Grid.ColumnSpan="2"/>
+                <TextBox Text="Email" Grid.Column="0" Grid.Row="5" x:Name="EmailTB" Grid.ColumnSpan="2"/>
 
             </Grid>
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="273*"/>
-                    <ColumnDefinition Width="139*"/>
-                    <ColumnDefinition Width="134*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="btn_AddCustomer" Click="btn_AddCustomer_Click" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center" Width="273" Height="30" />
-                <Button x:Name="btn_SaveCustomer" Click="btn_SaveCustomer_Click" Grid.Column="1" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Center" Width="273" Grid.ColumnSpan="2" Height="30"/>
+                <Button x:Name="btn_SaveCustomer" Click="btn_SaveCustomer_Click"  Content="Save customer" HorizontalAlignment="Left" VerticalAlignment="Center" Width="546" Grid.ColumnSpan="3" Height="30"/>
+            </Grid>
+            <Grid Height="215">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+                <Label Content="Reported issues:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="273" FontWeight="Bold"/>
+                <TextBox x:Name="ReportedIssues" Text="Enter description" Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="0,28,0,0" TextChanged="RichTextBox_TextChanged">
+                </TextBox>
+                <Label Content="Select an appointment date:" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="32" Width="273" FontWeight="Bold"/>
+                <DatePicker  x:Name="AppDate" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Width="273" Height="30" SelectedDateChanged="AppDate_SelectedDateChanged"/>
+                <Button x:Name="btn_SaveAppointment" Content="Save appointment" HorizontalAlignment="Left" Height="65" Grid.Row="5" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="546" Click="btn_SaveAppointment_Click"/>
+
+
+
+
+
+
+
+
             </Grid>
 
-            <Label Content="NOTES:" FontWeight="Bold"/>
-            <ToolBar Name="MyToolbar"  Height="Auto" >
-                <Button x:Name="btn_EditNotes" Click="btn_EditNotes_Click" Background="LightGray" Content="Edit"/>
-                <Button x:Name="btn_SaveNotes" Click="btn_SaveNotes_Click" Background="LightGray" Content="Save"/>
-                <Button x:Name="btn_DeleteNotes" Click="btn_DeleteNotes_Click" Background="LightGray" Content="Delete"/>
-
-            </ToolBar>
-            <RichTextBox Height="133" />
-
-
         </StackPanel>
-       
+
         <StackPanel Grid.Column="1" Margin="0,0,0,341" >
             <Border BorderBrush="Black" BorderThickness="1" Height="286">
                 <Menu Margin="0,0,0,261">
-                    <MenuItem Header="Log out" Background="DarkGray" Height="21" HorizontalAlignment="Center" Click="MenuItem_Click" />
-                    
+                    <MenuItem Header="Log out" Background="DarkGray" Height="21" HorizontalAlignment="Right" Margin="488,0,0,0" Click="MenuItem_Click" />
                 </Menu>
             </Border>
 
