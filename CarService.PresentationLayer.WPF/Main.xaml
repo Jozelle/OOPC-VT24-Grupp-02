@@ -88,10 +88,7 @@
             </ListView>
             <StackPanel Height="290">
                 <Border BorderBrush="Black" BorderThickness="1" Height="291" Width="548">
-                    <Grid>
-                        
-                        
-                    </Grid>
+                    <Grid Height="329" VerticalAlignment="Bottom"/>
                 </Border>
 
             </StackPanel>

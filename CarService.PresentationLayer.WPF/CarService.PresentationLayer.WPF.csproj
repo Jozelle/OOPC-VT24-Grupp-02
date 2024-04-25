@@ -9,4 +9,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\CarService.BusinessLayer.csproj" />
+  </ItemGroup>
+
 </Project>

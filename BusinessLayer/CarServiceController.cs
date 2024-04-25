@@ -7,7 +7,7 @@ namespace BusinessLayer
     public class CarServiceController
     {
 
-        
+
         public CarServiceController() { }
 
 
@@ -40,25 +40,16 @@ namespace BusinessLayer
             using (UnitOfWork uow = new UnitOfWork())
             {
                 return uow.Vehicles.GetByRegistrationNo(id);
+
             }
-            
+
         }
 
-        public Appointment createAppointment(DateTime time, Customer customer, Vehicle vehicle, string purpose, Receptionist receptionist)
+
+        public Appointment CreateAppointment(Appointment appointment)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                Appointment appointment = new Appointment()
-                {
-                    SubmissionDate = time,
-                    DeliveryDate = time + TimeSpan.FromHours(2),
-                    Purpose = purpose,
-                    VehicleRegistrationNumber = vehicle.RegistrationNumber,
-                    CustomerId = customer.CustomerID,
-                    CreatedById = receptionist.ReceptionistId,
-                    Status = AppointmentStatus.Booked
-
-                };
 
                 uow.Appointments.Add(appointment);
                 uow.Complete();
@@ -73,5 +64,51 @@ namespace BusinessLayer
 
             }
         }
+
+
+
+        public Vehicle CreateVehicle(Vehicle vehicle)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                uow.Vehicles.Add(vehicle);
+                uow.Complete();
+
+            }
+            return vehicle;
+         
+        }
+
+        public void SaveVehicle(Vehicle vehicle)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                 uow.Complete();
+            }
+        }
+
+        public void CreateCustomer(Customer customer)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                uow.Customers.Add(customer);    
+                uow.Complete();
+
+            }
+        }
+    
+        public void SaveCustomer (Customer customer)
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork())
+            {
+                unitOfWork.Complete();
+            }
+
+        }
     }
 }
+
+
+
+
+ 
