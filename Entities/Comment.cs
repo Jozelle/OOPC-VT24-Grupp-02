@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace CarService.Entities
 {
-    [PrimaryKey(nameof(RepairedByEmployeeId), nameof(Time))]
-    public class MechanicComment
+    [PrimaryKey(nameof(AppointmentId), nameof(Time))]
+    public class Comment
     {
-        public int RepairedByEmployeeId { get; set; }
-        public Mechanic RepairedBy { get; set; }
+        public int AuthorEmployeeId { get; set; }
+        public Employee Author { get; set; }
         public DateTime Time { get; set; }
-        public string Comment { get; set; }
+        public string Message { get; set; }
+        public int AppointmentId { get; set; }
         public Appointment Appointment { get; set; }
 
 

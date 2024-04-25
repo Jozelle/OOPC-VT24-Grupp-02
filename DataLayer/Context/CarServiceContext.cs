@@ -10,32 +10,30 @@ namespace CarService.DataLayer.Context
 {
     public class CarServiceContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
-
-            optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test2;Trusted_Connection=true;TrustServerCertificate=true");
-            base.OnConfiguring(optionsBuilder);
-        }
-
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        //public DbSet<Mechanic> Mechanics { get; set; }
-        //public DbSet<Receptionist> Receptionists { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<UsedItem> UsedItems { get; set; }
 
         public DbSet<Payment> Payments { get; set; }    
-        public DbSet<MechanicComment> MechanicComments { get; set; }
+        public DbSet<Comment> MechanicComments { get; set; }
 
         public CarServiceContext() { }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
+
+            //optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test2;Trusted_Connection=true;TrustServerCertificate=true");
+            base.OnConfiguring(optionsBuilder);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MechanicComment>()
-                .HasOne(b => b.RepairedBy)
+            modelBuilder.Entity<Comment>()
+                .HasOne(b => b.Author)
                 .WithMany(a => a.Comments)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.ClientNoAction);
