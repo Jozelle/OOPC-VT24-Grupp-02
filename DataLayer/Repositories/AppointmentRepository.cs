@@ -48,13 +48,13 @@ namespace CarService.DataLayer.Repositories
             app.UsedItems.Add(usedItem);
         }
 
-        public void AddComment(Appointment app, Mechanic mechanic, string comment)
+        public void AddComment(Appointment app, Employee employee, string comment)
         {
             MechanicComment newComment = new MechanicComment()
             {
                 Appointment = app,
                 //MechanicId = mechanic.MechanicId,
-                RepairedByEmployeeId = mechanic.EmployeeId,
+                RepairedByEmployeeId = employee.EmployeeId,
                 Comment = comment,
                 Time = DateTime.Now,
             };
