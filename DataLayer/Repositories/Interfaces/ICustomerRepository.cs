@@ -16,6 +16,9 @@ namespace CarService.DataLayer.Repositories.Interfaces
 
         Customer GetBySocialSecurityNo(string socialSecurityNo);
 
+        Customer GetByPhoneNo(string phoneNo);
+
+
 
 
     }
