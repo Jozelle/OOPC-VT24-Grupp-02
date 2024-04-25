@@ -4,76 +4,110 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
-        mc:Ignorable="d"
-        Title="Add items and comments to appointment" Height="586" Width="1122" Background="FloralWhite">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Title="Add items and comments to appointment" Height="600" Width="1200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <TextBlock Text="Mechanic view" Style="{StaticResource titleText}"/>
-            <Label>
-                <TextBlock TextWrapping="WrapWithOverflow" FontSize="12" Text="Search for appointment by vehicle registration number or choose from the list to the right, confirm with OK!"/>
-            </Label>
-            <TextBox x:Name="searchVehicleTB" TextWrapping="Wrap" Text=""   TextChanged="searchVehicleTB_TextChanged" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Button x:Name="searchVehicleButton" Content="Search" Click="searchVehicleButton_Click" Style="{StaticResource fancyButton}"/>
-                <Button x:Name="chosenAppButton" Content="OK!" Click="chosenAppButton_Click" Style="{StaticResource fancyButton}" Grid.Column="1"/>
-            </Grid>
-            <Grid Height="116" Name="CarDetailsGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Content="Registration number"/>
-                <TextBox Grid.Column="1" Grid.Row="0" x:Name="RegTB" />
-                <Label Grid.Column="0" Grid.Row="1" Content="Car description"/>
-                <TextBox Grid.Column="1" Grid.Row="1" x:Name="CarDescriptionTB" />
-                <Label Grid.Column="0" Grid.Row="2" Content="Description"/>
-                <TextBox Grid.Column="1" Grid.Row="2" x:Name="AppDescriptionTB"/>
 
-            </Grid>
-            <Grid Height="272">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="Add items:" FontWeight="Bold" FontSize="14"/>
-                <TextBox Grid.Column="0" Grid.Row="1" Text="Item number" x:Name="ItemTB" GotKeyboardFocus="ItemTB_GotKeyboardFocus" />
-                <Button Grid.Column="1" Grid.Row="1" x:Name="SearchItemButton" Content="Search" Click="SearchItemButton_Click"/>
-                <TextBox Grid.Column="0" Grid.Row="2" x:Name="ItemDescriptionTB" />
-                <TextBox Grid.Column="0" Grid.Row="3" x:Name="QuantityTB" Text="Quantity" GotKeyboardFocus="QuantityTB_GotKeyboardFocus"/>
-                <Button Grid.Column="1" Grid.Row="3" x:Name="AddItemButton" Content="Add item" Click="AddItemButton_Click"/>
-                <Label Grid.Row="4" Content="Add comment:" FontWeight="Bold" FontSize="14"/>
-                <TextBox Grid.Column="0" Grid.Row="5" Text="" x:Name="AddCommentTB" GotKeyboardFocus="ItemTB_GotKeyboardFocus" />
-                <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Click="AddCommentButton_Click"/>
-            </Grid>
-        </StackPanel>
-        <Grid Grid.Column="1">
+
+        <Border CornerRadius="10 0 0 10">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="DarkViolet" Offset="0"/>
+                    <GradientStop Color="DeepPink" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel>
+                <TextBlock Text="Mechanic view" Style="{StaticResource titleText}"/>
+                <Label Content="Search for appointment by vehicle registration number or choose from the list to the right." Style="{StaticResource lightLabel}"/>
+                <Label Content="Confirm with OK!" HorizontalAlignment="Center" Style="{StaticResource lightLabel}"/>
+                <Border Style="{StaticResource lightBorder}">
+                    <TextBox x:Name="searchVehicleTB" Text="Type registration number here..." IsKeyboardFocusedChanged="searchVehicleTB_IsKeyboardFocusedChanged" Height="35" Opacity="0.5" />    
+                </Border>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="searchVehicleButton" Content="Search" Click="searchVehicleButton_Click" Style="{StaticResource fancyButton}"/>
+                    <Button x:Name="chosenAppButton" Content="OK!" Click="chosenAppButton_Click" Style="{StaticResource fancyButton}"  Grid.Column="1"/>
+                </Grid>
+                <Grid Height="116" Name="CarDetailsGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Registration number" Style="{StaticResource lightLabel}"/>
+                    <Border Style="{StaticResource lightBorder}" Grid.Column="1" Grid.Row="0">
+                        <TextBox x:Name="RegTB" Opacity="0.5" />
+                    </Border>
+                    
+                    <Label Grid.Column="0" Grid.Row="1" Content="Car description" Style="{StaticResource lightLabel}"/>
+                    <Border Style="{StaticResource lightBorder}" Grid.Column="1" Grid.Row="1">
+                        <TextBox x:Name="CarDescriptionTB" Opacity="0.5" />
+                    </Border>
+                    
+                    <Label Grid.Column="0" Grid.Row="2" Content="Description" Style="{StaticResource lightLabel}"/>
+                    <Border Style="{StaticResource lightBorder}" Grid.Column="1" Grid.Row="2" >
+                        <TextBox x:Name="AppDescriptionTB" Opacity="0.5"/>
+                    </Border>
+                    
+
+                </Grid>
+                <Grid Height="282">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Add items:" FontWeight="Bold" FontSize="14"/>
+                    <Border Style="{StaticResource lightBorder}" Grid.Column="0" Grid.Row="1" >
+                        <TextBox Text="Item number" x:Name="ItemTB" GotKeyboardFocus="ItemTB_GotKeyboardFocus" Opacity="0.5" />
+                    </Border>
+
+                    <Button Grid.Column="1" Grid.Row="1" x:Name="SearchItemButton" Content="Search" Style="{StaticResource fancyButton}" Click="SearchItemButton_Click"/>
+
+                    <Border Style="{StaticResource lightBorder}" Grid.Column="0" Grid.Row="2" >
+                        <TextBox x:Name="ItemDescriptionTB" Opacity="0.5" />
+                    </Border>
+                    <Border Style="{StaticResource lightBorder}" Grid.Column="0" Grid.Row="3" >
+                        <TextBox x:Name="QuantityTB" Text="Quantity" GotKeyboardFocus="QuantityTB_GotKeyboardFocus" Opacity="0.5"/>
+                    </Border>
+
+                    <Button Grid.Column="1" Grid.Row="3" x:Name="AddItemButton" Content="Add item" Style="{StaticResource fancyButton}" Click="AddItemButton_Click"/>
+                    <Label Grid.Row="4" Content="Add comment:" FontWeight="Bold" FontSize="14"/>
+                    <Border Style="{StaticResource lightBorder}" Grid.Column="0" Grid.Row="5">
+                        <TextBox Text="" x:Name="AddCommentTB" GotKeyboardFocus="ItemTB_GotKeyboardFocus" Opacity="0.5" />
+                    </Border>
+                    <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Style="{StaticResource fancyButton}" Click="AddCommentButton_Click"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <ListBox Grid.Column="1" Grid.Row="0" x:Name="addItemLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
+            <Border Style="{StaticResource darkBorder}">
+                <ListBox Grid.Column="1" Grid.Row="0" x:Name="addItemLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="Auto">
@@ -95,6 +129,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            </Border>
             <ListBox Grid.Column="1" Grid.Row="1" x:Name="addItem2LB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -134,6 +169,6 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-
+        </Border>
     </Grid>
 </Window>

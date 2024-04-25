@@ -15,8 +15,8 @@ namespace CarService.BusinessLayer
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                return (Vehicle)uow.Vehicles.Get(x => x.RegistrationNumber == regNo);
-                //return uow.Vehicles.GetByRegistrationNo(regNo);
+                //return (Vehicle)uow.Vehicles.Get(x => x.RegistrationNumber == regNo);
+                return uow.Vehicles.GetByRegistrationNo(regNo);
             }
         }
     }
