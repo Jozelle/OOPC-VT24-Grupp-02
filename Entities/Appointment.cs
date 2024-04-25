@@ -19,8 +19,13 @@ namespace CarService.Entities
 
         public string Purpose { get; set; }
 
+        public string VehicleRegistrationNumber { get; set; }
         public Vehicle Vehicle { get; set; }
+
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
+
+        public int CreatedById { get; set; }
         public Receptionist CreatedBy { get; set; }
         public AppointmentStatus Status { get; set; }
         public Payment? Payment { get; set; }
