@@ -10,16 +10,6 @@ namespace DataLayer
     {
         private readonly CarServiceContext _context = new CarServiceContext();
 
-        //public UnitOfWork(CarServiceContext context)
-        //{
-        //    _context = context;
-        //    Appointments = new AppointmentRepository(_context);
-        //    Customers = new CustomerRepository(_context);
-        //    Vehicles = new VehicleRepository(_context);
-        //    Items = new ItemRepository(_context);
-        //    UsedItems = new UsedItemRepository(_context);
-        //}
-
         public UnitOfWork()
         {
             Appointments = new AppointmentRepository(_context);
@@ -28,7 +18,7 @@ namespace DataLayer
             Items = new ItemRepository(_context);
             UsedItems = new UsedItemRepository(_context);
             Employees = new EmployeeRepository(_context);
-            MechanicComments = new MechanicCommentRepository(_context);
+            Comments = new CommentRepository(_context);
         }
 
         public IAppointmentRepository Appointments { get; private set; }
@@ -37,7 +27,7 @@ namespace DataLayer
         public IItemRepository Items { get; private set; }
         public IUsedItemRepository UsedItems { get; private set; }
         public IEmployeeRepository Employees { get; private set; }
-        public IMechanicCommentRepository MechanicComments { get; private set; }
+        public ICommentRepository Comments { get; private set; }
 
         public int Complete()
         {

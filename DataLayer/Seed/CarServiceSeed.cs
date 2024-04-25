@@ -210,7 +210,7 @@ namespace CarService.DataLayer.Seed
                 Quantity = 1,
             });
 
-            context.MechanicComments.Add(new Comment()
+            context.Comments.Add(new Comment()
             {
                 Appointment = app2,
                 Author = mek2,
@@ -218,7 +218,7 @@ namespace CarService.DataLayer.Seed
                 Time = DateTime.Now
             });
 
-            context.MechanicComments.Add(new Comment()
+            context.Comments.Add(new Comment()
             {
                 Appointment = app11,
                 Author = mek2,
@@ -226,7 +226,7 @@ namespace CarService.DataLayer.Seed
                 Time = new DateTime(2024, 1, 27, 10, 00, 00),
             });
 
-            context.MechanicComments.Add(new Comment()
+            context.Comments.Add(new Comment()
             {
                 Appointment = app12,
                 Author = mek2,
@@ -234,7 +234,7 @@ namespace CarService.DataLayer.Seed
                 Time = new DateTime(2023, 4, 11, 10, 15, 00),
             });
 
-            context.MechanicComments.Add(new Comment()
+            context.Comments.Add(new Comment()
             {
                 Appointment = app12,
                 Author = mek2,
