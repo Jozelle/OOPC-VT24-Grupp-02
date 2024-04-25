@@ -94,11 +94,17 @@ namespace BusinessLayer
 
         }
 
-        public void SaveVehicle(Vehicle vehicle)
+        public int SaveVehicle(Vehicle vehicle)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                uow.Complete();
+                if (uow.Vehicles.GetByRegistrationNo(vehicle.RegistrationNumber) == null)
+                {
+                    uow.Vehicles.Add(vehicle);
+                }
+                
+                return uow.Complete();
+
             }
         }
 
@@ -112,23 +118,27 @@ namespace BusinessLayer
             }
         }
 
-        public void SaveCustomer(Customer customer)
+        public int SaveCustomer(Customer customer)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork())
+            using (UnitOfWork uow = new UnitOfWork())
             {
-                unitOfWork.Complete();
+                if (uow.Customers.GetBySocialSecurityNo(customer.SocialSecurityNumber) == null)
+                {
+                    uow.Customers.Add(customer);
+                }
+                return uow.Complete();
             }
 
         }
 
-        public Appointment CreateAppointment(Appointment appointment)
+        public int CreateAppointment(Appointment appointment)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
 
                 uow.Appointments.Add(appointment);
-                uow.Complete();
-                return appointment;
+                return uow.Complete();
+                
             }
         }
 
