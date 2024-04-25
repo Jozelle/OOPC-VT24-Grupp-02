@@ -50,12 +50,12 @@ namespace CarService.DataLayer.Repositories
 
         public void AddComment(Appointment app, Employee employee, string comment)
         {
-            MechanicComment newComment = new MechanicComment()
+            Comment newComment = new Comment()
             {
                 Appointment = app,
                 //MechanicId = mechanic.MechanicId,
-                RepairedByEmployeeId = employee.EmployeeId,
-                Comment = comment,
+                AuthorEmployeeId = employee.EmployeeId,
+                Message = comment,
                 Time = DateTime.Now,
             };
 

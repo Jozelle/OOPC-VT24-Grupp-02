@@ -10,14 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="CreateAppointmentWindow.xaml.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Remove="CreateAppointmentWindow.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\CarService.BusinessLayer.csproj" />
   </ItemGroup>
 

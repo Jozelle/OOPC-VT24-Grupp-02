@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Repositories.Interfaces
 {
-    public interface IMechanicCommentRepository : IRepository<MechanicComment>
+    public interface ICommentRepository : IRepository<Comment>
     {
 
     }

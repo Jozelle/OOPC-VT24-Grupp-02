@@ -28,14 +28,14 @@ namespace CarService.DataLayer.Context
         public DbSet<UsedItem> UsedItems { get; set; }
 
         public DbSet<Payment> Payments { get; set; }    
-        public DbSet<MechanicComment> MechanicComments { get; set; }
+        public DbSet<Comment> MechanicComments { get; set; }
 
         public CarServiceContext() { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MechanicComment>()
-                .HasOne(b => b.RepairedBy)
+            modelBuilder.Entity<Comment>()
+                .HasOne(b => b.Author)
                 .WithMany(a => a.Comments)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.ClientNoAction);
