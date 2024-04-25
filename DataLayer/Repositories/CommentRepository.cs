@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Repositories
 {
-    public class MechanicCommentRepository : Repository<Comment>, IMechanicCommentRepository
+    public class CommentRepository : Repository<Comment>, ICommentRepository
     {
-        public MechanicCommentRepository(CarServiceContext context) : base(context)
+        public CommentRepository(CarServiceContext context) : base(context)
         {
         }
     }

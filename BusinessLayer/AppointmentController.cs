@@ -45,7 +45,7 @@ namespace CarService.BusinessLayer
             {
                 Comment mc = new Comment() { AppointmentId = app.AppointmentId, Message = comment, AuthorEmployeeId = employee.EmployeeId, Time = DateTime.Now };
 
-                uow.MechanicComments.Add(mc);
+                uow.Comments.Add(mc);
                 return uow.Complete();
             }
         }
