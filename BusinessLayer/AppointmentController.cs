@@ -39,11 +39,11 @@ namespace CarService.BusinessLayer
                 return uow.Complete();
             }
         }
-        public int AddCommentToAppointment(Appointment app, string comment, Mechanic mechanic)
+        public int AddCommentToAppointment(Appointment app, string comment, Employee employee)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                Comment mc = new Comment() { AppointmentId = app.AppointmentId, Message = comment, AuthorEmployeeId = mechanic.EmployeeId, Time = DateTime.Now };
+                Comment mc = new Comment() { AppointmentId = app.AppointmentId, Message = comment, AuthorEmployeeId = employee.EmployeeId, Time = DateTime.Now };
 
                 uow.MechanicComments.Add(mc);
                 return uow.Complete();

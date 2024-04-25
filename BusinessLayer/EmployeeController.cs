@@ -1,4 +1,5 @@
-﻿using DataLayer;
+﻿using CarService.Entities;
+using DataLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,13 @@ namespace CarService.BusinessLayer
             using (UnitOfWork uow = new UnitOfWork())
             {
                 return uow.Employees.VerifyEmployee(id, password);
+            }
+        }
+        public Employee GetEmployee(int id)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Employees.Get(id);
             }
         }
     }
