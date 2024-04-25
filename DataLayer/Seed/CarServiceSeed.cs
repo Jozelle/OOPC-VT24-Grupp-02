@@ -210,35 +210,35 @@ namespace CarService.DataLayer.Seed
                 Quantity = 1,
             });
 
-            context.MechanicComments.Add(new MechanicComment()
+            context.MechanicComments.Add(new Comment()
             {
                 Appointment = app2,
-                RepairedBy = mek2,
-                Comment = "Bytt bromsskivor bak",
+                Author = mek2,
+                Message = "Bytt bromsskivor bak",
                 Time = DateTime.Now
             });
 
-            context.MechanicComments.Add(new MechanicComment()
+            context.MechanicComments.Add(new Comment()
             {
                 Appointment = app11,
-                RepairedBy = mek2,
-                Comment = "Självläkt",
+                Author = mek2,
+                Message = "Självläkt",
                 Time = new DateTime(2024, 1, 27, 10, 00, 00),
             });
 
-            context.MechanicComments.Add(new MechanicComment()
+            context.MechanicComments.Add(new Comment()
             {
                 Appointment = app12,
-                RepairedBy = mek2,
-                Comment = "Framdäck slitna, informerar kund om att nya däck behövs. Inväntar svar.",
+                Author = mek2,
+                Message = "Framdäck slitna, informerar kund om att nya däck behövs. Inväntar svar.",
                 Time = new DateTime(2023, 4, 11, 10, 15, 00),
             });
 
-            context.MechanicComments.Add(new MechanicComment()
+            context.MechanicComments.Add(new Comment()
             {
                 Appointment = app12,
-                RepairedBy = mek2,
-                Comment = "Kund önskar nya däck. Monterat nya däck på fälg, hjulinställning OK.",
+                Author = mek2,
+                Message = "Kund önskar nya däck. Monterat nya däck på fälg, hjulinställning OK.",
                 Time = new DateTime(2023, 4, 11, 11, 20, 00),
             });
 

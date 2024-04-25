@@ -15,8 +15,5 @@ namespace CarService.DataLayer.Repositories.Interfaces
         IEnumerable<Appointment> GetTodaysAppointments();
 
         List<Appointment> GetAppointmentsByRegNo(string regNo);
-
-        void AddItem(Appointment app, Item item, int quantity);
-        void AddComment(Appointment app, Mechanic mechanic, string comment);
     }
 }

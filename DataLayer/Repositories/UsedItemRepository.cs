@@ -16,6 +16,5 @@ namespace CarService.DataLayer.Repositories
         {
         }
 
-
     }
 }
