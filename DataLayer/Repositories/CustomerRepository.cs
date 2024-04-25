@@ -21,19 +21,22 @@ namespace CarService.DataLayer.Repositories
             return Context.Set<Customer>().Single(x => x.FirstName == firstName && x.LastName == lastName);
         }
 
-        public Customer GetBySocialSecurityNo(string socialSecurityNo)
+        public Customer? GetBySocialSecurityNo(string socialSecurityNo)
         {
-            return Context.Set<Customer>().Single(x => x.SocialSecurityNumber == socialSecurityNo);
-
+            try
+            {
+                return Context.Set<Customer>().Single(x => x.SocialSecurityNumber == socialSecurityNo);
+            }
+            catch { return null; }
         }
         public Customer GetByPhoneNo(string phoneNo)
         {
             return Context.Set<Customer>().Single(x => x.PhoneNumber == phoneNo);
         }
-        public CarServiceContext CarServiceContext
-        {
-            get { return CarServiceContext as CarServiceContext; }
-        }
+        //public CarServiceContext CarServiceContext
+        //{
+        //    get { return CarServiceContext as CarServiceContext; }
+        //}
 
     }
 

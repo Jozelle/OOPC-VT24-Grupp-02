@@ -77,8 +77,9 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="11*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -86,20 +87,20 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-
+                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Text="First name" Grid.Column="0" Grid.Row="0" x:Name="FirstnameTB" Grid.ColumnSpan="2" />
+                <TextBox Text="First name" Grid.Column="0" Grid.Row="0" x:Name="FirstnameTB" Grid.ColumnSpan="3" />
 
-                <TextBox Text="Last name" Grid.Column="0" Grid.Row="1" x:Name="LastnameTB" Grid.ColumnSpan="2" />
+                <TextBox Text="Last name" Grid.Column="0" Grid.Row="1" x:Name="LastnameTB" Grid.ColumnSpan="3" />
 
-                <TextBox Text="Social Security No." Grid.Column="0" Grid.Row="2" x:Name="SSNumberTB" Grid.ColumnSpan="2"/>
+                <TextBox Text="Social Security No." Grid.Column="0" Grid.Row="2" x:Name="SSNumberTB" Grid.ColumnSpan="3"/>
 
-                <TextBox Text="Address" Grid.Column="0" Grid.Row="3" x:Name="AddressTB" Grid.ColumnSpan="2" />
+                <TextBox Text="Address" Grid.Column="0" Grid.Row="3" x:Name="AddressTB" Grid.ColumnSpan="3" />
 
-                <TextBox Text="Phone No." Grid.Column="0" Grid.Row="4" x:Name="PhoneNoTB" HorizontalAlignment="Left" Width="546" Grid.ColumnSpan="2"/>
+                <TextBox Text="Phone No." Grid.Column="0" Grid.Row="4" x:Name="PhoneNoTB" HorizontalAlignment="Left" Width="546" Grid.ColumnSpan="3"/>
 
-                <TextBox Text="Email" Grid.Column="0" Grid.Row="5" x:Name="EmailTB" Grid.ColumnSpan="2"/>
+                <TextBox Text="Email" Grid.Column="0" Grid.Row="5" x:Name="EmailTB" Grid.ColumnSpan="3"/>
 
             </Grid>
 
@@ -127,10 +128,10 @@
 
                 </Grid.RowDefinitions>
                 <Label Content="Reported issues:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="273" FontWeight="Bold"/>
-                <TextBox x:Name="ReportedIssues" Text="Enter description" Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="0,28,0,0" TextChanged="RichTextBox_TextChanged">
+                <TextBox x:Name="ReportedIssues" Text="Enter description" Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="0,28,0,0">
                 </TextBox>
                 <Label Content="Select an appointment date:" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="32" Width="273" FontWeight="Bold"/>
-                <DatePicker  x:Name="AppDate" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Width="273" Height="30" SelectedDateChanged="AppDate_SelectedDateChanged"/>
+                <DatePicker  x:Name="AppDate" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Width="273" Height="30"/>
                 <Button x:Name="btn_SaveAppointment" Content="Save appointment" HorizontalAlignment="Left" Height="65" Grid.Row="5" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="546" Click="btn_SaveAppointment_Click"/>
 
 
@@ -147,7 +148,7 @@
         <StackPanel Grid.Column="1" Margin="0,0,0,341" >
             <Border BorderBrush="Black" BorderThickness="1" Height="286">
                 <Menu Margin="0,0,0,261">
-                    <MenuItem Header="Log out" Background="DarkGray" Height="21" HorizontalAlignment="Right" Margin="488,0,0,0" Click="MenuItem_Click" />
+                    <MenuItem Header="Log out" Background="DarkGray" Height="21" HorizontalAlignment="Right" Margin="488,0,0,0"/>
                 </Menu>
             </Border>
 
