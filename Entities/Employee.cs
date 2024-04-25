@@ -20,13 +20,13 @@ namespace CarService.Entities
 
     public class Mechanic : Employee
     {
-        public int MechanicId { get; set; }
+        //public int MechanicId { get; set; }
         public ICollection<MechanicComment>? Comments { get; set; }
     }
 
     public class Receptionist : Employee
     {
-        public int ReceptionistId { get; set; }
+        //public int ReceptionistId { get; set; }
         public ICollection<Appointment>? CreatedAppointments { get; set; }
     }
 }

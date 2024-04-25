@@ -5,19 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
         mc:Ignorable="d"
-        Title="AddItemsToAppointmentWindow" Height="643" Width="1092">
+        Title="Add items and comments to appointment" Height="586" Width="1122" Background="FloralWhite">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <Label Content="Search for appointment by vehicle registration number:"/>
+            <TextBlock Text="Mechanic view" Style="{StaticResource titleText}"/>
+            <Label>
+                <TextBlock TextWrapping="WrapWithOverflow" FontSize="12" Text="Search for appointment by vehicle registration number or choose from the list to the right, confirm with OK!"/>
+            </Label>
             <TextBox x:Name="searchVehicleTB" TextWrapping="Wrap" Text=""   TextChanged="searchVehicleTB_TextChanged" />
-            <Button x:Name="searchVehicleButton" Content="Search" Click="searchVehicleButton_Click"/>
-            <Label Content="Click on the correct appointment in the list to the right, confirm with OK!"/>
-            <Button x:Name="chosenAppButton" Content="OK!" Click="chosenAppButton_Click"/>
-            <Grid Height="230" Name="CarDetailsGrid">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="searchVehicleButton" Content="Search" Click="searchVehicleButton_Click" Style="{StaticResource fancyButton}"/>
+                <Button x:Name="chosenAppButton" Content="OK!" Click="chosenAppButton_Click" Style="{StaticResource fancyButton}" Grid.Column="1"/>
+            </Grid>
+            <Grid Height="116" Name="CarDetailsGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="2*"/>
@@ -26,33 +34,42 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" Content="Registration number"/>
                 <TextBox Grid.Column="1" Grid.Row="0" x:Name="RegTB" />
-                <Label Grid.Column="0" Grid.Row="1" Content="Make"/>
-                <TextBox Grid.Column="1" Grid.Row="1" x:Name="MakeTB" />
-                <Label Grid.Column="0" Grid.Row="2" Content="Model"/>
-                <TextBox Grid.Column="1" Grid.Row="2" x:Name="ModelTB"/>
-                <Label Grid.Row="3" Content="Add items:"/>
-                <Label Grid.Column="0" Grid.Row="4" Content="Item number"/>
-                <TextBox Grid.Column="1" Grid.Row="4" x:Name="ItemTB" />
-                <Button Grid.Column="1" Grid.Row="5" x:Name="SearchItemButton" Content="Search" Click="SearchItemButton_Click"/>
-                <Label Grid.Column="0" Grid.Row="6" Content="Item description"/>
-                <TextBox Grid.Column="1" Grid.Row="6" x:Name="DescriptionTB" />
-                <Label Grid.Column="0" Grid.Row="7" Content="Quantity"/>
-                <TextBox Grid.Column="1" Grid.Row="7" x:Name="QuantityTB"/>
-                <Button Grid.Column="1" Grid.Row="8" x:Name="AddItemButton" Content="Add item" Click="AddItemButton_Click"/>
-            </Grid>
+                <Label Grid.Column="0" Grid.Row="1" Content="Car description"/>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="CarDescriptionTB" />
+                <Label Grid.Column="0" Grid.Row="2" Content="Description"/>
+                <TextBox Grid.Column="1" Grid.Row="2" x:Name="AppDescriptionTB"/>
 
+            </Grid>
+            <Grid Height="272">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Add items:" FontWeight="Bold" FontSize="14"/>
+                <TextBox Grid.Column="0" Grid.Row="1" Text="Item number" x:Name="ItemTB" GotKeyboardFocus="ItemTB_GotKeyboardFocus" />
+                <Button Grid.Column="1" Grid.Row="1" x:Name="SearchItemButton" Content="Search" Click="SearchItemButton_Click"/>
+                <TextBox Grid.Column="0" Grid.Row="2" x:Name="ItemDescriptionTB" />
+                <TextBox Grid.Column="0" Grid.Row="3" x:Name="QuantityTB" Text="Quantity" GotKeyboardFocus="QuantityTB_GotKeyboardFocus"/>
+                <Button Grid.Column="1" Grid.Row="3" x:Name="AddItemButton" Content="Add item" Click="AddItemButton_Click"/>
+                <Label Grid.Row="4" Content="Add comment:" FontWeight="Bold" FontSize="14"/>
+                <TextBox Grid.Column="0" Grid.Row="5" Text="" x:Name="AddCommentTB" GotKeyboardFocus="ItemTB_GotKeyboardFocus" />
+                <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Click="AddCommentButton_Click"/>
+            </Grid>
         </StackPanel>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
@@ -91,6 +108,25 @@
                             <TextBlock Grid.Column="0" Text="{Binding Item.Description}"/>
                             <TextBlock Grid.Column="1" Text="{Binding Quantity}"/>
                             <TextBlock Grid.Column="2" Text="{Binding Item.Price}"/>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox Grid.Column="1" Grid.Row="2" x:Name="addCommentLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Time}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding RepairedBy.FirstName}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Comment}"/>
 
                         </Grid>
 
