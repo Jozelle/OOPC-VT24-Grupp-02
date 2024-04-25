@@ -25,7 +25,7 @@ namespace CarService.Entities
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
-        public int CreatedById { get; set; }
+        public int CreatedByReceptionistId { get; set; }
         public Receptionist CreatedBy { get; set; }
         public AppointmentStatus Status { get; set; }
         public Payment? Payment { get; set; }

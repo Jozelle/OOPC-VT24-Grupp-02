@@ -24,7 +24,7 @@ namespace CarService.DataLayer.Repositories
                 .Include(c => c.Vehicle)
                 .Include(c => c.UsedItems)
                 .ThenInclude(c => c.Item)
-                .Include(c => c.Comments)
+                .Include(c => c.Comments) .ThenInclude(c => c.Author)
                 .ToList();
 
             return result;
