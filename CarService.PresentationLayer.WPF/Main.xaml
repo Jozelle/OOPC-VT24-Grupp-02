@@ -20,7 +20,7 @@
             <Button x:Name="btn_CreateBooking" Content="Create appointment" Click="btn_CreateBooking_Click" Height="40" Width="400" Margin="15"/>
 
             <Label Content="Search for appointment:" FontWeight="Bold" />
-            <TextBox x:Name="SearchAppointmentTB" Text="" TextChanged="SearchAppointmentTB_TextChanged" Height="30" />
+            <TextBox x:Name="SearchAppointmentTB" Text="" Height="30" />
             <Button x:Name="btn_SearchAppointment" Content="Search" Click="btn_SearchAppointment_Click" Height="30" Margin="0,0,0,10"/>
 
             <Label Content="Submission of vehicle:" FontWeight="Bold"/>
@@ -35,7 +35,7 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="SearchRegNoTB" TextChanged="RegNoTB_TextChanged" Grid.ColumnSpan="2" Margin="-9,0,182,0" GotKeyboardFocus="SearchRegNoTB_GotKeyboardFocus" />
+                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="SearchRegNoTB" Grid.ColumnSpan="2" Margin="-9,0,182,0" />
                 <Button x:Name="btn_SearchRegNo" Click="btn_SearchRegNo_Click" Grid.Column="1" Content="Search" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182"/>
 
 
@@ -76,7 +76,7 @@
         <StackPanel Grid.Column="1">
             <Label Content="ToDo List" HorizontalAlignment="Center" FontWeight="Bold" />
 
-            <ListView Height="309" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListView_SelectionChanged" Width="545" FontSize="14">
+            <ListView Height="309" d:ItemsSource="{d:SampleData ItemCount=5}" Width="545" FontSize="14">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Today" Width="260"/>
