@@ -55,6 +55,15 @@ namespace CarService.DataLayer.Repositories
             }
             else { return null; }
         }
+        public bool IsReceptionist(int id)
+        {
+            var employee = Context.Set<Employee>().Find(id);
+            if (employee is Receptionist)
+            {
+                return true;
+            }
+            else { return false; }
+        }
         public bool VerifyEmployee(int id, string password)
         {
             return Context.Set<Employee>()
