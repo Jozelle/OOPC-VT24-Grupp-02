@@ -19,6 +19,14 @@ namespace BusinessLayer
                 return uow.Employees.VerifyEmployee(id, password);
             }
         }
+
+        public bool IsReceptionist(int id)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Employees.IsReceptionist(id);
+            }
+        }
         //Placeholder tills login är implementerat
         public Mechanic LoggedInMechanic(int id) 
         { 
