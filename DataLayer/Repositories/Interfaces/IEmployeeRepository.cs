@@ -18,6 +18,5 @@ namespace CarService.DataLayer.Repositories.Interfaces
 
         bool VerifyEmployee(int id, string password);
         bool IsReceptionist(int id);
-
     }
 }

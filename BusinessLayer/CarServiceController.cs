@@ -19,14 +19,15 @@ namespace BusinessLayer
                 return uow.Employees.VerifyEmployee(id, password);
             }
         }
+
         public bool IsReceptionist(int id)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
                 return uow.Employees.IsReceptionist(id);
-
             }
         }
+        
         public Employee GetEmployee(int id)
         {
             using (UnitOfWork uow = new UnitOfWork())
