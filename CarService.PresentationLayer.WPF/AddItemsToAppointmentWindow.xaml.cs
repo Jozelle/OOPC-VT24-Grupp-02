@@ -31,13 +31,13 @@ namespace CarService.PresentationLayer.WPF
         internal Appointment? currentAppointment;
         internal Vehicle? currentVehicle;
         internal Item? currentItem;
-        internal Mechanic loggedInMechanic;
+        internal int loggedInId;
 
-        public AddItemsToAppointmentWindow()
+        public AddItemsToAppointmentWindow(int id)
         {
             InitializeComponent();
+            loggedInId = id;
             _appointments = controller.GetCurrentAppointments();
-            loggedInMechanic = controller.LoggedInMechanic(1);
 
             if (_appointments.Count > 0 && _appointments != null)
             {
@@ -126,7 +126,8 @@ namespace CarService.PresentationLayer.WPF
 
         private void AddCommentButton_Click(object sender, RoutedEventArgs e)
         {
-            controller.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, loggedInMechanic);
+            Employee loggedInEmployee = controller.GetEmployee(loggedInId);
+            controller.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, loggedInEmployee);
             MessageBox.Show($"The comment was added!");
         }
     }
