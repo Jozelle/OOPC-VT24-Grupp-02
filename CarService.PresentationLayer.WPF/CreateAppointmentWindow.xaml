@@ -77,8 +77,9 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="11*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -86,20 +87,20 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-
+                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Text="First name" Grid.Column="0" Grid.Row="0" x:Name="FirstnameTB" Grid.ColumnSpan="2" />
+                <TextBox Text="First name" Grid.Column="0" Grid.Row="0" x:Name="FirstnameTB" Grid.ColumnSpan="3" />
 
-                <TextBox Text="Last name" Grid.Column="0" Grid.Row="1" x:Name="LastnameTB" Grid.ColumnSpan="2" />
+                <TextBox Text="Last name" Grid.Column="0" Grid.Row="1" x:Name="LastnameTB" Grid.ColumnSpan="3" />
 
-                <TextBox Text="Social Security No." Grid.Column="0" Grid.Row="2" x:Name="SSNumberTB" Grid.ColumnSpan="2"/>
+                <TextBox Text="Social Security No." Grid.Column="0" Grid.Row="2" x:Name="SSNumberTB" Grid.ColumnSpan="3"/>
 
-                <TextBox Text="Address" Grid.Column="0" Grid.Row="3" x:Name="AddressTB" Grid.ColumnSpan="2" />
+                <TextBox Text="Address" Grid.Column="0" Grid.Row="3" x:Name="AddressTB" Grid.ColumnSpan="3" />
 
-                <TextBox Text="Phone No." Grid.Column="0" Grid.Row="4" x:Name="PhoneNoTB" HorizontalAlignment="Left" Width="546" Grid.ColumnSpan="2"/>
+                <TextBox Text="Phone No." Grid.Column="0" Grid.Row="4" x:Name="PhoneNoTB" HorizontalAlignment="Left" Width="546" Grid.ColumnSpan="3"/>
 
-                <TextBox Text="Email" Grid.Column="0" Grid.Row="5" x:Name="EmailTB" Grid.ColumnSpan="2"/>
+                <TextBox Text="Email" Grid.Column="0" Grid.Row="5" x:Name="EmailTB" Grid.ColumnSpan="3"/>
 
             </Grid>
 

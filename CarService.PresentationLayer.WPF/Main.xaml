@@ -35,7 +35,7 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="SearchRegNoTB" Grid.ColumnSpan="2" Margin="-9,0,182,0" />
+                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="SearchRegNoTB" Grid.ColumnSpan="2" Margin="-9,0,182,0"/>
                 <Button x:Name="btn_SearchRegNo" Click="btn_SearchRegNo_Click" Grid.Column="1" Content="Search" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182"/>
 
 
