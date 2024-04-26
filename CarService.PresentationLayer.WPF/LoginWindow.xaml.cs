@@ -33,8 +33,14 @@ namespace CarService.PresentationLayer.WPF
             {
                 if (controller.VerifyUser(id, tbxPassword.Password))
                 {
-                    //Koppla till startsida
-                    MessageBox.Show("GRATTIS!");
+                    if (controller.IsReceptionist(id))
+                    {
+                        //Koppla till Main
+                    }
+                    else
+                    {
+                        //Koppla till AddItemsToAppointment
+                    }
                 }
                 else
                 {
