@@ -27,13 +27,13 @@ namespace BusinessLayer
                 return uow.Employees.IsReceptionist(id);
             }
         }
-        //Placeholder tills login är implementerat
-        public Mechanic LoggedInMechanic(int id) 
-        { 
+        
+        public Employee GetEmployee(int id)
+        {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                Mechanic mech = uow.Employees.GetMechanic(id);
-                return mech;  
+                return uow.Employees.Get(id);
+
             }
         }
 
@@ -81,11 +81,11 @@ namespace BusinessLayer
             }
         }
 
-        public void AddCommentToAppointment(Appointment app, string comment, Mechanic mechanic)
+        public void AddCommentToAppointment(Appointment app, string comment, Employee employee)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                uow.Appointments.AddComment(app, mechanic, comment);
+                uow.Appointments.AddComment(app, employee, comment);
                 uow.Complete();
             }
         }

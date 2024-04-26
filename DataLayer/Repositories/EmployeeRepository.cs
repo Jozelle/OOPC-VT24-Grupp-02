@@ -25,7 +25,18 @@ namespace CarService.DataLayer.Repositories
         {
             return Context.Set<Employee>().OfType<Receptionist>().ToList();
         }
-
+        public bool IsReceptionist(int id)
+        {
+            var employee = Context.Set<Employee>().Find(id);
+            if (employee is Receptionist)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public Mechanic? GetMechanic(int id)
         {
             var employee = Context.Set<Employee>().Find(id);
