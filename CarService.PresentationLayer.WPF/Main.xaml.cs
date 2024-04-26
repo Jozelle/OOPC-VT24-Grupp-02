@@ -1,5 +1,8 @@
-﻿using System;
+﻿using BusinessLayer;
+using CarService.Entities;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +22,17 @@ namespace CarService.PresentationLayer.WPF
     /// </summary>
     public partial class Main : Window
     {
-        public Main()
+        CarServiceController controller = new CarServiceController();
+        internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
+        public Main(int id)
         {
             InitializeComponent();
+
+            _appointments = controller.GetCurrentAppointments();
+            if (_appointments.Count > 0 && _appointments != null)
+            {
+                lbxAppointments.ItemsSource = _appointments;
+            }
         }
 
         private void btn_CreateBooking_Click(object sender, RoutedEventArgs e)

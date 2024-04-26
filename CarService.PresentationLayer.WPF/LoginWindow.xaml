@@ -43,8 +43,8 @@
                     <PasswordBox x:Name="tbxPassword" FontSize="14"/>
                 </Border>
                 <Button x:Name="btnSignIn" Content="Sign in" Style="{StaticResource fancyButton}" Width="336" Click="btnSignIn_Click"/>
-                
 
+                <Button x:Name="btnExit" Content="Exit" Style="{StaticResource fancyButton}" Width="336" Click="btnExit_Click" />
             </StackPanel>
         </Border>
     </Grid>
