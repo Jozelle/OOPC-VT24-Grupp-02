@@ -19,13 +19,20 @@ namespace BusinessLayer
                 return uow.Employees.VerifyEmployee(id, password);
             }
         }
-        //Placeholder tills login är implementerat
-        public Mechanic LoggedInMechanic(int id) 
-        { 
+        public bool IsReceptionist(int id)
+        {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                Mechanic mech = uow.Employees.GetMechanic(id);
-                return mech;  
+                return uow.Employees.IsReceptionist(id);
+
+            }
+        }
+        public Employee GetEmployee(int id)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Employees.Get(id);
+
             }
         }
 
@@ -73,11 +80,11 @@ namespace BusinessLayer
             }
         }
 
-        public void AddCommentToAppointment(Appointment app, string comment, Mechanic mechanic)
+        public void AddCommentToAppointment(Appointment app, string comment, Employee employee)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                uow.Appointments.AddComment(app, mechanic, comment);
+                uow.Appointments.AddComment(app, employee, comment);
                 uow.Complete();
             }
         }
@@ -165,6 +172,12 @@ namespace BusinessLayer
                 return uow.Customers.GetByFullName(fName, lName);
             }
         }
-
+        public List<Appointment> ShowJournal(string regNo)
+        {
+            using (UnitOfWork uow=new UnitOfWork())
+            {
+                return uow.Vehicles.GetJournal(regNo).ToList();
+            }
+        }
     }
 }
