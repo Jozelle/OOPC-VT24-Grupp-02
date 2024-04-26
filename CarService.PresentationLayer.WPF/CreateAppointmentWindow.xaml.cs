@@ -66,10 +66,9 @@ namespace CarService.PresentationLayer.WPF
 
             if (string.IsNullOrEmpty(regNo) && string.IsNullOrEmpty(make) && string.IsNullOrEmpty(model) && string.IsNullOrEmpty(year))
             {
-                //MessageBox.Show("Please fill out all the fields.");
+                MessageBox.Show("Please fill out all the fields.");
                 return;
             }
-
             else
             {
                 Vehicle vehicle = new Vehicle
@@ -78,9 +77,12 @@ namespace CarService.PresentationLayer.WPF
                     Make = make,
                     Model = model,
                     Year = year
-
                 };
-                controller.SaveVehicle(vehicle);
+                int rowsChanged = controller.SaveVehicle(vehicle);
+                if (rowsChanged > 0)
+                {
+                    MessageBox.Show($"Ändringar sparades! {rowsChanged}");
+                }
                 currentVehicle = vehicle;
             }
 
@@ -105,43 +107,44 @@ namespace CarService.PresentationLayer.WPF
             string firstName = FirstnameTB.Text;
             string lastName = LastnameTB.Text;
 
-            if (SelectionBox.SelectedItem == "Social Security No.")
+            if (SelectionBox.SelectedIndex == 0)
             {
-
                 currentCustomer = controller.GetCustomerBySSN(id);
-                SSNumberTB.Text = currentCustomer.SocialSecurityNumber;
             }
-
-            else if (SelectionBox.SelectedItem == "Phone No.")
+            else if (SelectionBox.SelectedIndex == 1)
             {
                 currentCustomer = controller.GetCustomerByPhone(phoneNo);
-                PhoneNoTB.Text = currentCustomer.PhoneNumber;
             }
-            else if (SelectionBox.SelectedItem == "Full name")
+            else if (SelectionBox.SelectedIndex == 2)
             {
                 currentCustomer = controller.GetCustomerByFullName(firstName, lastName);
-                FirstnameTB.Text = currentCustomer.FirstName;
-
             }
+            else if (SelectionBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please choose what to search by in the drop down menu.");
+                return;
+            }
+
+            SSNumberTB.Text = currentCustomer.SocialSecurityNumber.ToString();
+            PhoneNoTB.Text = currentCustomer?.PhoneNumber;
+            FirstnameTB.Text = currentCustomer?.FirstName;
+            LastnameTB.Text = currentCustomer.LastName;
+            EmailTB.Text = currentCustomer?.Email;
+            AddressTB.Text = currentCustomer?.Address;
+
         }
-
-        private void btn_AddCustomer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btn_SaveCustomer_Click(object sender, RoutedEventArgs e)
         {
             string id = SSNumberTB.Text;
             string phoneNo = PhoneNoTB.Text;
             string firstName = FirstnameTB.Text;
             string lastName = LastnameTB.Text;
-            string address = AddressTB.Text;
-            string email = EmailTB.Text;
+            string? address = AddressTB.Text;
+            string? email = EmailTB.Text;
 
             if (string.IsNullOrEmpty(id) && string.IsNullOrEmpty(phoneNo) && string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName))
             {
-                //MessageBox.Show("Please fill out all the fields.");
+                MessageBox.Show("Please fill out all the fields.");
                 return;
             }
 
@@ -153,10 +156,14 @@ namespace CarService.PresentationLayer.WPF
                     customer.PhoneNumber = phoneNo;
                     customer.FirstName = firstName;
                     customer.LastName = lastName;
-                    customer.Address = null;
-                    customer.Email = null;
+                    customer.Address = address;
+                    customer.Email = email;
                 }
-                controller.SaveCustomer(customer);
+                int rowsChanged = controller.SaveCustomer(customer);
+                if (rowsChanged > 0)
+                {
+                    MessageBox.Show($"Ändringar sparades! {rowsChanged}");
+                }
                 currentCustomer = customer;
             }
         }
@@ -205,8 +212,11 @@ namespace CarService.PresentationLayer.WPF
                     appointment.CustomerId = currentCustomer.CustomerID;
           
                     } 
-                   controller.CreateAppointment(appointment);
-                    
+                   int rowsChanged = controller.CreateAppointment(appointment);
+                    if (rowsChanged > 0)
+                    {
+                        MessageBox.Show($"Ändringar sparades! {rowsChanged}");
+                    }
                 }
 
 
