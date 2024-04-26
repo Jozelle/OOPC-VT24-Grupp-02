@@ -14,7 +14,7 @@ namespace CarService.DataLayer.Repositories.Interfaces
         //Unika metoder för fordon.
 
         Vehicle GetByRegistrationNo(string regNo);
-        //IEnumerable<Repair> GetJournal(Vehicle vehicle);
+        IEnumerable<Appointment> GetJournal(string regNo);
 
     }
 }
