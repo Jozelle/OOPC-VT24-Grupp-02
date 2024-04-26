@@ -35,11 +35,17 @@ namespace CarService.PresentationLayer.WPF
                 {
                     if (controller.IsReceptionist(id))
                     {
-                        //Koppla till Main
+                        //koppla till main
+                        Main main = new Main(id);
+                        this.Close();
+                        main.ShowDialog();
                     }
                     else
                     {
-                        //Koppla till AddItemsToAppointment
+                        //Koppla till AddItems
+                        AddItemsToAppointmentWindow addItemsToAppointmentWindow = new AddItemsToAppointmentWindow(id);
+                        this.Close();
+                        addItemsToAppointmentWindow.ShowDialog();
                     }
                 }
                 else
@@ -51,6 +57,11 @@ namespace CarService.PresentationLayer.WPF
             {
                 MessageBox.Show("Felaktigt användarnamn eller lösenord, försök igen!");
             }
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
         }
     }
 }
