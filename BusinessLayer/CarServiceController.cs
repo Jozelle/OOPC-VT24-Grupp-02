@@ -155,6 +155,12 @@ namespace BusinessLayer
                 return uow.Customers.GetByFullName(fName, lName);
             }
         }
-
+        public List<Appointment> ShowJournal(string regNo)
+        {
+            using (UnitOfWork uow=new UnitOfWork())
+            {
+                return uow.Vehicles.GetJournal(regNo).ToList();
+            }
+        }
     }
 }
