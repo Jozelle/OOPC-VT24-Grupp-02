@@ -26,6 +26,8 @@ namespace CarService.PresentationLayer.WPF
 
         private void btn_CreateBooking_Click(object sender, RoutedEventArgs e)
         {
+            CreateAppointmentWindow createAppointmentWindow = new CreateAppointmentWindow();
+            createAppointmentWindow.ShowDialog();
 
         }
 
