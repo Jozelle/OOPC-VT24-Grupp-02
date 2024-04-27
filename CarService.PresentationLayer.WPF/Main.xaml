@@ -19,12 +19,32 @@
 
             <Button x:Name="btn_CreateBooking" Content="Create appointment" Click="btn_CreateBooking_Click" Height="40" Width="400" Margin="15"/>
 
-            <Label Content="Search for appointment:" FontWeight="Bold" />
-            <TextBox x:Name="SearchAppointmentTB" Text="" Height="30" />
-            <Button x:Name="btn_SearchAppointment" Content="Search" Click="btn_SearchAppointment_Click" Height="30" Margin="0,0,0,10"/>
+            <Label Content="Search by appointment" FontWeight="Bold"/>
 
-            <Label Content="Submission of vehicle:" FontWeight="Bold"/>
-            <Grid Height="Auto" Name="Submission" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="Type here..." HorizontalContentAlignment="Left"/>
+                <Button x:Name="btn_SearchAppointment" Click="btn_SearchAppointment_Click" Content="Search" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Width="136"/>
+                <ComboBox x:Name="SelectionBox" DropDownOpened="SelectionBox_DropDownOpened" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Height="30" SelectionChanged="SelectionBox_SelectionChanged" >
+                    <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
+                    <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
+                    <ComboBoxItem x:Name="FullName" Content="Full name"/>
+                </ComboBox>
+                <Label Content="Choose an appointment, confirm with OK!" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="273"/>
+                <Button Content="OK" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="30" Grid.Column="1"/>
+
+            </Grid>
+
+            <Label Content="Change status/Submission" FontWeight="Bold"/>
+            <Grid Height="Auto" Name="Submission">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="1*"/>
@@ -34,13 +54,14 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-
-                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="SearchRegNoTB" Grid.ColumnSpan="2" Margin="-9,0,182,0" />
+                <ComboBox x:Name="StausBox" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Height="30">
+                    <ComboBoxItem/>
+                </ComboBox>
                 <Button x:Name="btn_SearchRegNo" Click="btn_SearchRegNo_Click" Grid.Column="1" Content="Search" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182"/>
 
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Click on the correct appointment on today's list and submit" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                <TextBox Text="Select Registration No. from list" Grid.Column="0" Grid.Row="2" x:Name="ChosenRegNoTB" Grid.ColumnSpan="2" Margin="-9,0,182,0" />
+                <TextBox Text="Select Registration No. from list" Grid.Column="0" Grid.Row="2" x:Name="ChosenRegNoTB" />
                 <Button x:Name="btn_SubmitVehicle" Click="btn_SubmitVehicle_Click" Grid.Column="1" Content="Submit" HorizontalAlignment="Center" Grid.Row="2" Width="182"/>
 
             </Grid>
@@ -76,7 +97,7 @@
         <StackPanel Grid.Column="1">
             <Label Content="ToDo List" HorizontalAlignment="Center" FontWeight="Bold" />
 
-            <ListView Height="309" d:ItemsSource="{d:SampleData ItemCount=5}" Width="545" FontSize="14">
+            <ListView Height="309" d:ItemsSource="{d:SampleData ItemCount=5}" Width="546" FontSize="14">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Today" Width="260"/>
@@ -86,10 +107,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <StackPanel Height="290">
-                <Border BorderBrush="Black" BorderThickness="1" Height="291" Width="548">
-                    <Grid Height="329" VerticalAlignment="Bottom"/>
-                </Border>
+            <StackPanel Height="290" Width="543">
 
             </StackPanel>
         </StackPanel>
