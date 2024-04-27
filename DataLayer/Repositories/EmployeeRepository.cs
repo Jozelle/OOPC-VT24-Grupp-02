@@ -2,19 +2,13 @@
 using CarService.DataLayer.Repositories.Base;
 using CarService.DataLayer.Repositories.Interfaces;
 using CarService.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Repositories
 {
     public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {
         public EmployeeRepository(CarServiceContext context) : base(context)
-        { 
+        {
         }
 
         public ICollection<Mechanic> GetMechanics()
@@ -25,7 +19,18 @@ namespace CarService.DataLayer.Repositories
         {
             return Context.Set<Employee>().OfType<Receptionist>().ToList();
         }
-
+        public bool IsReceptionist(int id)
+        {
+            var employee = Context.Set<Employee>().Find(id);
+            if (employee is Receptionist)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public Mechanic? GetMechanic(int id)
         {
             var employee = Context.Set<Employee>().Find(id);
