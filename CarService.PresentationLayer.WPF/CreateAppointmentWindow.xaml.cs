@@ -36,7 +36,7 @@ namespace CarService.PresentationLayer.WPF
 
             if (currentVehicle == null)
             {
-                //MessageBox.Show("No vehicle could be found, please try again.");
+                MessageBox.Show("No vehicle could be found, please try again.");
             }
 
             else
@@ -54,11 +54,21 @@ namespace CarService.PresentationLayer.WPF
             string model = ModelTB.Text;
             string year = YearTB.Text;
 
-            if (string.IsNullOrEmpty(regNo) && string.IsNullOrEmpty(make) && string.IsNullOrEmpty(model) && string.IsNullOrEmpty(year))
+            if (string.IsNullOrEmpty(regNo) || string.IsNullOrEmpty(make) || string.IsNullOrEmpty(model) || string.IsNullOrEmpty(year))
             {
                 MessageBox.Show("Please fill out all the fields.");
                 return;
             }
+            else if (currentVehicle.RegistrationNumber != regNo)
+            {
+                MessageBox.Show("Something went wrong, please enter vehicle details and try again!");
+                MakeTB.Text = string.Empty;
+                ModelTB.Text = string.Empty;
+                YearTB.Text = string.Empty;
+
+                currentVehicle = null;
+            }
+
             else
             {
                 Vehicle vehicle = new Vehicle
@@ -115,13 +125,16 @@ namespace CarService.PresentationLayer.WPF
                 return;
             }
 
-            SSNumberTB.Text = currentCustomer.SocialSecurityNumber.ToString();
-            PhoneNoTB.Text = currentCustomer?.PhoneNumber;
-            FirstnameTB.Text = currentCustomer?.FirstName;
-            LastnameTB.Text = currentCustomer.LastName;
-            EmailTB.Text = currentCustomer?.Email;
-            AddressTB.Text = currentCustomer?.Address;
-
+            if (currentCustomer != null)
+            {
+                SSNumberTB.Text = currentCustomer.SocialSecurityNumber.ToString();
+                PhoneNoTB.Text = currentCustomer?.PhoneNumber;
+                FirstnameTB.Text = currentCustomer?.FirstName;
+                LastnameTB.Text = currentCustomer.LastName;
+                EmailTB.Text = currentCustomer?.Email;
+                AddressTB.Text = currentCustomer?.Address;
+            }
+            else MessageBox.Show("Nothing to be found!");
         }
         private void btn_SaveCustomer_Click(object sender, RoutedEventArgs e)
         {
@@ -132,11 +145,25 @@ namespace CarService.PresentationLayer.WPF
             string? address = AddressTB.Text;
             string? email = EmailTB.Text;
 
-            if (string.IsNullOrEmpty(id) && string.IsNullOrEmpty(phoneNo) && string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName))
+            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(phoneNo) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
             {
                 MessageBox.Show("Please fill out all the fields.");
                 return;
             }
+
+            else if (currentCustomer.SocialSecurityNumber != id)
+            {
+                MessageBox.Show("Something went wrong, please enter customer details and try again!");
+                PhoneNoTB.Text = string.Empty;
+                FirstnameTB.Text = string.Empty;
+                LastnameTB.Text = string.Empty;
+                AddressTB.Text = string.Empty;
+                EmailTB.Text = string.Empty;
+                
+
+                currentCustomer = null;
+            }
+
 
             else
             {
@@ -204,12 +231,13 @@ namespace CarService.PresentationLayer.WPF
                 if (rowsChanged > 0)
                 {
                     MessageBox.Show($"Ändringar sparades! {rowsChanged}");
+                    appointments.Add(appointment);
                 }
             }
 
 
         }
 
-
+        
     }
 }

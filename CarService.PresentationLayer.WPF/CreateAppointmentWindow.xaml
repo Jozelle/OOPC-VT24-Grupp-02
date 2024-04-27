@@ -28,7 +28,7 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="RegNoTB"/>
+                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="RegNoTB" Height="30" VerticalAlignment="Bottom"/>
                 <Button x:Name="btn_SearchVehicle" Grid.Column="1" Content="Search" Click="btn_SearchVehicle_Click" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.593,-0.246" Height="30" Width="182"/>
 
                 <TextBox Text="Make" Grid.Column="0" Grid.Row="1" x:Name="MakeTB" Grid.ColumnSpan="2" />
