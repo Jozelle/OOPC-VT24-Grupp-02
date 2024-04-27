@@ -26,6 +26,19 @@ namespace CarService.DataLayer.Repositories
             return result;
         }
 
+        public IEnumerable<Appointment> GetAllAppointments()
+        {
+            IEnumerable<Appointment> result = Table
+                .Where(c => c.Status != AppointmentStatus.Canceled && c.Status != AppointmentStatus.Completed)
+                .Include(c => c.Vehicle)
+                .Include(c => c.UsedItems)
+                .ThenInclude(c => c.Item)
+                .Include(c => c.Comments).ThenInclude(c => c.Author)
+                .ToList();
+
+            return result;
+        }
+
         public List<Appointment> GetAppointmentsByRegNo(string regNo)
         {
             List<Appointment> currentAppointment = Table
