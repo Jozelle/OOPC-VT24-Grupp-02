@@ -20,6 +20,7 @@ namespace CarService.BusinessLayer
                 return uow.Vehicles.GetJournal(regNo);
             }
         }
+
         public int SaveVehicle(Vehicle vehicle)
         {
             using (UnitOfWork uow = new UnitOfWork())
@@ -35,7 +36,7 @@ namespace CarService.BusinessLayer
                     uow.Vehicles.Update(vehicleFromDB, vehicle);
                     return uow.Complete();
                 }
-            }
+            } 
         }
     }
 }
