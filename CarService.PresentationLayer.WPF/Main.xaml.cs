@@ -84,6 +84,34 @@ namespace CarService.PresentationLayer.WPF
 
         }
 
-       
+        private void StausBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btn_SaveStatus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_AddComment_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_GenerateInvoice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

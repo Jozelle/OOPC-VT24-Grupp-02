@@ -30,6 +30,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+
                 </Grid.RowDefinitions>
                 <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="Type here..." HorizontalContentAlignment="Left"/>
                 <Button x:Name="btn_SearchAppointment" Click="btn_SearchAppointment_Click" Content="Search" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Width="136"/>
@@ -43,7 +44,26 @@
 
             </Grid>
 
-            <Label Content="Change status/Submission" FontWeight="Bold"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="27*"/>
+                    <ColumnDefinition Width="64*"/>
+                    <ColumnDefinition Width="91*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <Label Content="Selected appointment:" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Width="273" Height="30"/>
+                <TextBox x:Name="SelectedAppTB" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="272" Height="30"/>
+
+
+
+
+
+            </Grid>
+
+            <Label Content="Change status/Submission/Delivery" FontWeight="Bold"/>
             <Grid Height="Auto" Name="Submission">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
@@ -53,65 +73,83 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="45"/>
+
                 </Grid.RowDefinitions>
-                <ComboBox x:Name="StausBox" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Height="30">
-                    <ComboBoxItem/>
+                <ComboBox x:Name="StausBox" SelectedIndex="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="364" Height="30" SelectionChanged="StausBox_SelectionChanged">
+                    <ComboBoxItem x:Name="CarReceived" Content="Car Received"/>
+                    <ComboBoxItem x:Name="Booked" Content="Booked"/>
+                    <ComboBoxItem x:Name="InProgress" Content=""/>
+                    <ComboBoxItem x:Name="WaitingForParts" Content="Waiting For Parts"/>
+                    <ComboBoxItem x:Name="ReadyForPickup" Content="Ready For Pickup"/>
+                    <ComboBoxItem x:Name="Canceled" Content="Canceled"/>
+                    <ComboBoxItem x:Name="Completed" Content="Completed"/>
                 </ComboBox>
-                <Button x:Name="btn_SearchRegNo" Click="btn_SearchRegNo_Click" Grid.Column="1" Content="Search" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182"/>
+                <Button x:Name="btn_SaveStatus" Click="btn_SaveStatus_Click" Grid.Column="1" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182"/>
 
 
-                <Label Grid.Column="0" Grid.Row="1" Content="Click on the correct appointment on today's list and submit" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                <TextBox Text="Select Registration No. from list" Grid.Column="0" Grid.Row="2" x:Name="ChosenRegNoTB" />
-                <Button x:Name="btn_SubmitVehicle" Click="btn_SubmitVehicle_Click" Grid.Column="1" Content="Submit" HorizontalAlignment="Center" Grid.Row="2" Width="182"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Add comment" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <TextBox Text="Type here..." Grid.Column="0" Grid.Row="2" x:Name="AddCommentTB" />
+                <Button x:Name="btn_AddComment" Click="btn_AddComment_Click" Grid.Column="1" Content="Add" HorizontalAlignment="Center" Grid.Row="2" Width="182"/>
+                <Button x:Name="btn_ViewJournal" Grid.Column="0" Grid.Row="3" Content="View Journal" Grid.ColumnSpan="2" Margin="0,10,0,0"/>
 
             </Grid>
 
 
-            <Label Content="Delivery of vehicle:" FontWeight="Bold"/>
+
+
+            <Label Content="Invoice details" FontWeight="Bold" Margin="0,10"/>
             <Grid Height="Auto" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="91*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="164*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
+
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Content="Proof of :"/>
-                <TextBox Grid.Column="1" Grid.Row="0" x:Name="RTB"/>
-                <Label Grid.Column="0" Grid.Row="1" Content="Date:"/>
-                <TextBox Grid.Column="1" Grid.Row="1" x:Name="DeTB" />
-                <DatePicker Grid.Column="1" HorizontalAlignment="Center" Margin="0,1,0,1" Grid.Row="1" Width="363" CalendarOpened="DatePicker_CalendarOpened"/>
-                <Label Grid.Column="0" Grid.Row="2" Content="Payment method:" />
 
-                <RadioButton x:Name="rbtn_CardPayment" Click="rbtn_CardPayment_Click" Grid.Column="1" Content="Card" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="101" Margin="10,0,0,0" Checked="rbtn_CardPayment_Checked" />
-                <RadioButton x:Name="rbtn_CashPayment" Click="rbtn_CashPayment_Click" Grid.Column="1" Content="Cash" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="111" Checked="rbtn_CashPayment_Checked"/>
-                <RadioButton x:Name="rbtn_SwishPayment" Click="rbtn_SwishPayment_Click" Grid.Column="1" Content="Swish" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Width="111" Checked="rbtn_SwishPayment_Checked"/>
-
+                <Label Grid.Column="0" Grid.Row="0" Content="Date:"/>
+                <TextBox Grid.Column="1" Grid.Row="0" x:Name="DeTB" Grid.ColumnSpan="2" />
+                <DatePicker Grid.Column="1" HorizontalAlignment="Center" Margin="0,1,0,1" Grid.Row="0" Width="364" CalendarOpened="DatePicker_CalendarOpened" Grid.ColumnSpan="2"/>
             </Grid>
 
-            <Button x:Name="btn_CheckoutPayment" Content="Checkout" Click="btn_CheckoutPayment_Click" Height="30"/>
+            <Button x:Name="btn_GenerateInvoice" Content="Generate Invoice" Click="btn_GenerateInvoice_Click" Height="30"/>
+
 
         </StackPanel>
-        <StackPanel Grid.Column="1">
-            <Label Content="ToDo List" HorizontalAlignment="Center" FontWeight="Bold" />
+        <Label Grid.Column="0" Grid.Row="0" Content="Current appointments:"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Column="1" Grid.Row="0" x:Name="addItemLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-            <ListView Height="309" d:ItemsSource="{d:SampleData ItemCount=5}" Width="546" FontSize="14">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Today" Width="260"/>
-
-                        <GridViewColumn Header="Tomorrow" Width="260"/>
-
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <StackPanel Height="290" Width="543">
-
-            </StackPanel>
-        </StackPanel>
-
+                            <TextBlock Grid.Column="0" Text="{Binding AppointmentId}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Vehicle.RegistrationNumber}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding SubmissionDate}"/>
+                            <TextBlock Grid.Column="3" Text="{Binding Purpose}"/>
+                            <TextBlock Grid.Column="4" Text="{Binding Status}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Grid>
+        
+        
+        
 
 
     </Grid>
