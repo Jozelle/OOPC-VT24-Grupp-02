@@ -141,5 +141,16 @@ namespace CarService.PresentationLayer.WPF
             searchVehicleTB.Text = "";
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentVehicle != null)
+            {
+                Journal journal = new Journal(currentVehicle.RegistrationNumber);
+                journal.ShowDialog();
+            }
+
+            else MessageBox.Show("Please select an appointment!");
+        }
     }
 }
