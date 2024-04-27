@@ -8,6 +8,7 @@ namespace CarService.DataLayer.Repositories.Interfaces
         //Unika metoder för besök
 
         IEnumerable<Appointment> GetTodaysAppointments();
+        IEnumerable<Appointment> GetAllAppointments();
 
         List<Appointment> GetAppointmentsByRegNo(string regNo);
 

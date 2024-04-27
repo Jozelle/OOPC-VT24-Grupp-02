@@ -51,6 +51,17 @@ namespace CarService.BusinessLayer
                 return app;
             }
         }
+
+        public List<Appointment> GetAllAppointments()
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                List<Appointment> app = uow.Appointments.GetAllAppointments().ToList();
+                return app;
+            }
+        }
+
+
         public int EnterItem(Appointment app, Item item, int quantity)
         {
             using (UnitOfWork uow = new UnitOfWork())

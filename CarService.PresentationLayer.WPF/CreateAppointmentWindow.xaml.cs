@@ -1,5 +1,6 @@
 ﻿using CarService.BusinessLayer;
 using CarService.Entities;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using MessageBox = System.Windows.MessageBox;
@@ -19,14 +20,15 @@ namespace CarService.PresentationLayer.WPF
 
         internal Vehicle currentVehicle;
         internal Customer currentCustomer;
+        internal IList<Appointment> appointments =new ObservableCollection<Appointment>();
 
         public CreateAppointmentWindow()
         {
             InitializeComponent();
+            appointments = appointmentController.GetAllAppointments();
+            AllAppLB.ItemsSource = appointments;
+
         }
-
-
-
         private void btn_SearchVehicle_Click(object sender, RoutedEventArgs e)
         {
             string regNo = RegNoTB.Text;
