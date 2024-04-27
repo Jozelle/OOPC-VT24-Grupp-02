@@ -32,17 +32,17 @@
                     <RowDefinition Height="30"/>
 
                 </Grid.RowDefinitions>
-                <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="Type here..." HorizontalContentAlignment="Left"/>
+                <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="Type here..." HorizontalContentAlignment="Left" TextChanged="SearchAppTB_TextChanged"/>
                 <Button x:Name="btn_SearchAppointment" Click="btn_SearchAppointment_Click" Content="Search" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Width="136"/>
                 <ComboBox x:Name="SelectionBox" DropDownOpened="SelectionBox_DropDownOpened" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Height="30" SelectionChanged="SelectionBox_SelectionChanged" >
                     <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
                     <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
                     <ComboBoxItem x:Name="FullName" Content="Full name"/>
-                    <ComboBoxItem x:Name="Registration No." Content="Reg No."/>
+                    <ComboBoxItem x:Name="RegNo" Content="Reg No."/>
 
                 </ComboBox>
                 <Label Content="Choose an appointment, confirm with OK!" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="273"/>
-                <Button Content="OK" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="30" Grid.Column="1"/>
+                <Button x:Name="btn_OkAppointment" Content="OK" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="30" Grid.Column="1" Click="btn_OkAppointment_Click"/>
 
             </Grid>
 
@@ -154,7 +154,7 @@
 
 
 
-            <ListBox Grid.Column="1" Grid.Row="1" x:Name="InvoiceLB">
+            <ListBox Grid.Column="1" Grid.Row="2" x:Name="InvoiceLB">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="Auto">

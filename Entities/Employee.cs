@@ -1,4 +1,6 @@
-﻿namespace CarService.Entities
+﻿using CarService.Entities.Enums;
+
+namespace CarService.Entities
 {
     public class Employee
     {
@@ -12,11 +14,11 @@
 
     public class Mechanic : Employee
     {
-<<<<<<< HEAD
 
-=======
+
+
         public Specialization? Specialization { get; set; }
->>>>>>> Städjobb-repo-+-test-av-singleton-context
+
     }
 
     public class Receptionist : Employee
