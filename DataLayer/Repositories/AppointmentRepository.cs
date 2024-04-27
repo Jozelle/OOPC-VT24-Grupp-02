@@ -106,10 +106,5 @@ namespace CarService.DataLayer.Repositories
             app.Comments.Add(newComment);
         }
 
-
-        public CarServiceContext CarServiceContext
-        {
-            get { return CarServiceContext as CarServiceContext; }
-        }
     }
 }

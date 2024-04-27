@@ -28,7 +28,7 @@ namespace CarService.DataLayer.Repositories
         {
             try
             {
-                return Context.Set<Customer>().Where(x => x.SocialSecurityNumber == socialSecurityNo).Include(x => x.CustomerID);
+                return Context.Set<Customer>().Single(x => x.SocialSecurityNumber == socialSecurityNo);
             }
             catch { return null; }
         }

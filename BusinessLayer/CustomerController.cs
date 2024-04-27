@@ -44,9 +44,24 @@ namespace CarService.BusinessLayer
                 }
                 else
                 {
-                    uow.Customers.Update(customerFromDB, customer);
-                    return 100; //uow.Complete();
+                    //uow.Customers.Update(customerFromDB, customer);
+                    //return uow.Complete();
+                    return -1;
                 }
+            }
+        }
+        public int UpdateCustomer(Customer customer)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                Customer customerFromDB = uow.Customers.FirstOrDefault(x => x.CustomerID == customer.CustomerID);
+                if (customerFromDB != null)
+                {
+                    uow.Customers.Update(customerFromDB, customer);
+                    return uow.Complete();
+                }
+                else
+                    return 0;
             }
         }
     }
