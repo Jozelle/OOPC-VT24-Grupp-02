@@ -33,14 +33,16 @@
 
                 </Grid.RowDefinitions>
                 <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="Type here..." HorizontalContentAlignment="Left" TextChanged="SearchAppTB_TextChanged"/>
-                <Button x:Name="btn_SearchAppointment" Click="btn_SearchAppointment_Click" Content="Search" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Width="136"/>
-                <ComboBox x:Name="SelectionBox" DropDownOpened="SelectionBox_DropDownOpened" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Height="30" SelectionChanged="SelectionBox_SelectionChanged" >
+
+                <ComboBox x:Name="SelectionBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Height="30" SelectionChanged="SelectionBox_SelectionChanged" >
                     <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
                     <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
                     <ComboBoxItem x:Name="FullName" Content="Full name"/>
                     <ComboBoxItem x:Name="RegNo" Content="Reg No."/>
-
                 </ComboBox>
+
+                <Button x:Name="btn_SearchAppointment" Click="btn_SearchAppointment_Click" Content="Search" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Width="136"/>
+
                 <Label Content="Choose an appointment, confirm with OK!" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="273"/>
                 <Button x:Name="btn_OkAppointment" Content="OK" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="30" Grid.Column="1" Click="btn_OkAppointment_Click"/>
 
@@ -48,20 +50,16 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="27*"/>
-                    <ColumnDefinition Width="64*"/>
-                    <ColumnDefinition Width="91*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
-                <Label Content="Selected appointment:" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Width="273" Height="30"/>
-                <TextBox x:Name="SelectedAppTB" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="272" Height="30"/>
-
-
-
-
+                <Label Content="Selected appointment:" HorizontalAlignment="Left" Grid.Column="0" Width="546" Height="30"/>
+                <TextBox x:Name="SelectedAppTB" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="274" Height="30"/>
 
             </Grid>
 
