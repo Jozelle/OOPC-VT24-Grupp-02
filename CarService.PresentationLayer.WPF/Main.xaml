@@ -78,19 +78,19 @@
                 <ComboBox x:Name="StausBox" SelectedIndex="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="364" Height="30">
                     <ComboBoxItem x:Name="CarReceived" Content="Car Received"/>
                     <ComboBoxItem x:Name="Booked" Content="Booked"/>
-                    <ComboBoxItem x:Name="InProgress" Content="In Progress"/>
+                    <ComboBoxItem x:Name="InProgress" Content=""/>
                     <ComboBoxItem x:Name="WaitingForParts" Content="Waiting For Parts"/>
                     <ComboBoxItem x:Name="ReadyForPickup" Content="Ready For Pickup"/>
                     <ComboBoxItem x:Name="Canceled" Content="Canceled"/>
                     <ComboBoxItem x:Name="Completed" Content="Completed"/>
                 </ComboBox>
-                <Button x:Name="btn_SaveStatus" Grid.Column="1" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182" Click="btn_SaveStatus_Click"/>
+                <Button x:Name="btn_SaveStatus" Grid.Column="1" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182"/>
 
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Add comment" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
                 <TextBox Text="Type here..." Grid.Column="0" Grid.Row="2" x:Name="AddCommentTB" />
-                <Button x:Name="btn_AddComment" Grid.Column="1" Content="Add" HorizontalAlignment="Center" Grid.Row="2" Width="182" Click="btn_AddComment_Click"/>
-                <Button x:Name="btn_ViewJournal" Grid.Column="0" Grid.Row="3" Content="View Journal" Grid.ColumnSpan="2" Margin="0,10,0,0" Click="btn_ViewJournal_Click"/>
+                <Button x:Name="btn_AddComment" Grid.Column="1" Content="Add" HorizontalAlignment="Center" Grid.Row="2" Width="182"/>
+                <Button x:Name="btn_ViewJournal" Grid.Column="0" Grid.Row="3" Content="View Journal" Grid.ColumnSpan="2" Margin="0,10,0,0"/>
 
             </Grid>
 

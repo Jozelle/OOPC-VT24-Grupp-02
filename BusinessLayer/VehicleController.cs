@@ -24,7 +24,17 @@ namespace CarService.BusinessLayer
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                return uow.Complete();
+                Vehicle vehicleFromDB = uow.Vehicles.GetByRegistrationNo(vehicle.RegistrationNumber);
+                if (vehicleFromDB == null)
+                {
+                    uow.Vehicles.Add(vehicle);
+                    return uow.Complete();
+                }
+                else
+                {
+                    uow.Vehicles.Update(vehicleFromDB, vehicle);
+                    return uow.Complete();
+                }
             }
         }
     }
