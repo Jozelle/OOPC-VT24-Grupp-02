@@ -30,11 +30,23 @@ namespace CarService.BusinessLayer
                 return uow.Customers.GetByFullName(firstName, lastName);
             }
         }
+      
+
         public int SaveCustomer(Customer customer)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                return uow.Complete();
+                Customer customerFromDB = uow.Customers.GetBySocialSecurityNo(customer.SocialSecurityNumber);
+                if (customerFromDB == null)
+                {
+                    uow.Customers.Add(customer);
+                    return uow.Complete();
+                }
+                else
+                {
+                    uow.Customers.Update(customerFromDB, customer);
+                    return 100; //uow.Complete();
+                }
             }
         }
     }
