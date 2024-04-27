@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using CarService.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace CarService.PresentationLayer.WPF
     /// </summary>
     public partial class LoginWindow : Window
     {
-        CarServiceController controller = new();
+        EmployeeController controller = new();
         public LoginWindow()
         {
             InitializeComponent();

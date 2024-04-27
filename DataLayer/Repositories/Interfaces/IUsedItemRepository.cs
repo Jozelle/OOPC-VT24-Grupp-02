@@ -10,6 +10,5 @@ namespace CarService.DataLayer.Repositories.Interfaces
 {
     public interface IUsedItemRepository : IRepository<UsedItem>
     {
-
     }
 }

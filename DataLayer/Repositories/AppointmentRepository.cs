@@ -2,6 +2,7 @@
 using CarService.DataLayer.Repositories.Base;
 using CarService.DataLayer.Repositories.Interfaces;
 using CarService.Entities;
+using CarService.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ namespace CarService.DataLayer.Repositories
 
         public IEnumerable<Appointment> GetTodaysAppointments()
         {
-            IEnumerable<Appointment> result = Context.Set<Appointment>()
-                .Where(c => c.SubmissionDate.Date == DateTime.Today)
+            IEnumerable<Appointment> result = Table
+                .Where(c => c.SubmissionDate.Date <= DateTime.Today && c.Status != AppointmentStatus.Canceled && c.Status != AppointmentStatus.Completed)
                 .Include(c => c.Vehicle)
                 .Include(c => c.UsedItems)
                 .ThenInclude(c => c.Item)
@@ -32,7 +33,7 @@ namespace CarService.DataLayer.Repositories
 
         public List<Appointment> GetAppointmentsByRegNo(string regNo)
         {
-            List<Appointment> currentAppointment = Context.Set<Appointment>()
+            List<Appointment> currentAppointment = Table
                 .Where(r => r.Vehicle.RegistrationNumber == regNo)
                 .Include(c => c.Vehicle)
                 .Include(c => c.UsedItems)
