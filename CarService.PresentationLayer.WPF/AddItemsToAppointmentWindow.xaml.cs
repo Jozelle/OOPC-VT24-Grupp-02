@@ -1,4 +1,4 @@
-﻿using BusinessLayer;
+﻿
 using CarService.BusinessLayer;
 using CarService.Entities;
 using System.Collections.ObjectModel;
@@ -14,7 +14,7 @@ namespace CarService.PresentationLayer.WPF
 
     public partial class AddItemsToAppointmentWindow : Window
     {
-        CarServiceController controller = new CarServiceController();
+       
         AppointmentController ac = new();
         ItemController ic = new();
         VehicleController vc = new();
@@ -46,7 +46,7 @@ namespace CarService.PresentationLayer.WPF
             if (searchVehicleTB.Text.Count() == 6)
             {
                 _appointments.Clear();
-                List<Appointment> nyLista = ac.GetAppointments(searchVehicleTB.Text);
+                List<Appointment> nyLista = ac.GetAppointmentsByRegNo(searchVehicleTB.Text);
                 addItemLB.ItemsSource = nyLista;
             }
             else

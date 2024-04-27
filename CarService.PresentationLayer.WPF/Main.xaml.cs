@@ -1,7 +1,8 @@
-﻿using BusinessLayer;
+﻿using CarService.BusinessLayer;
 using CarService.Entities;
 using System.Collections.ObjectModel;
 using System.Windows;
+using MessageBox = System.Windows.MessageBox;
 
 namespace CarService.PresentationLayer.WPF
 {
@@ -10,16 +11,19 @@ namespace CarService.PresentationLayer.WPF
     /// </summary>
     public partial class Main : Window
     {
-        CarServiceController controller = new CarServiceController();
-        internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
+        AppointmentController appointmentController = new AppointmentController();
+
+       internal Appointment currentAppointment;
+
+       internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
         public Main(int id)
         {
             InitializeComponent();
 
-            _appointments = controller.GetCurrentAppointments();
+            _appointments = appointmentController.GetTodaysAppointments();
             if (_appointments.Count > 0 && _appointments != null)
             {
-                lbxAppointments.ItemsSource = _appointments;
+                CurrentAppLB.ItemsSource = _appointments;
             }
         }
 
@@ -30,8 +34,52 @@ namespace CarService.PresentationLayer.WPF
 
         }
 
+        private void btn_OkAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentAppLB.SelectedItem != null)
+            {
+                currentAppointment = (Appointment)CurrentAppLB.SelectedItem;
+                SelectedAppTB.Text = currentAppointment.AppointmentId.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment in the list.");
+            }
+        }
         private void btn_SearchAppointment_Click(object sender, RoutedEventArgs e)
         {
+            if (SelectionBox.SelectedIndex == 0)
+            {
+                //SSNo.
+                CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsBySSNo(SearchAppTB.Text);
+                
+            }
+
+            else if (SelectionBox.SelectedIndex == 1)
+            {
+                //PhoneNo.
+                CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsByPhoneNo(SearchAppTB.Text);
+            }
+            
+            else if (SelectionBox.SelectedIndex == 2)
+            {
+                //FullName
+                string[] nameStrings = SearchAppTB.Text.Split(",");
+                if (nameStrings != null && nameStrings.Length == 2 ) 
+                {
+                    CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsByFullName(nameStrings[0], nameStrings[1]);
+                }
+               
+            }
+
+            else if(SelectionBox.SelectedIndex == 3)
+            {
+                //RegNo.
+                CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsByRegNo(SearchAppTB.Text);
+
+            }
+
+            else { }
 
         }
 
@@ -85,10 +133,7 @@ namespace CarService.PresentationLayer.WPF
 
         }
 
-        private void StausBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+       
 
         private void btn_SaveStatus_Click(object sender, RoutedEventArgs e)
         {
@@ -105,12 +150,7 @@ namespace CarService.PresentationLayer.WPF
 
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SearchAppTB_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
 
         }

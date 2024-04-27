@@ -7,11 +7,38 @@ namespace CarService.BusinessLayer
     {
         public AppointmentController() { }
 
-        public List<Appointment> GetAppointments(string regNo)
+        public List<Appointment> GetAppointmentsByRegNo(string regNo)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
                 List<Appointment> app = uow.Appointments.GetAppointmentsByRegNo(regNo);
+                return app;
+            }
+        }
+
+        public List<Appointment> GetAppointmentsBySSNo(string ssNo)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                List<Appointment> app = uow.Appointments.GetAppointmentsBySSNo(ssNo);
+                return app;
+            }
+        }
+
+        public List<Appointment> GetAppointmentsByPhoneNo(string phoneNo)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                List<Appointment> app = uow.Appointments.GetAppointmentsByPhoneNo(phoneNo);
+                return app;
+            }
+        }
+
+        public List<Appointment> GetAppointmentsByFullName(string firstName, string lastName)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                List<Appointment> app = uow.Appointments.GetAppointmentsByFullName(firstName, lastName);
                 return app;
             }
         }

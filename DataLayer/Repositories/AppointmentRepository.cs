@@ -38,7 +38,42 @@ namespace CarService.DataLayer.Repositories
             return currentAppointment;
         }
 
-<<<<<<< HEAD
+        public List<Appointment> GetAppointmentsBySSNo(string ssNo)
+        {
+            List<Appointment> currentAppointment = Table
+                .Where(r => r.Customer.SocialSecurityNumber == ssNo)
+                .Include(c => c.Vehicle)
+                .Include(c => c.UsedItems)
+                .ThenInclude(c => c.Item)
+                .Include(c => c.Comments)
+                .ToList();
+            return currentAppointment;
+        }
+
+        public List<Appointment> GetAppointmentsByPhoneNo(string phoneNo)
+        {
+            List<Appointment> currentAppointment = Table
+                .Where(r => r.Customer.PhoneNumber == phoneNo)
+                .Include(c => c.Vehicle)
+                .Include(c => c.UsedItems)
+                .ThenInclude(c => c.Item)
+                .Include(c => c.Comments)
+                .ToList();
+            return currentAppointment;
+        }
+
+        public List<Appointment> GetAppointmentsByFullName(string firstName, string lastName)
+        {
+            List<Appointment> currentAppointment = Table
+                .Where(r => r.Customer.FirstName == firstName && r.Customer.LastName == lastName)
+                .Include(c => c.Vehicle)
+                .Include(c => c.UsedItems)
+                .ThenInclude(c => c.Item)
+                .Include(c => c.Comments)
+                .ToList();
+            return currentAppointment;
+        }
+
         public void AddItem(Appointment app, Item item, int quantity)
         {
             UsedItem usedItem = new UsedItem() { AppointmentId = app.AppointmentId, ItemId = item.ItemId, Quantity = quantity };
@@ -50,7 +85,6 @@ namespace CarService.DataLayer.Repositories
             Comment newComment = new Comment()
             {
                 Appointment = app,
-                //MechanicId = mechanic.MechanicId,
                 AuthorEmployeeId = employee.EmployeeId,
                 Message = comment,
                 Time = DateTime.Now,
@@ -59,8 +93,7 @@ namespace CarService.DataLayer.Repositories
             app.Comments.Add(newComment);
         }
 
-=======
->>>>>>> Städjobb-repo-+-test-av-singleton-context
+
         public CarServiceContext CarServiceContext
         {
             get { return CarServiceContext as CarServiceContext; }

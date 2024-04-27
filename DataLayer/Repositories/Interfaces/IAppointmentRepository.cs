@@ -10,10 +10,15 @@ namespace CarService.DataLayer.Repositories.Interfaces
         IEnumerable<Appointment> GetTodaysAppointments();
 
         List<Appointment> GetAppointmentsByRegNo(string regNo);
-<<<<<<< HEAD
+
         void AddComment(Appointment app, Employee employee, string comment);
         void AddItem(Appointment app, Item item, int quantity);
-=======
->>>>>>> Städjobb-repo-+-test-av-singleton-context
+
+        List<Appointment> GetAppointmentsByFullName(string firstName, string lastName);
+        List<Appointment> GetAppointmentsByPhoneNo(string phoneNo);
+        List<Appointment> GetAppointmentsBySSNo(string ssNo);
+
+
+
     }
 }
