@@ -1,22 +1,9 @@
 ﻿using BusinessLayer;
 using CarService.BusinessLayer;
 using CarService.Entities;
-using CarService.Entities.Enums;
-using Microsoft.Identity.Client.NativeInterop;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using MessageBox = System.Windows.MessageBox;
 
 namespace CarService.PresentationLayer.WPF
@@ -39,11 +26,13 @@ namespace CarService.PresentationLayer.WPF
         internal Item? currentItem;
         internal int loggedInId;
 
+
         public AddItemsToAppointmentWindow(int id)
         {
             InitializeComponent();
+
             loggedInId = id;
-            _appointments = controller.GetCurrentAppointments();
+            _appointments = ac.GetTodaysAppointments();
 
             if (_appointments.Count > 0 && _appointments != null)
             {
@@ -120,7 +109,7 @@ namespace CarService.PresentationLayer.WPF
                 MessageBox.Show($"{amount} piece(s) of the item {currentItem.Description} was added!" +
                     $"\n{affectedRows} were affected!");
             }
-            
+
         }
 
         private void ItemTB_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
@@ -135,9 +124,10 @@ namespace CarService.PresentationLayer.WPF
 
         private void AddCommentButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AddCommentTB.Text.Length > 0)
+            if (AddCommentTB.Text.Length > 0 && currentAppointment != null)
             {
-                int affectedRows = ac.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, loggedInMechanic);
+                Employee loggedInEmployee = ec.GetEmployee(loggedInId);
+                int affectedRows = ac.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, loggedInEmployee);
                 MessageBox.Show($"The comment was added! {affectedRows} were affected.");
             }
             else
@@ -149,6 +139,7 @@ namespace CarService.PresentationLayer.WPF
         private void searchVehicleTB_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             searchVehicleTB.Text = "";
+
         }
     }
 }

@@ -2,7 +2,6 @@
 using CarService.DataLayer.Context;
 using CarService.DataLayer.Repositories;
 using CarService.DataLayer.Repositories.Interfaces;
-using CarService.Entities;
 
 namespace DataLayer
 {

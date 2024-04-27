@@ -1,18 +1,5 @@
-﻿using BusinessLayer;
-using CarService.BusinessLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CarService.BusinessLayer;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using MessageBox = System.Windows.MessageBox;
 
 namespace CarService.PresentationLayer.WPF
@@ -22,7 +9,7 @@ namespace CarService.PresentationLayer.WPF
     /// </summary>
     public partial class LoginWindow : Window
     {
-        EmployeeController controller = new();
+        EmployeeController employeeController = new();
         public LoginWindow()
         {
             InitializeComponent();
@@ -30,11 +17,11 @@ namespace CarService.PresentationLayer.WPF
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            if (tbxEmployeeID.Text.Length > 0 && int.TryParse(tbxEmployeeID.Text, out int id)) 
+            if (tbxEmployeeID.Text.Length > 0 && int.TryParse(tbxEmployeeID.Text, out int id))
             {
-                if (controller.VerifyUser(id, tbxPassword.Password))
+                if (employeeController.VerifyUser(id, tbxPassword.Password))
                 {
-                    if (controller.IsReceptionist(id))
+                    if (employeeController.IsReceptionist(id))
                     {
                         //koppla till main
                         Main main = new Main(id);

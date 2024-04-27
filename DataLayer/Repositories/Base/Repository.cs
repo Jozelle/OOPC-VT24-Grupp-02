@@ -1,10 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Repositories.Base
 {
@@ -33,7 +27,7 @@ namespace CarService.DataLayer.Repositories.Base
         }
 
         //Read
-        public TEntity Get(int id) 
+        public TEntity Get(int id)
         {
             return Table.Find(id);
         }
@@ -69,7 +63,7 @@ namespace CarService.DataLayer.Repositories.Base
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            Table.RemoveRange(entities);   
+            Table.RemoveRange(entities);
         }
     }
 }

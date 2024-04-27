@@ -1,10 +1,5 @@
 ﻿using CarService.Entities;
 using DataLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.BusinessLayer
 {
@@ -23,6 +18,13 @@ namespace CarService.BusinessLayer
             using (UnitOfWork uow = new UnitOfWork())
             {
                 return uow.Employees.Get(id);
+            }
+        }
+        public bool IsReceptionist(int id)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Employees.IsReceptionist(id);
             }
         }
     }

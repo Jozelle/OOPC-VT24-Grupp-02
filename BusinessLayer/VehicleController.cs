@@ -1,10 +1,5 @@
 ﻿using CarService.Entities;
 using DataLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.BusinessLayer
 {
@@ -15,8 +10,21 @@ namespace CarService.BusinessLayer
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                //return (Vehicle)uow.Vehicles.Get(x => x.RegistrationNumber == regNo);
                 return uow.Vehicles.GetByRegistrationNo(regNo);
+            }
+        }
+        public List<Appointment> GetJournal(string regNo)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Vehicles.GetJournal(regNo);
+            }
+        }
+        public int SaveVehicle(Vehicle vehicle)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Complete();
             }
         }
     }

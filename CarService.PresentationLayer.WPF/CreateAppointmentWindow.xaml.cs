@@ -1,22 +1,7 @@
-﻿using BusinessLayer;
+﻿using CarService.BusinessLayer;
 using CarService.Entities;
-using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using MessageBox = System.Windows.MessageBox;
 
 namespace CarService.PresentationLayer.WPF
@@ -27,7 +12,10 @@ namespace CarService.PresentationLayer.WPF
     public partial class CreateAppointmentWindow : Window
     {
 
-        CarServiceController controller = new ();
+        VehicleController vehicleController = new();
+        EmployeeController employeeController = new EmployeeController();
+        CustomerController customerController = new CustomerController();
+        AppointmentController appointmentController = new AppointmentController();
 
         internal Vehicle currentVehicle;
         internal Customer currentCustomer;
@@ -42,7 +30,7 @@ namespace CarService.PresentationLayer.WPF
         private void btn_SearchVehicle_Click(object sender, RoutedEventArgs e)
         {
             string regNo = RegNoTB.Text;
-            currentVehicle = controller.GetVehicle(regNo);
+            currentVehicle = vehicleController.GetVehicle(regNo);
 
             if (currentVehicle == null)
             {
@@ -50,7 +38,7 @@ namespace CarService.PresentationLayer.WPF
             }
 
             else
-            { 
+            {
                 MakeTB.Text = currentVehicle.Make;
                 ModelTB.Text = currentVehicle.Model;
                 YearTB.Text = currentVehicle.Year;
@@ -78,7 +66,7 @@ namespace CarService.PresentationLayer.WPF
                     Model = model,
                     Year = year
                 };
-                int rowsChanged = controller.SaveVehicle(vehicle);
+                int rowsChanged = vehicleController.SaveVehicle(vehicle);
                 if (rowsChanged > 0)
                 {
                     MessageBox.Show($"Ändringar sparades! {rowsChanged}");
@@ -92,12 +80,12 @@ namespace CarService.PresentationLayer.WPF
 
         private void SelectionBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
 
         private void SelectionBox_DropDownOpened(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btn_SearchCustomer_Click(object sender, RoutedEventArgs e)
@@ -109,15 +97,15 @@ namespace CarService.PresentationLayer.WPF
 
             if (SelectionBox.SelectedIndex == 0)
             {
-                currentCustomer = controller.GetCustomerBySSN(id);
+                currentCustomer = customerController.GetCustomerBySSN(id);
             }
             else if (SelectionBox.SelectedIndex == 1)
             {
-                currentCustomer = controller.GetCustomerByPhone(phoneNo);
+                currentCustomer = customerController.GetCustomerByPhone(phoneNo);
             }
             else if (SelectionBox.SelectedIndex == 2)
             {
-                currentCustomer = controller.GetCustomerByFullName(firstName, lastName);
+                currentCustomer = customerController.GetCustomerByFullName(firstName, lastName);
             }
             else if (SelectionBox.SelectedIndex == -1)
             {
@@ -150,7 +138,7 @@ namespace CarService.PresentationLayer.WPF
 
             else
             {
-                Customer customer =  new Customer();
+                Customer customer = new Customer();
                 {
                     customer.SocialSecurityNumber = id;
                     customer.PhoneNumber = phoneNo;
@@ -159,7 +147,7 @@ namespace CarService.PresentationLayer.WPF
                     customer.Address = address;
                     customer.Email = email;
                 }
-                int rowsChanged = controller.SaveCustomer(customer);
+                int rowsChanged = customerController.SaveCustomer(customer);
                 if (rowsChanged > 0)
                 {
                     MessageBox.Show($"Ändringar sparades! {rowsChanged}");
@@ -169,40 +157,38 @@ namespace CarService.PresentationLayer.WPF
         }
 
 
-  
+
 
         private void btn_SaveAppointment_Click(object sender, RoutedEventArgs e)
         {
-            
-            
-
             DateTime selectedDate = (DateTime)AppDate.SelectedDate;
 
-                if (selectedDate == null)
-                {
-                    MessageBox.Show("Please select a date for the appointment.");
-                   
-                }
+            if (selectedDate == null)
+            {
+                MessageBox.Show("Please select a date for the appointment.");
 
-                else if (currentVehicle == null) 
-                {
-                    MessageBox.Show("Please select a vehicle.");
-                
-                }
+            }
 
-                else if (currentCustomer == null)
-                {
-                    MessageBox.Show("Please select a customer.");
-                }
+            else if (currentVehicle == null)
+            {
+                MessageBox.Show("Please select a vehicle.");
 
-                else if (selectedDate<DateTime.Today) 
+            }
+
+            else if (currentCustomer == null)
+            {
+                MessageBox.Show("Please select a customer.");
+            }
+
+            else if (selectedDate < DateTime.Today)
+            {
+                MessageBox.Show("The date has passed, select another date.");
+            }
+            else
+            {
+                Appointment appointment = new Appointment();
+
                 {
-                    MessageBox.Show("The date has passed, select another date.");
-                }
-                else 
-                { Appointment appointment = new Appointment();
-                    
-                    { 
                     appointment.SubmissionDate = selectedDate;
                     appointment.DeliveryDate = selectedDate.AddDays(1);
                     appointment.Status = Entities.Enums.AppointmentStatus.Booked;
@@ -210,18 +196,18 @@ namespace CarService.PresentationLayer.WPF
                     appointment.VehicleRegistrationNumber = currentVehicle.RegistrationNumber;
                     appointment.CreatedById = 1;
                     appointment.CustomerId = currentCustomer.CustomerID;
-          
-                    } 
-                   int rowsChanged = controller.CreateAppointment(appointment);
-                    if (rowsChanged > 0)
-                    {
-                        MessageBox.Show($"Ändringar sparades! {rowsChanged}");
-                    }
+
                 }
+                int rowsChanged = appointmentController.CreateAppointment(appointment);
+                if (rowsChanged > 0)
+                {
+                    MessageBox.Show($"Ändringar sparades! {rowsChanged}");
+                }
+            }
 
 
         }
 
-       
+
     }
 }

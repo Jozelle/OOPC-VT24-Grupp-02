@@ -1,18 +1,6 @@
-﻿using BusinessLayer;
+﻿using CarService.BusinessLayer;
 using CarService.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using MessageBox = System.Windows.MessageBox;
 
 namespace CarService.PresentationLayer.WPF
@@ -22,12 +10,12 @@ namespace CarService.PresentationLayer.WPF
     /// </summary>
     public partial class Journal : Window
     {
-        CarServiceController controller = new();
+        VehicleController vehicleController = new();
         public Journal()
         {
             InitializeComponent();
 
-            Vehicle vehicle = controller.GetVehicle("DAD567");
+            Vehicle vehicle = vehicleController.GetVehicle("DAD567");
 
             labelRegistrationNo.Content = vehicle.RegistrationNumber;
             labelMake.Content = vehicle.Make;
@@ -35,7 +23,7 @@ namespace CarService.PresentationLayer.WPF
             labelYear.Content = vehicle.Year;
 
             List<string> journalRows = new List<string>();
-            List<Appointment> appointmentsInJournal = controller.ShowJournal(vehicle.RegistrationNumber);
+            List<Appointment> appointmentsInJournal = vehicleController.GetJournal(vehicle.RegistrationNumber);
 
             foreach (Appointment appointment in appointmentsInJournal)
             {
