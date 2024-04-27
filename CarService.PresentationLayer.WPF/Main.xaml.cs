@@ -83,76 +83,9 @@ namespace CarService.PresentationLayer.WPF
 
         }
 
-        private void btn_SearchRegNo_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_SubmitVehicle_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DatePicker_CalendarOpened(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void rbtn_CardPayment_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void rbtn_CashPayment_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void rbtn_SwishPayment_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void rbtn_CardPayment_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void rbtn_CashPayment_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void rbtn_SwishPayment_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_CheckoutPayment_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
        
 
-        private void btn_SaveStatus_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_AddComment_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_GenerateInvoice_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void SearchAppTB_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
