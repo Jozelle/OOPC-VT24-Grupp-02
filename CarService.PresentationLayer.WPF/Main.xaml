@@ -38,6 +38,8 @@
                     <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
                     <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
                     <ComboBoxItem x:Name="FullName" Content="Full name"/>
+                    <ComboBoxItem x:Name="Registration No." Content="Reg No."/>
+
                 </ComboBox>
                 <Label Content="Choose an appointment, confirm with OK!" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="273"/>
                 <Button Content="OK" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="30" Grid.Column="1"/>
@@ -101,31 +103,33 @@
             <Label Content="Invoice details" FontWeight="Bold" Margin="0,10"/>
             <Grid Height="Auto" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="91*"/>
-                    <ColumnDefinition Width="18*"/>
-                    <ColumnDefinition Width="164*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
 
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Content="Date:"/>
-                <TextBox Grid.Column="1" Grid.Row="0" x:Name="DeTB" Grid.ColumnSpan="2" />
-                <DatePicker Grid.Column="1" HorizontalAlignment="Center" Margin="0,1,0,1" Grid.Row="0" Width="364" CalendarOpened="DatePicker_CalendarOpened" Grid.ColumnSpan="2"/>
+                <Label Grid.Column="0" Grid.Row="0" Content="Date:" HorizontalContentAlignment="Left"/>
+                <TextBox Grid.Column="1" Grid.Row="0" x:Name="DeTB" />
+                <DatePicker HorizontalAlignment="Center" Width="364" CalendarOpened="DatePicker_CalendarOpened" Grid.Column="1"/>
             </Grid>
 
-            <Button x:Name="btn_GenerateInvoice" Content="Generate Invoice" Click="btn_GenerateInvoice_Click" Height="30"/>
+            <Button x:Name="btn_GenerateInvoice" Content="Generate Invoice" Click="btn_GenerateInvoice_Click" Height="40" Margin="0,10"/>
 
 
         </StackPanel>
-        <Label Grid.Column="0" Grid.Row="0" Content="Current appointments:"/>
-        <Grid Grid.Column="1">
+        <Label Grid.Column="1" Grid.Row="0" Content="Current appointments:" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+        <Grid Grid.Column="1" Height="627" VerticalAlignment="Top">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <ListBox Grid.Column="1" Grid.Row="0" x:Name="addItemLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
+            <ListBox Grid.Column="1" Grid.Row="1" x:Name="CurrentAppLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="Auto">
@@ -146,11 +150,34 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            </Grid>
-        
-        
-        
 
+
+
+
+            <ListBox Grid.Column="1" Grid.Row="1" x:Name="InvoiceLB">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" />
+                            <TextBlock Grid.Column="1" />
+                            <TextBlock Grid.Column="2" />
+                            <TextBlock Grid.Column="3" />
+                            <TextBlock Grid.Column="4" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Content="Email invoice" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="29" Width="546"/>
+
+        </Grid>
 
     </Grid>
 </Window>
