@@ -14,6 +14,7 @@ namespace CarService.Entities
         public Employee Author { get; set; }
         public DateTime Time { get; set; }
         public string Message { get; set; }
+        public int AppointmentId { get; set; }
         public Appointment Appointment { get; set; }
 
 

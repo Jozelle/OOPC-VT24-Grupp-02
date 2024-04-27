@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using CarService.BusinessLayer;
 using CarService.Entities;
 using CarService.Entities.Enums;
 using Microsoft.Identity.Client.NativeInterop;
@@ -27,6 +28,11 @@ namespace CarService.PresentationLayer.WPF
     public partial class AddItemsToAppointmentWindow : Window
     {
         CarServiceController controller = new CarServiceController();
+        AppointmentController ac = new();
+        ItemController ic = new();
+        VehicleController vc = new();
+        EmployeeController ec = new();
+
         internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
         internal Appointment? currentAppointment;
         internal Vehicle? currentVehicle;
@@ -51,7 +57,7 @@ namespace CarService.PresentationLayer.WPF
             if (searchVehicleTB.Text.Count() == 6)
             {
                 _appointments.Clear();
-                List<Appointment> nyLista = controller.GetAppointments(searchVehicleTB.Text);
+                List<Appointment> nyLista = ac.GetAppointments(searchVehicleTB.Text);
                 addItemLB.ItemsSource = nyLista;
             }
             else
@@ -62,23 +68,25 @@ namespace CarService.PresentationLayer.WPF
 
         }
 
-        private void searchVehicleTB_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void chosenAppButton_Click(object sender, RoutedEventArgs e)
         {
-            currentAppointment = (Appointment)addItemLB.SelectedItem;
-            currentVehicle = controller.GetVehicle(currentAppointment.Vehicle.RegistrationNumber);
+            if (addItemLB.SelectedItem != null)
+            {
+                currentAppointment = (Appointment)addItemLB.SelectedItem;
+                currentVehicle = vc.GetVehicle(currentAppointment.Vehicle.RegistrationNumber);
 
 
-            RegTB.Text = currentAppointment.Vehicle.RegistrationNumber;
-            CarDescriptionTB.Text = $"{currentAppointment.Vehicle.Make} {currentAppointment.Vehicle.Model}, {currentAppointment.Vehicle.Year}";
-            AppDescriptionTB.Text = currentAppointment.Purpose;
+                RegTB.Text = currentAppointment.Vehicle.RegistrationNumber;
+                CarDescriptionTB.Text = $"{currentAppointment.Vehicle.Make} {currentAppointment.Vehicle.Model}, {currentAppointment.Vehicle.Year}";
+                AppDescriptionTB.Text = currentAppointment.Purpose;
 
-            addItem2LB.ItemsSource = currentAppointment.UsedItems;
-            addCommentLB.ItemsSource = currentAppointment.Comments;
+                addItem2LB.ItemsSource = currentAppointment.UsedItems;
+                addCommentLB.ItemsSource = currentAppointment.Comments;
+            }
+            else
+            {
+                MessageBox.Show("No appointment was selected, please try again!");
+            }
 
         }
 
@@ -86,7 +94,7 @@ namespace CarService.PresentationLayer.WPF
         {
             if (int.TryParse(ItemTB.Text, out int id))
             {
-                currentItem = controller.GetItem(id);
+                currentItem = ic.GetItem(id);
 
                 if (currentItem == null)
                 {
@@ -108,8 +116,9 @@ namespace CarService.PresentationLayer.WPF
         {
             if (int.TryParse(QuantityTB.Text, out int amount))
             {
-                controller.EnterItem(currentAppointment, currentItem, amount);
-                MessageBox.Show($"{amount} piece(s) of the item {currentItem.Description} was added!");
+                int affectedRows = ac.EnterItem(currentAppointment, currentItem, amount);
+                MessageBox.Show($"{amount} piece(s) of the item {currentItem.Description} was added!" +
+                    $"\n{affectedRows} were affected!");
             }
             
         }
@@ -126,9 +135,20 @@ namespace CarService.PresentationLayer.WPF
 
         private void AddCommentButton_Click(object sender, RoutedEventArgs e)
         {
-            Employee loggedInEmployee = controller.GetEmployee(loggedInId);
-            controller.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, loggedInEmployee);
-            MessageBox.Show($"The comment was added!");
+            if (AddCommentTB.Text.Length > 0)
+            {
+                int affectedRows = ac.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, loggedInMechanic);
+                MessageBox.Show($"The comment was added! {affectedRows} were affected.");
+            }
+            else
+            {
+                MessageBox.Show("Please enter a comment!");
+            }
+        }
+
+        private void searchVehicleTB_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            searchVehicleTB.Text = "";
         }
     }
 }
