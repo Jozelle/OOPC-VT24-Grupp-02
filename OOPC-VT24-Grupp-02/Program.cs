@@ -1,7 +1,5 @@
 ﻿using CarService.DataLayer.Context;
 using CarService.DataLayer.Seed;
-using CarService.Entities;
-using DataLayer;
 namespace OOPC_VT24_Grupp_02
 {
     internal class Program
@@ -21,7 +19,7 @@ namespace OOPC_VT24_Grupp_02
 
 
             Console.WriteLine("Jag tog bort och la till databasen lokalt!");
-           
+
         }
     }
 }

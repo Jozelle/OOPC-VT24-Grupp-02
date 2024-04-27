@@ -1,11 +1,4 @@
-﻿using CarService.Entities.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarService.Entities
+﻿namespace CarService.Entities
 {
     public class Employee
     {
@@ -19,7 +12,11 @@ namespace CarService.Entities
 
     public class Mechanic : Employee
     {
+<<<<<<< HEAD
+
+=======
         public Specialization? Specialization { get; set; }
+>>>>>>> Städjobb-repo-+-test-av-singleton-context
     }
 
     public class Receptionist : Employee

@@ -2,11 +2,6 @@
 using CarService.DataLayer.Repositories.Base;
 using CarService.DataLayer.Repositories.Interfaces;
 using CarService.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Repositories
 {
@@ -16,7 +11,7 @@ namespace CarService.DataLayer.Repositories
         {
         }
 
-        public  Customer GetByFullName(string firstName, string lastName)
+        public Customer GetByFullName(string firstName, string lastName)
         {
             return Context.Set<Customer>().Single(x => x.FirstName == firstName && x.LastName == lastName);
         }
@@ -40,5 +35,5 @@ namespace CarService.DataLayer.Repositories
 
     }
 
-  
+
 }

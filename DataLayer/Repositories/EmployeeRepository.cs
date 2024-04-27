@@ -2,19 +2,13 @@
 using CarService.DataLayer.Repositories.Base;
 using CarService.DataLayer.Repositories.Interfaces;
 using CarService.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Repositories
 {
     public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {
         public EmployeeRepository(CarServiceContext context) : base(context)
-        { 
+        {
         }
 
         public ICollection<Mechanic> GetMechanics()

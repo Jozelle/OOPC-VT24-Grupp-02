@@ -1,10 +1,5 @@
 ﻿using CarService.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Context
 {
@@ -17,7 +12,7 @@ namespace CarService.DataLayer.Context
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<UsedItem> UsedItems { get; set; }
 
-        public DbSet<Payment> Payments { get; set; }    
+        public DbSet<Payment> Payments { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
         public CarServiceContext() { }

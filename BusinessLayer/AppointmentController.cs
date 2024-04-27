@@ -1,10 +1,5 @@
 ﻿using CarService.Entities;
 using DataLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.BusinessLayer
 {
@@ -47,6 +42,15 @@ namespace CarService.BusinessLayer
 
                 uow.Comments.Add(mc);
                 return uow.Complete();
+            }
+        }
+        public int CreateAppointment(Appointment appointment)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                uow.Appointments.Add(appointment);
+                int rowsAffected = uow.Complete();
+                return rowsAffected;
             }
         }
     }

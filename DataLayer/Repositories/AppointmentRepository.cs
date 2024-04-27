@@ -4,18 +4,13 @@ using CarService.DataLayer.Repositories.Interfaces;
 using CarService.Entities;
 using CarService.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Repositories
 {
     public class AppointmentRepository : Repository<Appointment>, IAppointmentRepository
     {
-        public AppointmentRepository(CarServiceContext context) : base(context) 
-        { 
+        public AppointmentRepository(CarServiceContext context) : base(context)
+        {
         }
 
         public IEnumerable<Appointment> GetTodaysAppointments()
@@ -25,7 +20,7 @@ namespace CarService.DataLayer.Repositories
                 .Include(c => c.Vehicle)
                 .Include(c => c.UsedItems)
                 .ThenInclude(c => c.Item)
-                .Include(c => c.Comments) .ThenInclude(c => c.Author)
+                .Include(c => c.Comments).ThenInclude(c => c.Author)
                 .ToList();
 
             return result;
@@ -43,9 +38,10 @@ namespace CarService.DataLayer.Repositories
             return currentAppointment;
         }
 
+<<<<<<< HEAD
         public void AddItem(Appointment app, Item item, int quantity)
         {
-            UsedItem usedItem = new UsedItem() {AppointmentId = app.AppointmentId, ItemId = item.ItemId, Quantity=quantity };
+            UsedItem usedItem = new UsedItem() { AppointmentId = app.AppointmentId, ItemId = item.ItemId, Quantity = quantity };
             app.UsedItems.Add(usedItem);
         }
 
@@ -63,10 +59,11 @@ namespace CarService.DataLayer.Repositories
             app.Comments.Add(newComment);
         }
 
+=======
+>>>>>>> Städjobb-repo-+-test-av-singleton-context
         public CarServiceContext CarServiceContext
         {
             get { return CarServiceContext as CarServiceContext; }
         }
     }
 }
- 
