@@ -19,7 +19,7 @@ namespace CarService.PresentationLayer.WPF
         AppointmentController appointmentController = new AppointmentController();
 
         internal Vehicle currentVehicle;
-        internal Customer currentCustomer;
+        internal Customer? currentCustomer;
         internal IList<Appointment> appointments =new ObservableCollection<Appointment>();
 
         public CreateAppointmentWindow()
@@ -133,6 +133,8 @@ namespace CarService.PresentationLayer.WPF
                 LastnameTB.Text = currentCustomer.LastName;
                 EmailTB.Text = currentCustomer?.Email;
                 AddressTB.Text = currentCustomer?.Address;
+
+                //MessageBox.Show(currentCustomer.CustomerID.ToString());
             }
             else MessageBox.Show("Nothing to be found!");
         }
@@ -148,10 +150,10 @@ namespace CarService.PresentationLayer.WPF
             if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(phoneNo) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
             {
                 MessageBox.Show("Please fill out all the fields.");
+                currentCustomer = null;
                 return;
             }
-
-            else if (currentCustomer.SocialSecurityNumber != id)
+            else if (currentCustomer != null && currentCustomer.SocialSecurityNumber != id)
             {
                 MessageBox.Show("Something went wrong, please enter customer details and try again!");
                 PhoneNoTB.Text = string.Empty;
@@ -159,13 +161,10 @@ namespace CarService.PresentationLayer.WPF
                 LastnameTB.Text = string.Empty;
                 AddressTB.Text = string.Empty;
                 EmailTB.Text = string.Empty;
-                
 
                 currentCustomer = null;
             }
-
-
-            else
+            else if (currentCustomer == null) 
             {
                 Customer customer = new Customer();
                 {
@@ -177,6 +176,39 @@ namespace CarService.PresentationLayer.WPF
                     customer.Email = email;
                 }
                 int rowsChanged = customerController.SaveCustomer(customer);
+                if (rowsChanged > 0)
+                {
+                    MessageBox.Show($"Ändringar sparades! {rowsChanged}");
+                    currentCustomer = customer;
+                }
+                else if (rowsChanged == -1)
+                {
+                    MessageBox.Show("That social security number is already signed up as a customer. I filled in the details for you!");
+                    currentCustomer = customerController.GetCustomerBySSN(id);
+
+                    SSNumberTB.Text = currentCustomer.SocialSecurityNumber.ToString();
+                    PhoneNoTB.Text = currentCustomer?.PhoneNumber;
+                    FirstnameTB.Text = currentCustomer?.FirstName;
+                    LastnameTB.Text = currentCustomer.LastName;
+                    EmailTB.Text = currentCustomer?.Email;
+                    AddressTB.Text = currentCustomer?.Address;
+                }
+                
+            }
+            else if (currentCustomer != null)
+            {
+                Customer customer = new Customer();
+                {
+                    customer.CustomerID = currentCustomer.CustomerID;
+                    customer.SocialSecurityNumber = id;
+                    customer.PhoneNumber = phoneNo;
+                    customer.FirstName = firstName;
+                    customer.LastName = lastName;
+                    customer.Address = address;
+                    customer.Email = email;
+                }
+
+                int rowsChanged = customerController.UpdateCustomer(customer);
                 if (rowsChanged > 0)
                 {
                     MessageBox.Show($"Ändringar sparades! {rowsChanged}");
@@ -232,6 +264,8 @@ namespace CarService.PresentationLayer.WPF
                 {
                     MessageBox.Show($"Ändringar sparades! {rowsChanged}");
                     appointments.Add(appointment);
+
+                    this.Close();
                 }
             }
 
