@@ -33,14 +33,15 @@
 
                 </Grid.RowDefinitions>
                 <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="Type here..." HorizontalContentAlignment="Left" TextChanged="SearchAppTB_TextChanged"/>
-                <Button x:Name="btn_SearchAppointment" Click="btn_SearchAppointment_Click" Content="Search" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Width="136"/>
-                <ComboBox x:Name="SelectionBox" DropDownOpened="SelectionBox_DropDownOpened" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Height="30" SelectionChanged="SelectionBox_SelectionChanged" >
+                <ComboBox x:Name="selectSearchTypeBox" Grid.Column="1" Width="137" SelectedIndex="0">
                     <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
                     <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
                     <ComboBoxItem x:Name="FullName" Content="Full name"/>
                     <ComboBoxItem x:Name="RegNo" Content="Reg No."/>
-
                 </ComboBox>
+
+                <Button x:Name="btn_SearchAppointment" Click="btn_SearchAppointment_Click" Content="Search" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Width="136"/>
+
                 <Label Content="Choose an appointment, confirm with OK!" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="273"/>
                 <Button x:Name="btn_OkAppointment" Content="OK" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="30" Grid.Column="1" Click="btn_OkAppointment_Click"/>
 
@@ -78,7 +79,7 @@
                     <RowDefinition Height="45"/>
 
                 </Grid.RowDefinitions>
-                <ComboBox x:Name="StausBox" SelectedIndex="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="364" Height="30" SelectionChanged="StausBox_SelectionChanged">
+                <ComboBox x:Name="StausBox" SelectedIndex="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="364" Height="30">
                     <ComboBoxItem x:Name="CarReceived" Content="Car Received"/>
                     <ComboBoxItem x:Name="Booked" Content="Booked"/>
                     <ComboBoxItem x:Name="InProgress" Content=""/>

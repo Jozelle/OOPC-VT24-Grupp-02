@@ -24,7 +24,7 @@ namespace CarService.PresentationLayer.WPF
                     if (employeeController.IsReceptionist(id))
                     {
                         //koppla till main
-                        Main main = new Main(id);
+                        Main main = new Main();
                         this.Close();
                         main.ShowDialog();
                     }

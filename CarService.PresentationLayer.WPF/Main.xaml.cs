@@ -16,10 +16,11 @@ namespace CarService.PresentationLayer.WPF
        internal Appointment currentAppointment;
 
        internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
-        public Main(int id)
+        public Main()
         {
             InitializeComponent();
 
+            int id = 3;
             _appointments = appointmentController.GetTodaysAppointments();
             if (_appointments.Count > 0 && _appointments != null)
             {
@@ -48,20 +49,20 @@ namespace CarService.PresentationLayer.WPF
         }
         private void btn_SearchAppointment_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectionBox.SelectedIndex == 0)
+            if (selectSearchTypeBox.SelectedIndex == 0)
             {
                 //SSNo.
                 CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsBySSNo(SearchAppTB.Text);
                 
             }
 
-            else if (SelectionBox.SelectedIndex == 1)
+            else if (selectSearchTypeBox.SelectedIndex == 1)
             {
                 //PhoneNo.
                 CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsByPhoneNo(SearchAppTB.Text);
             }
             
-            else if (SelectionBox.SelectedIndex == 2)
+            else if (selectSearchTypeBox.SelectedIndex == 2)
             {
                 //FullName
                 string[] nameStrings = SearchAppTB.Text.Split(",");
@@ -72,13 +73,12 @@ namespace CarService.PresentationLayer.WPF
                
             }
 
-            else if(SelectionBox.SelectedIndex == 3)
+            else if(selectSearchTypeBox.SelectedIndex == 3)
             {
                 //RegNo.
                 CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsByRegNo(SearchAppTB.Text);
 
             }
-
             else { }
 
         }
