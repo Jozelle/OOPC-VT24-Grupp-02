@@ -11,11 +11,11 @@ namespace CarService.PresentationLayer.WPF
     public partial class Journal : Window
     {
         VehicleController vehicleController = new();
-        public Journal()
+        public Journal(string regNo)
         {
             InitializeComponent();
 
-            Vehicle vehicle = vehicleController.GetVehicle("DAD567");
+            Vehicle vehicle = vehicleController.GetVehicle(regNo);
 
             labelRegistrationNo.Content = vehicle.RegistrationNumber;
             labelMake.Content = vehicle.Make;

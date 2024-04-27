@@ -80,5 +80,13 @@ namespace CarService.BusinessLayer
                 return rowsAffected;
             }
         }
+
+        public void SaveChanges(Appointment oldApp, Appointment newApp ) 
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                uow.Appointments.Update(oldApp, newApp);
+            }
+        }
     }
 }

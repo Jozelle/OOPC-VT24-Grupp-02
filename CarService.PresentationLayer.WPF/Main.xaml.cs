@@ -12,15 +12,18 @@ namespace CarService.PresentationLayer.WPF
     public partial class Main : Window
     {
         AppointmentController appointmentController = new AppointmentController();
+        EmployeeController employeeController = new EmployeeController();
 
        internal Appointment currentAppointment;
+       internal int loggedInEmployee;
 
        internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
         public Main()
         {
             InitializeComponent();
 
-            int id = 3;
+            loggedInEmployee = 3;
+
             _appointments = appointmentController.GetTodaysAppointments();
             if (_appointments.Count > 0 && _appointments != null)
             {
@@ -79,13 +82,75 @@ namespace CarService.PresentationLayer.WPF
                 CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsByRegNo(SearchAppTB.Text);
 
             }
-            else { }
+           
 
         }
 
+        private void btn_SaveStatus_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentAppointment != null)
+            {
+                Appointment copyAppointment = currentAppointment as Appointment;
 
-       
+                switch (StausBox.SelectedIndex)
+                {
+                    case 0:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.CarReceived;
 
-        
+                        break;
+
+                    case 1:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.Booked;
+
+                        break;
+
+                    case 2:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.InProgress;
+
+                        break;
+
+                    case 3:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.WaitingForParts;
+
+                        break;
+
+                    case 4:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.ReadyForPickup;
+
+                        break;
+                    
+                    case 5:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.Canceled;
+
+                        break;
+
+                    case 6:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.Completed;
+
+                        break;
+
+                }
+
+                appointmentController.SaveChanges(copyAppointment, currentAppointment);
+               
+            }
+        }
+
+        private void btn_AddComment_Click(object sender, RoutedEventArgs e)
+        {
+            Employee employee = employeeController.GetEmployee(loggedInEmployee);
+
+            int affectedRows = appointmentController.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, employee);
+
+            MessageBox.Show(affectedRows.ToString());
+            
+        }
+
+        private void btn_ViewJournal_Click(object sender, RoutedEventArgs e)
+        {
+            Journal journal = new Journal(currentAppointment.VehicleRegistrationNumber);
+            journal.ShowDialog();
+
+        }
     }
 }
