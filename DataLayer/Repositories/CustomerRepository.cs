@@ -2,6 +2,9 @@
 using CarService.DataLayer.Repositories.Base;
 using CarService.DataLayer.Repositories.Interfaces;
 using CarService.Entities;
+using DataLayer;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CarService.DataLayer.Repositories
 {
@@ -11,27 +14,34 @@ namespace CarService.DataLayer.Repositories
         {
         }
 
-        public Customer GetByFullName(string firstName, string lastName)
+        public Customer ? GetByFullName(string firstName, string lastName)
         {
-            return Context.Set<Customer>().Single(x => x.FirstName == firstName && x.LastName == lastName);
+            try
+            {
+                return Context.Set<Customer>().Single(x => x.FirstName == firstName && x.LastName == lastName);
+            }
+
+            catch { return null; }
         }
 
         public Customer? GetBySocialSecurityNo(string socialSecurityNo)
         {
             try
             {
-                return Context.Set<Customer>().Single(x => x.SocialSecurityNumber == socialSecurityNo);
+                return Context.Set<Customer>().Where(x => x.SocialSecurityNumber == socialSecurityNo).Include(x => x.CustomerID);
             }
             catch { return null; }
         }
-        public Customer GetByPhoneNo(string phoneNo)
+        public Customer ? GetByPhoneNo(string phoneNo)
         {
-            return Context.Set<Customer>().Single(x => x.PhoneNumber == phoneNo);
+            try
+            {
+                return Context.Set<Customer>().Single(x => x.PhoneNumber == phoneNo);
+            }
+            catch { return null; }
         }
-        //public CarServiceContext CarServiceContext
-        //{
-        //    get { return CarServiceContext as CarServiceContext; }
-        //}
+
+        
 
     }
 
