@@ -20,12 +20,23 @@ namespace CarService.BusinessLayer
                 return uow.Vehicles.GetJournal(regNo);
             }
         }
+
         public int SaveVehicle(Vehicle vehicle)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                return uow.Complete();
-            }
+                Vehicle vehicleFromDB = uow.Vehicles.GetByRegistrationNo(vehicle.RegistrationNumber);
+                if (vehicleFromDB == null)
+                {
+                    uow.Vehicles.Add(vehicle);
+                    return uow.Complete();
+                }
+                else
+                {
+                    uow.Vehicles.Update(vehicleFromDB, vehicle);
+                    return uow.Complete();
+                }
+            } 
         }
     }
 }
