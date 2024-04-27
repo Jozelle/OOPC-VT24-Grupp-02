@@ -32,7 +32,7 @@
                     <RowDefinition Height="30"/>
 
                 </Grid.RowDefinitions>
-                <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="Type here..." HorizontalContentAlignment="Left" TextChanged="SearchAppTB_TextChanged"/>
+                <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="Type here..." HorizontalContentAlignment="Left"/>
                 <ComboBox x:Name="selectSearchTypeBox" Grid.Column="1" Width="137" SelectedIndex="0">
                     <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
                     <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
@@ -84,12 +84,12 @@
                     <ComboBoxItem x:Name="Canceled" Content="Canceled"/>
                     <ComboBoxItem x:Name="Completed" Content="Completed"/>
                 </ComboBox>
-                <Button x:Name="btn_SaveStatus" Click="btn_SaveStatus_Click" Grid.Column="1" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182"/>
+                <Button x:Name="btn_SaveStatus" Grid.Column="1" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="182"/>
 
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Add comment" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
                 <TextBox Text="Type here..." Grid.Column="0" Grid.Row="2" x:Name="AddCommentTB" />
-                <Button x:Name="btn_AddComment" Click="btn_AddComment_Click" Grid.Column="1" Content="Add" HorizontalAlignment="Center" Grid.Row="2" Width="182"/>
+                <Button x:Name="btn_AddComment" Grid.Column="1" Content="Add" HorizontalAlignment="Center" Grid.Row="2" Width="182"/>
                 <Button x:Name="btn_ViewJournal" Grid.Column="0" Grid.Row="3" Content="View Journal" Grid.ColumnSpan="2" Margin="0,10,0,0"/>
 
             </Grid>
@@ -111,10 +111,10 @@
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Date:" HorizontalContentAlignment="Left"/>
                 <TextBox Grid.Column="1" Grid.Row="0" x:Name="DeTB" />
-                <DatePicker HorizontalAlignment="Center" Width="364" CalendarOpened="DatePicker_CalendarOpened" Grid.Column="1"/>
+                <DatePicker HorizontalAlignment="Center" Width="364" Grid.Column="1"/>
             </Grid>
 
-            <Button x:Name="btn_GenerateInvoice" Content="Generate Invoice" Click="btn_GenerateInvoice_Click" Height="40" Margin="0,10"/>
+            <Button x:Name="btn_GenerateInvoice" Content="Generate Invoice" Height="40" Margin="0,10"/>
 
 
         </StackPanel>
