@@ -1,11 +1,6 @@
 ﻿using CarService.DataLayer.Context;
 using CarService.Entities;
 using CarService.Entities.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Seed
 {
@@ -29,7 +24,7 @@ namespace CarService.DataLayer.Seed
             {
                 FirstName = "Bertil",
                 LastName = "Bertillson",
-                PhoneNumber = "0712345678", 
+                PhoneNumber = "0712345678",
                 SocialSecurityNumber = "1122334455",
                 Address = "Bertilsgata 5",
                 Email = "bertilbertillson@mail.com"
@@ -74,7 +69,7 @@ namespace CarService.DataLayer.Seed
             context.Employees.Add(rep1);
 
             //Skapar items
-            Item item1 = new Item(){Description = "Broms", Price = 1000};
+            Item item1 = new Item() { Description = "Broms", Price = 1000 };
             Item item2 = new Item() { Description = "Koppling", Price = 2000 };
             Item item3 = new Item() { Description = "Mutter", Price = 10 };
             Item item4 = new Item() { Description = "Backspegel", Price = 1500 };
@@ -113,7 +108,7 @@ namespace CarService.DataLayer.Seed
                 Model = "C63 Sedan",
                 Year = "2015"
 
-             };
+            };
             context.Vehicles.Add(bil1);
 
             Vehicle bil2 = new Vehicle()

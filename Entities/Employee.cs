@@ -1,18 +1,10 @@
-﻿using CarService.Entities.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarService.Entities
+﻿namespace CarService.Entities
 {
     public class Employee
     {
         public int EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Specialization? Specialization { get; set; }
         public string Password { get; set; }
         public ICollection<Comment>? Comments { get; set; }
 
@@ -20,7 +12,11 @@ namespace CarService.Entities
 
     public class Mechanic : Employee
     {
-    
+<<<<<<< HEAD
+
+=======
+        public Specialization? Specialization { get; set; }
+>>>>>>> Städjobb-repo-+-test-av-singleton-context
     }
 
     public class Receptionist : Employee

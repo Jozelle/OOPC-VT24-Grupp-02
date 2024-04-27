@@ -1,55 +1,69 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarService.DataLayer.Repositories.Base
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext Context;
+        protected DbContext Context { get; }
+        protected DbSet<TEntity> Table { get; }
 
         public Repository(DbContext context)
         {
             Context = context;
+            Table = Context.Set<TEntity>();
         }
 
-        public TEntity Get(int id) 
-        {
-            return Context.Set<TEntity>().Find(id);
-        }
+        //CRUD operations
 
-        public IEnumerable<TEntity> GetAll()
-        {
-            return Context.Set<TEntity>().ToList();
-        }
-
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return Context.Set<TEntity>().Where(predicate);
-        }
-
+        //Create
         public void Add(TEntity entity)
         {
-            Context.Set<TEntity>().Add(entity);
+            Table.Add(entity);
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
-            Context.Set<TEntity>().AddRange(entities);
+            Table.AddRange(entities);
         }
 
+        //Read
+        public TEntity Get(int id)
+        {
+            return Table.Find(id);
+        }
+        public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
+        {
+            return Table.Where(predicate);
+        }
+        public IEnumerable<TEntity> GetAll()
+        {
+            return Table;
+        }
+        public TEntity FirstOrDefault(Func<TEntity, bool> predicate)
+        {
+            return Table.FirstOrDefault(predicate);
+        }
+
+        //Update
+        public virtual void Update(TEntity entity) => Table.Update(entity);
+        public virtual TEntity Update(TEntity oldEntity, TEntity newEntity)
+        {
+            Context.Entry(oldEntity).CurrentValues.SetValues(newEntity);
+            Table.Update(oldEntity);
+            return oldEntity;
+        }
+        public virtual void UpdateRange(IEnumerable<TEntity> entities) => Table.UpdateRange(entities);
+
+
+        //Delete
         public void Remove(TEntity entity)
         {
-            Context.Set<TEntity>().Remove(entity);
+            Table.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            Context.Set<TEntity>().RemoveRange(entities);   
+            Table.RemoveRange(entities);
         }
     }
 }
