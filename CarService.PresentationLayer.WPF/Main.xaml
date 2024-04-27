@@ -49,20 +49,16 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="27*"/>
-                    <ColumnDefinition Width="64*"/>
-                    <ColumnDefinition Width="91*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
-                <Label Content="Selected appointment:" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Width="273" Height="30"/>
-                <TextBox x:Name="SelectedAppTB" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="272" Height="30"/>
-
-
-
-
+                <Label Content="Selected appointment:" HorizontalAlignment="Left" Grid.Column="0" Width="546" Height="30"/>
+                <TextBox x:Name="SelectedAppTB" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="274" Height="30"/>
 
             </Grid>
 
