@@ -90,49 +90,47 @@ namespace CarService.PresentationLayer.WPF
         {
             if (currentAppointment != null)
             {
-                Appointment copyAppointment = currentAppointment as Appointment;
-
-                switch (StausBox.SelectedIndex)
+                int selected = StausBox.SelectedIndex;
+                switch (selected)
                 {
                     case 0:
                         currentAppointment.Status = Entities.Enums.AppointmentStatus.CarReceived;
-
                         break;
 
                     case 1:
                         currentAppointment.Status = Entities.Enums.AppointmentStatus.Booked;
-
                         break;
 
                     case 2:
                         currentAppointment.Status = Entities.Enums.AppointmentStatus.InProgress;
-
                         break;
 
                     case 3:
                         currentAppointment.Status = Entities.Enums.AppointmentStatus.WaitingForParts;
-
                         break;
 
                     case 4:
                         currentAppointment.Status = Entities.Enums.AppointmentStatus.ReadyForPickup;
-
                         break;
 
                     case 5:
                         currentAppointment.Status = Entities.Enums.AppointmentStatus.Canceled;
-
                         break;
 
                     case 6:
                         currentAppointment.Status = Entities.Enums.AppointmentStatus.Completed;
-
                         break;
-
                 }
 
-                appointmentController.SaveChanges(copyAppointment, currentAppointment);
-
+                int affectedRows = appointmentController.SaveChanges(currentAppointment);
+                if (affectedRows > 0)
+                {
+                    MessageBox.Show("The status was changed!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment first!");
             }
         }
 
@@ -141,15 +139,23 @@ namespace CarService.PresentationLayer.WPF
             Employee employee = employeeController.GetEmployee(loggedInEmployee);
 
             int affectedRows = appointmentController.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, employee);
-
-            MessageBox.Show(affectedRows.ToString());
-
+            if (affectedRows > 0)
+            {
+                MessageBox.Show("The comment was added!");
+            }
         }
 
         private void btn_ViewJournal_Click(object sender, RoutedEventArgs e)
         {
-            Journal journal = new Journal(currentAppointment.VehicleRegistrationNumber);
-            journal.ShowDialog();
+            if (currentAppointment != null)
+            {
+                Journal journal = new Journal(currentAppointment.VehicleRegistrationNumber);
+                journal.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment first!");
+            }
 
         }
     }

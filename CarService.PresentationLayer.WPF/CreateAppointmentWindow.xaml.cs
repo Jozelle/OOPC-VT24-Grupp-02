@@ -208,7 +208,7 @@ namespace CarService.PresentationLayer.WPF
             string? address = AddressTB.Text;
             string? email = EmailTB.Text;
 
-            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(phoneNo) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
+            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(phoneNo) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || id == "Social Security No." || phoneNo == "Phone No." || firstName == "First name" || lastName == "Last name")
             {
                 MessageBox.Show("Please fill out all the fields.");
                 currentCustomer = null;
@@ -216,6 +216,16 @@ namespace CarService.PresentationLayer.WPF
             }
             else if (currentCustomer != null)
             {
+                if (address == "Address")
+                {
+                    address = null;
+                }
+
+                if (!email.Contains('@'))
+                {
+                    email = null;
+                }
+                
                 Customer customer = new Customer();
                 {
                     customer.CustomerID = currentCustomer.CustomerID;
@@ -354,6 +364,36 @@ namespace CarService.PresentationLayer.WPF
         private void YearTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
             YearTB.Text = string.Empty;
+        }
+
+        private void FirstnameTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            FirstnameTB.Text = "";
+        }
+
+        private void LastnameTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            LastnameTB.Text = "";
+        }
+
+        private void SSNumberTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            SSNumberTB.Text = string.Empty;
+        }
+
+        private void AddressTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            AddressTB.Text = string.Empty;
+        }
+
+        private void PhoneNoTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            PhoneNoTB.Text = string.Empty;
+        }
+
+        private void EmailTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            EmailTB.Text = string.Empty;
         }
     }
 }

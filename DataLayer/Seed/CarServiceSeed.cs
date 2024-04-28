@@ -16,6 +16,8 @@ namespace CarService.DataLayer.Seed
                 PhoneNumber = "0701234567",
                 SocialSecurityNumber = "9876543210",
                 Address = "Andersgata 9",
+                PostalCode = "11111",
+                City = "Anderstorp",
                 Email = "andersandersson@mail.com"
             };
             context.Customers.Add(kund1);
@@ -27,6 +29,8 @@ namespace CarService.DataLayer.Seed
                 PhoneNumber = "0712345678",
                 SocialSecurityNumber = "1122334455",
                 Address = "Bertilsgata 5",
+                PostalCode = "22222",
+                City = "Bertilsstad",
                 Email = "bertilbertillson@mail.com"
             };
             context.Customers.Add(kund2);
@@ -38,9 +42,82 @@ namespace CarService.DataLayer.Seed
                 PhoneNumber = "0701020304",
                 SocialSecurityNumber = "4004040404",
                 Address = "Curtvägen 3C",
+                PostalCode = "33333",
+                City = "Curtby",
                 Email = "cc@mail.com"
             };
             context.Customers.Add(kund3);
+
+            Customer kund4 = new Customer()
+            {
+                FirstName = "David",
+                LastName = "Davidsson",
+                PhoneNumber = "0707070707",
+                SocialSecurityNumber = "9801010101",
+                Address = "Davidsgatan 4D",
+                PostalCode = "44444",
+                City = "Davidstorp",
+                Email = "davido@mail.com"
+            };
+            context.Customers.Add(kund4);
+
+            Customer kund5 = new Customer()
+            {
+                FirstName = "Erika",
+                LastName = "Eriksdotter",
+                PhoneNumber = "0705555555",
+                SocialSecurityNumber = "9505050505",
+                Address = "Eriksgatan 5",
+                PostalCode = "55555",
+                City = "Eriksort",
+                Email = "erikas@mail.com"
+            };
+            context.Customers.Add(kund5);
+
+            Customer kund6 = new Customer()
+            {
+                FirstName = "Frida",
+                LastName = "Fridsson",
+                PhoneNumber = "0706666666",
+                SocialSecurityNumber = "8606060606",
+                Address = "Fridhem 6",
+                PostalCode = "66666",
+                City = "Fridby",
+                Email = "fridas@mail.com"
+            };
+            context.Customers.Add(kund6);
+
+            Customer kund7 = new Customer()
+            {
+                FirstName = "Greta",
+                LastName = "Hansson",
+                PhoneNumber = "0707123456",
+                SocialSecurityNumber = "8707070707",
+                Address = "Häxvägen 7",
+                PostalCode = "77777",
+                City = "Smultorp",
+                Email = "hansgreta@mail.com"
+            };
+            context.Customers.Add(kund7);
+
+            Customer kund8 = new Customer()
+            {
+                FirstName = "Hanna",
+                LastName = "Hansson",
+                PhoneNumber = "0708080808",
+                SocialSecurityNumber = "9808080808",
+                Email = "hannas@mail.com"
+            };
+            context.Customers.Add(kund8);
+
+            Customer kund9 = new Customer()
+            {
+                FirstName = "David",
+                LastName = "Davidsson",
+                PhoneNumber = "0704040404",
+                SocialSecurityNumber = "9804040404",
+            };
+            context.Customers.Add(kund9);
 
             //Skapar anställda
             Mechanic mek1 = new Mechanic()
@@ -58,8 +135,26 @@ namespace CarService.DataLayer.Seed
                 LastName = "Crawford",
                 Password = "Vogue"
             };
-            //context.Mechanics.Add(mek2);
             context.Employees.Add(mek2);
+
+            Mechanic mek3 = new Mechanic()
+            {
+                FirstName = "Gigi",
+                LastName = "Hadid",
+                Specialization = Specialization.Tires,
+                Password = "Fashion"
+            };
+            context.Employees.Add(mek3);
+
+            Mechanic mek4 = new Mechanic()
+            {
+                FirstName = "Bella",
+                LastName = "Hadid",
+                Specialization = Specialization.Services,
+                Password = "Model"
+            };
+            context.Employees.Add(mek4);
+
             Receptionist rep1 = new Receptionist()
             {
                 FirstName = "Mulle",
@@ -68,38 +163,46 @@ namespace CarService.DataLayer.Seed
             };
             context.Employees.Add(rep1);
 
-            //Skapar items
-            Item item1 = new Item() { Description = "Broms", Price = 1000 };
-            Item item2 = new Item() { Description = "Koppling", Price = 2000 };
-            Item item3 = new Item() { Description = "Mutter", Price = 10 };
-            Item item4 = new Item() { Description = "Backspegel", Price = 1500 };
-            Item item5 = new Item() { Description = "Framruta", Price = 1000 };
-            Item item6 = new Item() { Description = "Vinterdäck", Price = 2000 };
-            Item item7 = new Item() { Description = "Avgasrör", Price = 700 };
-            Item item8 = new Item() { Description = "Oljefilter", Price = 300 };
-            Item item9 = new Item() { Description = "Kylare", Price = 3500 };
-            Item item10 = new Item() { Description = "Tändkablar", Price = 300 };
-            Item item11 = new Item() { Description = "Glödlampa", Price = 150 };
-            Item item12 = new Item() { Description = "Stötdämpare", Price = 5000 };
-            Item item13 = new Item() { Description = "Tändstift", Price = 75 };
-            Item item14 = new Item() { Description = "Växellåda", Price = 10000 };
-            Item item15 = new Item() { Description = "Sommardäck", Price = 950 };
+            Receptionist rep2 = new Receptionist()
+            {
+                FirstName = "Mulle",
+                LastName = "Meck",
+                Password = "Prylar",
+            };
+            context.Employees.Add(rep2);
 
-            context.Items.Add(item1);
-            context.Items.Add(item2);
-            context.Items.Add(item3);
-            context.Items.Add(item4);
-            context.Items.Add(item5);
-            context.Items.Add(item6);
-            context.Items.Add(item7);
-            context.Items.Add(item8);
-            context.Items.Add(item9);
-            context.Items.Add(item10);
-            context.Items.Add(item11);
-            context.Items.Add(item12);
-            context.Items.Add(item13);
-            context.Items.Add(item14);
-            context.Items.Add(item15);
+            Receptionist rep3 = new Receptionist()
+            {
+                FirstName = "Mulle",
+                LastName = "Meck",
+                Password = "Prylar",
+            };
+            context.Employees.Add(rep3);
+
+            Receptionist rep4 = new Receptionist()
+            {
+                FirstName = "Mulle",
+                LastName = "Meck",
+                Password = "Prylar",
+            };
+            context.Employees.Add(rep4);
+
+            //Skapar items
+            context.Items.Add(new Item() { Description = "Broms", Price = 1000 });
+            context.Items.Add(new Item() { Description = "Koppling", Price = 2000 });
+            context.Items.Add(new Item() { Description = "Mutter", Price = 10 });
+            context.Items.Add(new Item() { Description = "Backspegel", Price = 1500 });
+            context.Items.Add(new Item() { Description = "Framruta", Price = 1000 });
+            context.Items.Add(new Item() { Description = "Vinterdäck", Price = 2000 });
+            context.Items.Add(new Item() { Description = "Avgasrör", Price = 700 });
+            context.Items.Add(new Item() { Description = "Oljefilter", Price = 300 });
+            context.Items.Add(new Item() { Description = "Kylare", Price = 3500 });
+            context.Items.Add(new Item() { Description = "Tändkablar", Price = 300 });
+            context.Items.Add(new Item() { Description = "Glödlampa", Price = 150 });
+            context.Items.Add(new Item() { Description = "Stötdämpare", Price = 5000 });
+            context.Items.Add(new Item() { Description = "Tändstift", Price = 75 });
+            context.Items.Add(new Item() { Description = "Tändstift", Price = 75 });
+            context.Items.Add(new Item() { Description = "Sommardäck", Price = 950 });
             //Skapar Fordon
             Vehicle bil1 = new Vehicle()
             {
@@ -107,7 +210,6 @@ namespace CarService.DataLayer.Seed
                 Make = "Mercedes",
                 Model = "C63 Sedan",
                 Year = "2015"
-
             };
             context.Vehicles.Add(bil1);
 
@@ -117,7 +219,6 @@ namespace CarService.DataLayer.Seed
                 Make = "Audi",
                 Model = "rs6",
                 Year = "2018"
-
             };
 
             Vehicle bil3 = new Vehicle()
@@ -126,7 +227,6 @@ namespace CarService.DataLayer.Seed
                 Make = "Kia",
                 Model = "Ceed",
                 Year = "2004"
-
             };
 
 
@@ -184,26 +284,26 @@ namespace CarService.DataLayer.Seed
                 SubmissionDate = new DateTime(2024, 4, 25, 8, 30, 00),
                 DeliveryDate = new DateTime(2024, 4, 25, 9, 30, 00),
                 Purpose = "Service",
-                Customer = kund3,
+                CustomerId = 8,
                 Vehicle = bil3,
                 CreatedBy = rep1,
                 Status = AppointmentStatus.Booked
             };
             context.Appointments.Add(app3);
 
-            context.UsedItems.Add(new UsedItem()
+            Appointment app4 = new Appointment()
             {
-                Item = item1,
-                Appointment = app2,
-                Quantity = 2,
-            });
+                SubmissionDate = new DateTime(2024, 4, 30, 8, 30, 00),
+                DeliveryDate = new DateTime(2024, 4, 30, 9, 30, 00),
+                Purpose = "Rekond",
+                CustomerId = 1,
+                VehicleRegistrationNumber = "DAD567",
+                CreatedBy = rep1,
+                Status = AppointmentStatus.Booked
+            };
+            context.Appointments.Add(app4);
 
-            context.UsedItems.Add(new UsedItem()
-            {
-                Item = item12,
-                Appointment = app2,
-                Quantity = 1,
-            });
+            context.SaveChanges();
 
             context.Comments.Add(new Comment()
             {
@@ -239,9 +339,23 @@ namespace CarService.DataLayer.Seed
 
             context.UsedItems.Add(new UsedItem()
             {
-                Item = item15,
-                Appointment = app12,
-                Quantity = 4,
+                ItemId = 15,
+                Appointment = app3,
+                Quantity = 4
+            });
+
+            context.UsedItems.Add(new UsedItem()
+            {
+                ItemId = 1,
+                Appointment = app2,
+                Quantity = 2,
+            });
+
+            context.UsedItems.Add(new UsedItem()
+            {
+                ItemId = 12,
+                Appointment = app2,
+                Quantity = 1,
             });
 
             context.SaveChanges();
