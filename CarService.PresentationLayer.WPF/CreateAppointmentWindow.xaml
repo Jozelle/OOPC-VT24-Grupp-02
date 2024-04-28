@@ -85,12 +85,12 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Text="First name" Grid.Row="0" x:Name="FirstnameTB"/>
-                <TextBox Text="Last name" Grid.Row="1" x:Name="LastnameTB"/>
-                <TextBox Text="Social Security No." Grid.Row="2" x:Name="SSNumberTB"/>
-                <TextBox Text="Address" Grid.Row="3" x:Name="AddressTB"/>
-                <TextBox Text="Phone No." Grid.Row="4" x:Name="PhoneNoTB"/>
-                <TextBox Text="Email" Grid.Row="5" x:Name="EmailTB"/>
+                <TextBox Text="First name" Grid.Row="0" x:Name="FirstnameTB" GotKeyboardFocus="FirstnameTB_GotKeyboardFocus"/>
+                <TextBox Text="Last name" Grid.Row="1" x:Name="LastnameTB" GotKeyboardFocus="LastnameTB_GotKeyboardFocus"/>
+                <TextBox Text="Social Security No." Grid.Row="2" x:Name="SSNumberTB" GotKeyboardFocus="SSNumberTB_GotKeyboardFocus"/>
+                <TextBox Text="Address" Grid.Row="3" x:Name="AddressTB" GotKeyboardFocus="AddressTB_GotKeyboardFocus"/>
+                <TextBox Text="Phone No." Grid.Row="4" x:Name="PhoneNoTB" GotKeyboardFocus="PhoneNoTB_GotKeyboardFocus"/>
+                <TextBox Text="Email" Grid.Row="5" x:Name="EmailTB" GotKeyboardFocus="EmailTB_GotKeyboardFocus"/>
 
             </Grid>
 

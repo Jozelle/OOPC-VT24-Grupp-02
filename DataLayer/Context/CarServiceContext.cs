@@ -5,13 +5,13 @@ namespace CarService.DataLayer.Context
 {
     public class CarServiceContext : DbContext
     {
-        public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<UsedItem> UsedItems { get; set; }
 
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<UsedItem> UsedItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Comment> Comments { get; set; }
 

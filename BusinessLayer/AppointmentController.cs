@@ -92,11 +92,13 @@ namespace CarService.BusinessLayer
             }
         }
 
-        public void SaveChanges(Appointment oldApp, Appointment newApp)
+        public int SaveChanges(Appointment app)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                uow.Appointments.Update(oldApp, newApp);
+                Appointment oldApp = uow.Appointments.Get(app.AppointmentId);
+                 uow.Appointments.Update(oldApp, app);
+                return uow.Complete();
             }
         }
 
