@@ -33,10 +33,25 @@ namespace CarService.BusinessLayer
                 }
                 else
                 {
+                    return -1;
+                }
+            }
+        }
+        public int UpdateVehicle(Vehicle vehicle)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                Vehicle vehicleFromDB = uow.Vehicles.GetByRegistrationNo(vehicle.RegistrationNumber);
+                if (vehicleFromDB != null)
+                {
                     uow.Vehicles.Update(vehicleFromDB, vehicle);
                     return uow.Complete();
                 }
-            } 
+                else
+                {
+                    return -1;
+                }
+            }
         }
     }
 }

@@ -92,7 +92,7 @@ namespace CarService.BusinessLayer
             }
         }
 
-        public void SaveChanges(Appointment oldApp, Appointment newApp ) 
+        public void SaveChanges(Appointment oldApp, Appointment newApp)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {

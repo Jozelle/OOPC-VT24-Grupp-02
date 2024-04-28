@@ -30,7 +30,7 @@ namespace CarService.BusinessLayer
                 return uow.Customers.GetByFullName(firstName, lastName);
             }
         }
-      
+
 
         public int SaveCustomer(Customer customer)
         {
@@ -61,7 +61,7 @@ namespace CarService.BusinessLayer
                     return uow.Complete();
                 }
                 else
-                    return 0;
+                    return -1;
             }
         }
     }

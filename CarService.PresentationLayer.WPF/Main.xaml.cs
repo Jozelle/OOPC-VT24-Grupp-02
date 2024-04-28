@@ -14,15 +14,15 @@ namespace CarService.PresentationLayer.WPF
         AppointmentController appointmentController = new AppointmentController();
         EmployeeController employeeController = new EmployeeController();
 
-       internal Appointment currentAppointment;
-       internal int loggedInEmployee;
+        internal Appointment currentAppointment;
+        internal int loggedInEmployee;
 
-       internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
-        public Main()
+        internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
+        public Main(int id)
         {
             InitializeComponent();
 
-            loggedInEmployee = 3;
+            loggedInEmployee = id;
 
             _appointments = appointmentController.GetTodaysAppointments();
             if (_appointments.Count > 0 && _appointments != null)
@@ -33,7 +33,7 @@ namespace CarService.PresentationLayer.WPF
 
         private void btn_CreateBooking_Click(object sender, RoutedEventArgs e)
         {
-            CreateAppointmentWindow createAppointmentWindow = new CreateAppointmentWindow();
+            CreateAppointmentWindow createAppointmentWindow = new CreateAppointmentWindow(loggedInEmployee);
             createAppointmentWindow.ShowDialog();
 
         }
@@ -56,7 +56,7 @@ namespace CarService.PresentationLayer.WPF
             {
                 //SSNo.
                 CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsBySSNo(SearchAppTB.Text);
-                
+
             }
 
             else if (selectSearchTypeBox.SelectedIndex == 1)
@@ -64,25 +64,25 @@ namespace CarService.PresentationLayer.WPF
                 //PhoneNo.
                 CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsByPhoneNo(SearchAppTB.Text);
             }
-            
+
             else if (selectSearchTypeBox.SelectedIndex == 2)
             {
                 //FullName
                 string[] nameStrings = SearchAppTB.Text.Split(",");
-                if (nameStrings != null && nameStrings.Length == 2 ) 
+                if (nameStrings != null && nameStrings.Length == 2)
                 {
                     CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsByFullName(nameStrings[0], nameStrings[1]);
                 }
-               
+
             }
 
-            else if(selectSearchTypeBox.SelectedIndex == 3)
+            else if (selectSearchTypeBox.SelectedIndex == 3)
             {
                 //RegNo.
                 CurrentAppLB.ItemsSource = appointmentController.GetAppointmentsByRegNo(SearchAppTB.Text);
 
             }
-           
+
 
         }
 
@@ -118,7 +118,7 @@ namespace CarService.PresentationLayer.WPF
                         currentAppointment.Status = Entities.Enums.AppointmentStatus.ReadyForPickup;
 
                         break;
-                    
+
                     case 5:
                         currentAppointment.Status = Entities.Enums.AppointmentStatus.Canceled;
 
@@ -132,7 +132,7 @@ namespace CarService.PresentationLayer.WPF
                 }
 
                 appointmentController.SaveChanges(copyAppointment, currentAppointment);
-               
+
             }
         }
 
@@ -143,7 +143,7 @@ namespace CarService.PresentationLayer.WPF
             int affectedRows = appointmentController.AddCommentToAppointment(currentAppointment, AddCommentTB.Text, employee);
 
             MessageBox.Show(affectedRows.ToString());
-            
+
         }
 
         private void btn_ViewJournal_Click(object sender, RoutedEventArgs e)

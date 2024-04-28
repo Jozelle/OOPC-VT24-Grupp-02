@@ -14,7 +14,7 @@ namespace CarService.PresentationLayer.WPF
 
     public partial class AddItemsToAppointmentWindow : Window
     {
-       
+
         AppointmentController ac = new();
         ItemController ic = new();
         VehicleController vc = new();
