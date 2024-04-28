@@ -2,14 +2,13 @@
 
 namespace CarService.Entities
 {
-    public class Payment
+    public class Invoice
     {
-        public int PaymentId { get; set; }
+        public int InvoiceId { get; set; }
         public decimal TotalAmount { get; set; }
 
-
+        public int AppontmentId { get; set; }
         public Appointment Appointment { get; set; }
-        [ForeignKey("Appointment")]
-        public int AppontmentID { get; set; }
+        
     }
 }

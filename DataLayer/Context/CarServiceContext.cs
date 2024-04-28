@@ -1,4 +1,5 @@
 ﻿using CarService.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarService.DataLayer.Context
@@ -12,7 +13,7 @@ namespace CarService.DataLayer.Context
 
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<UsedItem> UsedItems { get; set; }
-        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
         public CarServiceContext() { }
@@ -22,6 +23,8 @@ namespace CarService.DataLayer.Context
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
 
             //optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test2;Trusted_Connection=true;TrustServerCertificate=true");
+
+            //optionsBuilder.UseSqlServer(@"Server=sqlutb2-db.hb.se, 56077;Database=oopc2402;User=oopc2402;Password=PZE328;TrustServerCertificate=true");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -33,6 +36,7 @@ namespace CarService.DataLayer.Context
                 .IsRequired()
                 .OnDelete(DeleteBehavior.ClientNoAction);
         }
-
+        //sqlutb2-db.hb.se, 56077
+        //oopc2402    PZE328
     }
 }

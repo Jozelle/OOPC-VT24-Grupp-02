@@ -14,6 +14,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
+            <TextBlock Text="Receptionist view" Style="{StaticResource titleText}"/>
             <Button x:Name="btn_CreateBooking" Content="Create appointment" Click="btn_CreateBooking_Click" Height="40" Width="400" Margin="15"/>
             <Label Content="Search by appointment" FontWeight="Bold"/>
 
