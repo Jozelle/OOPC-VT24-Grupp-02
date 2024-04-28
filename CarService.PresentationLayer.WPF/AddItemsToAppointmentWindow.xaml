@@ -101,74 +101,79 @@
             </StackPanel>
         </Border>
         <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-            <Border Style="{StaticResource darkBorder}">
-                <ListBox Grid.Column="1" Grid.Row="0" x:Name="addItemLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="Auto">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="15"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Border Style="{StaticResource darkBorder}" Grid.Column="1" Grid.Row="0">
+                    <ListBox x:Name="addItemLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="15"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="{Binding AppointmentId}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Vehicle.RegistrationNumber}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding SubmissionDate}"/>
-                            <TextBlock Grid.Column="3" Text="{Binding Purpose}"/>
-                            <TextBlock Grid.Column="4" Text="{Binding Status}"/>
-                        </Grid>
+                                    <TextBlock Grid.Column="0" Text="{Binding AppointmentId}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Vehicle.RegistrationNumber}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding SubmissionDate}"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding Purpose}"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding Status}"/>
+                                </Grid>
 
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            </Border>
-            <ListBox Grid.Column="1" Grid.Row="1" x:Name="addItem2LB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="Auto">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+                <Border Style="{StaticResource darkBorder}" Grid.Column="1" Grid.Row="1" >
+                    <ListBox x:Name="addItem2LB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="{Binding Item.Description}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Quantity}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Item.Price}"/>
+                                    <TextBlock Grid.Column="0" Text="{Binding Item.Description}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Quantity}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Item.Price}"/>
 
-                        </Grid>
+                                </Grid>
 
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <ListBox Grid.Column="1" Grid.Row="2" x:Name="addCommentLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="Auto">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+                <Border Style="{StaticResource darkBorder}" Grid.Column="1" Grid.Row="2" >
+                    <ListBox x:Name="addCommentLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="{Binding Time}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding RepairedBy.FirstName}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Comment}"/>
+                                    <TextBlock Grid.Column="0" Text="{Binding Time}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding RepairedBy.FirstName}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Comment}"/>
 
-                        </Grid>
+                                </Grid>
 
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+            
         </Grid>
         </Border>
     </Grid>

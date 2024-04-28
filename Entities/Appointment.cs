@@ -23,7 +23,7 @@ namespace CarService.Entities
         public int CreatedById { get; set; }
         public Receptionist CreatedBy { get; set; }
         public AppointmentStatus Status { get; set; }
-        public Payment? Payment { get; set; }
+        public Invoice? Payment { get; set; }
 
         public ICollection<UsedItem>? UsedItems { get; set; }
 

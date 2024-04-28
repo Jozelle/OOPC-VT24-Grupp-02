@@ -45,5 +45,10 @@ namespace CarService.PresentationLayer.WPF
         {
             MessageBox.Show("This method is not implemented yet, sorry!");
         }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

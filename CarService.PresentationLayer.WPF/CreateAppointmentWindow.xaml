@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
         mc:Ignorable="d"
-        Title="CreateAppointmentWindow" Height="730" Width="1100">
+        Title="Create Appointment" Height="730" Width="1100">
     <Grid>
 
         <Grid.ColumnDefinitions>
