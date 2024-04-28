@@ -47,8 +47,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="btn_AddVehicle" Grid.Column="0" Content="Add vehicle" VerticalAlignment="Center" Height="30"  Click="btn_AddNewVehicle_Click"/>
-                <Button x:Name="btn_SaveVehicle" Click="btn_SaveChangesVehicle_Click" Grid.Column="1" Content="Save vehicle" VerticalAlignment="Center" Height="30"/>
+                <Button x:Name="btn_AddVehicle" Grid.Column="0" Content="Add new vehicle" VerticalAlignment="Center" Height="30"  Click="btn_AddNewVehicle_Click"/>
+                <Button x:Name="btn_SaveVehicle" Click="btn_SaveChangesVehicle_Click" Grid.Column="1" Content="Save changes" VerticalAlignment="Center" Height="30"/>
 
 
             </Grid>
@@ -102,8 +102,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="btn_AddCustomer" Content="Add customer" Grid.Column="0" VerticalAlignment="Center" Height="30" Click="btn_AddNewCustomer_Click"/>
-                <Button x:Name="btn_SaveCustomer" Click="btn_SaveChangesCustomer_Click"  Grid.Column="1" Content="Save customer" VerticalAlignment="Center" Height="30"/>
+                <Button x:Name="btn_AddCustomer" Content="Add new customer" Grid.Column="0" VerticalAlignment="Center" Height="30" Click="btn_AddNewCustomer_Click"/>
+                <Button x:Name="btn_SaveCustomer" Click="btn_SaveChangesCustomer_Click"  Grid.Column="1" Content="Save changes" VerticalAlignment="Center" Height="30"/>
             </Grid>
             <Grid Height="215">
                 <Grid.ColumnDefinitions>
