@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
         mc:Ignorable="d"
-        Title="CreateAppointmentWindow" Height="643" Width="1092">
+        Title="CreateAppointmentWindow" Height="730" Width="1100">
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -15,8 +15,8 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
-
-            <Label Content="Search by vehicle" FontWeight="Bold"/>
+            <TextBlock Text="Create appointment" Style="{StaticResource titleText}"/>
+            <Label Content="Vehicle - search for existing, save changes or add new vehicles." FontWeight="Bold"/>
             <Grid Height="Auto" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
@@ -28,34 +28,34 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="RegNoTB" Height="30" VerticalAlignment="Bottom"/>
+                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="RegNoTB" Height="30" VerticalAlignment="Bottom" GotKeyboardFocus="RegNoTB_GotKeyboardFocus"/>
                 <Button x:Name="btn_SearchVehicle" Grid.Column="1" Content="Search" Click="btn_SearchVehicle_Click" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.593,-0.246" Height="30" Width="182"/>
 
-                <TextBox Text="Make" Grid.Column="0" Grid.Row="1" x:Name="MakeTB" Grid.ColumnSpan="2" />
+                <TextBox Text="Make" Grid.Column="0" Grid.Row="1" x:Name="MakeTB" Grid.ColumnSpan="2" GotKeyboardFocus="MakeTB_GotKeyboardFocus" />
 
-                <TextBox Text="Model" Grid.Column="0" Grid.Row="2" x:Name="ModelTB" Grid.ColumnSpan="2"/>
+                <TextBox Text="Model" Grid.Column="0" Grid.Row="2" x:Name="ModelTB" Grid.ColumnSpan="2" GotKeyboardFocus="ModelTB_GotKeyboardFocus"/>
 
-                <TextBox Text="Year" Grid.Column="0" Grid.Row="3" x:Name="YearTB" Grid.ColumnSpan="2"/>
+                <TextBox Text="Year" Grid.Column="0" Grid.Row="3" x:Name="YearTB" Grid.ColumnSpan="2" GotKeyboardFocus="YearTB_GotKeyboardFocus"/>
 
             </Grid>
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-
-                <Button x:Name="btn_SaveVehicle" Click="btn_SaveVehicle_Click" Grid.Column="1" Content="Save vehicle" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="546" />
+                <Button x:Name="btn_AddVehicle" Grid.Column="0" Content="Add vehicle" VerticalAlignment="Center" Height="30"  Click="btn_AddNewVehicle_Click"/>
+                <Button x:Name="btn_SaveVehicle" Click="btn_SaveChangesVehicle_Click" Grid.Column="1" Content="Save vehicle" VerticalAlignment="Center" Height="30"/>
 
 
             </Grid>
 
 
 
-            <Label Content="Search by customer" FontWeight="Bold"/>
+            <Label Content="Customers - search for existing, save changes or add new customers." FontWeight="Bold"/>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -76,11 +76,6 @@
             </Grid>
 
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="11*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="7*"/>
-                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
@@ -90,28 +85,25 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Text="First name" Grid.Column="0" Grid.Row="0" x:Name="FirstnameTB" Grid.ColumnSpan="3" />
-
-                <TextBox Text="Last name" Grid.Column="0" Grid.Row="1" x:Name="LastnameTB" Grid.ColumnSpan="3" />
-
-                <TextBox Text="Social Security No." Grid.Column="0" Grid.Row="2" x:Name="SSNumberTB" Grid.ColumnSpan="3"/>
-
-                <TextBox Text="Address" Grid.Column="0" Grid.Row="3" x:Name="AddressTB" Grid.ColumnSpan="3" />
-
-                <TextBox Text="Phone No." Grid.Column="0" Grid.Row="4" x:Name="PhoneNoTB" HorizontalAlignment="Left" Width="546" Grid.ColumnSpan="3"/>
-
-                <TextBox Text="Email" Grid.Column="0" Grid.Row="5" x:Name="EmailTB" Grid.ColumnSpan="3"/>
+                <TextBox Text="First name" Grid.Row="0" x:Name="FirstnameTB"/>
+                <TextBox Text="Last name" Grid.Row="1" x:Name="LastnameTB"/>
+                <TextBox Text="Social Security No." Grid.Row="2" x:Name="SSNumberTB"/>
+                <TextBox Text="Address" Grid.Row="3" x:Name="AddressTB"/>
+                <TextBox Text="Phone No." Grid.Row="4" x:Name="PhoneNoTB"/>
+                <TextBox Text="Email" Grid.Row="5" x:Name="EmailTB"/>
 
             </Grid>
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="btn_SaveCustomer" Click="btn_SaveCustomer_Click"  Content="Save customer" HorizontalAlignment="Left" VerticalAlignment="Center" Width="546" Grid.ColumnSpan="3" Height="30"/>
+                <Button x:Name="btn_AddCustomer" Content="Add customer" Grid.Column="0" VerticalAlignment="Center" Height="30" Click="btn_AddNewCustomer_Click"/>
+                <Button x:Name="btn_SaveCustomer" Click="btn_SaveChangesCustomer_Click"  Grid.Column="1" Content="Save customer" VerticalAlignment="Center" Height="30"/>
             </Grid>
             <Grid Height="215">
                 <Grid.ColumnDefinitions>

@@ -2,9 +2,6 @@
 using CarService.DataLayer.Repositories.Base;
 using CarService.DataLayer.Repositories.Interfaces;
 using CarService.Entities;
-using DataLayer;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 
 namespace CarService.DataLayer.Repositories
 {
@@ -14,7 +11,7 @@ namespace CarService.DataLayer.Repositories
         {
         }
 
-        public Customer ? GetByFullName(string firstName, string lastName)
+        public Customer? GetByFullName(string firstName, string lastName)
         {
             try
             {
@@ -32,7 +29,7 @@ namespace CarService.DataLayer.Repositories
             }
             catch { return null; }
         }
-        public Customer ? GetByPhoneNo(string phoneNo)
+        public Customer? GetByPhoneNo(string phoneNo)
         {
             try
             {
@@ -41,7 +38,7 @@ namespace CarService.DataLayer.Repositories
             catch { return null; }
         }
 
-        
+
 
     }
 

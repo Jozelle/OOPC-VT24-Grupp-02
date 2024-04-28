@@ -1,8 +1,10 @@
 ﻿using CarService.BusinessLayer;
 using CarService.Entities;
 using System.Collections.ObjectModel;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using MessageBox = System.Windows.MessageBox;
 
 namespace CarService.PresentationLayer.WPF
@@ -18,13 +20,16 @@ namespace CarService.PresentationLayer.WPF
         CustomerController customerController = new CustomerController();
         AppointmentController appointmentController = new AppointmentController();
 
+        internal int loggedInEmployee;
         internal Vehicle currentVehicle;
         internal Customer? currentCustomer;
-        internal IList<Appointment> appointments =new ObservableCollection<Appointment>();
+        internal IList<Appointment> appointments = new ObservableCollection<Appointment>();
 
-        public CreateAppointmentWindow()
+        public CreateAppointmentWindow(int id)
         {
             InitializeComponent();
+
+            loggedInEmployee = id;  
             appointments = appointmentController.GetAllAppointments();
             AllAppLB.ItemsSource = appointments;
 
@@ -47,17 +52,25 @@ namespace CarService.PresentationLayer.WPF
             }
         }
 
-        private void btn_SaveVehicle_Click(object sender, RoutedEventArgs e)
+        private void btn_SaveChangesVehicle_Click(object sender, RoutedEventArgs e)
         {
             string regNo = RegNoTB.Text;
             string make = MakeTB.Text;
             string model = ModelTB.Text;
             string year = YearTB.Text;
 
-            if (string.IsNullOrEmpty(regNo) || string.IsNullOrEmpty(make) || string.IsNullOrEmpty(model) || string.IsNullOrEmpty(year))
+            if (currentVehicle == null)
+            {
+                MessageBox.Show("Please search for a vehicle before you try making changes.");
+            }
+            else if (string.IsNullOrEmpty(regNo) || string.IsNullOrEmpty(make) || string.IsNullOrEmpty(model) || string.IsNullOrEmpty(year))
             {
                 MessageBox.Show("Please fill out all the fields.");
                 return;
+            }
+            else if (regNo.Length != 6)
+            {
+                MessageBox.Show("The registration number is not in the correct format, please try again.");
             }
             else if (currentVehicle.RegistrationNumber != regNo)
             {
@@ -68,31 +81,79 @@ namespace CarService.PresentationLayer.WPF
 
                 currentVehicle = null;
             }
-
             else
             {
                 Vehicle vehicle = new Vehicle
                 {
-                    RegistrationNumber = regNo,
-                    Make = make,
-                    Model = model,
-                    Year = year
+                    RegistrationNumber = RegNoTB.Text,
+                    Make = MakeTB.Text,
+                    Model = ModelTB.Text,
+                    Year = YearTB.Text
                 };
+
+                int rowsChanged = vehicleController.UpdateVehicle(vehicle);
+                if (rowsChanged > 0)
+                {
+                    MessageBox.Show($"The changes has been saved! {rowsChanged}");
+                    currentVehicle = vehicle;
+                }
+                else if (rowsChanged == -1)
+                {
+                    MessageBox.Show("Something went wrong, please try again!");
+                }
+                else
+                {
+                    MessageBox.Show("No changes was made.");
+                }
+                
+            }
+        }
+        private void btn_AddNewVehicle_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(RegNoTB.Text) || string.IsNullOrEmpty(MakeTB.Text) || string.IsNullOrEmpty(ModelTB.Text) || string.IsNullOrEmpty(YearTB.Text))
+            {
+                MessageBox.Show("Please fill out all the fields.");
+            }
+            else if (RegNoTB.Text.Length != 6)
+            {
+                MessageBox.Show("The registration number is not in the correct format, please try again.");
+            }
+            else if (ModelTB.Text == "Model" || MakeTB.Text == "Make" || YearTB.Text == "Year")
+            {
+                MessageBox.Show("Please fill out all the fields.");
+            }
+            else
+            {
+                Vehicle vehicle = new Vehicle
+                {
+                    RegistrationNumber = RegNoTB.Text,
+                    Make = MakeTB.Text,
+                    Model = ModelTB.Text,
+                    Year = YearTB.Text
+                };
+
                 int rowsChanged = vehicleController.SaveVehicle(vehicle);
                 if (rowsChanged > 0)
                 {
                     MessageBox.Show($"Ändringar sparades! {rowsChanged}");
+                    currentVehicle = vehicle;
                 }
-                currentVehicle = vehicle;
+                else if (rowsChanged == -1) 
+                {
+                    MessageBox.Show("That social registration number is already signed up as a vehicle. I filled in the details for you!");
+                    currentVehicle = vehicleController.GetVehicle(RegNoTB.Text);
+
+                    RegNoTB.Text = currentVehicle.RegistrationNumber;
+                    MakeTB.Text = currentVehicle.Make;
+                    ModelTB.Text = currentVehicle.Model;
+                    YearTB.Text = currentVehicle.Year;
+                }
             }
-
         }
-
-
 
         private void SelectionBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            currentCustomer = null;
         }
 
         private void SelectionBox_DropDownOpened(object sender, EventArgs e)
@@ -136,9 +197,9 @@ namespace CarService.PresentationLayer.WPF
 
                 //MessageBox.Show(currentCustomer.CustomerID.ToString());
             }
-            else MessageBox.Show("Nothing to be found!");
+            else MessageBox.Show("Nothing was found!");
         }
-        private void btn_SaveCustomer_Click(object sender, RoutedEventArgs e)
+        private void btn_SaveChangesCustomer_Click(object sender, RoutedEventArgs e)
         {
             string id = SSNumberTB.Text;
             string phoneNo = PhoneNoTB.Text;
@@ -152,48 +213,6 @@ namespace CarService.PresentationLayer.WPF
                 MessageBox.Show("Please fill out all the fields.");
                 currentCustomer = null;
                 return;
-            }
-            else if (currentCustomer != null && currentCustomer.SocialSecurityNumber != id)
-            {
-                MessageBox.Show("Something went wrong, please enter customer details and try again!");
-                PhoneNoTB.Text = string.Empty;
-                FirstnameTB.Text = string.Empty;
-                LastnameTB.Text = string.Empty;
-                AddressTB.Text = string.Empty;
-                EmailTB.Text = string.Empty;
-
-                currentCustomer = null;
-            }
-            else if (currentCustomer == null) 
-            {
-                Customer customer = new Customer();
-                {
-                    customer.SocialSecurityNumber = id;
-                    customer.PhoneNumber = phoneNo;
-                    customer.FirstName = firstName;
-                    customer.LastName = lastName;
-                    customer.Address = address;
-                    customer.Email = email;
-                }
-                int rowsChanged = customerController.SaveCustomer(customer);
-                if (rowsChanged > 0)
-                {
-                    MessageBox.Show($"Ändringar sparades! {rowsChanged}");
-                    currentCustomer = customer;
-                }
-                else if (rowsChanged == -1)
-                {
-                    MessageBox.Show("That social security number is already signed up as a customer. I filled in the details for you!");
-                    currentCustomer = customerController.GetCustomerBySSN(id);
-
-                    SSNumberTB.Text = currentCustomer.SocialSecurityNumber.ToString();
-                    PhoneNoTB.Text = currentCustomer?.PhoneNumber;
-                    FirstnameTB.Text = currentCustomer?.FirstName;
-                    LastnameTB.Text = currentCustomer.LastName;
-                    EmailTB.Text = currentCustomer?.Email;
-                    AddressTB.Text = currentCustomer?.Address;
-                }
-                
             }
             else if (currentCustomer != null)
             {
@@ -211,15 +230,60 @@ namespace CarService.PresentationLayer.WPF
                 int rowsChanged = customerController.UpdateCustomer(customer);
                 if (rowsChanged > 0)
                 {
-                    MessageBox.Show($"Ändringar sparades! {rowsChanged}");
+                    MessageBox.Show($"The changes has been saved! {rowsChanged}");
+                }
+                if (rowsChanged == -1)
+                {
+                    MessageBox.Show("Something went wrong, please try again!");
                 }
                 currentCustomer = customer;
             }
+            else
+            {
+                MessageBox.Show("Please search for a customer before you try making changes.");
+            }
         }
+        private void btn_AddNewCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SSNumberTB.Text) || string.IsNullOrEmpty(PhoneNoTB.Text) || string.IsNullOrEmpty(FirstnameTB.Text) || string.IsNullOrEmpty(LastnameTB.Text))
+            {
+                MessageBox.Show("Please fill out all the fields.");
+                currentCustomer = null;
+                return;
+            }
+            else
+            {
+                Customer customer = new Customer();
+                {
+                    customer.SocialSecurityNumber = SSNumberTB.Text;
+                    customer.PhoneNumber = PhoneNoTB.Text;
+                    customer.FirstName = FirstnameTB.Text;
+                    customer.LastName = LastnameTB.Text;
+                    customer.Address = AddressTB.Text;
+                    customer.Email = EmailTB.Text;
+                }
 
+                int rowsChanged = customerController.SaveCustomer(customer);
 
+                if (rowsChanged > 0)
+                {
+                    MessageBox.Show($"The customer was added! {rowsChanged}");
+                    currentCustomer = customerController.GetCustomerBySSN(SSNumberTB.Text);
+                }
+                else if (rowsChanged == -1)
+                {
+                    MessageBox.Show("That social security number is already signed up as a customer. I filled in the details for you!");
+                    currentCustomer = customerController.GetCustomerBySSN(SSNumberTB.Text);
 
-
+                    SSNumberTB.Text = currentCustomer.SocialSecurityNumber.ToString();
+                    PhoneNoTB.Text = currentCustomer.PhoneNumber;
+                    FirstnameTB.Text = currentCustomer.FirstName;
+                    LastnameTB.Text = currentCustomer.LastName;
+                    EmailTB.Text = currentCustomer?.Email;
+                    AddressTB.Text = currentCustomer?.Address;
+                }
+            }
+        }
         private void btn_SaveAppointment_Click(object sender, RoutedEventArgs e)
         {
             DateTime selectedDate = (DateTime)AppDate.SelectedDate;
@@ -255,7 +319,7 @@ namespace CarService.PresentationLayer.WPF
                     appointment.Status = Entities.Enums.AppointmentStatus.Booked;
                     appointment.Purpose = ReportedIssues.Text;
                     appointment.VehicleRegistrationNumber = currentVehicle.RegistrationNumber;
-                    appointment.CreatedById = 1;
+                    appointment.CreatedById = loggedInEmployee;
                     appointment.CustomerId = currentCustomer.CustomerID;
 
                 }
@@ -272,6 +336,24 @@ namespace CarService.PresentationLayer.WPF
 
         }
 
-        
+        private void RegNoTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            RegNoTB.Text = "";
+        }
+
+        private void MakeTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            MakeTB.Text = string.Empty;
+        }
+
+        private void ModelTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            ModelTB.Text = string.Empty;
+        }
+
+        private void YearTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            YearTB.Text = string.Empty;
+        }
     }
 }
