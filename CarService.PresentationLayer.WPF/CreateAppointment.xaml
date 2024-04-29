@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
         mc:Ignorable="d"
-        Title="Create Appointment" Height="643" Width="1092">
+        Title="Create Appointment" Height="600" Width="1092">
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -15,7 +15,19 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
-            <TextBlock Text="Create appointment" Style="{StaticResource titleText}"/>
+            <Border Style="{StaticResource lightBorder}">
+                
+            </Border>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="65"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Create appointment" Style="{StaticResource titleText}"/>
+                <Button x:Name="btn_Exit" Content="Exit" Grid.Column="1" Style="{StaticResource fancyButton}" Click="btn_Exit_Click"/>
+            </Grid>
+            
             <Label Content="Vehicle - search for existing, save changes or add new vehicles." FontWeight="Bold"/>
             <Grid Height="Auto" >
                 <Grid.ColumnDefinitions>
@@ -30,13 +42,13 @@
 
                 </Grid.RowDefinitions>
                 <TextBox Text="Registration No." Grid.Column="0" x:Name="RegNoTB" Height="30" VerticalAlignment="Center" GotKeyboardFocus="RegNoTB_GotKeyboardFocus" Grid.ColumnSpan="2"/>
-                <Button x:Name="btn_SearchVehicle" Grid.Column="2" Content="Search" Click="btn_SearchVehicle_Click" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.593,-0.246" Height="30" Width="182"/>
+                <Button x:Name="btn_SearchVehicle" Grid.Column="2" Content="Search" Click="btn_SearchVehicle_Click"/>
 
                 <TextBox Text="Make" Grid.Column="0" Grid.Row="1" x:Name="MakeTB" GotKeyboardFocus="MakeTB_GotKeyboardFocus" />
+                <TextBox Text="Model" Grid.Column="1" Grid.Row="1" x:Name="ModelTB" GotKeyboardFocus="ModelTB_GotKeyboardFocus"/>
+                <TextBox Text="Year" Grid.Column="2" Grid.Row="1" x:Name="YearTB" GotKeyboardFocus="YearTB_GotKeyboardFocus"/>
 
-                <TextBox Text="Model" Grid.Column="1" Grid.Row="1" x:Name="ModelTB" Grid.ColumnSpan="2" GotKeyboardFocus="ModelTB_GotKeyboardFocus"/>
 
-                <TextBox Text="Year" Grid.Column="2" Grid.Row="1" x:Name="YearTB" Grid.ColumnSpan="2" GotKeyboardFocus="YearTB_GotKeyboardFocus"/>
 
             </Grid>
 
@@ -48,10 +60,9 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
+                
                 <Button x:Name="btn_AddVehicle" Grid.Column="0" Content="Add new vehicle" VerticalAlignment="Center" Height="30"  Click="btn_AddNewVehicle_Click"/>
                 <Button x:Name="btn_SaveVehicle" Click="btn_SaveChangesVehicle_Click" Grid.Column="1" Content="Save changes" VerticalAlignment="Center" Height="30"/>
-
-
             </Grid>
 
 
@@ -120,16 +131,7 @@
                 <Label Content="Select an appointment date:" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="32" Width="274" FontWeight="Bold"/>
                 <DatePicker  x:Name="AppDate" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="274" Height="30"/>
                 <Button x:Name="btn_SaveAppointment" Content="Save appointment" Height="30" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2" Click="btn_SaveAppointment_Click" Margin="0,0,1,0"/>
-
-
-
-
-
-
-
-
             </Grid>
-
         </StackPanel>
 
         <Label Grid.Column="1" Grid.Row="0" Content="All appointments:" FontWeight="Bold" HorizontalContentAlignment="Center"/>
@@ -160,10 +162,6 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
         </Grid>
-
-
-
     </Grid>
 </Window>

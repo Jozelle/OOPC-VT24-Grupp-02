@@ -296,20 +296,15 @@ namespace CarService.PresentationLayer.WPF
             if (selectedDate == null)
             {
                 MessageBox.Show("Please select a date for the appointment.");
-
             }
-
             else if (currentVehicle == null)
             {
                 MessageBox.Show("Please select a vehicle.");
-
             }
-
             else if (currentCustomer == null)
             {
                 MessageBox.Show("Please select a customer.");
             }
-
             else if (selectedDate < DateTime.Today)
             {
                 MessageBox.Show("The date has passed, select another date.");
@@ -333,72 +328,97 @@ namespace CarService.PresentationLayer.WPF
                 {
                     MessageBox.Show($"Ändringar sparades! {rowsChanged}");
                     appointments.Add(appointment);
-
-                    this.Close();
                 }
             }
-
-
         }
 
         private void RegNoTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            RegNoTB.Text = "";
+            if (RegNoTB.Text == "Registration No.")
+            {
+                RegNoTB.Text = "";
+            }
         }
-
         private void MakeTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            MakeTB.Text = string.Empty;
+            if (MakeTB.Text == "Make")
+            {
+                MakeTB.Text = string.Empty;
+            }
         }
-
         private void ModelTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            ModelTB.Text = string.Empty;
+            if (ModelTB.Text == "Model")
+            {
+                ModelTB.Text = string.Empty;
+            }
         }
-
         private void YearTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            YearTB.Text = string.Empty;
+            if (YearTB.Text == "Year")
+            {
+                YearTB.Text = string.Empty;
+            }
         }
-
         private void FirstnameTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            FirstnameTB.Text = "";
+            if (FirstnameTB.Text == "First name")
+            {
+                FirstnameTB.Text = string.Empty;
+            }
         }
-
         private void LastnameTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            LastnameTB.Text = "";
+            if (LastnameTB.Text == "Last name")
+            {
+                LastnameTB.Text = string.Empty;
+            }
         }
-
         private void SSNumberTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            SSNumberTB.Text = string.Empty;
+            if(SSNumberTB.Text == "Social Security No.")
+            {
+                SSNumberTB.Text = string.Empty;
+            }
         }
-
         private void AddressTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            AddressTB.Text = string.Empty;
+            if (AddressTB.Text == "Address")
+            {
+                AddressTB.Text = string.Empty;
+            }            
         }
-
         private void PhoneNoTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            PhoneNoTB.Text = string.Empty;
+            if (PhoneNoTB.Text == "Phone No.")
+            {
+                PhoneNoTB.Text = string.Empty;
+            }
         }
-
         private void EmailTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            EmailTB.Text = string.Empty;
+            if (EmailTB.Text == "Email")
+            {
+                EmailTB.Text = string.Empty;
+            }
         }
-
         private void PostalCodeTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-
+            if (PostalCodeTB.Text == "Postal Code")
+            {
+                PostalCodeTB.Text = string.Empty;
+            }
         }
-
         private void CityTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-
+            if (CityTB.Text == "City")
+            {
+                CityTB.Text = string.Empty;
+            }
+        }
+        private void btn_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
