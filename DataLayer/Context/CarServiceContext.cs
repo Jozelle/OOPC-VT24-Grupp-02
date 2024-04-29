@@ -20,9 +20,9 @@ namespace CarService.DataLayer.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
+            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
 
-            //optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test2;Trusted_Connection=true;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test3;Trusted_Connection=true;TrustServerCertificate=true");
 
             //optionsBuilder.UseSqlServer(@"Server=REMOVED-HOST, 56077;Database=REMOVED-IDENTIFIER;User=REMOVED-IDENTIFIER;Password=REMOVED-PASSWORD;TrustServerCertificate=true");
             base.OnConfiguring(optionsBuilder);
