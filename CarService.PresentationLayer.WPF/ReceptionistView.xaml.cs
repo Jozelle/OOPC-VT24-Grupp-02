@@ -9,7 +9,7 @@ namespace CarService.PresentationLayer.WPF
     /// <summary>
     /// Interaction logic for Main.xaml
     /// </summary>
-    public partial class Main : Window
+    public partial class ReceptionistView : Window
     {
         AppointmentController appointmentController = new AppointmentController();
         EmployeeController employeeController = new EmployeeController();
@@ -18,7 +18,7 @@ namespace CarService.PresentationLayer.WPF
         internal int loggedInEmployee;
 
         internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
-        public Main(int id)
+        public ReceptionistView(int id)
         {
             InitializeComponent();
 
@@ -33,8 +33,8 @@ namespace CarService.PresentationLayer.WPF
 
         private void btn_CreateBooking_Click(object sender, RoutedEventArgs e)
         {
-            CreateAppointmentWindow createAppointmentWindow = new CreateAppointmentWindow(loggedInEmployee);
-            createAppointmentWindow.ShowDialog();
+            CreateAppointment createAppointment = new CreateAppointment(loggedInEmployee);
+            createAppointment.ShowDialog();
 
         }
 

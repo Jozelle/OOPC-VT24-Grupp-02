@@ -12,7 +12,7 @@ namespace CarService.PresentationLayer.WPF
     /// Interaction logic for AddItemsToAppointmentWindow.xaml
     /// </summary>
 
-    public partial class AddItemsToAppointmentWindow : Window
+    public partial class MechanicView : Window
     {
 
         AppointmentController ac = new();
@@ -27,7 +27,7 @@ namespace CarService.PresentationLayer.WPF
         internal int loggedInId;
 
 
-        public AddItemsToAppointmentWindow(int id)
+        public MechanicView(int id)
         {
             InitializeComponent();
 

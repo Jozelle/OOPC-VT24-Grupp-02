@@ -12,7 +12,7 @@ namespace CarService.PresentationLayer.WPF
     /// <summary>
     /// Interaction logic for CreateAppointmentWindow.xaml
     /// </summary>
-    public partial class CreateAppointmentWindow : Window
+    public partial class CreateAppointment : Window
     {
 
         VehicleController vehicleController = new();
@@ -25,7 +25,7 @@ namespace CarService.PresentationLayer.WPF
         internal Customer? currentCustomer;
         internal IList<Appointment> appointments = new ObservableCollection<Appointment>();
 
-        public CreateAppointmentWindow(int id)
+        public CreateAppointment(int id)
         {
             InitializeComponent();
 
