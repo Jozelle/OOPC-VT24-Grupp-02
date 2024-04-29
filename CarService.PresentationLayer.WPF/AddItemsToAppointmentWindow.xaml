@@ -21,7 +21,15 @@
                 </LinearGradientBrush>
             </Border.Background>
             <StackPanel>
-                <TextBlock Text="Mechanic view" Style="{StaticResource titleText}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="65"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Mechanic view" Style="{StaticResource titleText}"/>
+                    <Button Grid.Column="1" x:Name="ExitButton" Content="Exit" Style="{StaticResource fancyButton}"/>
+                </Grid>
+
                 <Label Content="Search for appointment by vehicle registration number or choose from the list to the right." Style="{StaticResource lightLabel}"/>
                 <Label Content="Confirm with OK!" HorizontalAlignment="Center" Style="{StaticResource lightLabel}"/>
                 <Border Style="{StaticResource lightBorder}">
