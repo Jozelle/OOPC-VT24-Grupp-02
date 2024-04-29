@@ -12,7 +12,7 @@ namespace CarService.PresentationLayer.WPF
     /// Interaction logic for AddItemsToAppointmentWindow.xaml
     /// </summary>
 
-    public partial class AddItemsToAppointmentWindow : Window
+    public partial class MechanicView : Window
     {
 
         AppointmentController ac = new();
@@ -27,7 +27,7 @@ namespace CarService.PresentationLayer.WPF
         internal int loggedInId;
 
 
-        public AddItemsToAppointmentWindow(int id)
+        public MechanicView(int id)
         {
             InitializeComponent();
 
@@ -151,6 +151,59 @@ namespace CarService.PresentationLayer.WPF
             }
 
             else MessageBox.Show("Please select an appointment!");
+        }
+
+        private void btn_SaveStatus_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentAppointment != null)
+            {
+                int selected = ChooseStatusBox.SelectedIndex;
+                switch (selected)
+                {
+                    case 0:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.CarReceived;
+                        break;
+
+                    case 1:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.Booked;
+                        break;
+
+                    case 2:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.InProgress;
+                        break;
+
+                    case 3:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.WaitingForParts;
+                        break;
+
+                    case 4:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.ReadyForPickup;
+                        break;
+
+                    case 5:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.Canceled;
+                        break;
+
+                    case 6:
+                        currentAppointment.Status = Entities.Enums.AppointmentStatus.Completed;
+                        break;
+                }
+
+                int affectedRows = ac.SaveChanges(currentAppointment);
+                if (affectedRows > 0)
+                {
+                    MessageBox.Show("The status was changed!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment first!");
+            }
+        }
+
+        private void btn_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

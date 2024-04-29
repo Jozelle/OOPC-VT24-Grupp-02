@@ -1,10 +1,8 @@
 ﻿using CarService.BusinessLayer;
 using CarService.Entities;
 using System.Collections.ObjectModel;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using MessageBox = System.Windows.MessageBox;
 
 namespace CarService.PresentationLayer.WPF
@@ -12,7 +10,7 @@ namespace CarService.PresentationLayer.WPF
     /// <summary>
     /// Interaction logic for CreateAppointmentWindow.xaml
     /// </summary>
-    public partial class CreateAppointmentWindow : Window
+    public partial class CreateAppointment : Window
     {
 
         VehicleController vehicleController = new();
@@ -25,11 +23,11 @@ namespace CarService.PresentationLayer.WPF
         internal Customer? currentCustomer;
         internal IList<Appointment> appointments = new ObservableCollection<Appointment>();
 
-        public CreateAppointmentWindow(int id)
+        public CreateAppointment(int id)
         {
             InitializeComponent();
 
-            loggedInEmployee = id;  
+            loggedInEmployee = id;
             appointments = appointmentController.GetAllAppointments();
             AllAppLB.ItemsSource = appointments;
 
@@ -105,7 +103,7 @@ namespace CarService.PresentationLayer.WPF
                 {
                     MessageBox.Show("No changes was made.");
                 }
-                
+
             }
         }
         private void btn_AddNewVehicle_Click(object sender, RoutedEventArgs e)
@@ -138,7 +136,7 @@ namespace CarService.PresentationLayer.WPF
                     MessageBox.Show($"Ändringar sparades! {rowsChanged}");
                     currentVehicle = vehicle;
                 }
-                else if (rowsChanged == -1) 
+                else if (rowsChanged == -1)
                 {
                     MessageBox.Show("That social registration number is already signed up as a vehicle. I filled in the details for you!");
                     currentVehicle = vehicleController.GetVehicle(RegNoTB.Text);
@@ -156,10 +154,7 @@ namespace CarService.PresentationLayer.WPF
             currentCustomer = null;
         }
 
-        private void SelectionBox_DropDownOpened(object sender, EventArgs e)
-        {
-
-        }
+  
 
         private void btn_SearchCustomer_Click(object sender, RoutedEventArgs e)
         {
@@ -225,7 +220,7 @@ namespace CarService.PresentationLayer.WPF
                 {
                     email = null;
                 }
-                
+
                 Customer customer = new Customer();
                 {
                     customer.CustomerID = currentCustomer.CustomerID;
@@ -394,6 +389,16 @@ namespace CarService.PresentationLayer.WPF
         private void EmailTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
             EmailTB.Text = string.Empty;
+        }
+
+        private void PostalCodeTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+
+        }
+
+        private void CityTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+
         }
     }
 }
