@@ -6,6 +6,16 @@ namespace CarService.Entities
 {
     public class Appointment : INotifyPropertyChanged
     {
+        //public Appointment(DateTime submissionDate, DateTime deliveryDate, string purpose, string vehicleRegistrationNumber, int customerId, int createdById)
+        //{
+        //    SubmissionDate = submissionDate;
+        //    DeliveryDate = deliveryDate;
+        //    Purpose = purpose;
+        //    VehicleRegistrationNumber = vehicleRegistrationNumber;
+        //    CustomerId = customerId;
+        //    CreatedById = createdById;
+        //    Status = AppointmentStatus.Booked;
+        //}
 
         public int AppointmentId { get; set; }
 
@@ -24,9 +34,9 @@ namespace CarService.Entities
         public int CreatedById { get; set; }
         public Receptionist CreatedBy { get; set; }
         public AppointmentStatus Status { get; set; }
-        public int InvoiceId { get; set; }
+        
         public Invoice? Invoice { get; set; }
-
+        public int? InvoiceId { get; set; }
         public ICollection<UsedItem>? UsedItems { get; set; }
 
         public ICollection<Comment>? Comments { get; set; }
