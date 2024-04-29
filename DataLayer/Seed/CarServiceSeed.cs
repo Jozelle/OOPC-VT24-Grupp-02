@@ -1,7 +1,6 @@
 ﻿using CarService.DataLayer.Context;
 using CarService.Entities;
 using CarService.Entities.Enums;
-using System.ComponentModel;
 
 namespace CarService.DataLayer.Seed
 {
@@ -189,19 +188,19 @@ namespace CarService.DataLayer.Seed
             context.Employees.Add(rep4);
 
             //Skapar items
-            context.Items.Add(new SparePart() { Description = "Broms", Price = 1000, Inventory=12 });
+            context.Items.Add(new SparePart() { Description = "Broms", Price = 1000, Inventory = 12 });
             context.Items.Add(new SparePart() { Description = "Koppling", Price = 2000, Inventory = 5 });
-            context.Items.Add(new SparePart() { Description = "Mutter", Price = 10, Inventory = 134});
+            context.Items.Add(new SparePart() { Description = "Mutter", Price = 10, Inventory = 134 });
             context.Items.Add(new SparePart() { Description = "Backspegel", Price = 1500, Inventory = 4 });
             context.Items.Add(new SparePart() { Description = "Framruta", Price = 1000, Inventory = 2 });
             context.Items.Add(new SparePart() { Description = "Vinterdäck", Price = 2000, Inventory = 28 });
-            context.Items.Add(new SparePart() { Description = "Avgasrör", Price = 700, Inventory = 2});
+            context.Items.Add(new SparePart() { Description = "Avgasrör", Price = 700, Inventory = 2 });
             context.Items.Add(new SparePart() { Description = "Oljefilter", Price = 300, Inventory = 31 });
             context.Items.Add(new SparePart() { Description = "Kylare", Price = 3500, Inventory = 3 });
             context.Items.Add(new SparePart() { Description = "Tändkablar", Price = 300, Inventory = 13 });
             context.Items.Add(new SparePart() { Description = "Glödlampa", Price = 150, Inventory = 17 });
             context.Items.Add(new SparePart() { Description = "Stötdämpare", Price = 5000, Inventory = 12 });
-            context.Items.Add(new SparePart() { Description = "Tändstift", Price = 75, Inventory =34 });
+            context.Items.Add(new SparePart() { Description = "Tändstift", Price = 75, Inventory = 34 });
             context.Items.Add(new SparePart() { Description = "Sommardäck", Price = 950, Inventory = 16 });
             context.Items.Add(new Service() { Description = "Däckbyte", Price = 700 });
             context.Items.Add(new Service() { Description = "Service", Price = 2400 });

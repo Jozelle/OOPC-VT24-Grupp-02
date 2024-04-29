@@ -25,8 +25,8 @@ namespace CarService.PresentationLayer.WPF
             loggedInEmployee = id;
 
             CurrentAppLB.ItemsSource = _appointments;
-            
-            
+
+
             IList<Appointment> hej = appointmentController.GetTodaysAppointments();
 
             foreach (Appointment appointment in hej)
