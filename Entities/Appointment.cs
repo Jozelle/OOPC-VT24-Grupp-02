@@ -1,5 +1,6 @@
 ﻿using CarService.Entities.Enums;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarService.Entities
 {
@@ -23,7 +24,8 @@ namespace CarService.Entities
         public int CreatedById { get; set; }
         public Receptionist CreatedBy { get; set; }
         public AppointmentStatus Status { get; set; }
-        public Invoice? Payment { get; set; }
+        public int InvoiceId { get; set; }
+        public Invoice? Invoice { get; set; }
 
         public ICollection<UsedItem>? UsedItems { get; set; }
 
