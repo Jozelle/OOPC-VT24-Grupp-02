@@ -43,7 +43,7 @@ namespace CarService.BusinessLayer
             }
         }
 
-        public List<Appointment> GetTodaysAppointments()
+        public IList<Appointment> GetTodaysAppointments()
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
