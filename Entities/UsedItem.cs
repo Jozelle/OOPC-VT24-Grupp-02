@@ -2,9 +2,6 @@
 
 namespace CarService.Entities
 {
-
-
-
     [PrimaryKey(nameof(AppointmentId), nameof(ItemId))]
     public class UsedItem
     {
