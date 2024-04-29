@@ -1,11 +1,11 @@
-﻿<Window x:Class="CarService.PresentationLayer.WPF.AddItemsToAppointmentWindow"
+﻿<Window x:Class="CarService.PresentationLayer.WPF.MechanicView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="Add items and comments to appointment" Height="600" Width="1200">
+        Title="Mechanic View" Height="600" Width="1200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -71,7 +71,7 @@
                     
 
                 </Grid>
-                <Grid Height="282">
+                <Grid Height="324">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="*"/>
@@ -83,8 +83,10 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="3*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Add items:" FontWeight="Bold" FontSize="14"/>
+                    <Label Grid.Row="0" Content="Add items" Style="{StaticResource lightLabel}"/>
                     <Button Style="{StaticResource fancyButton}" Content="Show journal" Grid.Column="1" Grid.Row="0" Click="Button_Click"/>
                     <Border Style="{StaticResource lightBorder}" Grid.Column="0" Grid.Row="1" >
                         <TextBox Text="Item number" x:Name="ItemTB" GotKeyboardFocus="ItemTB_GotKeyboardFocus" Opacity="0.5" />
@@ -100,12 +102,29 @@
                     </Border>
 
                     <Button Grid.Column="1" Grid.Row="3" x:Name="AddItemButton" Content="Add item" Style="{StaticResource fancyButton}" Click="AddItemButton_Click"/>
-                    <Label Grid.Row="4" Content="Add comment:" FontWeight="Bold" FontSize="14"/>
+                    <Label Grid.Row="4" Content="Add comment" Style="{StaticResource lightLabel}"/>
                     <Border Style="{StaticResource lightBorder}" Grid.Column="0" Grid.Row="5">
                         <TextBox Text="" x:Name="AddCommentTB" GotKeyboardFocus="ItemTB_GotKeyboardFocus" Opacity="0.5" />
                     </Border>
                     <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Style="{StaticResource fancyButton}" Click="AddCommentButton_Click"/>
+
+                    <Border Grid.Column="0" Grid.Row="7" Style="{StaticResource lightBorder}">
+                        <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5">
+                            <ComboBoxItem x:Name="CarReceived" Content="Car Received"/>
+                            <ComboBoxItem x:Name="Booked" Content="Booked"/>
+                            <ComboBoxItem x:Name="InProgress" Content="In progress"/>
+                            <ComboBoxItem x:Name="WaitingForParts" Content="Waiting For Parts"/>
+                            <ComboBoxItem x:Name="ReadyForPickup" Content="Ready For Pickup"/>
+                            <ComboBoxItem x:Name="Canceled" Content="Canceled"/>
+                            <ComboBoxItem x:Name="Completed" Content="Completed"/>
+                        </ComboBox>
+                    </Border>
+                    
+
+                    <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="7" Content="Save" Style="{StaticResource fancyButton}" VerticalAlignment="Center" Height="30" Click="btn_SaveStatus_Click"/>
                 </Grid>
+
+                <Button x:Name="btn_Exit" Content="Exit" Style="{StaticResource fancyButton}" Click="btn_Exit_Click"/>
             </StackPanel>
         </Border>
         <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">

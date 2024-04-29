@@ -4,7 +4,9 @@ namespace CarService.Entities
 {
     public class Vehicle
     {
-        [Key] public string RegistrationNumber { get; set; }
+        [Key]
+        [MaxLength(6)]
+        public string RegistrationNumber { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
         public string Year { get; set; }

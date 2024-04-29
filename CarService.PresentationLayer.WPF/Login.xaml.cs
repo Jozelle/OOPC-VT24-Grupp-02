@@ -7,10 +7,10 @@ namespace CarService.PresentationLayer.WPF
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class Login : Window
     {
         EmployeeController employeeController = new();
-        public LoginWindow()
+        public Login()
         {
             InitializeComponent();
         }
@@ -24,16 +24,16 @@ namespace CarService.PresentationLayer.WPF
                     if (employeeController.IsReceptionist(id))
                     {
                         //koppla till main
-                        Main main = new Main(id);
+                        ReceptionistView receptionistView = new ReceptionistView(id);
                         this.Close();
-                        main.ShowDialog();
+                        receptionistView.ShowDialog();
                     }
                     else
                     {
                         //Koppla till AddItems
-                        AddItemsToAppointmentWindow addItemsToAppointmentWindow = new AddItemsToAppointmentWindow(id);
+                        MechanicView mechanicView = new MechanicView(id);
                         this.Close();
-                        addItemsToAppointmentWindow.ShowDialog();
+                        mechanicView.ShowDialog();
                     }
                 }
                 else

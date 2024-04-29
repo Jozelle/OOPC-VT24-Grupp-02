@@ -43,7 +43,7 @@ namespace CarService.BusinessLayer
             }
         }
 
-        public List<Appointment> GetTodaysAppointments()
+        public IList<Appointment> GetTodaysAppointments()
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
@@ -97,7 +97,7 @@ namespace CarService.BusinessLayer
             using (UnitOfWork uow = new UnitOfWork())
             {
                 Appointment oldApp = uow.Appointments.Get(app.AppointmentId);
-                 uow.Appointments.Update(oldApp, app);
+                uow.Appointments.Update(oldApp, app);
                 return uow.Complete();
             }
         }

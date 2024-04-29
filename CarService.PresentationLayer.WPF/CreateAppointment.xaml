@@ -1,12 +1,12 @@
 ﻿<Window 
-        x:Class="CarService.PresentationLayer.WPF.CreateAppointmentWindow"
+        x:Class="CarService.PresentationLayer.WPF.CreateAppointment"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
         mc:Ignorable="d"
-        Title="Create Appointment" Height="730" Width="1100">
+        Title="Create Appointment" Height="643" Width="1092">
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -19,23 +19,24 @@
             <Label Content="Vehicle - search for existing, save changes or add new vehicles." FontWeight="Bold"/>
             <Grid Height="Auto" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
+
+
                 </Grid.RowDefinitions>
-                <TextBox Text="Registration No." Grid.Column="0" Grid.Row="0" x:Name="RegNoTB" Height="30" VerticalAlignment="Bottom" GotKeyboardFocus="RegNoTB_GotKeyboardFocus"/>
-                <Button x:Name="btn_SearchVehicle" Grid.Column="1" Content="Search" Click="btn_SearchVehicle_Click" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.593,-0.246" Height="30" Width="182"/>
+                <TextBox Text="Registration No." Grid.Column="0" x:Name="RegNoTB" Height="30" VerticalAlignment="Center" GotKeyboardFocus="RegNoTB_GotKeyboardFocus" Grid.ColumnSpan="2"/>
+                <Button x:Name="btn_SearchVehicle" Grid.Column="2" Content="Search" Click="btn_SearchVehicle_Click" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.593,-0.246" Height="30" Width="182"/>
 
-                <TextBox Text="Make" Grid.Column="0" Grid.Row="1" x:Name="MakeTB" Grid.ColumnSpan="2" GotKeyboardFocus="MakeTB_GotKeyboardFocus" />
+                <TextBox Text="Make" Grid.Column="0" Grid.Row="1" x:Name="MakeTB" GotKeyboardFocus="MakeTB_GotKeyboardFocus" />
 
-                <TextBox Text="Model" Grid.Column="0" Grid.Row="2" x:Name="ModelTB" Grid.ColumnSpan="2" GotKeyboardFocus="ModelTB_GotKeyboardFocus"/>
+                <TextBox Text="Model" Grid.Column="1" Grid.Row="1" x:Name="ModelTB" Grid.ColumnSpan="2" GotKeyboardFocus="ModelTB_GotKeyboardFocus"/>
 
-                <TextBox Text="Year" Grid.Column="0" Grid.Row="3" x:Name="YearTB" Grid.ColumnSpan="2" GotKeyboardFocus="YearTB_GotKeyboardFocus"/>
+                <TextBox Text="Year" Grid.Column="2" Grid.Row="1" x:Name="YearTB" Grid.ColumnSpan="2" GotKeyboardFocus="YearTB_GotKeyboardFocus"/>
 
             </Grid>
 
@@ -54,45 +55,42 @@
             </Grid>
 
 
-
             <Label Content="Customers - search for existing, save changes or add new customers." FontWeight="Bold"/>
 
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="1" Content="Select here:" HorizontalContentAlignment="Left"/>
-                <Button x:Name="btn_SearchCustomer" Click="btn_SearchCustomer_Click" Grid.Column="3" Grid.Row="0" Content="Search" HorizontalAlignment="Center" Width="181"/>
-                <ComboBox x:Name="SelectionBox" DropDownOpened="SelectionBox_DropDownOpened" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="274" Height="30" SelectionChanged="SelectionBox_SelectionChanged" >
+
+                <TextBox Text="First name" x:Name="FirstnameTB" GotKeyboardFocus="FirstnameTB_GotKeyboardFocus" Height="30" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,0,91,0"/>
+                <TextBox Text="Last name" Grid.Column="1"  Grid.Row="0" x:Name="LastnameTB" GotKeyboardFocus="LastnameTB_GotKeyboardFocus" Grid.ColumnSpan="2" Margin="91,0,0,0"/>
+                <TextBox Text="Social Security No." Grid.Row="1" x:Name="SSNumberTB" GotKeyboardFocus="SSNumberTB_GotKeyboardFocus" Grid.ColumnSpan="3"/>
+                <TextBox Text="Address" Grid.Row="2" x:Name="AddressTB" GotKeyboardFocus="AddressTB_GotKeyboardFocus"/>
+                <TextBox Text="Postal code" Grid.Column="1" Grid.Row="2" x:Name="PostalCodeTB" GotKeyboardFocus="PostalCodeTB_GotKeyboardFocus"/>
+                <TextBox Text="City" Grid.Column="2" Grid.Row="2" x:Name="CityTB" GotKeyboardFocus="CityTB_GotKeyboardFocus"/>
+                <TextBox Text="Phone No." Grid.Row="3" x:Name="PhoneNoTB" GotKeyboardFocus="PhoneNoTB_GotKeyboardFocus" Grid.ColumnSpan="2" Margin="0,0,91,0"/>
+                <TextBox Text="Email" Grid.Column="1" Grid.Row="3" x:Name="EmailTB" GotKeyboardFocus="EmailTB_GotKeyboardFocus" Grid.ColumnSpan="2" Margin="91,0,0,0"/>
+
+                <Label Content="Select search parameter here:" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Width="273" Grid.ColumnSpan="2" Height="30"/>
+
+                <ComboBox x:Name="SelectionBox" Grid.Column="1" Grid.Row="4" SelectedIndex="0" SelectionChanged="SelectionBox_SelectionChanged">
                     <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
                     <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
                     <ComboBoxItem x:Name="FullName" Content="Full name"/>
                 </ComboBox>
+                <Button Grid.Column="2" x:Name="btn_SearchCustomer" Click="btn_SearchCustomer_Click" Content="Search" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="30" Width="182"/>
             </Grid>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
-
-                <TextBox Text="First name" Grid.Row="0" x:Name="FirstnameTB" GotKeyboardFocus="FirstnameTB_GotKeyboardFocus"/>
-                <TextBox Text="Last name" Grid.Row="1" x:Name="LastnameTB" GotKeyboardFocus="LastnameTB_GotKeyboardFocus"/>
-                <TextBox Text="Social Security No." Grid.Row="2" x:Name="SSNumberTB" GotKeyboardFocus="SSNumberTB_GotKeyboardFocus"/>
-                <TextBox Text="Address" Grid.Row="3" x:Name="AddressTB" GotKeyboardFocus="AddressTB_GotKeyboardFocus"/>
-                <TextBox Text="Phone No." Grid.Row="4" x:Name="PhoneNoTB" GotKeyboardFocus="PhoneNoTB_GotKeyboardFocus"/>
-                <TextBox Text="Email" Grid.Row="5" x:Name="EmailTB" GotKeyboardFocus="EmailTB_GotKeyboardFocus"/>
-
-            </Grid>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -105,26 +103,23 @@
                 <Button x:Name="btn_AddCustomer" Content="Add new customer" Grid.Column="0" VerticalAlignment="Center" Height="30" Click="btn_AddNewCustomer_Click"/>
                 <Button x:Name="btn_SaveCustomer" Click="btn_SaveChangesCustomer_Click"  Grid.Column="1" Content="Save changes" VerticalAlignment="Center" Height="30"/>
             </Grid>
-            <Grid Height="215">
+            <Grid Height="126">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="45"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="Auto"/>
-
                 </Grid.RowDefinitions>
-                <Label Content="Reported issues:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="273" FontWeight="Bold"/>
-                <TextBox x:Name="ReportedIssues" Text="Enter description" Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="0,28,0,0">
-                </TextBox>
-                <Label Content="Select an appointment date:" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="32" Width="273" FontWeight="Bold"/>
-                <DatePicker  x:Name="AppDate" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Width="273" Height="30"/>
-                <Button x:Name="btn_SaveAppointment" Content="Save appointment" HorizontalAlignment="Left" Height="65" Grid.Row="5" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="546" Click="btn_SaveAppointment_Click"/>
+                <Label Content="Reported issues:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="273" FontWeight="Bold" Grid.ColumnSpan="2" Height="26"/>
+                <TextBox x:Name="ReportedIssues" Text="Enter description" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1" Margin="0,3,0,0"/>
+                <Label Content="Select an appointment date:" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="32" Width="274" FontWeight="Bold"/>
+                <DatePicker  x:Name="AppDate" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="274" Height="30"/>
+                <Button x:Name="btn_SaveAppointment" Content="Save appointment" Height="30" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2" Click="btn_SaveAppointment_Click" Margin="0,0,1,0"/>
 
 
 

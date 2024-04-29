@@ -9,7 +9,7 @@ namespace CarService.PresentationLayer.WPF
     /// <summary>
     /// Interaction logic for Main.xaml
     /// </summary>
-    public partial class Main : Window
+    public partial class ReceptionistView : Window
     {
         AppointmentController appointmentController = new AppointmentController();
         EmployeeController employeeController = new EmployeeController();
@@ -17,24 +17,32 @@ namespace CarService.PresentationLayer.WPF
         internal Appointment currentAppointment;
         internal int loggedInEmployee;
 
-        internal IList<Appointment> _appointments = new ObservableCollection<Appointment>();
-        public Main(int id)
+        internal ObservableCollection<Appointment> _appointments = new ObservableCollection<Appointment>();
+        public ReceptionistView(int id)
         {
             InitializeComponent();
 
             loggedInEmployee = id;
 
-            _appointments = appointmentController.GetTodaysAppointments();
-            if (_appointments.Count > 0 && _appointments != null)
+            CurrentAppLB.ItemsSource = _appointments;
+
+
+            IList<Appointment> hej = appointmentController.GetTodaysAppointments();
+
+            foreach (Appointment appointment in hej)
             {
-                CurrentAppLB.ItemsSource = _appointments;
+                _appointments.Add(appointment);
             }
+            //if (_appointments.Count > 0 && _appointments != null)
+            //{
+            //    CurrentAppLB.ItemsSource = _appointments;
+            //}
         }
 
         private void btn_CreateBooking_Click(object sender, RoutedEventArgs e)
         {
-            CreateAppointmentWindow createAppointmentWindow = new CreateAppointmentWindow(loggedInEmployee);
-            createAppointmentWindow.ShowDialog();
+            CreateAppointment createAppointment = new CreateAppointment(loggedInEmployee);
+            createAppointment.ShowDialog();
 
         }
 
@@ -91,6 +99,7 @@ namespace CarService.PresentationLayer.WPF
             if (currentAppointment != null)
             {
                 int selected = StausBox.SelectedIndex;
+                int index = _appointments.IndexOf(currentAppointment);
                 switch (selected)
                 {
                     case 0:
@@ -126,6 +135,9 @@ namespace CarService.PresentationLayer.WPF
                 if (affectedRows > 0)
                 {
                     MessageBox.Show("The status was changed!");
+                    _appointments[index] = currentAppointment;
+                    CurrentAppLB.ItemsSource = null;
+                    CurrentAppLB.ItemsSource = _appointments;
                 }
             }
             else

@@ -1,5 +1,4 @@
 ﻿using CarService.Entities;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarService.DataLayer.Context
@@ -22,7 +21,7 @@ namespace CarService.DataLayer.Context
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
 
-            //optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test2;Trusted_Connection=true;TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test3;Trusted_Connection=true;TrustServerCertificate=true");
 
             //optionsBuilder.UseSqlServer(@"Server=sqlutb2-db.hb.se, 56077;Database=oopc2402;User=oopc2402;Password=PZE328;TrustServerCertificate=true");
             base.OnConfiguring(optionsBuilder);
