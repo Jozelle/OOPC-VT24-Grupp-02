@@ -51,7 +51,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Background" Value="Violet"/>
             <Setter Property="Foreground" Value="Lavender"/>
-            <Setter Property="Margin" Value="5 0 5 0"/>
+            <Setter Property="Margin" Value="5 2 5 2"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
