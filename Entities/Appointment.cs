@@ -40,6 +40,17 @@ namespace CarService.Entities
 
         public ICollection<Comment>? Comments { get; set; }
 
+        public decimal CalculateTotalCost()
+        {
+            decimal totalCost = 0;
+
+            foreach (UsedItem usedItem in UsedItems)
+            {
+                totalCost += usedItem.Item.Price * usedItem.Quantity;
+            }
+
+            return totalCost;
+        }
         public override string ToString()
         {
             return AppointmentId.ToString();

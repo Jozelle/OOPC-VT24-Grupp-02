@@ -27,6 +27,7 @@ namespace DataLayer
         public IUsedItemRepository UsedItems { get; private set; }
         public IEmployeeRepository Employees { get; private set; }
         public ICommentRepository Comments { get; private set; }
+        public IInvoiceRepository Invoices { get; private set; }
 
         public int Complete()
         {

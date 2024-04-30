@@ -1,6 +1,6 @@
 ﻿namespace CarService.Entities
 {
-    public class Item
+    abstract public class Item
     {
         public int ItemId { get; set; }
         public string Description { get; set; }
