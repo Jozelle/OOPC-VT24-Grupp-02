@@ -11,6 +11,9 @@ namespace CarService.DataLayer.Repositories
         {
         }
 
-
+        public IList<Item> GetNamesThatContains(string input)
+        {
+            return Table.Where(x => x.Description.Contains(input)).ToList();
+        }
     }
 }

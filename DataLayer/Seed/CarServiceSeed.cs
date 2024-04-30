@@ -9,114 +9,31 @@ namespace CarService.DataLayer.Seed
         public static void Populate(CarServiceContext context)
         {
             //Skapar kunder
-            Customer kund1 = new Customer()
-            {
-                FirstName = "Anders",
-                LastName = "Andersson",
-                PhoneNumber = "0701234567",
-                SocialSecurityNumber = "9876543210",
-                Address = "Andersgata 9",
-                PostalCode = "11111",
-                City = "Anderstorp",
-                Email = "andersandersson@mail.com"
-            };
+            Customer kund1 = new Customer("Anders", "Andersson", "0701234567", "9876543210", "Andersgata 9", "11111", "Anderstorp", "andersandersson@mail.com");
             context.Customers.Add(kund1);
 
-            Customer kund2 = new Customer()
-            {
-                FirstName = "Bertil",
-                LastName = "Bertillson",
-                PhoneNumber = "0712345678",
-                SocialSecurityNumber = "1122334455",
-                Address = "Bertilsgata 5",
-                PostalCode = "22222",
-                City = "Bertilsstad",
-                Email = "bertilbertillson@mail.com"
-            };
+            Customer kund2 = new Customer("Bertil", "Bertillson", "0712345678", "1122334455", "Bertilsgata 5", "22222", "Bertilsstad", "bertilbertillson@mail.com");
             context.Customers.Add(kund2);
 
-            Customer kund3 = new Customer()
-            {
-                FirstName = "Curt",
-                LastName = "Curtsson",
-                PhoneNumber = "0701020304",
-                SocialSecurityNumber = "4004040404",
-                Address = "Curtvägen 3C",
-                PostalCode = "33333",
-                City = "Curtby",
-                Email = "cc@mail.com"
-            };
+            Customer kund3 = new Customer("Curt", "Curtsson", "0701020304", "4004040404", "Curtvägen 3C", "33333", "Curtby", "cc@mail.com");
             context.Customers.Add(kund3);
 
-            Customer kund4 = new Customer()
-            {
-                FirstName = "David",
-                LastName = "Davidsson",
-                PhoneNumber = "0707070707",
-                SocialSecurityNumber = "9801010101",
-                Address = "Davidsgatan 4D",
-                PostalCode = "44444",
-                City = "Davidstorp",
-                Email = "davido@mail.com"
-            };
+            Customer kund4 = new Customer("David", "Davidsson", "0707070707", "9801010101", "Davidsgatan 4D", "44444", "Davidstorp", "davido@mail.com");
             context.Customers.Add(kund4);
 
-            Customer kund5 = new Customer()
-            {
-                FirstName = "Erika",
-                LastName = "Eriksdotter",
-                PhoneNumber = "0705555555",
-                SocialSecurityNumber = "9505050505",
-                Address = "Eriksgatan 5",
-                PostalCode = "55555",
-                City = "Eriksort",
-                Email = "erikas@mail.com"
-            };
+            Customer kund5 = new Customer("Erika", "Eriksdotter", "0705555555", "9505050505", "Eriksgatan 5", "55555", "Eriksort", "erikas@mail.com");
             context.Customers.Add(kund5);
 
-            Customer kund6 = new Customer()
-            {
-                FirstName = "Frida",
-                LastName = "Fridsson",
-                PhoneNumber = "0706666666",
-                SocialSecurityNumber = "8606060606",
-                Address = "Fridhem 6",
-                PostalCode = "66666",
-                City = "Fridby",
-                Email = "fridas@mail.com"
-            };
+            Customer kund6 = new Customer("Frida", "Fridsson", "0706666666", "8606060606", "Fridhem 6", "66666", "Fridby", "fridas@mail.com");
             context.Customers.Add(kund6);
 
-            Customer kund7 = new Customer()
-            {
-                FirstName = "Greta",
-                LastName = "Hansson",
-                PhoneNumber = "0707123456",
-                SocialSecurityNumber = "8707070707",
-                Address = "Häxvägen 7",
-                PostalCode = "77777",
-                City = "Smultorp",
-                Email = "hansgreta@mail.com"
-            };
+            Customer kund7 = new Customer("Greta", "Hansson", "0707123456", "8707070707", "Häxvägen 7", "77777", "Smultorp", "hansgreta@mail.com");
             context.Customers.Add(kund7);
 
-            Customer kund8 = new Customer()
-            {
-                FirstName = "Hanna",
-                LastName = "Hansson",
-                PhoneNumber = "0708080808",
-                SocialSecurityNumber = "9808080808",
-                Email = "hannas@mail.com"
-            };
+            Customer kund8 = new Customer("Hanna", "Hansson", "0708080808", "9808080808", null, null, null, "hannas@mail.com");
             context.Customers.Add(kund8);
 
-            Customer kund9 = new Customer()
-            {
-                FirstName = "David",
-                LastName = "Davidsson",
-                PhoneNumber = "0704040404",
-                SocialSecurityNumber = "9804040404",
-            };
+            Customer kund9 = new Customer("David", "Davidsson", "0704040404", "9804040404", null, null, null, null);
             context.Customers.Add(kund9);
 
             //Skapar anställda

@@ -13,5 +13,13 @@ namespace CarService.BusinessLayer
                 return uow.Items.Get(id);
             }
         }
+
+        public List<Item> GetItemsByDesc(string input) 
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                return uow.Items.GetNamesThatContains(input).ToList();
+            }
+        }
     }
 }

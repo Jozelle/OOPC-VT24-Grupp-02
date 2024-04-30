@@ -9,7 +9,6 @@ namespace CarService.DataLayer.Context
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
-
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<UsedItem> UsedItems { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
@@ -19,11 +18,10 @@ namespace CarService.DataLayer.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
-
+            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
             //optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test3;Trusted_Connection=true;TrustServerCertificate=true");
 
-            //optionsBuilder.UseSqlServer(@"Server=REMOVED-HOST, 56077;Database=REMOVED-IDENTIFIER;User=REMOVED-IDENTIFIER;Password=REMOVED-PASSWORD;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer(@"Server=REMOVED-HOST, 56077;Database=REMOVED-IDENTIFIER;User=REMOVED-IDENTIFIER;Password=REMOVED-PASSWORD;TrustServerCertificate=true");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -32,6 +30,12 @@ namespace CarService.DataLayer.Context
             modelBuilder.Entity<Comment>()
                 .HasOne(b => b.Author)
                 .WithMany(a => a.Comments)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.ClientNoAction);
+
+            modelBuilder.Entity<Invoice>()
+                .HasOne(b => b.Appointment)
+                .WithOne(a => a.Invoice)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.ClientNoAction);
         }

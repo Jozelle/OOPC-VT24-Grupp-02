@@ -14,7 +14,6 @@ namespace CarService.PresentationLayer.WPF
 
     public partial class MechanicView : Window
     {
-
         AppointmentController ac = new();
         ItemController ic = new();
         VehicleController vc = new();
@@ -100,6 +99,13 @@ namespace CarService.PresentationLayer.WPF
             }
 
         }
+        //private void SearchItemButton2_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (ItemDescriptionTB.Text != "")
+        //    {
+        //        List<Item> items = ic.GetItemsByDesc(ItemDescriptionTB.Text);
+        //    }
+        //}
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
@@ -108,6 +114,9 @@ namespace CarService.PresentationLayer.WPF
                 int affectedRows = ac.EnterItem(currentAppointment, currentItem, amount);
                 MessageBox.Show($"{amount} piece(s) of the item {currentItem.Description} was added!" +
                     $"\n{affectedRows} were affected!");
+
+                //För att uppdatera fönstret
+                currentAppointment.UsedItems.Add(new UsedItem { Item = currentItem, Quantity = amount });
             }
 
         }
@@ -192,6 +201,12 @@ namespace CarService.PresentationLayer.WPF
                 int affectedRows = ac.SaveChanges(currentAppointment);
                 if (affectedRows > 0)
                 {
+                    _appointments = ac.GetTodaysAppointments();
+
+                    //Ful-lösning för att uppdatera rutan
+                    addItemLB.ItemsSource = null; 
+                    addItemLB.ItemsSource = _appointments;
+
                     MessageBox.Show("The status was changed!");
                 }
             }
@@ -201,7 +216,8 @@ namespace CarService.PresentationLayer.WPF
             }
         }
 
-        private void btn_Exit_Click(object sender, RoutedEventArgs e)
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
