@@ -14,11 +14,7 @@ namespace CarService.Entities
 
     public class Mechanic : Employee
     {
-
-
-
         public Specialization? Specialization { get; set; }
-
     }
 
     public class Receptionist : Employee
