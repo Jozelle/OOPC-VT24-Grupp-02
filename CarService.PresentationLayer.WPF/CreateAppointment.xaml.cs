@@ -1,8 +1,10 @@
 ﻿using CarService.BusinessLayer;
 using CarService.Entities;
 using System.Collections.ObjectModel;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using MessageBox = System.Windows.MessageBox;
 
 namespace CarService.PresentationLayer.WPF
@@ -70,7 +72,7 @@ namespace CarService.PresentationLayer.WPF
             {
                 MessageBox.Show("The registration number is not in the correct format, please try again.");
             }
-            else if (currentVehicle.RegistrationNumber != regNo)
+            else if (currentVehicle.RegistrationNumber != regNo.ToUpper())
             {
                 MessageBox.Show("Something went wrong, please enter vehicle details and try again!");
                 MakeTB.Text = string.Empty;
@@ -124,7 +126,7 @@ namespace CarService.PresentationLayer.WPF
             {
                 Vehicle vehicle = new Vehicle
                 {
-                    RegistrationNumber = RegNoTB.Text,
+                    RegistrationNumber = RegNoTB.Text.ToUpper(),
                     Make = MakeTB.Text,
                     Model = ModelTB.Text,
                     Year = YearTB.Text
@@ -158,22 +160,17 @@ namespace CarService.PresentationLayer.WPF
 
         private void btn_SearchCustomer_Click(object sender, RoutedEventArgs e)
         {
-            string id = SSNumberTB.Text;
-            string phoneNo = PhoneNoTB.Text;
-            string firstName = FirstnameTB.Text;
-            string lastName = LastnameTB.Text;
-
             if (SelectionBox.SelectedIndex == 0)
             {
-                currentCustomer = customerController.GetCustomerBySSN(id);
+                currentCustomer = customerController.GetCustomerBySSN(SSNumberTB.Text);
             }
             else if (SelectionBox.SelectedIndex == 1)
             {
-                currentCustomer = customerController.GetCustomerByPhone(phoneNo);
+                currentCustomer = customerController.GetCustomerByPhone(PhoneNoTB.Text);
             }
             else if (SelectionBox.SelectedIndex == 2)
             {
-                currentCustomer = customerController.GetCustomerByFullName(firstName, lastName);
+                currentCustomer = customerController.GetCustomerByFullName(FirstnameTB.Text, LastnameTB.Text);
             }
             else if (SelectionBox.SelectedIndex == -1)
             {
@@ -184,11 +181,13 @@ namespace CarService.PresentationLayer.WPF
             if (currentCustomer != null)
             {
                 SSNumberTB.Text = currentCustomer.SocialSecurityNumber.ToString();
-                PhoneNoTB.Text = currentCustomer?.PhoneNumber;
-                FirstnameTB.Text = currentCustomer?.FirstName;
+                PhoneNoTB.Text = currentCustomer.PhoneNumber;
+                FirstnameTB.Text = currentCustomer.FirstName;
                 LastnameTB.Text = currentCustomer.LastName;
-                EmailTB.Text = currentCustomer?.Email;
-                AddressTB.Text = currentCustomer?.Address;
+                EmailTB.Text = currentCustomer.Email;
+                AddressTB.Text = currentCustomer.Address;
+                PostalCodeTB.Text = currentCustomer.PostalCode;
+                CityTB.Text = currentCustomer.City;
 
                 //MessageBox.Show(currentCustomer.CustomerID.ToString());
             }
@@ -201,11 +200,13 @@ namespace CarService.PresentationLayer.WPF
             string firstName = FirstnameTB.Text;
             string lastName = LastnameTB.Text;
             string? address = AddressTB.Text;
+            string? postalCode = PostalCodeTB.Text;
             string? email = EmailTB.Text;
+            string? city = CityTB.Text;
 
             if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(phoneNo) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || id == "Social Security No." || phoneNo == "Phone No." || firstName == "First name" || lastName == "Last name")
             {
-                MessageBox.Show("Please fill out all the fields.");
+                MessageBox.Show("Please fill out all the required fields.");
                 currentCustomer = null;
                 return;
             }
@@ -216,21 +217,23 @@ namespace CarService.PresentationLayer.WPF
                     address = null;
                 }
 
+                if (postalCode == "Postal Code")
+                {
+                    postalCode = null;
+                }
+
+                if (city == "City")
+                {
+                    city = null;
+                }
+
                 if (!email.Contains('@'))
                 {
                     email = null;
                 }
 
-                Customer customer = new Customer();
-                {
-                    customer.CustomerID = currentCustomer.CustomerID;
-                    customer.SocialSecurityNumber = id;
-                    customer.PhoneNumber = phoneNo;
-                    customer.FirstName = firstName;
-                    customer.LastName = lastName;
-                    customer.Address = address;
-                    customer.Email = email;
-                }
+                Customer customer = new Customer(firstName, lastName, phoneNo, id, address, postalCode, city, email);
+                customer.CustomerID = currentCustomer.CustomerID;
 
                 int rowsChanged = customerController.UpdateCustomer(customer);
                 if (rowsChanged > 0)
@@ -250,42 +253,65 @@ namespace CarService.PresentationLayer.WPF
         }
         private void btn_AddNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(SSNumberTB.Text) || string.IsNullOrEmpty(PhoneNoTB.Text) || string.IsNullOrEmpty(FirstnameTB.Text) || string.IsNullOrEmpty(LastnameTB.Text))
+            string id = SSNumberTB.Text;
+            string phoneNo = PhoneNoTB.Text;
+            string firstName = FirstnameTB.Text;
+            string lastName = LastnameTB.Text;
+            string? address = AddressTB.Text;
+            string? postalCode = PostalCodeTB.Text;
+            string? email = EmailTB.Text;
+            string? city = CityTB.Text;
+
+            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(phoneNo) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || id == "Social Security No." || phoneNo == "Phone No." || firstName == "First name" || lastName == "Last name")
             {
-                MessageBox.Show("Please fill out all the fields.");
+                MessageBox.Show("Please fill out all the required fields.");
                 currentCustomer = null;
                 return;
             }
             else
             {
-                Customer customer = new Customer();
+                if (address == "Address")
                 {
-                    customer.SocialSecurityNumber = SSNumberTB.Text;
-                    customer.PhoneNumber = PhoneNoTB.Text;
-                    customer.FirstName = FirstnameTB.Text;
-                    customer.LastName = LastnameTB.Text;
-                    customer.Address = AddressTB.Text;
-                    customer.Email = EmailTB.Text;
+                    address = null;
                 }
+
+                if (postalCode == "Postal Code")
+                {
+                    postalCode = null;
+                }
+
+                if (city == "City")
+                {
+                    city = null;
+                }
+
+                if (!email.Contains('@'))
+                {
+                    email = null;
+                }
+
+                Customer customer = new Customer(firstName, lastName, phoneNo, id, address, postalCode, city, email);
 
                 int rowsChanged = customerController.SaveCustomer(customer);
 
                 if (rowsChanged > 0)
                 {
                     MessageBox.Show($"The customer was added! {rowsChanged}");
-                    currentCustomer = customerController.GetCustomerBySSN(SSNumberTB.Text);
+                    currentCustomer = customerController.GetCustomerBySSN(id);
                 }
                 else if (rowsChanged == -1)
                 {
                     MessageBox.Show("That social security number is already signed up as a customer. I filled in the details for you!");
-                    currentCustomer = customerController.GetCustomerBySSN(SSNumberTB.Text);
+                    currentCustomer = customerController.GetCustomerBySSN(id);
 
                     SSNumberTB.Text = currentCustomer.SocialSecurityNumber.ToString();
                     PhoneNoTB.Text = currentCustomer.PhoneNumber;
                     FirstnameTB.Text = currentCustomer.FirstName;
                     LastnameTB.Text = currentCustomer.LastName;
-                    EmailTB.Text = currentCustomer?.Email;
-                    AddressTB.Text = currentCustomer?.Address;
+                    EmailTB.Text = currentCustomer.Email;
+                    AddressTB.Text = currentCustomer.Address;
+                    PostalCodeTB.Text = currentCustomer.PostalCode;
+                    CityTB.Text = currentCustomer.City;
                 }
             }
         }

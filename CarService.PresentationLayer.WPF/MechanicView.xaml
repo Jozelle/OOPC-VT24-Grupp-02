@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="Mechanic View" Height="600" Width="1200">
+        Title="Mechanic View" Height="630" Width="1200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -27,7 +27,7 @@
                         <ColumnDefinition Width="65"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Mechanic view" Style="{StaticResource titleText}"/>
-                    <Button Grid.Column="1" x:Name="ExitButton" Content="Exit" Style="{StaticResource fancyButton}"/>
+                    <Button Grid.Column="1" x:Name="ExitButton" Content="Exit" Style="{StaticResource fancyButton}" Click="ExitButton_Click"/>
                 </Grid>
 
                 <Label Content="Search for appointment by vehicle registration number or choose from the list to the right." Style="{StaticResource lightLabel}"/>
@@ -97,6 +97,7 @@
                     <Border Style="{StaticResource lightBorder}" Grid.Column="0" Grid.Row="2" >
                         <TextBox x:Name="ItemDescriptionTB" Opacity="0.5" />
                     </Border>
+
                     <Border Style="{StaticResource lightBorder}" Grid.Column="0" Grid.Row="3" >
                         <TextBox x:Name="QuantityTB" Text="Quantity" GotKeyboardFocus="QuantityTB_GotKeyboardFocus" Opacity="0.5"/>
                     </Border>
@@ -119,12 +120,10 @@
                             <ComboBoxItem x:Name="Completed" Content="Completed"/>
                         </ComboBox>
                     </Border>
-                    
+
 
                     <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="7" Content="Save" Style="{StaticResource fancyButton}" VerticalAlignment="Center" Height="30" Click="btn_SaveStatus_Click"/>
                 </Grid>
-
-                <Button x:Name="btn_Exit" Content="Exit" Style="{StaticResource fancyButton}" Click="btn_Exit_Click"/>
             </StackPanel>
         </Border>
         <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
