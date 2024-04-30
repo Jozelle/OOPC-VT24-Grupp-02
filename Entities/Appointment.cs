@@ -17,10 +17,6 @@ namespace CarService.Entities
         //    Status = AppointmentStatus.Booked;
         //}
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
         public int AppointmentId { get; set; }
 
         public DateTime SubmissionDate { get; set; }

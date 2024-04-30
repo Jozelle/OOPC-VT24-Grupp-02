@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\CarService.BusinessLayer.csproj" />
+    <ProjectReference Include="..\Entities\CarService.Entities.csproj" />
   </ItemGroup>
 
 </Project>

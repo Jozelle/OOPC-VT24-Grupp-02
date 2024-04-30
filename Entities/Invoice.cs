@@ -10,5 +10,7 @@ namespace CarService.Entities
         [ForeignKey("AppointmentId")]
         public Appointment Appointment { get; set; }
         public int AppointmentId { get; set; }
+        public Receptionist CreatedBy { get; set; }
+        public int CreatedById { get; set; }
     }
 }
