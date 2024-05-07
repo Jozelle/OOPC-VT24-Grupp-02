@@ -1,6 +1,7 @@
 ﻿using CarService.BusinessLayer;
 using CarService.Entities;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using MessageBox = System.Windows.MessageBox;
 
@@ -168,6 +169,25 @@ namespace CarService.PresentationLayer.WPF
                 MessageBox.Show("Please select an appointment first!");
             }
 
+        }
+
+        private void btn_GenerateInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            decimal totalAmount = currentAppointment.CalculateTotalCost();
+
+            Invoice invoice = new Invoice
+            {
+                TotalAmount = totalAmount,
+                AppointmentId = currentAppointment.AppointmentId,
+                CreatedById = loggedInEmployee
+            };
+
+            int affectedRows = appointmentController.CreateInvoice(invoice);
+            if (affectedRows > 0)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append($"Kund: {currentAppointment.Customer.FirstName} {currentAppointment.Customer.LastName}");
+            }
         }
     }
 }

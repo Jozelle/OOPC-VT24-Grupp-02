@@ -102,6 +102,13 @@ namespace CarService.BusinessLayer
             }
         }
 
-
+        public int CreateInvoice(Invoice invoice)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                uow.Invoices.Add(invoice);
+                return uow.Complete();
+            }
+        }
     }
 }
