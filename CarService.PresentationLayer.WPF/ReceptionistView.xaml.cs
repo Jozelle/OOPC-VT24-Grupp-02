@@ -135,7 +135,6 @@ namespace CarService.PresentationLayer.WPF
                 if (affectedRows > 0)
                 {
                     MessageBox.Show("The status was changed!");
-                    _appointments[index] = currentAppointment;
                     CurrentAppLB.ItemsSource = null;
                     CurrentAppLB.ItemsSource = _appointments;
                 }
