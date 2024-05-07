@@ -173,21 +173,22 @@ namespace CarService.PresentationLayer.WPF
 
         private void btn_GenerateInvoice_Click(object sender, RoutedEventArgs e)
         {
-            decimal totalAmount = currentAppointment.CalculateTotalCost();
+            MessageBox.Show("Not implemented yet...");
+            //decimal totalAmount = currentAppointment.CalculateTotalCost();
 
-            Invoice invoice = new Invoice
-            {
-                TotalAmount = totalAmount,
-                AppointmentId = currentAppointment.AppointmentId,
-                CreatedById = loggedInEmployee
-            };
+            //Invoice invoice = new Invoice
+            //{
+            //    TotalAmount = totalAmount,
+            //    AppointmentId = currentAppointment.AppointmentId,
+            //    CreatedById = loggedInEmployee
+            //};
 
-            int affectedRows = appointmentController.CreateInvoice(invoice);
-            if (affectedRows > 0)
-            {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append($"Kund: {currentAppointment.Customer.FirstName} {currentAppointment.Customer.LastName}");
-            }
+            //int affectedRows = appointmentController.CreateInvoice(invoice);
+            //if (affectedRows > 0)
+            //{
+            //    StringBuilder stringBuilder = new StringBuilder();
+            //    stringBuilder.Append($"Kund: {currentAppointment.Customer.FirstName} {currentAppointment.Customer.LastName}");
+            //}
         }
     }
 }
