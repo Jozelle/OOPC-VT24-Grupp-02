@@ -204,7 +204,7 @@ namespace CarService.PresentationLayer.WPF
                     _appointments = ac.GetTodaysAppointments();
 
                     //Ful-lösning för att uppdatera rutan
-                    addItemLB.ItemsSource = null; 
+                    addItemLB.ItemsSource = null;
                     addItemLB.ItemsSource = _appointments;
 
                     MessageBox.Show("The status was changed!");
