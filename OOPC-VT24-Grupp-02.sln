@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.DataLayer", "Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.Entities", "Entities\CarService.Entities.csproj", "{E91B810B-37D4-48BE-B591-DD1C547007E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarService.PresentationLayer.WPF", "CarService.PresentationLayer.WPF\CarService.PresentationLayer.WPF.csproj", "{76A2836B-A76B-4431-822C-42F010B401D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.PresentationLayer.WPF", "CarService.PresentationLayer.WPF\CarService.PresentationLayer.WPF.csproj", "{76A2836B-A76B-4431-822C-42F010B401D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarService.PresentationLayer.WPF.MVVM", "CarService.PresentationLayer.WPF.MVVM\CarService.PresentationLayer.WPF.MVVM.csproj", "{6A47E824-12AF-4391-B325-6C03A9CDA4B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{76A2836B-A76B-4431-822C-42F010B401D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76A2836B-A76B-4431-822C-42F010B401D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76A2836B-A76B-4431-822C-42F010B401D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A47E824-12AF-4391-B325-6C03A9CDA4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A47E824-12AF-4391-B325-6C03A9CDA4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A47E824-12AF-4391-B325-6C03A9CDA4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A47E824-12AF-4391-B325-6C03A9CDA4B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

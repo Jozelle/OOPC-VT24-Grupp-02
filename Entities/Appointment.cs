@@ -1,7 +1,5 @@
 ﻿using CarService.Entities.Enums;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace CarService.Entities
 {

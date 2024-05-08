@@ -1,10 +1,8 @@
 ﻿using CarService.BusinessLayer;
 using CarService.Entities;
 using System.Collections.ObjectModel;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using MessageBox = System.Windows.MessageBox;
 
 namespace CarService.PresentationLayer.WPF
@@ -156,7 +154,7 @@ namespace CarService.PresentationLayer.WPF
             currentCustomer = null;
         }
 
-  
+
 
         private void btn_SearchCustomer_Click(object sender, RoutedEventArgs e)
         {
@@ -402,7 +400,7 @@ namespace CarService.PresentationLayer.WPF
         }
         private void SSNumberTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            if(SSNumberTB.Text == "Social Security No.")
+            if (SSNumberTB.Text == "Social Security No.")
             {
                 SSNumberTB.Text = string.Empty;
             }
@@ -412,7 +410,7 @@ namespace CarService.PresentationLayer.WPF
             if (AddressTB.Text == "Address")
             {
                 AddressTB.Text = string.Empty;
-            }            
+            }
         }
         private void PhoneNoTB_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
