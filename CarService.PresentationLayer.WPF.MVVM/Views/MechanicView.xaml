@@ -113,7 +113,7 @@
                     </Border>
 
                     <Border Grid.Column="0" Grid.Row="3" >
-                        <TextBox x:Name="QuantityTB" Text="Quantity" Opacity="0.5"/>
+                        <TextBox x:Name="QuantityTB" Text="{Binding ItemQuantity}"  Opacity="0.5"/>
                     </Border>
 
                     <Button Grid.Column="1" Grid.Row="3" x:Name="AddItemButton" Content="Add item" Command="{Binding AddItemCommand}"/>
