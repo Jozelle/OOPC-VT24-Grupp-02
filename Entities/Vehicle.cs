@@ -13,6 +13,11 @@ namespace CarService.Entities
 
         public ICollection<Appointment>? Appointments { get; set; }
 
+        public string FullDescription
+        {
+            get => $"{Make} {Model} ({Year})";
+        }
+
         public override string ToString()
         {
             return RegistrationNumber;

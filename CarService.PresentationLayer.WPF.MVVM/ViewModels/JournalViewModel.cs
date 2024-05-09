@@ -32,9 +32,9 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         }
 
         //Constructor
-        public JournalViewModel(/*string regNo*/)
+        public JournalViewModel(string regNo)
         {
-            string regNo = "ABC123";
+            //string regNo = "ABC123";
             
             vehicleController = new VehicleController();
             JournalVehicle = vehicleController.GetVehicle(regNo);
