@@ -22,7 +22,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         //Controllers
         private AppointmentController appointmentController;
         private ItemController itemController;
-        private VehicleController vehicleController;
         private EmployeeController employeeController;
 
         private IWindowService windowService;
@@ -175,16 +174,16 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        public MechanicViewModel()
+        //Constructor
+        public MechanicViewModel(int id)
         {
             appointmentController = new AppointmentController();
             itemController = new ItemController();
-            vehicleController = new VehicleController();
             employeeController = new EmployeeController();
 
             windowService = new WindowService();
 
-            loggedInId = 2;
+            loggedInId = id;
             AppointmentStatuses = Enum.GetValues(typeof(AppointmentStatus)).Cast<AppointmentStatus>().ToList();
 
             TodaysAppointments = new ObservableCollection<Appointment>();
