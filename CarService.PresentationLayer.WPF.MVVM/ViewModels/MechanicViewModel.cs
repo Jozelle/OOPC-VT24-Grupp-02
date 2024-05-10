@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Forms.Design;
 using CarService.PresentationLayer.WPF.MVVM.Services;
 using Microsoft.Identity.Client.NativeInterop;
+using CarService.Entities.Enums;
 
 namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 {
@@ -26,6 +27,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 
         private IWindowService windowService;
 
+        private int loggedInId;
         //Properties
         private ObservableCollection<Appointment> todaysAppointments = null!;
         public ObservableCollection<Appointment> TodaysAppointments
@@ -36,7 +38,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
         
-
         private Appointment currentAppointment = null!;
         public Appointment CurrentAppointment
         {
@@ -66,6 +67,17 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
+        private ObservableCollection<Item> currentItems = null!;
+        public ObservableCollection<Item> CurrentItems
+        {
+            get { return currentItems; }
+            set
+            {
+                currentItems = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string inputRegNo = "Please type registration number here!";
         public string InputRegNo
         {
@@ -76,8 +88,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        //private int employeeId;
 
         private bool isNotModified = true;
         public bool IsNotModified { get { return isNotModified; } set { isNotModified = value; OnPropertyChanged(); } }
@@ -110,18 +120,61 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        private string inputItemId;
+        private string inputItemId = null!;
         public string InputItemId
         {
             get { return inputItemId; }
             set 
             { 
                 inputItemId = value;
+                OnPropertyChanged();
             }
         }
 
-        private string itemQuantity;
-        public string ItemQuantity { get; set; }
+        private string itemQuantity = null!;
+        public string ItemQuantity 
+        {
+            get { return itemQuantity; }
+            set
+            {
+                itemQuantity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string inputComment = null!;
+        public string InputComment
+        {
+            get { return inputComment; }
+            set
+            {
+                inputComment = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<AppointmentStatus> appointmentStatuses;
+        public List<AppointmentStatus> AppointmentStatuses 
+        { 
+            get { return appointmentStatuses; }
+            set
+            {
+                appointmentStatuses = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private AppointmentStatus appointmentStatus = AppointmentStatus.Booked;
+        public AppointmentStatus AppointmentStatus
+        {
+            get { return appointmentStatus; }
+            set
+            {
+                appointmentStatus = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MechanicViewModel()
         {
             appointmentController = new AppointmentController();
@@ -130,6 +183,9 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             employeeController = new EmployeeController();
 
             windowService = new WindowService();
+
+            loggedInId = 2;
+            AppointmentStatuses = Enum.GetValues(typeof(AppointmentStatus)).Cast<AppointmentStatus>().ToList();
 
             TodaysAppointments = new ObservableCollection<Appointment>();
 
@@ -142,7 +198,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         public ICommand RefreshCommand => refreshCommand ??= refreshCommand = new RelayCommand(() =>
         {
             TodaysAppointments = new ObservableCollection<Appointment>(appointmentController.GetTodaysAppointments());
-            //MenusSelectedItem = (Menus.Count > 0) ? Menus[0] : null!;
+
             IsNotModified = true;
         });
 
@@ -169,17 +225,19 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             bool result = windowService.ShowDialog(journalViewModel);
         });
 
-        private ICommand getItemsByIdCommand = null!;
-        public ICommand GetItemsByIdCommand => getItemsByIdCommand ??= getItemsByIdCommand = new RelayCommand(() =>
+        private ICommand getItemsCommand = null!;
+        public ICommand GetItemsCommand => getItemsCommand ??= getItemsCommand = new RelayCommand(() =>
         {
             if (int.TryParse(InputItemId, out int id))
             {
-                CurrentItem = itemController.GetItem(id);
+                CurrentItems = [itemController.GetItem(id)];
             }
             else
             {
-                MessageBox.Show("Item ID was not entered correctly, please try again!");
+                CurrentItems = new ObservableCollection<Item>(itemController.GetItemsByDesc(InputItemId));
             }
+
+            CurrentItem = (CurrentItems.Count > 0) ? CurrentItems[0] : null!;
         });
 
         private ICommand addItemCommand = null!;
@@ -189,12 +247,53 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             {
                 if (quantity>0) 
                 {
-                    int affectedRows = appointmentController.EnterItem(currentAppointment, currentItem, quantity);
+                    int affectedRows = appointmentController.EnterItem(CurrentAppointment, CurrentItem, quantity);
+
+                    UsedItem newUsage = new UsedItem();
+                    newUsage.Appointment = CurrentAppointment;
+                    newUsage.Item = CurrentItem;
+                    newUsage.Quantity = quantity;
+
+                    CurrentAppointment.UsedItems.Add(newUsage);
+
                     MessageBox.Show($"{quantity} piece(s) of the item {currentItem.Description} was added!" +
                         $"\n{affectedRows} were affected!");
                 }
             }
             else { MessageBox.Show(quantity.ToString()); };
+        });
+
+        private ICommand addCommentCommand = null!;
+        public ICommand AddCommentCommand => addCommentCommand ??= addCommentCommand = new RelayCommand(() =>
+        {
+            if (InputComment != null)
+            {
+                Employee loggedInEmployee = employeeController.GetEmployee(loggedInId);
+
+                int affectedRows = appointmentController.AddCommentToAppointment(currentAppointment, InputComment, loggedInEmployee);
+                MessageBox.Show($"The comment was added! {affectedRows} were affected.");
+
+                Comment newComment = new Comment();
+                newComment.Appointment = CurrentAppointment;
+                newComment.Message = InputComment;
+                newComment.Author = loggedInEmployee;
+
+                CurrentAppointment.Comments.Add(newComment);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a comment!");
+            }
+        });
+
+        private ICommand updateStatusCommand = null!;
+        public ICommand UpdateStatusCommand => updateStatusCommand ??= updateStatusCommand = new RelayCommand(() =>
+        {
+            CurrentAppointment.Status = AppointmentStatus;
+            int affectedRows = appointmentController.SaveChanges(currentAppointment);
+
+            RefreshCommand.Execute(null);
+            MessageBox.Show("The status was changed!");
         });
     }
 }

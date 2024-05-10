@@ -106,10 +106,11 @@
                         <TextBox Text="{Binding InputItemId}" Opacity="0.5" />
                     </Border>
 
-                    <Button Grid.Column="1" Grid.Row="1" x:Name="SearchItemButton" Content="Search" Command="{Binding GetItemsByIdCommand}"/>
+                    <Button Grid.Column="1" Grid.Row="1" x:Name="SearchItemButton" Content="Search" Command="{Binding GetItemsCommand}"/>
 
                     <Border  Grid.Column="0" Grid.Row="2" >
-                        <TextBox x:Name="ItemDescriptionTB" Opacity="0.5" Text="{Binding CurrentItem.Description}"/>
+                        <ComboBox x:Name="cbItems" Opacity="0.5" ItemsSource="{Binding CurrentItems}"
+                                  SelectedItem="{Binding CurrentItem}"/>
                     </Border>
 
                     <Border Grid.Column="0" Grid.Row="3" >
@@ -119,24 +120,17 @@
                     <Button Grid.Column="1" Grid.Row="3" x:Name="AddItemButton" Content="Add item" Command="{Binding AddItemCommand}"/>
                     <Label Grid.Row="4" Content="Add comment"/>
                     <Border Grid.Column="0" Grid.Row="5">
-                        <TextBox Text="" x:Name="AddCommentTB" Opacity="0.5" />
+                        <TextBox x:Name="AddCommentTB" Opacity="0.5" Text="{Binding InputComment}"/>
                     </Border>
-                    <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment"/>
+                    <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Command="{Binding AddCommentCommand}"/>
 
                     <Border Grid.Column="0" Grid.Row="7">
-                        <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5">
-                            <ComboBoxItem x:Name="CarReceived" Content="Car Received"/>
-                            <ComboBoxItem x:Name="Booked" Content="Booked"/>
-                            <ComboBoxItem x:Name="InProgress" Content="In progress"/>
-                            <ComboBoxItem x:Name="WaitingForParts" Content="Waiting For Parts"/>
-                            <ComboBoxItem x:Name="ReadyForPickup" Content="Ready For Pickup"/>
-                            <ComboBoxItem x:Name="Canceled" Content="Canceled"/>
-                            <ComboBoxItem x:Name="Completed" Content="Completed"/>
-                        </ComboBox>
+                        <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5" ItemsSource="{Binding AppointmentStatuses}" SelectedItem="{Binding AppointmentStatus}"/>
+
                     </Border>
 
 
-                    <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="7" Content="Save" VerticalAlignment="Center" Height="30"/>
+                    <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="7" Content="Save" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}"/>
                 </Grid>
             </StackPanel>
         </Border>
@@ -163,7 +157,7 @@
                     </DataGrid>
                 </Border>
                 <Border Grid.Column="1" Grid.Row="1" >
-                    <ListBox x:Name="addItem2LB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox x:Name="addItem2LB" ItemsSource="{Binding CurrentAppointment.UsedItems}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Height="Auto">
@@ -184,7 +178,7 @@
                     </ListBox>
                 </Border>
                 <Border Grid.Column="1" Grid.Row="2" >
-                    <ListBox x:Name="addCommentLB" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox x:Name="addCommentLB" ItemsSource="{Binding CurrentAppointment.Comments}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Height="Auto">
@@ -195,8 +189,8 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0" Text="{Binding Time}"/>
-                                    <TextBlock Grid.Column="1" Text="{Binding RepairedBy.FirstName}"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding Comment}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Author.FirstName}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Message}"/>
 
                                 </Grid>
 

@@ -6,6 +6,11 @@
         public string Description { get; set; }
         public decimal Price { get; set; }
         public ICollection<UsedItem> UsedItems { get; set; }
+
+        public override string ToString()
+        {
+            return $"{ItemId} - {Description}";
+        }
     }
 
     public class SparePart : Item
