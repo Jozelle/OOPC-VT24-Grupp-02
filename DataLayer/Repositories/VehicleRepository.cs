@@ -14,7 +14,7 @@ namespace CarService.DataLayer.Repositories
 
         public Vehicle? GetByRegistrationNo(string reg)
         {
-            return Context.Set<Vehicle>().Find(reg);
+            return Table.Find(reg);
         }
 
         public List<Appointment> GetJournal(string regNo)

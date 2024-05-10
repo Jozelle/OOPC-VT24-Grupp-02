@@ -23,7 +23,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.Views
         public LoginView()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
         }
     }
 }

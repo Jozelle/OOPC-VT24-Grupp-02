@@ -175,7 +175,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         }
 
         //Constructor
-        public MechanicViewModel(int id)
+        public MechanicViewModel()
         {
             appointmentController = new AppointmentController();
             itemController = new ItemController();
@@ -183,7 +183,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 
             windowService = new WindowService();
 
-            loggedInId = id;
+            loggedInId = 2;
             AppointmentStatuses = Enum.GetValues(typeof(AppointmentStatus)).Cast<AppointmentStatus>().ToList();
 
             TodaysAppointments = new ObservableCollection<Appointment>();
@@ -220,7 +220,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private ICommand showJournal = null!;
         public ICommand ShowJournal => showJournal ??= showJournal = new RelayCommand(() =>
         {
-            JournalViewModel journalViewModel = new JournalViewModel(CurrentVehicle.RegistrationNumber);
+            //JournalViewModel journalViewModel = new JournalViewModel(CurrentVehicle.RegistrationNumber);
+            JournalViewModel journalViewModel = new JournalViewModel();
             bool result = windowService.ShowDialog(journalViewModel);
         });
 

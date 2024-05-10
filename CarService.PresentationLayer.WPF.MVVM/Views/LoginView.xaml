@@ -14,10 +14,13 @@
     </Window.DataContext>
 
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
+
+        <ContentControl Content="{Binding SelectedViewModel}"/>
 
         <Border CornerRadius="10 0 0 10">
             <Border.Background>

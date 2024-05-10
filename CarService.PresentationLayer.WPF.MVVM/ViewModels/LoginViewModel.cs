@@ -20,10 +20,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         public string? Username
         {
             get { return username; }
-            set
-            {
-                username = value;
-            }
+            set { username = value; }
         }
 
         private string password;
@@ -39,8 +36,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         { 
             employeeController = new EmployeeController();
         }
-
-
 
         private ICommand loginCommand;
         public ICommand LoginCommand => loginCommand ??= loginCommand = new RelayCommand(() =>
@@ -60,9 +55,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                         else
                         {
                             //Koppla till AddItems
-                            MechanicView mechanicView = new MechanicView(id);
-                            //this.Close();
-                            mechanicView.ShowDialog();
+
                             MessageBox.Show("Mekaniker!");
                         }
                     }

@@ -24,7 +24,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.Views
         public MechanicView()
         {
             InitializeComponent();
-
         }
     }
 }
