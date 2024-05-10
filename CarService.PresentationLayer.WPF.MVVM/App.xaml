@@ -6,12 +6,6 @@
              xmlns:viewmodels="clr-namespace:CarService.PresentationLayer.WPF.MVVM.ViewModels"
              StartupUri="Views/LoginView.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:MechanicViewModel }">
-            <views:MechanicView/>
-        </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewmodels:JournalViewModel }">
-            <views:Journal/>
-        </DataTemplate>
     </Application.Resources>
 </Application>
