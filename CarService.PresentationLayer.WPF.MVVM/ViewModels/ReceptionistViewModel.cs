@@ -13,10 +13,11 @@ using CarService.Entities.Enums;
 using CarService.PresentationLayer.WPF.MVVM.Services;
 using System.Windows;
 using Microsoft.EntityFrameworkCore.Update.Internal;
+using CarService.PresentationLayer.WPF.MVVM.Stores;
 
 namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 {
-    public class ReceptionistViewModel : ObservableObject
+    public class ReceptionistViewModel : ViewModelBase
     {
 
         //Controllers
@@ -24,13 +25,10 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private VehicleController vehicleController;
         private EmployeeController employeeController;
 
+        private int loggedInId = 5;
 
-        private IWindowService windowService;
-
-        private int loggedInId;
-
-
-
+        private ButtonVisibilityStore buttonVisibilityStore { get; }
+        public ICommand ButtonsShowCommand { get; }
 
         //Properties
 
@@ -156,7 +154,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 
         //Constructor
 
-        public ReceptionistViewModel(int id)
+        public ReceptionistViewModel()
         {
 
             appointmentController = new AppointmentController();
@@ -165,12 +163,13 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 
             Appointments = new ObservableCollection<Appointment>(appointmentController.GetTodaysAppointments());
 
-            windowService = new WindowService();
-
-            loggedInId = id;
             AppointmentsStatuses = Enum.GetValues(typeof(AppointmentStatus)).Cast<AppointmentStatus>().ToList();
 
             TodaysAppointments = new ObservableCollection<Appointment>();
+
+            buttonVisibilityStore = ButtonVisibilityStore.Instance;
+            ButtonsShowCommand = new ButtonsShowCommand(buttonVisibilityStore);
+            ButtonsShowCommand.Execute(buttonVisibilityStore);
 
             RefreshCommand.Execute(null);
         }

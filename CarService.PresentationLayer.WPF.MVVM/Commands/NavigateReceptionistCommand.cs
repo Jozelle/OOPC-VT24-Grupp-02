@@ -17,7 +17,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.Commands
         }
         public override void Execute(object parameter)
         {
-            //_navigationStore.CurrentViewModel = new ReceptionistViewModel();
+            _navigationStore.CurrentViewModel = new ReceptionistViewModel();
         }
     }
 }
