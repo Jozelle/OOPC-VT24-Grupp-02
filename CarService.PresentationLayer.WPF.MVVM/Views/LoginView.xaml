@@ -25,31 +25,39 @@
         <Border CornerRadius="10 0 0 10">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="DarkViolet" Offset="0"/>
-                    <GradientStop Color="DeepPink" Offset="1"/>
+                    <GradientStop Color="Pink" Offset="0"/>
+                    <GradientStop Color="#FFC1587B" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Gummorna" Padding="10" Foreground="Lavender" FontSize="36" FontFamily="Segoe Script" HorizontalAlignment="Center"/>
-                <TextBlock Text="Gearheads" Padding="10" Foreground="Lavender" FontWeight="DemiBold" FontSize="60" HorizontalAlignment="Center"/>
-                <TextBlock Text="Garage" Padding="10" Foreground="Lavender" FontWeight="DemiBold" FontSize="60" HorizontalAlignment="Center"/>
+                <TextBlock Text=" Sign in" FontFamily="Segoe Script" FontSize="72" RenderTransformOrigin="0.5,0.5">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-35.655"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
             </StackPanel>
 
 
         </Border>
 
         <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Sign in"/>
-                <TextBlock Text="EmployeeID" Foreground="Purple" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
+            <StackPanel VerticalAlignment="Center" Margin="20 20 20 20">
+                <Image Source="/Views/ggg_transparent.png" Height="201" Width="309" />
+                
+                <TextBlock Text="EmployeeID" Foreground="#FFC1587B" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
 
-                <Border BorderThickness="1" BorderBrush="Purple" Margin="70 7" CornerRadius="5">
+                <Border BorderThickness="1" BorderBrush="#FFC1587B" Margin="70 7" CornerRadius="5">
                     <TextBox x:Name="tbxEmployeeID" FontSize="14" Text="{Binding Username}"/>
                 </Border>
 
-                <TextBlock Text="Password" Foreground="Purple" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
+                <TextBlock Text="Password" Foreground="#FFC1587B" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
 
-                <Border BorderThickness="1" BorderBrush="Purple" Margin="70 7" CornerRadius="5">
+                <Border BorderThickness="1" BorderBrush="#FFC1587B" Margin="70 7" CornerRadius="5">
                     <local:PasswordUserControl x:Name="passwordBox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Border>
                 <Button x:Name="btnSignIn" Content="Sign in" Width="336"  Margin="5" Command="{Binding LoginCommand}"/>

@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:CarService.PresentationLayer.WPF.MVVM.ViewModels"
         mc:Ignorable="d" 
         WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="Mechanic View" Height="630" Width="1200">
+        Title="Mechanic View" Height="630" Width="1000">
 
     <Window.DataContext>
         <vm:MechanicViewModel/>
@@ -29,13 +29,15 @@
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="65"/>
                         <ColumnDefinition Width="65"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Mechanic view"/>
-                    <Button Grid.Column="1" x:Name="RefreshButton" Content="Refresh" Command="{Binding RefreshCommand}"/>
-                    <Button Grid.Column="2" x:Name="ExitButton" Content="Exit" Command="{Binding ExitCommand}"/>
+                    <Image Source="/Views/ggg_transparent_cropped.png"/>
+                    <TextBlock Text="Mechanic view" Grid.Column="1" FontSize="20"/>
+                    <Button Grid.Column="2" x:Name="RefreshButton" Content="Refresh" Command="{Binding RefreshCommand}"/>
+                    <Button Grid.Column="3" x:Name="ExitButton" Content="Exit" Command="{Binding ExitCommand}"/>
                 </Grid>
 
                 <Label Content="Search for appointment by vehicle registration number or choose from the list to the right." />
@@ -183,7 +185,7 @@
                             <DataTemplate>
                                 <Grid Height="Auto">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
