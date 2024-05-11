@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
-namespace CarService.PresentationLayer.WPF.MVVM.Views
+namespace CarService.PresentationLayer.WPF.MVVM
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
