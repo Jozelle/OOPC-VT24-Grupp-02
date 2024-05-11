@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarService.PresentationLayer.WPF.MVVM.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using CarService.PresentationLayer.WPF.MVVM.Services;
-using CarService.PresentationLayer.WPF.MVVM.ViewModels;
 
 namespace CarService.PresentationLayer.WPF.MVVM.Views
 {
     /// <summary>
-    /// Interaction logic for MechanicView.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class MechanicView : Window
+    public partial class LoginView : Window
     {
-        public MechanicView()
+        public LoginView()
         {
             InitializeComponent();
         }

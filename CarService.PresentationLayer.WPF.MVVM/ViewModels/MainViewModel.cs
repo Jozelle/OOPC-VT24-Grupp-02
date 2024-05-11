@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel 
     {
         private ICommand exitCommand = null!;
         public ICommand ExitCommand => exitCommand ??= exitCommand = new RelayCommand(() => App.Current.Shutdown());
