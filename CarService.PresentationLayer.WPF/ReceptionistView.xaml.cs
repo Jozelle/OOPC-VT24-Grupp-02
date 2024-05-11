@@ -98,7 +98,7 @@ namespace CarService.PresentationLayer.WPF
         {
             if (currentAppointment != null)
             {
-                int selected = StausBox.SelectedIndex;
+                int selected = StatusBox.SelectedIndex;
                 int index = _appointments.IndexOf(currentAppointment);
                 switch (selected)
                 {
