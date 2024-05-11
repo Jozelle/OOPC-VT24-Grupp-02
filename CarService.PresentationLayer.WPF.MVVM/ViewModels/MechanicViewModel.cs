@@ -22,7 +22,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         //Controllers
         private AppointmentController appointmentController;
         private ItemController itemController;
-        private VehicleController vehicleController;
         private EmployeeController employeeController;
 
         private IWindowService windowService;
@@ -175,11 +174,11 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
+        //Constructor
         public MechanicViewModel()
         {
             appointmentController = new AppointmentController();
             itemController = new ItemController();
-            vehicleController = new VehicleController();
             employeeController = new EmployeeController();
 
             windowService = new WindowService();
@@ -221,7 +220,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private ICommand showJournal = null!;
         public ICommand ShowJournal => showJournal ??= showJournal = new RelayCommand(() =>
         {
-            JournalViewModel journalViewModel = new JournalViewModel(CurrentVehicle.RegistrationNumber);
+            //JournalViewModel journalViewModel = new JournalViewModel(CurrentVehicle.RegistrationNumber);
+            JournalViewModel journalViewModel = new JournalViewModel();
             bool result = windowService.ShowDialog(journalViewModel);
         });
 
