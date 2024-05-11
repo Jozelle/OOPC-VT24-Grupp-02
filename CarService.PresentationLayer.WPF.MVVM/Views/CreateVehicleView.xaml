@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="CarService.PresentationLayer.WPF.MVVM.Views.CreateVehicleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CarService.PresentationLayer.WPF.MVVM.Views"
+             xmlns:vm="clr-namespace:CarService.PresentationLayer.WPF.MVVM.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:CreateVehicleViewModel/>
+    </UserControl.DataContext>
+
+    <Grid Background="LavenderBlush">
+
+
+
+
+        <Button Grid.Column="0" Content="Add new vehicle" VerticalAlignment="Center" Height="30" Command="{Binding AddVehicleCommand}"/>
+    </Grid>
+</UserControl>

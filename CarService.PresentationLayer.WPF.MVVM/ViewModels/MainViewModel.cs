@@ -22,6 +22,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         public ICommand NavigateReceptionistCommand;
         public ICommand NavigateJournalCommand;
         public ICommand NavigateLogoutCommand;
+        public ICommand NavigateCreateAppCommand;
         public ICommand ButtonsHideCommand;
 
         public MainViewModel(NavigationStore navigationStore, ButtonVisibilityStore buttonVisibilityStore)
@@ -74,6 +75,14 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             NavigateReceptionistCommand = new NavigateReceptionistCommand(_navigationStore);
 
             NavigateReceptionistCommand.Execute(1);
+        });
+
+        private ICommand goToCreateAppViewCommand;
+        public ICommand GoToCreateAppViewCommand => goToCreateAppViewCommand ??= goToCreateAppViewCommand = new RelayCommand(() =>
+        {
+            NavigateCreateAppCommand = new NavigateCreateAppCommand(_navigationStore);
+
+            NavigateCreateAppCommand.Execute(1);
         });
 
         private ICommand logoutCommand;
