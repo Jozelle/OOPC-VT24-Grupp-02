@@ -35,6 +35,13 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
+        private string searchCustomerString;
+        public string SearchCustomerString
+        {
+            get { return searchCustomerString; }
+            set { searchCustomerString = value; }
+        }
+
         private Customer currentCustomer = null!;
         public Customer CurrentCustomer
         {
@@ -143,10 +150,10 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private ICommand searchVehicleCommand = null!;
         public ICommand SearchVehicleCommand => searchVehicleCommand ??= searchVehicleCommand = new RelayCommand(() =>
         {
-            if(RegistrationNumber  != "Registration number")
+            if (RegistrationNumber != "Registration number")
             {
                 CurrentVehicle = vehicleController.GetVehicle(RegistrationNumber);
-                if(CurrentVehicle == null)
+                if (CurrentVehicle == null)
                 {
                     MessageBox.Show("No vehicle could be found, please try again.");
                 }
@@ -156,11 +163,11 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private ICommand saveVehicleCommand = null!;
         public ICommand SaveVehicleCommand => saveVehicleCommand ??= saveVehicleCommand = new RelayCommand(() =>
         {
-            if(CurrentVehicle == null)
+            if (CurrentVehicle == null)
             {
                 MessageBox.Show("Please search for a vehicle before you try making changes.");
             }
-            else if(CurrentVehicle.RegistrationNumber != RegistrationNumber)
+            else if (CurrentVehicle.RegistrationNumber != RegistrationNumber)
             {
                 MessageBox.Show("Something went wrong, please enter vehicle details and try again!");
                 CurrentVehicle = null!;
@@ -187,21 +194,40 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         {
             if (SearchTypeIndex == 0)
             {
-                currentCustomer = customerController.GetCustomerBySSN(SocialSecurityNumber);
+                CurrentCustomer = customerController.GetCustomerBySSN(SocialSecurityNumber);
             }
             else if (SearchTypeIndex == 1)
             {
-                currentCustomer = customerController.GetCustomerByPhone(PhoneNumber);
+                CurrentCustomer = customerController.GetCustomerByPhone(PhoneNumber);
             }
             else if (SearchTypeIndex == 2)
             {
-                currentCustomer = customerController.GetCustomerByFullName(FirstName, LastName);
+                CurrentCustomer = customerController.GetCustomerByFullName(FirstName, LastName);
             }
             else if (SearchTypeIndex == -1)
             {
                 MessageBox.Show("Please choose what to search by in the drop down menu.");
                 return;
             }
+
+            if (CurrentCustomer == null)
+            {
+                MessageBox.Show("Nothing was found!");
+            }
+        });
+        private ICommand saveCustomerCommand = null!;
+        public ICommand SaveCustomerCommand => saveCustomerCommand ??= saveCustomerCommand = new RelayCommand(() =>
+        {
+            int rowsChanged = customerController.UpdateCustomer(currentCustomer);
+            if (rowsChanged > 0)
+            {
+                MessageBox.Show($"The changes has been saved! {rowsChanged}");
+            }
+            if (rowsChanged == -1)
+            {
+                MessageBox.Show("Something went wrong, please try again!");
+            }
         });
     }
+
 }

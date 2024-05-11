@@ -9,15 +9,16 @@
         Width="1200" Height="800" WindowStartupLocation="CenterScreen" WindowStyle="None" 
         AllowsTransparency="True" Background="Transparent" Title="Gorgeous Gearheads Garage"
         mc:Ignorable="d" >
-    
+
     <Window.DataContext>
         <vm:MainViewModel />
-    </Window.DataContext>  
-    
+    </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="963*"/>
         </Grid.ColumnDefinitions>
 
         <Border CornerRadius="10 0 0 10">
@@ -27,20 +28,37 @@
                     <GradientStop Color="#FFC1587B" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <StackPanel>
                 <Image Source="/ggg_transparent.png" Margin="10" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
 
-                <Button x:Name="ReceptionistButton" Content="Receptionist" Height="50" Margin="10" Command="{Binding GoToReceptionistViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button x:Name="CreateButton" Content="Create appointment" Height="50" Margin="10" Command="{Binding GoToCreateAppViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button x:Name="ManageButton" Content="Manage appointment" Height="50" Margin="10" Command="{Binding GoToMechanicViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button x:Name="JournalButton" Content="Journals" Height="50" Margin="10" Command="{Binding GoToJournalViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button x:Name="LogoutButton" Content="Log out" Height="50" Margin="10" Command="{Binding LogoutCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button x:Name="ExitButton" Content="Exit" Height="50" Margin="10" Command="{Binding ExitCommand}"/>
-            </StackPanel>
+                <Button Content="Receptionist" Height="50" Margin="10" Grid.Row="2" Command="{Binding GoToReceptionistViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
+                <Button Content="Create appointment" Height="50" Margin="10" Grid.Row="3" Command="{Binding GoToCreateAppViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
+                <Button Content="Manage appointment" Height="50" Margin="10" Grid.Row="4" Command="{Binding GoToMechanicViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
+                <Button Content="Journals" Height="50" Margin="10" Grid.Row="5" Command="{Binding GoToJournalViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
+                <Button Content="Log out" Height="50" Margin="10" Grid.Row="6" Command="{Binding LogoutCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
+                <Button Content="Exit" Height="50" Margin="10" Grid.Row="7" Command="{Binding ExitCommand}"/>
+
+                <StackPanel Grid.Row="8">
+                    <Label Content="Grupp 2:"/>
+                    <Label Content="Caroline Swanpalmer"/>
+                    <Label Content="Johanna Gull"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
-        <ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1">
+        <ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1" Grid.ColumnSpan="2">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vm:LoginViewModel}">
                     <views:LoginView/>
