@@ -1,60 +1,31 @@
-﻿<Window x:Class="CarService.PresentationLayer.WPF.MVVM.Views.LoginView"
+﻿<UserControl x:Class="CarService.PresentationLayer.WPF.MVVM.Views.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.PresentationLayer.WPF.MVVM.Views"
         xmlns:vm="clr-namespace:CarService.PresentationLayer.WPF.MVVM.ViewModels"
-        mc:Ignorable="d" 
-        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="Login" Height="500" Width="800">
-
-    <Window.DataContext>
-        <vm:LoginViewModel/>
-    </Window.DataContext>
+        mc:Ignorable="d">
 
     <Grid>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1.5*"/>
-        </Grid.ColumnDefinitions>
+        <Border Background="LavenderBlush">
+            <StackPanel VerticalAlignment="Center" Margin="20 20 20 20">
+                <Image Source="/Views/ggg_transparent.png" Height="201" Width="309" />
+                
+                <TextBlock Text="EmployeeID" Foreground="#FFC1587B" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
 
-        <ContentControl Content="{Binding SelectedViewModel}"/>
-
-        <Border CornerRadius="10 0 0 10">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="DarkViolet" Offset="0"/>
-                    <GradientStop Color="DeepPink" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Gummorna" Padding="10" Foreground="Lavender" FontSize="36" FontFamily="Segoe Script" HorizontalAlignment="Center"/>
-                <TextBlock Text="Gearheads" Padding="10" Foreground="Lavender" FontWeight="DemiBold" FontSize="60" HorizontalAlignment="Center"/>
-                <TextBlock Text="Garage" Padding="10" Foreground="Lavender" FontWeight="DemiBold" FontSize="60" HorizontalAlignment="Center"/>
-            </StackPanel>
-
-
-        </Border>
-
-        <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Sign in"/>
-                <TextBlock Text="EmployeeID" Foreground="Purple" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
-
-                <Border BorderThickness="1" BorderBrush="Purple" Margin="70 7" CornerRadius="5">
+                <Border BorderThickness="1" BorderBrush="#FFC1587B" Margin="70 7" CornerRadius="5">
                     <TextBox x:Name="tbxEmployeeID" FontSize="14" Text="{Binding Username}"/>
                 </Border>
 
-                <TextBlock Text="Password" Foreground="Purple" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
+                <TextBlock Text="Password" Foreground="#FFC1587B" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
 
-                <Border BorderThickness="1" BorderBrush="Purple" Margin="70 7" CornerRadius="5">
+                <Border BorderThickness="1" BorderBrush="#FFC1587B" Margin="70 7" CornerRadius="5">
                     <local:PasswordUserControl x:Name="passwordBox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Border>
                 <Button x:Name="btnSignIn" Content="Sign in" Width="336"  Margin="5" Command="{Binding LoginCommand}"/>
-                <Button x:Name="btnExit" Content="Exit" Width="336" Margin="5" Command="{Binding ExitCommand}"/>
             </StackPanel>
         </Border>
     </Grid>
-</Window>
+</UserControl>
