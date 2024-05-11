@@ -18,6 +18,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private EmployeeController employeeController;
 
         public ICommand NavigateMechanicCommand { get; }
+        public ICommand NavigateReceptionistCommand { get; }
 
         private string? username;
         public string? Username
@@ -41,7 +42,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         { 
             employeeController = new EmployeeController();
             NavigateMechanicCommand = new NavigateMechanicCommand(navigationStore);
-
+            NavigateReceptionistCommand = new NavigateReceptionistCommand(navigationStore);
         }
 
         private ICommand loginCommand;
@@ -53,8 +54,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 {
                     if (employeeController.IsReceptionist(id))
                     {
-
-                        MessageBox.Show("Receptionist!");
+                        NavigateReceptionistCommand.Execute(id);
                     }
                     else
                     {

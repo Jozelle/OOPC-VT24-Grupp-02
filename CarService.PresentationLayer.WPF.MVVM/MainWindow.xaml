@@ -31,7 +31,7 @@
             <StackPanel>
                 <Image Source="/ggg_transparent.png" Margin="10" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
 
-                <Button x:Name="ReceptionistButton" Content="Receptionist" Height="50" Margin="10" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
+                <Button x:Name="ReceptionistButton" Content="Receptionist" Height="50" Margin="10" Command="{Binding GoToReceptionistViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
                 <Button x:Name="CreateButton" Content="Create appointment" Height="50" Margin="10" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
                 <Button x:Name="ManageButton" Content="Manage appointment" Height="50" Margin="10" Command="{Binding GoToMechanicViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
                 <Button x:Name="JournalButton" Content="Journals" Height="50" Margin="10" Command="{Binding GoToJournalViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
@@ -48,6 +48,10 @@
 
                 <DataTemplate DataType="{x:Type vm:MechanicViewModel}">
                     <views:MechanicView/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type vm:ReceptionistViewModel}">
+                    <views:ReceptionistView/>
                 </DataTemplate>
 
                 <DataTemplate DataType="{x:Type vm:JournalViewModel}">
