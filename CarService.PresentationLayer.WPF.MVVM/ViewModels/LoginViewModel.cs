@@ -1,5 +1,6 @@
 ﻿using CarService.BusinessLayer;
 using CarService.PresentationLayer.WPF.MVVM.Commands;
+using CarService.PresentationLayer.WPF.MVVM.Stores;
 using CarService.PresentationLayer.WPF.MVVM.Views;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ using System.Windows.Input;
 
 namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel : ViewModelBase
     {
         private EmployeeController employeeController;
-        
+
+        public ICommand NavigateMechanicCommand { get; }
+
         private string? username;
         public string? Username
         {
@@ -32,51 +35,41 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 password = value;
             }
         }
-        public LoginViewModel() 
+
+        public LoginViewModel(NavigationStore navigationStore)
+        //public LoginViewModel()
         { 
             employeeController = new EmployeeController();
+            NavigateMechanicCommand = new NavigateMechanicCommand(navigationStore);
+
         }
 
         private ICommand loginCommand;
         public ICommand LoginCommand => loginCommand ??= loginCommand = new RelayCommand(() =>
+        {
+            if (Username.Length > 0 && int.TryParse(Username, out int id))
             {
-                if (Username.Length > 0 && int.TryParse(Username, out int id))
+                if (employeeController.VerifyUser(id, Password))
                 {
-                    if (employeeController.VerifyUser(id, Password))
+                    if (employeeController.IsReceptionist(id))
                     {
-                        if (employeeController.IsReceptionist(id))
-                        {
-                            //koppla till main
-                            //ReceptionistView receptionistView = new ReceptionistView(id);
-                            //this.Close();
-                            //receptionistView.ShowDialog();
-                            MessageBox.Show("Receptionist!");
-                        }
-                        else
-                        {
-                            //Koppla till AddItems
 
-                            MessageBox.Show("Mekaniker!");
-                        }
+                        MessageBox.Show("Receptionist!");
                     }
                     else
                     {
-                        MessageBox.Show("Felaktigt användarnamn eller lösenord, försök igen!");
+                        NavigateMechanicCommand.Execute(id);
                     }
                 }
                 else
                 {
                     MessageBox.Show("Felaktigt användarnamn eller lösenord, försök igen!");
                 }
-            });
-
-
-        //private ICommand closeCommand = null!;
-        //public ICommand CloseCommand => closeCommand ??= closeCommand = new RelayCommand(() => LoginViewModel.Current.Close());
-
-
-        private ICommand exitCommand = null!;
-        public ICommand ExitCommand => exitCommand ??= exitCommand = new RelayCommand(() => App.Current.Shutdown());
-
+            }
+            else
+            {
+                MessageBox.Show("Felaktigt användarnamn eller lösenord, försök igen!");
+            }
+        });
     }
 }
