@@ -19,7 +19,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.Views
     /// <summary>
     /// Interaction logic for ReceptionistView.xaml
     /// </summary>
-    public partial class ReceptionistView : Window
+    public partial class ReceptionistView : UserControl
     {
         public ReceptionistView()
         {

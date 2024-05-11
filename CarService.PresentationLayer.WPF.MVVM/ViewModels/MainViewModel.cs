@@ -19,6 +19,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         public bool IsButtonsVisible => _buttonVisibilityStore.CurrentButtonVisibility;
 
         public ICommand NavigateMechanicCommand;
+        public ICommand NavigateReceptionistCommand;
         public ICommand NavigateJournalCommand;
         public ICommand NavigateLogoutCommand;
         public ICommand ButtonsHideCommand;
@@ -65,6 +66,14 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             NavigateJournalCommand = new NavigateJournalCommand(_navigationStore);
             
             NavigateJournalCommand.Execute(1);
+        });
+
+        private ICommand goToReceptionistViewCommand;
+        public ICommand GoToReceptionistViewCommand => goToReceptionistViewCommand ??= goToReceptionistViewCommand = new RelayCommand(() =>
+        {
+            NavigateReceptionistCommand = new NavigateReceptionistCommand(_navigationStore);
+
+            NavigateReceptionistCommand.Execute(1);
         });
 
         private ICommand logoutCommand;

@@ -26,7 +26,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private EmployeeController employeeController;
 
         private int loggedInId;
-        public ICommand NavigateJournalCommand { get; }
         private ButtonVisibilityStore buttonVisibilityStore { get; }
         public ICommand ButtonsShowCommand { get; }
         //Properties
@@ -177,7 +176,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         }
 
         //Constructor
-        //public MechanicViewModel(NavigationStore navigationStore)
         public MechanicViewModel()
         {
             appointmentController = new AppointmentController();
@@ -193,11 +191,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             ButtonsShowCommand = new ButtonsShowCommand(buttonVisibilityStore);
             ButtonsShowCommand.Execute(buttonVisibilityStore);
 
-            //NavigateJournalCommand = new NavigateJournalCommand(navigationStore);
-
             RefreshCommand.Execute(null);
         }
-
 
         //Commands
         private ICommand refreshCommand = null!;
