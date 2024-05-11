@@ -14,19 +14,21 @@ using System.Windows.Forms.Design;
 using CarService.PresentationLayer.WPF.MVVM.Services;
 using Microsoft.Identity.Client.NativeInterop;
 using CarService.Entities.Enums;
+using CarService.PresentationLayer.WPF.MVVM.Stores;
 
 namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 {
-    public class MechanicViewModel : ObservableObject
+    public class MechanicViewModel : ViewModelBase
     {
         //Controllers
         private AppointmentController appointmentController;
         private ItemController itemController;
         private EmployeeController employeeController;
 
-        private IWindowService windowService;
-
         private int loggedInId;
+        public ICommand NavigateJournalCommand { get; }
+        private ButtonVisibilityStore buttonVisibilityStore { get; }
+        public ICommand ButtonsShowCommand { get; }
         //Properties
         private ObservableCollection<Appointment> todaysAppointments = null!;
         public ObservableCollection<Appointment> TodaysAppointments
@@ -175,18 +177,23 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         }
 
         //Constructor
+        //public MechanicViewModel(NavigationStore navigationStore)
         public MechanicViewModel()
         {
             appointmentController = new AppointmentController();
             itemController = new ItemController();
             employeeController = new EmployeeController();
 
-            windowService = new WindowService();
-
             loggedInId = 2;
             AppointmentStatuses = Enum.GetValues(typeof(AppointmentStatus)).Cast<AppointmentStatus>().ToList();
 
             TodaysAppointments = new ObservableCollection<Appointment>();
+
+            buttonVisibilityStore = ButtonVisibilityStore.Instance;
+            ButtonsShowCommand = new ButtonsShowCommand(buttonVisibilityStore);
+            ButtonsShowCommand.Execute(buttonVisibilityStore);
+
+            //NavigateJournalCommand = new NavigateJournalCommand(navigationStore);
 
             RefreshCommand.Execute(null);
         }
@@ -221,8 +228,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         public ICommand ShowJournal => showJournal ??= showJournal = new RelayCommand(() =>
         {
             //JournalViewModel journalViewModel = new JournalViewModel(CurrentVehicle.RegistrationNumber);
-            JournalViewModel journalViewModel = new JournalViewModel();
-            bool result = windowService.ShowDialog(journalViewModel);
         });
 
         private ICommand getItemsCommand = null!;

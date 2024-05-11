@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ggg_transparent.png" />
     <None Remove="Views\ggg_transparent.png" />
     <None Remove="Views\ggg_transparent_cropped.png" />
   </ItemGroup>
@@ -24,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="ggg_transparent.png" />
     <Resource Include="Views\ggg_transparent.png" />
     <Resource Include="Views\ggg_transparent_cropped.png" />
   </ItemGroup>
