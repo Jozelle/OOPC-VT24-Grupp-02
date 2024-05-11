@@ -19,7 +19,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.Views
     /// <summary>
     /// Interaction logic for MechanicView.xaml
     /// </summary>
-    public partial class MechanicView : Window
+    public partial class MechanicView : UserControl
     {
         public MechanicView()
         {

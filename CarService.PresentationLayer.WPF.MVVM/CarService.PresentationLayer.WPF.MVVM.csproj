@@ -9,12 +9,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ggg_transparent.png" />
+    <None Remove="Views\ggg_transparent.png" />
+    <None Remove="Views\ggg_transparent_cropped.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\CarService.BusinessLayer.csproj" />
     <ProjectReference Include="..\Entities\CarService.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Converters\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ggg_transparent.png" />
+    <Resource Include="Views\ggg_transparent.png" />
+    <Resource Include="Views\ggg_transparent_cropped.png" />
   </ItemGroup>
 
 </Project>
