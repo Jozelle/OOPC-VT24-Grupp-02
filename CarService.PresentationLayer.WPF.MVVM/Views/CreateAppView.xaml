@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CarService.PresentationLayer.WPF.MVVM.Views"
              xmlns:vm="clr-namespace:CarService.PresentationLayer.WPF.MVVM.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="753">
+             mc:Ignorable="d">
 
     <UserControl.DataContext>
         <vm:CreateAppViewModel/>
@@ -52,8 +52,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -62,27 +61,40 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <TextBox Text="{Binding FirstName}" Height="30" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
-            <TextBox Text="{Binding LastName}" Grid.Column="3"  Grid.Row="0" Grid.ColumnSpan="3"/>
-            <TextBox Text="{Binding SocialSecurityNumber}" Grid.Row="1" Grid.ColumnSpan="6"/>
-            <TextBox Text="{Binding Address}" Grid.Row="2" Grid.ColumnSpan="3"/>
-            <TextBox Text="{Binding PostalCode}" Grid.Column="3" Grid.Row="2"/>
-            <TextBox Text="{Binding City}" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2"/>
-            <TextBox Text="{Binding PhoneNumber}" Grid.Row="3" Grid.ColumnSpan="3" />
-            <TextBox Text="{Binding Email}" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3"/>
-
-            <Label Content="Select search parameter" HorizontalAlignment="Left" Grid.Row="4" Grid.ColumnSpan="2" Height="30"/>
-
-            <ComboBox x:Name="SelectionBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" SelectedIndex="{Binding SearchTypeIndex}">
+            <TextBox Text="{Binding SearchCustomerString}" Grid.Column="1"/>
+            <ComboBox Grid.Column="2" SelectedIndex="{Binding SearchTypeIndex}">
                 <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
                 <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
                 <ComboBoxItem x:Name="FullName" Content="Full name"/>
             </ComboBox>
+            <Button Grid.Column="3" Content="Search" Command="{Binding SearchCustomerCommand}" Height="30"/>
 
-            <Button Grid.Column="4" Grid.ColumnSpan="2" Content="Search" Command="{Binding SearchCustomerCommand}" Grid.Row="4" Height="30"/>
-            <Button x:Name="btn_SaveCustomer" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="5" Content="Save changes" VerticalAlignment="Center" Height="30"/>
+            <Label Content="First name" Grid.Row="1"/>
+            <TextBox Text="{Binding CurrentCustomer.FirstName}" Height="30" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+
+            <Label Content="Last name" Grid.Row="2"/>
+            <TextBox Text="{Binding CurrentCustomer.LastName}" Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="3"/>
+
+            <Label Content="Social Security Number" Grid.Row="3"/>
+            <TextBox Text="{Binding CurrentCustomer.SocialSecurityNumber}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"/>
+
+            <Label Content="Address" Grid.Row="4"/>
+            <TextBox Text="{Binding CurrentCustomer.Address}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"/>
+            <TextBox Text="{Binding CurrentCustomer.PostalCode}" Grid.Column="1" Grid.Row="5"/>
+            <TextBox Text="{Binding CurrentCustomer.City}" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"/>
+
+            <Label Content="Phone number" Grid.Row="6"/>
+            <TextBox Text="{Binding CurrentCustomer.PhoneNumber}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" />
+
+            <Label Content="Email" Grid.Row="7"/>
+            <TextBox Text="{Binding CurrentCustomer.Email}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3"/>
+
+            <Button Grid.Column="3" Grid.Row="8" Content="Save changes" Height="30"/>
         </Grid>
 
 
