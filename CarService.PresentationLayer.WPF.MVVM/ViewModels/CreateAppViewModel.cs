@@ -16,6 +16,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
     {
         private VehicleController vehicleController = null!;
         private CustomerController customerController = null!;
+        private AppointmentController appointmentController = null!;
 
         private string registrationNumber = "Registration number";
         public string RegistrationNumber
@@ -42,6 +43,13 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             set { searchCustomerString = value; }
         }
 
+        private int searchTypeIndex = 0;
+        public int SearchTypeIndex
+        {
+            get { return searchTypeIndex; }
+            set { searchTypeIndex = value; }
+        }
+
         private Customer currentCustomer = null!;
         public Customer CurrentCustomer
         {
@@ -52,100 +60,33 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-        private string firstName = "First name";
-        public string FirstName
+
+        private string errorDescription;
+        public string ErrorDescription
         {
-            get { return firstName; }
-            set
-            {
-                firstName = value;
+            get { return errorDescription; }
+            set 
+            { 
+                errorDescription = value;
                 OnPropertyChanged();
             }
         }
-        private string lastName = "Last Name";
-        public string LastName
+        private DateTime choosenDateTime = DateTime.Now;
+        public DateTime ChoosenDateTime
         {
-            get { return lastName; }
+            get { return choosenDateTime; }
             set
             {
-                lastName = value;
+                choosenDateTime = value;
                 OnPropertyChanged();
             }
         }
-        private string socialSecurityNumber = "Social Security Number";
-        public string SocialSecurityNumber
-        {
-            get { return socialSecurityNumber; }
-            set
-            {
-                socialSecurityNumber = value;
-                OnPropertyChanged();
-            }
-        }
-        private string address = "Last Name";
-        public string Address
-        {
-            get { return address; }
-            set
-            {
-                address = value;
-                OnPropertyChanged();
-            }
-        }
-        private string postalCode = "Postal Code";
-        public string PostalCode
-        {
-            get { return postalCode; }
-            set
-            {
-                postalCode = value;
-                OnPropertyChanged();
-            }
-        }
-        private string city = "City";
-        public string City
-        {
-            get { return city; }
-            set
-            {
-                city = value;
-                OnPropertyChanged();
-            }
-        }
-        private string phoneNumber = "Phone Number";
-        public string PhoneNumber
-        {
-            get { return phoneNumber; }
-            set
-            {
-                phoneNumber = value;
-                OnPropertyChanged();
-            }
-        }
-        private string email = "Email";
-        public string Email
-        {
-            get { return email; }
-            set
-            {
-                email = value;
-                OnPropertyChanged();
-            }
-        }
-        private int searchTypeIndex = 0;
-        public int SearchTypeIndex
-        {
-            get { return searchTypeIndex; }
-            set
-            {
-                searchTypeIndex = value;
-                OnPropertyChanged();
-            }
-        }
+
         public CreateAppViewModel()
         {
             vehicleController = new VehicleController();
             customerController = new CustomerController();
+            appointmentController = new AppointmentController();
         }
         private ICommand searchVehicleCommand = null!;
         public ICommand SearchVehicleCommand => searchVehicleCommand ??= searchVehicleCommand = new RelayCommand(() =>
@@ -167,7 +108,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             {
                 MessageBox.Show("Please search for a vehicle before you try making changes.");
             }
-            else if (CurrentVehicle.RegistrationNumber != RegistrationNumber)
+            else if (CurrentVehicle.RegistrationNumber.ToUpper() != RegistrationNumber.ToUpper())
             {
                 MessageBox.Show("Something went wrong, please enter vehicle details and try again!");
                 CurrentVehicle = null!;
@@ -194,15 +135,16 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         {
             if (SearchTypeIndex == 0)
             {
-                CurrentCustomer = customerController.GetCustomerBySSN(SocialSecurityNumber);
+                CurrentCustomer = customerController.GetCustomerBySSN(SearchCustomerString);
             }
             else if (SearchTypeIndex == 1)
             {
-                CurrentCustomer = customerController.GetCustomerByPhone(PhoneNumber);
+                CurrentCustomer = customerController.GetCustomerByPhone(SearchCustomerString);
             }
             else if (SearchTypeIndex == 2)
             {
-                CurrentCustomer = customerController.GetCustomerByFullName(FirstName, LastName);
+                string[] splitString = SearchCustomerString.Split(" ", StringSplitOptions.TrimEntries);
+                CurrentCustomer = customerController.GetCustomerByFullName(splitString[0], splitString[1]);
             }
             else if (SearchTypeIndex == -1)
             {
@@ -223,9 +165,49 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             {
                 MessageBox.Show($"The changes has been saved! {rowsChanged}");
             }
-            if (rowsChanged == -1)
+            else if (rowsChanged == -1)
             {
                 MessageBox.Show("Something went wrong, please try again!");
+            }
+            else
+            {
+                MessageBox.Show("No changes was made.");
+            }
+        });
+
+        private ICommand saveAppointmentCommand = null!;
+        public ICommand SaveAppointmentCommand => saveAppointmentCommand ??= saveAppointmentCommand = new RelayCommand(() =>
+        {
+            if (CurrentVehicle == null)
+            {
+                MessageBox.Show("Please select a vehicle.");
+            }
+            else if (CurrentCustomer == null)
+            {
+                MessageBox.Show("Please select a customer.");
+            }
+            else if (ChoosenDateTime < DateTime.Today)
+            {
+                MessageBox.Show("The date has passed, select another date.");
+            }
+            else
+            {
+                Appointment appointment = new Appointment();
+                {
+                    appointment.SubmissionDate = ChoosenDateTime;
+                    appointment.DeliveryDate = ChoosenDateTime.AddDays(1);
+                    appointment.Status = Entities.Enums.AppointmentStatus.Booked;
+                    appointment.Purpose = ErrorDescription;
+                    appointment.VehicleRegistrationNumber = CurrentVehicle.RegistrationNumber;
+                    appointment.CreatedById = 2;
+                    appointment.CustomerId = CurrentCustomer.CustomerID;
+                }
+                int rowsChanged = appointmentController.CreateAppointment(appointment);
+                if (rowsChanged > 0)
+                {
+                    MessageBox.Show($"Appointment was saved! {rowsChanged}");
+                    //Print bekräftelse
+                }
             }
         });
     }
