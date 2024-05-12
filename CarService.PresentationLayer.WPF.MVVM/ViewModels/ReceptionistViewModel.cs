@@ -145,13 +145,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-       
-
-      
-
-
-
-
         //Constructor
 
         public ReceptionistViewModel()
@@ -173,10 +166,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 
             RefreshCommand.Execute(null);
         }
-
-
-
-
 
         //Commands
 
