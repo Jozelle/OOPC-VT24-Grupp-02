@@ -20,14 +20,14 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         public ICommand NavigateMechanicCommand { get; }
         public ICommand NavigateReceptionistCommand { get; }
 
-        private string? username;
+        private string? username = null!;
         public string? Username
         {
             get { return username; }
             set { username = value; }
         }
 
-        private string password;
+        private string password = null!;
         public string Password
         {
             get { return password; }
@@ -36,16 +36,22 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 password = value;
             }
         }
-
+      
+        public LoginViewModel()
+        {
+            employeeController = new EmployeeController();
+            NavigationStore navigationStore = NavigationStore.Instance;
+            NavigateMechanicCommand = new NavigateMechanicCommand(navigationStore);
+            NavigateReceptionistCommand = new NavigateReceptionistCommand(navigationStore);
+        }
         public LoginViewModel(NavigationStore navigationStore)
-        //public LoginViewModel()
         { 
             employeeController = new EmployeeController();
             NavigateMechanicCommand = new NavigateMechanicCommand(navigationStore);
             NavigateReceptionistCommand = new NavigateReceptionistCommand(navigationStore);
         }
 
-        private ICommand loginCommand;
+        private ICommand loginCommand = null!;
         public ICommand LoginCommand => loginCommand ??= loginCommand = new RelayCommand(() =>
         {
             if (Username.Length > 0 && int.TryParse(Username, out int id))
