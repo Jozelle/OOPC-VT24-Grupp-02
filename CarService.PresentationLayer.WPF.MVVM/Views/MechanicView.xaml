@@ -10,12 +10,13 @@
     <UserControl.DataContext>
         <vm:MechanicViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid Background="LavenderBlush">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
+
 
         <StackPanel>
             <Grid>
@@ -45,6 +46,7 @@
                 </Grid>
             </Border>
 
+
             <Grid Height="116" Name="CarDetailsGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200*"/>
@@ -73,8 +75,9 @@
                 <Border Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" >
                     <TextBox x:Name="AppDescriptionTB" IsEnabled="False" Text="{Binding CurrentAppointment.Purpose}"/>
                 </Border>
-            </Grid>
 
+
+            </Grid>
             <Grid Height="324">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
@@ -91,14 +94,15 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Add items"/>
-
+                <Button Content="Show journal" Grid.Column="1" Grid.Row="0" Command="{Binding ShowJournal}"/>
                 <Border Grid.Column="0" Grid.Row="1" >
-                    <TextBox Text="{Binding InputItemId}" Opacity="0.5" />
+                    <TextBox Text="{Binding InputItemId}" />
                 </Border>
-                <Button Grid.Column="1" Grid.Row="1" Content="Search" Command="{Binding GetItemsCommand}"/>
+
+                <Button Grid.Column="1" Grid.Row="1" x:Name="SearchItemButton" Content="Search" Command="{Binding GetItemsCommand}"/>
 
                 <Border  Grid.Column="0" Grid.Row="2" >
-                    <ComboBox ItemsSource="{Binding CurrentItems}"
+                    <ComboBox x:Name="cbItems" ItemsSource="{Binding CurrentItems}"
                               SelectedItem="{Binding CurrentItem}"/>
                 </Border>
 
@@ -106,84 +110,88 @@
                     <TextBox x:Name="QuantityTB" Text="{Binding ItemQuantity}"/>
                 </Border>
 
-
                 <Button Grid.Column="1" Grid.Row="3" x:Name="AddItemButton" Content="Add item" Command="{Binding AddItemCommand}"/>
                 <Label Grid.Row="4" Content="Add comment"/>
                 <Border Grid.Column="0" Grid.Row="5">
                     <TextBox x:Name="AddCommentTB" Text="{Binding InputComment}"/>
                 </Border>
-                <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Command="{Binding AddCommentCommand}" />
+                <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Command="{Binding AddCommentCommand}"/>
 
                 <Border Grid.Column="0" Grid.Row="7">
-                    <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5" ItemsSource="{Binding AppointmentStatuses}" />
+                    <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5" ItemsSource="{Binding AppointmentStatuses}" SelectedItem="{Binding AppointmentStatus}"/>
+
                 </Border>
 
-                <Button Grid.Column="1" Grid.Row="7" Content="Save" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}" />
+
+                <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="7" Content="Save" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}"/>
             </Grid>
         </StackPanel>
-    
-
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-
-            <Border Grid.Row="0">
-                <DataGrid ItemsSource="{Binding TodaysAppointments}"
+        <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Column="1" Grid.Row="0">
+                    <DataGrid x:Name="dgAppointments" ItemsSource="{Binding TodaysAppointments}"
                           AutoGenerateColumns="False" SelectionMode="Single"
                           SelectionUnit="FullRow" IsReadOnly="True"
                           SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}"
                           SelectedIndex="{Binding SelectedAppointmentIndex, Mode=TwoWay}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding AppointmentId}"/>
-                        <DataGridTextColumn Header="RegNo" Binding="{Binding VehicleRegistrationNumber}"/>
-                        <DataGridTextColumn Header="Time" Binding="{Binding SubmissionDate}"/>
-                        <DataGridTextColumn Header="Description" Binding="{Binding Purpose}"/>
-                        <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Border>
-            <Border Grid.Row="1" >
-                <ListBox ItemsSource="{Binding CurrentAppointment.UsedItems}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="Auto">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding AppointmentId}"/>
+                            <DataGridTextColumn Header="RegNo" Binding="{Binding VehicleRegistrationNumber}"/>
+                            <DataGridTextColumn Header="Time" Binding="{Binding SubmissionDate}"/>
+                            <DataGridTextColumn Header="Description" Binding="{Binding Purpose}"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="1" >
+                    <ListBox x:Name="addItem2LB" ItemsSource="{Binding CurrentAppointment.UsedItems}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0" Text="{Binding Item.Description}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Quantity}"/>
-                                <TextBlock Grid.Column="2" Text="{Binding Item.Price}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Border>
-            <Border Grid.Row="2" >
-                <ListBox ItemsSource="{Binding CurrentAppointment.Comments}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="Auto">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Item.Description}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Quantity}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Item.Price}"/>
 
-                                <TextBlock Grid.Column="0" Text="{Binding Time}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Author.FirstName}"/>
-                                <TextBlock Grid.Column="2" Text="{Binding Message}"/>
+                                </Grid>
 
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Border>
-        </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="2" >
+                    <ListBox x:Name="addCommentLB" ItemsSource="{Binding CurrentAppointment.Comments}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding Time}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Author.FirstName}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Message}"/>
+
+                                </Grid>
+
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
