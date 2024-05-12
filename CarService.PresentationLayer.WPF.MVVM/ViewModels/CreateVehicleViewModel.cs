@@ -21,7 +21,11 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 
 
 
+        private ICommand addCustomerCommand = null!;
+        public ICommand AddCustomerCommand => addCustomerCommand ??= addCustomerCommand = new RelayCommand(() =>
+        {
 
+        });
 
         private ICommand addVehicleCommand = null!;
         public ICommand AddVehicleCommand => addVehicleCommand ??= addVehicleCommand = new RelayCommand(() =>

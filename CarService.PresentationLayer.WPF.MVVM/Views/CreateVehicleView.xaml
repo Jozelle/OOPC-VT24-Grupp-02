@@ -19,7 +19,25 @@
 
         <TextBlock Text="Add customer" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
 
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <Button Grid.Column="0" Content="Add new customer" VerticalAlignment="Center" Height="30" Command="{Binding AddCustomerCommand}"/>
+
         <TextBlock Text="Add vehicle" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
-        <Button Grid.Column="1" Content="Add new vehicle" VerticalAlignment="Center" Height="30" Command="{Binding AddVehicleCommand}"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+    <Button Grid.Column="1" Content="Add new vehicle" VerticalAlignment="Center" Height="30" Command="{Binding AddVehicleCommand}"/>
     </Grid>
 </UserControl>
