@@ -11,110 +11,130 @@
         <vm:CreateAppViewModel/>
     </UserControl.DataContext>
 
-    <StackPanel Background="LavenderBlush">
-        <TextBlock Text="Create appointment" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
+    <Grid Background="LavenderBlush">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Label Content="Vehicle" FontFamily="Segoe Script" FontSize="16" Foreground="#FFC1587B"/>
-        <Grid Height="Auto" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <StackPanel Margin="5">
+            <TextBlock Text="Create appointment" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
+
+            <Label Content="Vehicle" FontFamily="Segoe Script" FontSize="16" Foreground="#FFC1587B"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label Content="Registration number"/>
+                <TextBox Text="{Binding RegistrationNumber}" Grid.Column="1" Height="30" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                <Button Grid.Column="2" Content="Search" Command="{Binding SearchVehicleCommand}"/>
+
+                <Label Content="Make" Grid.Column="0" Grid.Row="1"/>
+                <TextBox Text="{Binding CurrentVehicle.Make}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
+
+                <Label Content="Model" Grid.Column="0" Grid.Row="2"/>
+                <TextBox Text="{Binding CurrentVehicle.Model}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
+
+                <Label Content="Year" Grid.Column="0" Grid.Row="3"/>
+                <TextBox Text="{Binding CurrentVehicle.Year}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"/>
+
+                <Button Grid.Column="2" Grid.Row="4" Content="Save changes" VerticalAlignment="Center" Height="30" Command="{Binding SaveVehicleCommand}"/>
+            </Grid>
+
+            <Label Content="Customer" FontFamily="Segoe Script" FontSize="16" Foreground="#FFC1587B"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Text="{Binding SearchCustomerString}" Grid.Column="1"/>
+                <ComboBox Grid.Column="2" SelectedIndex="{Binding SearchTypeIndex}">
+                    <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
+                    <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
+                    <ComboBoxItem x:Name="FullName" Content="Full name"/>
+                </ComboBox>
+                <Button Grid.Column="3" Content="Search" Command="{Binding SearchCustomerCommand}" Height="30"/>
+
+                <Label Content="First name" Grid.Row="1"/>
+                <TextBox Text="{Binding CurrentCustomer.FirstName}" Height="30" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+
+                <Label Content="Last name" Grid.Row="2"/>
+                <TextBox Text="{Binding CurrentCustomer.LastName}" Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="3"/>
+
+                <Label Content="Social Security Number" Grid.Row="3"/>
+                <TextBox Text="{Binding CurrentCustomer.SocialSecurityNumber}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"/>
+
+                <Label Content="Address" Grid.Row="4"/>
+                <TextBox Text="{Binding CurrentCustomer.Address}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"/>
+                <TextBox Text="{Binding CurrentCustomer.PostalCode}" Grid.Column="1" Grid.Row="5"/>
+                <TextBox Text="{Binding CurrentCustomer.City}" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"/>
+
+                <Label Content="Phone number" Grid.Row="6"/>
+                <TextBox Text="{Binding CurrentCustomer.PhoneNumber}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" />
+
+                <Label Content="Email" Grid.Row="7"/>
+                <TextBox Text="{Binding CurrentCustomer.Email}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3"/>
+
+                <Button Grid.Column="3" Grid.Row="8" Content="Save changes" Height="30" Command="{Binding SaveCustomerCommand}"/>
+            </Grid>
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Error description" FontWeight="Bold"/>
+                <TextBox Text="{Binding ErrorDescription}" Grid.ColumnSpan="2" Grid.Row="1"/>
+
+                <Label Content="Select an appointment date" Grid.Row="2" FontWeight="Bold"/>
+                <DatePicker Grid.Column="1" Grid.Row="2" SelectedDate="{Binding ChoosenDateTime}"/>
+
+                <Button Content="Save appointment" Height="30" Grid.Row="3" Grid.ColumnSpan="2" Margin="0 5 0 0" Command="{Binding SaveAppointmentCommand}"/>
+            </Grid>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Margin="5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
-            <Label Content="Registration number"/>
-            <TextBox Text="{Binding RegistrationNumber}" Grid.Column="1" Height="30" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-            <Button Grid.Column="2" Content="Search" Command="{Binding SearchVehicleCommand}"/>
 
-            <Label Content="Make" Grid.Column="0" Grid.Row="1"/>
-            <TextBox Text="{Binding CurrentVehicle.Make}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
-
-            <Label Content="Model" Grid.Column="0" Grid.Row="2"/>
-            <TextBox Text="{Binding CurrentVehicle.Model}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
-
-            <Label Content="Year" Grid.Column="0" Grid.Row="3"/>
-            <TextBox Text="{Binding CurrentVehicle.Year}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"/>
-
-            <Button Grid.Column="2" Grid.Row="4" Content="Save changes" VerticalAlignment="Center" Height="30" Command="{Binding SaveVehicleCommand}"/>
+            <TextBox Grid.Row="0" Text="hej"/>
+            <Button Grid.Row="1" Content="Send confirmation" Margin="0 5 0 0"/>
         </Grid>
-
-        <Label Content="Customer" FontFamily="Segoe Script" FontSize="16" Foreground="#FFC1587B"/>
-
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-
-            <TextBox Text="{Binding SearchCustomerString}" Grid.Column="1"/>
-            <ComboBox Grid.Column="2" SelectedIndex="{Binding SearchTypeIndex}">
-                <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
-                <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
-                <ComboBoxItem x:Name="FullName" Content="Full name"/>
-            </ComboBox>
-            <Button Grid.Column="3" Content="Search" Command="{Binding SearchCustomerCommand}" Height="30"/>
-
-            <Label Content="First name" Grid.Row="1"/>
-            <TextBox Text="{Binding CurrentCustomer.FirstName}" Height="30" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
-
-            <Label Content="Last name" Grid.Row="2"/>
-            <TextBox Text="{Binding CurrentCustomer.LastName}" Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="3"/>
-
-            <Label Content="Social Security Number" Grid.Row="3"/>
-            <TextBox Text="{Binding CurrentCustomer.SocialSecurityNumber}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"/>
-
-            <Label Content="Address" Grid.Row="4"/>
-            <TextBox Text="{Binding CurrentCustomer.Address}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"/>
-            <TextBox Text="{Binding CurrentCustomer.PostalCode}" Grid.Column="1" Grid.Row="5"/>
-            <TextBox Text="{Binding CurrentCustomer.City}" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"/>
-
-            <Label Content="Phone number" Grid.Row="6"/>
-            <TextBox Text="{Binding CurrentCustomer.PhoneNumber}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" />
-
-            <Label Content="Email" Grid.Row="7"/>
-            <TextBox Text="{Binding CurrentCustomer.Email}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3"/>
-
-            <Button Grid.Column="3" Grid.Row="8" Content="Save changes" Height="30"/>
-        </Grid>
-
-
-        <Grid Height="126">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <Label Content="Reported issues:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="273" FontWeight="Bold" Grid.ColumnSpan="2" Height="26"/>
-            <TextBox x:Name="ReportedIssues" Text="Enter description" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1" Margin="0,3,0,0"/>
-            <Label Content="Select an appointment date:" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="32" Width="274" FontWeight="Bold"/>
-            <DatePicker  x:Name="AppDate" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="274" Height="30"/>
-            <Button x:Name="btn_SaveAppointment" Content="Save appointment" Height="30" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,0,1,0"/>
-        </Grid>
-    </StackPanel>
+    </Grid>
 </UserControl>
