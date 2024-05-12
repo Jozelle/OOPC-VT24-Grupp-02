@@ -40,7 +40,7 @@
 
         <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Sign in"/>
+                <!--<TextBlock Text="Sign in"/>-->
                 <TextBlock Text="EmployeeID" Foreground="Purple" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
 
                 <Border BorderThickness="1" BorderBrush="Purple" Margin="70 7" CornerRadius="5">
@@ -52,8 +52,8 @@
                 <Border BorderThickness="1" BorderBrush="Purple" Margin="70 7" CornerRadius="5">
                     <local:PasswordUserControl x:Name="passwordBox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Border>
-                <Button x:Name="btnSignIn" Content="Sign in" Width="336"  Margin="5" Command="{Binding LoginCommand}"/>
-                <Button x:Name="btnExit" Content="Exit" Width="336" Margin="5" Command="{Binding ExitCommand}"/>
+                <Button x:Name="btnSignIn" Content="Sign in" Width="336"  Margin="5" Command="{Binding LoginCommand}" Style="{StaticResource FancyButton}"/>
+                <Button x:Name="btnExit" Content="Exit" Width="336" Margin="5" Command="{Binding ExitCommand}" Style="{StaticResource FancyButton}"/>
             </StackPanel>
         </Border>
     </Grid>
