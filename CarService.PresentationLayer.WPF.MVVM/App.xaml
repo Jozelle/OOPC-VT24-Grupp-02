@@ -6,6 +6,11 @@
              xmlns:viewmodels="clr-namespace:CarService.PresentationLayer.WPF.MVVM.ViewModels"
              StartupUri="Views/LoginView.xaml">
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ButtonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>
