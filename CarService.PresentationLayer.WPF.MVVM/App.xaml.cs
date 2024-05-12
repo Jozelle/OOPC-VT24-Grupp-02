@@ -9,7 +9,7 @@ namespace CarService.PresentationLayer.WPF.MVVM
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            NavigationStore navigationStore = new NavigationStore();
+            NavigationStore navigationStore = NavigationStore.Instance;
 
             navigationStore.CurrentViewModel = new LoginViewModel(navigationStore);
             //navigationStore.CurrentViewModel = new LoginViewModel(navigationStore);

@@ -36,7 +36,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 
         public MainViewModel()
         {
-            _navigationStore = new NavigationStore();
+            _navigationStore = NavigationStore.Instance;
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
             _buttonVisibilityStore = ButtonVisibilityStore.Instance;
