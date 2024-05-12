@@ -36,6 +36,19 @@
                     <Button Grid.Column="2" x:Name="ExitButton" Content="Exit" Command="{Binding ExitCommand}" Style="{StaticResource FancyButton}"/>
                 </Grid>
 
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="65"/>
+
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Mechanic view" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
+                <Button Grid.Column="1" x:Name="RefreshButton" Content="Refresh" Command="{Binding RefreshCommand}"/>
+
+            </Grid>
+
             <Label Content="Search for appointment by vehicle registration number or choose from the list to the right." />
 
             <Border>
@@ -103,6 +116,27 @@
                     <Border Grid.Column="0" Grid.Row="1" >
                         <TextBox Text="{Binding InputItemId}" Opacity="0.5" />
                     </Border>
+            </Grid>
+            <Grid Height="324">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Add items"/>
+                <Button Content="Show journal" Grid.Column="1" Grid.Row="0" Command="{Binding ShowJournal}"/>
+                <Border Grid.Column="0" Grid.Row="1" >
+                    <TextBox Text="{Binding InputItemId}" />
+                </Border>
 
                 <Button Grid.Column="1" Grid.Row="1" x:Name="SearchItemButton" Content="Search" Command="{Binding GetItemsCommand}"/>
 
@@ -121,6 +155,12 @@
                         <TextBox x:Name="AddCommentTB" Opacity="0.5" Text="{Binding InputComment}"/>
                     </Border>
                     <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Command="{Binding AddCommentCommand}" Style="{StaticResource FancyButton}"/>
+                <Button Grid.Column="1" Grid.Row="3" x:Name="AddItemButton" Content="Add item" Command="{Binding AddItemCommand}"/>
+                <Label Grid.Row="4" Content="Add comment"/>
+                <Border Grid.Column="0" Grid.Row="5">
+                    <TextBox x:Name="AddCommentTB" Text="{Binding InputComment}"/>
+                </Border>
+                <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Command="{Binding AddCommentCommand}"/>
 
                 <Border Grid.Column="0" Grid.Row="7">
                     <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5" ItemsSource="{Binding AppointmentStatuses}" SelectedItem="{Binding AppointmentStatus}"/>
@@ -132,6 +172,9 @@
                 </Grid>
             </StackPanel>
         </Border>
+                <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="7" Content="Save" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}"/>
+            </Grid>
+        </StackPanel>
         <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
             <Grid>
                 <Grid.RowDefinitions>
