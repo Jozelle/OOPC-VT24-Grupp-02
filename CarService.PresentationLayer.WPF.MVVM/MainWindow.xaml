@@ -81,11 +81,5 @@
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
-
     </Grid>
-
-
-
-
-
 </Window>
