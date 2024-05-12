@@ -7,6 +7,10 @@
         xmlns:vm="clr-namespace:CarService.PresentationLayer.WPF.MVVM.ViewModels"
         mc:Ignorable="d">
 
+    <UserControl.DataContext>
+        <vm:LoginViewModel/>
+    </UserControl.DataContext>
+
     <Grid>
 
         <Border Background="LavenderBlush">
