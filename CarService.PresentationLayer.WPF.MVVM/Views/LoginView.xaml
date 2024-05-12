@@ -28,8 +28,7 @@
                 <Border BorderThickness="1" BorderBrush="#FFC1587B" Margin="70 7" CornerRadius="5">
                     <local:PasswordUserControl x:Name="passwordBox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Border>
-                <Button Content="Sign in" Width="336"  Margin="5" Command="{Binding LoginCommand}" Style="{StaticResource FancyButton}"/>
-
+                <Button Content="Sign in" Width="336" Margin="5" Command="{Binding LoginCommand}"/>
             </StackPanel>
         </Border>
     </Grid>

@@ -30,7 +30,7 @@
         </StackPanel>
 
         <DockPanel LastChildFill="true" Grid.Column="1">
-            <Button Content="Send" DockPanel.Dock="Bottom" Width="336" Margin="0 0 0 10" Command="{Binding SendCommand}" Style="{StaticResource FancyButton}"/>
+            <Button Content="Send" DockPanel.Dock="Bottom" Width="336" Margin="0 0 0 10" Command="{Binding SendCommand}"/>
 
             <Border BorderThickness="1" BorderBrush="#FFC1587B" Margin="5" CornerRadius="5">
                 <ListBox x:Name="lbxJournal" FontSize="12" ItemsSource="{Binding JournalRows}"/>

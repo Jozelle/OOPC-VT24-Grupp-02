@@ -26,7 +26,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Mechanic view" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
-                <Button Grid.Column="1" x:Name="RefreshButton" Content="Refresh" Command="{Binding RefreshCommand}" Style="{StaticResource FancyButton}"/>
+                <Button Grid.Column="1" x:Name="RefreshButton" Content="Refresh" Command="{Binding RefreshCommand}"/>
 
             </Grid>
 
@@ -112,13 +112,13 @@
                 <Border Grid.Column="0" Grid.Row="5">
                     <TextBox x:Name="AddCommentTB" Text="{Binding InputComment}"/>
                 </Border>
-                <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Command="{Binding AddCommentCommand}" Style="{StaticResource FancyButton}"/>
+                <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Command="{Binding AddCommentCommand}" />
 
                 <Border Grid.Column="0" Grid.Row="7">
-                    <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5" ItemsSource="{Binding AppointmentStatuses}" SelectedItem="{Binding AppointmentStatus}"/>
+                    <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5" ItemsSource="{Binding AppointmentStatuses}" />
                 </Border>
 
-                <Button Grid.Column="1" Grid.Row="7" Content="Save" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}" Style="{StaticResource FancyButton}"/>
+                <Button Grid.Column="1" Grid.Row="7" Content="Save" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}" />
             </Grid>
         </StackPanel>
     
