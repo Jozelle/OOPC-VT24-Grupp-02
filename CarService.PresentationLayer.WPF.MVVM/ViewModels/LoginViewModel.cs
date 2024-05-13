@@ -60,10 +60,12 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 {
                     if (employeeController.IsReceptionist(id))
                     {
+                        UserSessionStore.UserId = id;
                         NavigateReceptionistCommand.Execute(id);
                     }
                     else
                     {
+                        UserSessionStore.UserId = id;
                         NavigateMechanicCommand.Execute(id);
                     }
                 }

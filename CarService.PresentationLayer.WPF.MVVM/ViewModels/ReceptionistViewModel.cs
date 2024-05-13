@@ -25,8 +25,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private VehicleController vehicleController;
         private EmployeeController employeeController;
 
-        private int loggedInId = 5;
-
         private ButtonVisibilityStore buttonVisibilityStore { get; }
         public ICommand ButtonsShowCommand { get; }
 
@@ -238,12 +236,12 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         {
             if (InputComment != null)
             {
-                Employee employee = employeeController.GetEmployee(loggedInId);
+                Employee employee = employeeController.GetEmployee(UserSessionStore.UserId);
                 int affectedrows = appointmentController.AddCommentToAppointment(CurrentAppointment, InputComment, employee);
 
                 Comment comment = new Comment()
                 {
-                    AuthorEmployeeId = loggedInId,
+                    AuthorEmployeeId = UserSessionStore.UserId,
                     Time = DateTime.Now,
                     Message = InputComment,
                     Appointment = CurrentAppointment
@@ -257,27 +255,9 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 }
 
                 CurrentAppointment.Comments.Add(comment);
-
-                MessageBox.Show(affectedrows.ToString());
-
-
             }
         });
-
-
-        //private ICommand viewJournalCommand = null!;
-        //public ICommand ViewJournalCommand => viewJournalCommand ??= viewJournalCommand = new RelayCommand(() =>
-        //{
-        //    JournalViewModel journalViewModel = new JournalViewModel(CurrentVehicle.RegistrationNumber);
-        //    bool result = windowService.ShowDialog(journalViewModel);
-        //});
-
-
-
-
     }
-
-
 }
 
 
