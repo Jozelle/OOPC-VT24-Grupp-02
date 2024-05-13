@@ -24,8 +24,8 @@
         <Border>
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="pink" Offset="0"/>
-                    <GradientStop Color="#FFC1587B" Offset="1"/>
+                    <GradientStop Color="{StaticResource primaryColorLight}" Offset="0"/>
+                    <GradientStop Color="{StaticResource primaryColorMedium}" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
             <Grid>
@@ -43,12 +43,51 @@
 
                 <Image Source="/ggg_transparent.png" Margin="10" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
 
-                <Button Content="Receptionist" Height="50" Margin="10" Grid.Row="2" Command="{Binding GoToReceptionistViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button Content="Create appointment" Height="50" Margin="10" Grid.Row="3" Command="{Binding GoToCreateAppViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button Content="Manage appointment" Height="50" Margin="10" Grid.Row="4" Command="{Binding GoToMechanicViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button Content="Journals" Height="50" Margin="10" Grid.Row="5" Command="{Binding GoToJournalViewCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button Content="Log out" Height="50" Margin="10" Grid.Row="6" Command="{Binding LogoutCommand}" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
-                <Button Content="Exit" Height="50" Margin="10" Grid.Row="7" Command="{Binding ExitCommand}"/>
+                <RadioButton Grid.Row="2"
+                             Style="{StaticResource menuButton}" 
+                             Command="{Binding GoToReceptionistViewCommand}" 
+                             Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
+                    <TextBlock Text="Receptionist" Style="{StaticResource menuButtonText}"/>
+                </RadioButton>
+
+                <RadioButton Grid.Row="3" 
+                             Style="{StaticResource menuButton}" 
+                             Tag="{StaticResource primaryColorDark}" 
+                             Command="{Binding GoToCreateAppViewCommand}" 
+                             Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
+                    <TextBlock Text="Create appointment" Style="{StaticResource menuButtonText}"/>
+                </RadioButton>
+
+                <RadioButton Grid.Row="4" 
+                             Style="{StaticResource menuButton}" 
+                             Tag="{StaticResource primaryColorDark}" 
+                             Command="{Binding GoToMechanicViewCommand}" 
+                             Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
+                    <TextBlock Text="Manage appointment" Style="{StaticResource menuButtonText}"/>
+                </RadioButton>
+
+                <RadioButton Grid.Row="5" 
+                             Style="{StaticResource menuButton}" 
+                             Tag="{StaticResource primaryColorDark}" 
+                             Command="{Binding GoToJournalViewCommand}" 
+                             Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
+                    <TextBlock Text="Journals" Style="{StaticResource menuButtonText}"/>
+                </RadioButton>
+
+                <RadioButton Grid.Row="6"
+                             Style="{StaticResource menuButton}" 
+                             Tag="{StaticResource primaryColorDark}"
+                             Command="{Binding LogoutCommand}" 
+                             Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
+                    <TextBlock Text="Log out" Style="{StaticResource menuButtonText}"/>
+                </RadioButton>
+
+                <RadioButton Grid.Row="7"
+                             Style="{StaticResource menuButton}" 
+                             Tag="{StaticResource primaryColorDark}" 
+                             Command="{Binding ExitCommand}">
+                    <TextBlock Text="Exit" Style="{StaticResource menuButtonText}"/>
+                </RadioButton>
 
                 <StackPanel Grid.Row="8">
                     <Label Content="Grupp 2:"/>
