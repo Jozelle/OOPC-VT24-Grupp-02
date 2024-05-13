@@ -11,155 +11,159 @@
         <vm:ReceptionistViewModel />
     </UserControl.DataContext>
 
-     <Grid Background="LavenderBlush">
-     <Grid.ColumnDefinitions>
-         <ColumnDefinition Width="*"/>
-         <ColumnDefinition Width="*"/>
-     </Grid.ColumnDefinitions>
+    <Grid Background="LavenderBlush">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-     <StackPanel Grid.Column="0" HorizontalAlignment="Left">
-         <TextBlock Text="Receptionist view" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+            <TextBlock Text="Receptionist view" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
 
-         <Label Content="Search by appointment" FontWeight="Bold"/>
+            <Label Content="Search by appointment" FontWeight="Bold"/>
 
-         <Grid>
-             <Grid.ColumnDefinitions>
-                 <ColumnDefinition Width="4*"/>
-                 <ColumnDefinition Width="2*"/>
-                 <ColumnDefinition Width="2*"/>
-             </Grid.ColumnDefinitions>
-             <Grid.RowDefinitions>
-                 <RowDefinition Height="30"/>
-                 <RowDefinition Height="30"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
 
-             </Grid.RowDefinitions>
-             <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="{Binding SearchAppointment}" HorizontalContentAlignment="Left"/>
-             <ComboBox x:Name="selectSearchTypeBox" Grid.Column="1" SelectedIndex="{Binding SearchType}">
-                 <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
-                 <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
-                 <ComboBoxItem x:Name="FullName" Content="Full name"/>
-                 <ComboBoxItem x:Name="RegNo" Content="Reg No."/>
-             </ComboBox>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="SearchAppTB" Grid.Column="0" Grid.Row="0" Text="{Binding SearchAppointment}" HorizontalContentAlignment="Left"/>
+                <ComboBox x:Name="selectSearchTypeBox" Grid.Column="1" SelectedIndex="{Binding SearchType}">
+                    <ComboBoxItem x:Name="SSNo" Content="Social Security No."/>
+                    <ComboBoxItem x:Name="PhoneNo" Content="Phone No."/>
+                    <ComboBoxItem x:Name="FullName" Content="Full name"/>
+                    <ComboBoxItem x:Name="RegNo" Content="Reg No."/>
+                </ComboBox>
 
-             <Button x:Name="btn_SearchAppointment" Content="Search" Grid.Column="2" Grid.Row="0" Command="{Binding SearchAppointmentCommand}"/>
+                <Button x:Name="btn_SearchAppointment" Content="Search" Grid.Column="2" Grid.Row="0" Command="{Binding SearchAppointmentCommand}"/>
 
-         </Grid>
+            </Grid>
 
-         <Grid>
-             <Grid.ColumnDefinitions>
-                 <ColumnDefinition Width="1*"/>
-                 <ColumnDefinition Width="1*"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
 
-             </Grid.ColumnDefinitions>
-             <Grid.RowDefinitions>
-                 <RowDefinition Height="30"/>
-                 <RowDefinition Height="10"/>
-             </Grid.RowDefinitions>
-             <Label Content="Selected appointment:" HorizontalAlignment="Left" Grid.Column="0"/>
-             <TextBox x:Name="SelectedAppTB" Grid.Column="1" Text="{Binding CurrentAppointment.AppointmentId}" />
-         </Grid>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <Label Content="Selected appointment:" HorizontalAlignment="Left" Grid.Column="0"/>
+                <TextBox x:Name="SelectedAppTB" Grid.Column="1" Text="{Binding CurrentAppointment.AppointmentId}" />
+            </Grid>
 
-         <Label Content="Change status/Submission/Delivery" FontWeight="Bold"/>
-         <Grid Height="Auto" Name="Submission">
-             <Grid.ColumnDefinitions>
-                 <ColumnDefinition Width="2*"/>
-                 <ColumnDefinition Width="1*"/>
-             </Grid.ColumnDefinitions>
-             <Grid.RowDefinitions>
-                 <RowDefinition Height="30"/>
-                 <RowDefinition Height="30"/>
-                 <RowDefinition Height="30"/>
-                 <RowDefinition Height="45"/>
+            <Label Content="Change status/Submission/Delivery" FontWeight="Bold"/>
+            <Grid Height="Auto" Name="Submission">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="45"/>
 
-             </Grid.RowDefinitions>
-             <ComboBox x:Name="StatusBox" SelectedIndex="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="364" Height="30" ItemsSource="{Binding AppointmentsStatuses}" SelectedItem="{Binding SelectedAppointmentStatus}">
-            
-             </ComboBox>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="StatusBox" SelectedIndex="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="364" Height="30" ItemsSource="{Binding AppointmentsStatuses}" SelectedItem="{Binding SelectedAppointmentStatus}">
 
-             <Button x:Name="btn_SaveStatus" Grid.Column="1" Content="Save" Command="{Binding SaveStatusCommand}"/>
-             <Label Grid.Column="0" Grid.Row="1" Content="Add comment" FontWeight="Bold" HorizontalAlignment="Left" />
-             <TextBox Text="{Binding InputComment}" Grid.Column="0" Grid.Row="2" x:Name="AddCommentTB"/>
-             <Button x:Name="btn_AddComment" Grid.Column="1" Content="Add"  Grid.Row="2" Command="{Binding AddCommentCommand}"/>
-             <Button x:Name="btn_ViewJournal" Grid.Column="0" Grid.Row="3" Content="View Journal" Grid.ColumnSpan="2" Margin="0,10,0,0" Command="{Binding ViewJournalCommand}"/>
-         </Grid>
+                </ComboBox>
 
-         <Label Content="Invoice details" FontWeight="Bold" Margin="0,10"/>
-         <Grid Height="Auto" >
-             <Grid.ColumnDefinitions>
-                 <ColumnDefinition Width="1*"/>
-                 <ColumnDefinition Width="2*"/>
+                <Button x:Name="btn_SaveStatus" Grid.Column="1" Content="Save" Command="{Binding SaveStatusCommand}"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Add comment" FontWeight="Bold" HorizontalAlignment="Left" />
+                <TextBox Text="{Binding InputComment}" Grid.Column="0" Grid.Row="2" x:Name="AddCommentTB"/>
+                <Button x:Name="btn_AddComment" Grid.Column="1" Content="Add"  Grid.Row="2" Command="{Binding AddCommentCommand}"/>
+                <Button x:Name="btn_ViewJournal" Grid.Column="0" Grid.Row="3" Content="View Journal" Grid.ColumnSpan="2" Margin="0,10,0,0" Command="{Binding ViewJournalCommand}"/>
+            </Grid>
 
-             </Grid.ColumnDefinitions>
-             <Grid.RowDefinitions>
-                 <RowDefinition Height="40"/>
+            <Label Content="Invoice details" FontWeight="Bold" Margin="0,10"/>
+            <Grid Height="Auto" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
 
-             </Grid.RowDefinitions>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
 
-             <Label Grid.Column="0" Grid.Row="0" Content="Date:" HorizontalContentAlignment="Left"/>
-             <TextBox Grid.Column="1" Grid.Row="0" x:Name="DeTB" />
-             <DatePicker Grid.Column="1" IsDropDownOpen="True"/>
-         </Grid>
+                </Grid.RowDefinitions>
 
-         <Button x:Name="btn_GenerateInvoice" Content="Generate Invoice" Height="40" Margin="0,10" />
+                <Label Grid.Column="0" Grid.Row="0" Content="Date:" HorizontalContentAlignment="Left"/>
+                <TextBox Grid.Column="1" Grid.Row="0" x:Name="DeTB" />
+                <DatePicker Grid.Column="1" IsDropDownOpen="True"/>
+            </Grid>
 
-
-     </StackPanel>
-     
-     <Grid Grid.Column="1">
-         <Grid.RowDefinitions>
-             <RowDefinition Height="1*"/>
-             <RowDefinition Height="10*"/>
-             <RowDefinition Height="10*"/>
-             <RowDefinition Height="1*"/>
-         </Grid.RowDefinitions>
-         <Label Grid.Row="0" Content="Current appointments" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-         <ListBox Grid.Row="1" x:Name="CurrentAppLB" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment}">
-             <ListBox.ItemTemplate>
-                 <DataTemplate>
-                     <Grid Height="Auto">
-                         <Grid.ColumnDefinitions>
-                             <ColumnDefinition Width="15"/>
-                             <ColumnDefinition Width="50"/>
-                             <ColumnDefinition Width="150"/>
-                             <ColumnDefinition Width="200"/>
-                             <ColumnDefinition Width="*"/>
-                         </Grid.ColumnDefinitions>
-
-                         <TextBlock Grid.Column="0" Text="{Binding AppointmentId}"/>
-                         <TextBlock Grid.Column="1" Text="{Binding Vehicle.RegistrationNumber}"/>
-                         <TextBlock Grid.Column="2" Text="{Binding SubmissionDate}"/>
-                         <TextBlock Grid.Column="3" Text="{Binding Purpose}"/>
-                         <TextBlock Grid.Column="4" Text="{Binding Status}"/>
-                     </Grid>
-                 </DataTemplate>
-             </ListBox.ItemTemplate>
-         </ListBox>
+            <Button x:Name="btn_GenerateInvoice" Content="Generate Invoice" Height="40" Margin="0,10" />
 
 
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="97*"/>
+                <ColumnDefinition Width="416*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Current appointments" FontWeight="Bold" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Margin="0,0,0,204" Grid.RowSpan="2"/>
+            <ListBox Grid.Row="1" x:Name="CurrentAppLB" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment}" Grid.ColumnSpan="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding AppointmentId}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Vehicle.RegistrationNumber}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding SubmissionDate}"/>
+                            <TextBlock Grid.Column="3" Text="{Binding Purpose}"/>
+                            <TextBlock Grid.Column="4" Text="{Binding Status}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
 
-         <ListBox Grid.Column="1" Grid.Row="2" x:Name="InvoiceLB" ItemsSource="{Binding CurrentAppointment.Comments}">
-             <ListBox.ItemTemplate>
-                 <DataTemplate>
-                     <Grid Height="Auto">
-                         <Grid.ColumnDefinitions>
-                             <ColumnDefinition Width="150"/>
-                             <ColumnDefinition Width="100"/>
-                             <ColumnDefinition Width="*"/>
-                         </Grid.ColumnDefinitions>
 
-                         <TextBlock Grid.Column="0" Text="{Binding Time}"/>
-                         <TextBlock Grid.Column="1" Text="{Binding Author.FirstName}"/>
-                         <TextBlock Grid.Column="2" Text="{Binding Message}"/>
 
-                     </Grid>
+            <ListBox Grid.Row="1" x:Name="InvoiceLB" ItemsSource="{Binding CurrentAppointment.Comments}" Grid.ColumnSpan="2" Margin="0,204,0,30" Grid.RowSpan="3">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                 </DataTemplate>
-             </ListBox.ItemTemplate>
-         </ListBox>
-         <Button Content="Email invoice" Grid.Row="3" VerticalAlignment="Center" Height="30"/>
+                            <TextBlock Grid.Column="0" Text="{Binding Time}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Author.FirstName}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Message}"/>
 
-     </Grid>
+                        </Grid>
 
- </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Content="Email invoice" Grid.Row="3" VerticalAlignment="Center" Height="30" Grid.ColumnSpan="2"/>
+
+        </Grid>
+
+    </Grid>
 </UserControl>
