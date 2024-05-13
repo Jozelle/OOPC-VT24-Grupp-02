@@ -1,6 +1,7 @@
 ﻿using CarService.BusinessLayer;
 using CarService.Entities;
 using CarService.PresentationLayer.WPF.MVVM.Commands;
+using CarService.PresentationLayer.WPF.MVVM.Stores;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -50,8 +51,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             set { searchTypeIndex = value; }
         }
 
-        private Customer currentCustomer = null!;
-        public Customer CurrentCustomer
+        private Customer? currentCustomer = null!;
+        public Customer? CurrentCustomer
         {
             get { return currentCustomer; }
             set
@@ -88,6 +89,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             customerController = new CustomerController();
             appointmentController = new AppointmentController();
         }
+
         private ICommand searchVehicleCommand = null!;
         public ICommand SearchVehicleCommand => searchVehicleCommand ??= searchVehicleCommand = new RelayCommand(() =>
         {
@@ -160,18 +162,21 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private ICommand saveCustomerCommand = null!;
         public ICommand SaveCustomerCommand => saveCustomerCommand ??= saveCustomerCommand = new RelayCommand(() =>
         {
-            int rowsChanged = customerController.UpdateCustomer(currentCustomer);
-            if (rowsChanged > 0)
+            if (currentCustomer != null)
             {
-                MessageBox.Show($"The changes has been saved! {rowsChanged}");
-            }
-            else if (rowsChanged == -1)
-            {
-                MessageBox.Show("Something went wrong, please try again!");
-            }
-            else
-            {
-                MessageBox.Show("No changes was made.");
+                int rowsChanged = customerController.UpdateCustomer(currentCustomer);
+                if (rowsChanged > 0)
+                {
+                    MessageBox.Show($"The changes has been saved! {rowsChanged}");
+                }
+                else if (rowsChanged == -1)
+                {
+                    MessageBox.Show("Something went wrong, please try again!");
+                }
+                else
+                {
+                    MessageBox.Show("No changes was made.");
+                }
             }
         });
 
@@ -199,7 +204,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                     appointment.Status = Entities.Enums.AppointmentStatus.Booked;
                     appointment.Purpose = ErrorDescription;
                     appointment.VehicleRegistrationNumber = CurrentVehicle.RegistrationNumber;
-                    appointment.CreatedById = 2;
+                    appointment.CreatedById = UserSessionStore.UserId;
                     appointment.CustomerId = CurrentCustomer.CustomerID;
                 }
                 int rowsChanged = appointmentController.CreateAppointment(appointment);
