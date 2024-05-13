@@ -42,7 +42,11 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-
+        public string RegistrationNumber
+        {
+            get { return registrationNumber; }
+            set { registrationNumber = value; }
+        }
 
 
         //Commands
