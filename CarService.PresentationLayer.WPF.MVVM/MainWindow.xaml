@@ -39,6 +39,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <Image Source="/ggg_transparent.png" Margin="10" Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"/>
@@ -75,6 +76,13 @@
                 </RadioButton>
 
                 <RadioButton Grid.Row="6"
+                              Style="{StaticResource menuButton}" 
+                        Command="{Binding GoToCreateVehicleViewCommand}" 
+                        Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
+                    <TextBlock Text="Add resources" Style="{StaticResource menuButtonText}"/>
+                </RadioButton>
+
+                <RadioButton Grid.Row="7"
                              Style="{StaticResource menuButton}" 
                              Tag="{StaticResource primaryColorDark}"
                              Command="{Binding LogoutCommand}" 
@@ -82,14 +90,14 @@
                     <TextBlock Text="Log out" Style="{StaticResource menuButtonText}"/>
                 </RadioButton>
 
-                <RadioButton Grid.Row="7"
+                <RadioButton Grid.Row="8"
                              Style="{StaticResource menuButton}" 
                              Tag="{StaticResource primaryColorDark}" 
                              Command="{Binding ExitCommand}">
                     <TextBlock Text="Exit" Style="{StaticResource menuButtonText}"/>
                 </RadioButton>
 
-                <StackPanel Grid.Row="8">
+                <StackPanel Grid.Row="9">
                     <Label Content="Grupp 2:"/>
                     <Label Content="Caroline Swanpalmer"/>
                     <Label Content="Johanna Gull"/>
@@ -117,6 +125,10 @@
 
                 <DataTemplate DataType="{x:Type vm:CreateAppViewModel}">
                     <views:CreateAppView/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type vm:CreateVehicleViewModel}">
+                    <views:CreateVehicleView/>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
