@@ -13,19 +13,19 @@
 
     <Grid>
 
-        <Border Background="LavenderBlush">
+        <Border Background="{StaticResource primaryColorWhiteBrush}">
             <StackPanel VerticalAlignment="Center" Margin="20 20 20 20">
                 <Image Source="/Views/ggg_transparent.png" Height="201" Width="309" />
 
-                <TextBlock Text="EmployeeID" Foreground="#FFC1587B" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
+                <TextBlock Text="EmployeeID" Foreground="{StaticResource primaryColorMediumBrush}" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
 
-                <Border BorderThickness="1" BorderBrush="#FFC1587B" Margin="70 7" CornerRadius="5">
+                <Border BorderThickness="1" BorderBrush="{StaticResource primaryColorMediumBrush}" Margin="70 7" CornerRadius="5">
                     <TextBox x:Name="tbxEmployeeID" FontSize="14" Text="{Binding Username}"/>
                 </Border>
 
-                <TextBlock Text="Password" Foreground="#FFC1587B" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
+                <TextBlock Text="Password" Foreground="{StaticResource primaryColorMediumBrush}" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
 
-                <Border BorderThickness="1" BorderBrush="#FFC1587B" Margin="70 7" CornerRadius="5">
+                <Border BorderThickness="1" BorderBrush="{StaticResource primaryColorMediumBrush}" Margin="70 7" CornerRadius="5">
                     <local:PasswordUserControl x:Name="passwordBox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Border>
                 <Button x:Name="btnSignIn" Content="Sign in" Width="336"  Margin="5" Command="{Binding LoginCommand}"/>

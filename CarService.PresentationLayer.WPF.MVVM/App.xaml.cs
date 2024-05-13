@@ -21,7 +21,7 @@ namespace CarService.PresentationLayer.WPF.MVVM
                 DataContext = new MainViewModel(navigationStore, buttonVisibilityStore)
                 //DataContext = new MainViewModel()
             };
-            MainWindow.Show();
+            //MainWindow.Show();
             
             base.OnStartup(e);
         }
