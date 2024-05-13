@@ -25,7 +25,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private ItemController itemController;
         private EmployeeController employeeController;
 
-        private int loggedInId;
         private ButtonVisibilityStore buttonVisibilityStore { get; }
         public ICommand ButtonsShowCommand { get; }
         //Properties
@@ -182,7 +181,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             itemController = new ItemController();
             employeeController = new EmployeeController();
 
-            loggedInId = 2;
             AppointmentStatuses = Enum.GetValues(typeof(AppointmentStatus)).Cast<AppointmentStatus>().ToList();
 
             TodaysAppointments = new ObservableCollection<Appointment>();
@@ -219,12 +217,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         });
 
-        private ICommand showJournal = null!;
-        public ICommand ShowJournal => showJournal ??= showJournal = new RelayCommand(() =>
-        {
-            //JournalViewModel journalViewModel = new JournalViewModel(CurrentVehicle.RegistrationNumber);
-        });
-
         private ICommand getItemsCommand = null!;
         public ICommand GetItemsCommand => getItemsCommand ??= getItemsCommand = new RelayCommand(() =>
         {
@@ -254,6 +246,11 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                     newUsage.Item = CurrentItem;
                     newUsage.Quantity = quantity;
 
+                    if (CurrentAppointment.UsedItems == null)
+                    {
+                        CurrentAppointment.UsedItems = new List<UsedItem>();
+                    }
+
                     CurrentAppointment.UsedItems.Add(newUsage);
 
                     MessageBox.Show($"{quantity} piece(s) of the item {currentItem.Description} was added!" +
@@ -268,7 +265,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         {
             if (InputComment != null)
             {
-                Employee loggedInEmployee = employeeController.GetEmployee(loggedInId);
+                Employee loggedInEmployee = employeeController.GetEmployee(UserSessionStore.UserId);
 
                 int affectedRows = appointmentController.AddCommentToAppointment(currentAppointment, InputComment, loggedInEmployee);
                 MessageBox.Show($"The comment was added! {affectedRows} were affected.");
@@ -277,6 +274,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 newComment.Appointment = CurrentAppointment;
                 newComment.Message = InputComment;
                 newComment.Author = loggedInEmployee;
+                newComment.Time = DateTime.Now;
 
                 CurrentAppointment.Comments.Add(newComment);
             }
