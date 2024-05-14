@@ -46,6 +46,7 @@
 
                 <RadioButton Grid.Row="2"
                              Style="{StaticResource menuButton}" 
+                             Tag="{StaticResource primaryColorDark}"
                              Command="{Binding GoToReceptionistViewCommand}" 
                              Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
                     <TextBlock Text="Receptionist" Style="{StaticResource menuButtonText}"/>
@@ -77,6 +78,7 @@
 
                 <RadioButton Grid.Row="6"
                               Style="{StaticResource menuButton}" 
+                              Tag="{StaticResource primaryColorDark}"
                         Command="{Binding GoToCreateVehicleViewCommand}" 
                         Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
                     <TextBlock Text="Add resources" Style="{StaticResource menuButtonText}"/>
