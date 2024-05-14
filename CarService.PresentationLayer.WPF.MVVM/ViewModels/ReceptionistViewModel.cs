@@ -143,6 +143,18 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
+        private DateTime rescheduleDate = DateTime.Now;
+
+        public DateTime RescheduleDate
+        {
+            get { return rescheduleDate; }
+            set
+            {
+                rescheduleDate = value;
+                OnPropertyChanged();
+            }
+        }
+
         //Constructor
 
         public ReceptionistViewModel()
@@ -255,6 +267,25 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 }
 
                 CurrentAppointment.Comments.Add(comment);
+            }
+        });
+
+        private ICommand rescheduleCommand = null!;
+        public ICommand RescheduleCommand => rescheduleCommand ??= rescheduleCommand = new RelayCommand(() =>
+        {
+           
+            if (CurrentAppointment == null)
+            {
+                MessageBox.Show("Please select an appointment.");
+            }
+            else
+            {
+                CurrentAppointment.SubmissionDate = RescheduleDate;
+                CurrentAppointment.DeliveryDate = CurrentAppointment.SubmissionDate.AddDays(1);
+               
+                appointmentController.SaveChanges(CurrentAppointment);
+                RefreshCommand.Execute(null);
+                MessageBox.Show("Appointment rescheduled successfully!");
             }
         });
     }
