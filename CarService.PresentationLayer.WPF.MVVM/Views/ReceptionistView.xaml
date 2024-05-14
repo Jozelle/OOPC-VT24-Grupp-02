@@ -80,7 +80,7 @@
                 <Label Grid.Column="0" Grid.Row="1" Content="Add comment" FontWeight="Bold" HorizontalAlignment="Left" />
                 <TextBox Text="{Binding InputComment}" Grid.Column="0" Grid.Row="2" x:Name="AddCommentTB"/>
                 <Button x:Name="btn_AddComment" Grid.Column="1" Content="Add"  Grid.Row="2" Command="{Binding AddCommentCommand}"/>
-                <Button x:Name="btn_ViewJournal" Grid.Column="0" Grid.Row="3" Content="View Journal" Grid.ColumnSpan="2" Margin="0,10,0,0" Command="{Binding ViewJournalCommand}"/>
+                <!--<Button x:Name="btn_ViewJournal" Grid.Column="0" Grid.Row="3" Content="View Journal" Grid.ColumnSpan="2" Margin="0,10,0,0" Command="{Binding ViewJournalCommand}"/>-->
             </Grid>
 
             <Label Content="Invoice details" FontWeight="Bold" Margin="0,10"/>
