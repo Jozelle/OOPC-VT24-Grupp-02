@@ -26,7 +26,7 @@
 
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Mechanic view" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
+                <TextBlock Text="Mechanic view" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script" />
                 <Button Grid.Column="1" x:Name="RefreshButton" Content="Refresh" Command="{Binding RefreshCommand}"/>
 
             </Grid>
