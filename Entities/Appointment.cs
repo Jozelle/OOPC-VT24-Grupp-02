@@ -49,6 +49,14 @@ namespace CarService.Entities
 
             return totalCost;
         }
+
+        public string ShortSubmissonDate
+        {
+            get
+            {
+                return SubmissionDate.ToShortDateString();
+            }
+        }
         public override string ToString()
         {
             return AppointmentId.ToString();

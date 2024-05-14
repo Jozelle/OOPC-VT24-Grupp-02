@@ -174,6 +174,17 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
+        private DateTime changedDate = DateTime.Now;
+        public DateTime ChangedDate
+        {
+            get { return changedDate; }
+            set
+            {
+                changedDate = value;
+                OnPropertyChanged();
+            }
+        }
+
         //Constructor
         public MechanicViewModel()
         {
@@ -293,5 +304,22 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             RefreshCommand.Execute(null);
             MessageBox.Show("The status was changed!");
         });
+
+        private ICommand rescheduleCommand = null!;
+        public ICommand RescheduleCommand => rescheduleCommand ??= rescheduleCommand = new RelayCommand(() =>
+        {
+            if (CurrentAppointment == null)
+            {
+                MessageBox.Show("Please select an appointment.");
+            }
+            else
+            {
+                CurrentAppointment.DeliveryDate = changedDate;
+
+                appointmentController.SaveChanges(CurrentAppointment);
+                RefreshCommand.Execute(null);
+                MessageBox.Show("Appointment rescheduled successfully!");
+            }
+        }); 
     }
 }
