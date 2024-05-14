@@ -144,42 +144,70 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         {
 
             Customer addCustomer = new Customer(FirstName, LastName, PhoneNumber, SocialSecurityNumber, StreetName, PostalCode, City, Email);
-            if (addCustomer.Email == "")
+
+            if (addCustomer.FirstName == "")
+            {
+                MessageBox.Show("First name cannot be empty!");
+
+            }
+
+            else if (addCustomer.LastName == "")
+            {
+                MessageBox.Show("Last name cannot be empty!");
+
+            }
+
+            else if (addCustomer.SocialSecurityNumber == "")
+            {
+                MessageBox.Show("Social security number cannot be empty!");
+
+            }
+
+            else if (addCustomer.PhoneNumber == "")
+            {
+                MessageBox.Show("Phone number cannot be empty!");
+
+            }
+
+            else if (addCustomer.Email == "")
             {
                 addCustomer.Email = null;
             }
 
-            if (addCustomer.Address == "")
+            else if (addCustomer.Address == "")
             {
                 addCustomer.Address = null;
             }
 
-            if (addCustomer.PostalCode == "")
+            else if (addCustomer.PostalCode == "")
             {
                 addCustomer.PostalCode = null;
             }
 
-            if (addCustomer.City == "")
+            else if (addCustomer.City == "")
             {
                 addCustomer.City = null;
-            }
-            
-            int rowsAffected = customerController.SaveCustomer(addCustomer);
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("Customer was added!");
-            }
-
-            else if (rowsAffected == -1)
-            {
-                MessageBox.Show("Customer already exists!");
             }
 
             else
             {
-                MessageBox.Show("Could not add customer!");
-            }   
-                
+
+                int rowsAffected = customerController.SaveCustomer(addCustomer);
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Customer was added!");
+                }
+
+                else if (rowsAffected == -1)
+                {
+                    MessageBox.Show("Customer already exists!");
+                }
+
+                else
+                {
+                    MessageBox.Show("Could not add customer!");
+                }
+            }
         });
 
         private ICommand addVehicleCommand = null!;
