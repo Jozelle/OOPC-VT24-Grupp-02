@@ -18,33 +18,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private VehicleController vehicleController = null!;
 
         private string registrationNumber;
-        public string RegistrationNumber
-        {
-            get { return registrationNumber; }
-            set { registrationNumber = value; } 
-        }
-
-        public string make;
-        public string Make
-        {
-            get { return make; }
-            set { make = value; }
-        }
-
-        public string model;    
-        public string Model
-        {
-            get { return model; }
-            set { model = value; }
-        }
-
-        public string year;     
-        public string Year
-        {
-            get { return year; }
-            set { year = value; }
-        }
-
+        
 
         //Properties
 
@@ -116,6 +90,32 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string RegistrationNumber
+        {
+            get { return registrationNumber; }
+            set { registrationNumber = value; }
+        }
+
+        public string make;
+        public string Make
+        {
+            get { return make; }
+            set { make = value; }
+        }
+
+        public string model;
+        public string Model
+        {
+            get { return model; }
+            set { model = value; }
+        }
+
+        public string year;
+        public string Year
+        {
+            get { return year; }
+            set { year = value; }
+        }
 
         private Vehicle vehicle = null!;
         public Vehicle Vehicle
@@ -128,7 +128,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-       
         public CreateVehicleViewModel()
         {
             customerController = new CustomerController();
@@ -186,6 +185,59 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private ICommand addVehicleCommand = null!;
         public ICommand AddVehicleCommand => addVehicleCommand ??= addVehicleCommand = new RelayCommand(() =>
         {
+                
+            Vehicle addVehicle = new Vehicle();
+
+            if (RegistrationNumber.Length == 6)
+            {
+                addVehicle.RegistrationNumber = RegistrationNumber;
+            }
+            else
+            {
+                MessageBox.Show("Registration number must be 6 characters long!");
+                return;
+            }
+
+            if (Make == "")
+            {
+                MessageBox.Show("Make cannot be empty!");
+                return;
+            }
+            else
+            {
+                addVehicle.Make = Make;
+            }
+
+            if (Model == "")
+            {
+                MessageBox.Show("Model cannot be empty!");
+                return;
+            }
+            else
+            {
+                addVehicle.Model = Model;
+            }
+
+            if (Year == "")
+            {
+                MessageBox.Show("Year cannot be empty!");
+                return;
+            }
+            else
+            {
+                addVehicle.Year = Year;
+            }
+
+            int rowsAffected = vehicleController.SaveVehicle(addVehicle);
+            if (rowsAffected > 0)
+            {
+                MessageBox.Show("Vehicle was added!");
+            }
+
+            else if (rowsAffected == -1)
+            {
+                MessageBox.Show("Vehicle already exists!");
+            }
 
         });
 
