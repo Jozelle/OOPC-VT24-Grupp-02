@@ -17,7 +17,33 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private CustomerController customerController = null!;
         private VehicleController vehicleController = null!;
 
-        private string registrationNumber = "Registration number";
+        private string registrationNumber;
+        public string RegistrationNumber
+        {
+            get { return registrationNumber; }
+            set { registrationNumber = value; } 
+        }
+
+        public string make;
+        public string Make
+        {
+            get { return make; }
+            set { make = value; }
+        }
+
+        public string model;    
+        public string Model
+        {
+            get { return model; }
+            set { model = value; }
+        }
+
+        public string year;     
+        public string Year
+        {
+            get { return year; }
+            set { year = value; }
+        }
 
 
         //Properties
@@ -102,12 +128,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        public string RegistrationNumber
-        {
-            get { return registrationNumber; }
-            set { registrationNumber = value; }
-        }
-
+       
         public CreateVehicleViewModel()
         {
             customerController = new CustomerController();
