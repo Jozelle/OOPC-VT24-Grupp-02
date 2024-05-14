@@ -17,26 +17,26 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         private CustomerController customerController = null!;
         private VehicleController vehicleController = null!;
 
-        private string registrationNumber;
         
 
         //Properties
 
-        private string firstName;
+        private string firstName = "";
         public string FirstName
         {
             get { return firstName; }
             set { firstName = value; }
         }
 
-        private string lastName;
+       
+        private string lastName ="";
         public string LastName
         {
             get { return lastName; }
             set { lastName = value; }
         }
 
-        private string socialSecurityNumber;
+        private string socialSecurityNumber = "";
         public string SocialSecurityNumber
         {
             get { return socialSecurityNumber; }
@@ -64,7 +64,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             set { city = value; }
         }
 
-        private string phoneNumber;
+        private string phoneNumber ="";
         public string PhoneNumber
         {
             get { return phoneNumber; }
@@ -90,6 +90,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string registrationNumber ="";
         public string RegistrationNumber
         {
             get { return registrationNumber; }
@@ -168,44 +170,46 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 MessageBox.Show("Phone number cannot be empty!");
 
             }
-
-            else if (addCustomer.Email == "")
-            {
-                addCustomer.Email = null;
-            }
-
-            else if (addCustomer.Address == "")
-            {
-                addCustomer.Address = null;
-            }
-
-            else if (addCustomer.PostalCode == "")
-            {
-                addCustomer.PostalCode = null;
-            }
-
-            else if (addCustomer.City == "")
-            {
-                addCustomer.City = null;
-            }
-
             else
             {
-
-                int rowsAffected = customerController.SaveCustomer(addCustomer);
-                if (rowsAffected > 0)
+                if (addCustomer.Email == "")
                 {
-                    MessageBox.Show("Customer was added!");
+                    addCustomer.Email = null;
                 }
 
-                else if (rowsAffected == -1)
+                if (addCustomer.Address == "")
                 {
-                    MessageBox.Show("Customer already exists!");
+                    addCustomer.Address = null;
+                }
+
+                if (addCustomer.PostalCode == "")
+                {
+                    addCustomer.PostalCode = null;
+                }
+
+                if (addCustomer.City == "")
+                {
+                    addCustomer.City = null;
                 }
 
                 else
                 {
-                    MessageBox.Show("Could not add customer!");
+
+                    int rowsAffected = customerController.SaveCustomer(addCustomer);
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Customer was added!");
+                    }
+
+                    else if (rowsAffected == -1)
+                    {
+                        MessageBox.Show("Customer already exists!");
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Could not add customer!");
+                    }
                 }
             }
         });
