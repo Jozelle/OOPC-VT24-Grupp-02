@@ -89,7 +89,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -117,13 +118,25 @@
                 </Border>
                 <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Command="{Binding AddCommentCommand}"/>
 
+               
+                    <Label Content="Reschedule appointment" Grid.Column="0" Grid.Row="6"/>
+       
+
                 <Border Grid.Column="0" Grid.Row="7">
+                    <DatePicker SelectedDate="{Binding ChangedDate}"/>
+                </Border>
+
+                <Border Grid.Column="1" Grid.Row="7">
+                    <Button x:Name="btn_Reschedule" Content="Update delivery date" Command="{Binding RescheduleCommand}"/>
+                </Border>
+
+                <Border Grid.Column="0" Grid.Row="8">
                     <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5" ItemsSource="{Binding AppointmentStatuses}" SelectedItem="{Binding AppointmentStatus}"/>
 
                 </Border>
 
 
-                <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="7" Content="Save" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}"/>
+                <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="8" Content="Update status" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}"/>
             </Grid>
         </StackPanel>
         <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
@@ -142,7 +155,8 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding AppointmentId}"/>
                             <DataGridTextColumn Header="RegNo" Binding="{Binding VehicleRegistrationNumber}"/>
-                            <DataGridTextColumn Header="Time" Binding="{Binding SubmissionDate}"/>
+                            <DataGridTextColumn Header="SubmissionDate" Binding="{Binding SubmissionDate}" />
+                            <DataGridTextColumn Header="DeliveryDate" Binding="{Binding DeliveryDate}"/>
                             <DataGridTextColumn Header="Description" Binding="{Binding Purpose}"/>
                             <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
                         </DataGrid.Columns>
