@@ -133,12 +133,7 @@
                 </Border>
 
                 <Border Grid.Column="1" Grid.Row="8">
-                    <ComboBox x:Name="TimeDuration" SelectedItem ="{Binding UpdatedMinute}" >
-                        <ComboBoxItem Content="00"/>
-                        <ComboBoxItem Content="15"/>
-                        <ComboBoxItem Content="30"/>
-                        <ComboBoxItem Content="45"/>
-                    </ComboBox>
+                    <ComboBox x:Name="TimeDuration" SelectedItem ="{Binding UpdatedMinute}" ItemsSource="{Binding AvailableMinutes}"/>
                 </Border>
 
                 <Border Grid.Column="1" Grid.Row="7">
@@ -170,7 +165,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding AppointmentId}"/>
                             <DataGridTextColumn Header="RegNo" Binding="{Binding VehicleRegistrationNumber}"/>
-                            <DataGridTextColumn Header="SubmissionDate" Binding="{Binding SubmissionDate, ConverterCulture='eu-eu', StringFormat='yyyy/MM.dd'}"/>
+                            <DataGridTextColumn Header="SubmissionDate" Binding="{Binding SubmissionDate, ConverterCulture='eu-eu', StringFormat='yyyy/MM/dd'}"/>
                             <DataGridTextColumn Header="DeliveryDate" Binding="{Binding DeliveryDate, ConverterCulture='eu-eu'}"/>
                             <DataGridTextColumn Header="Description" Binding="{Binding Purpose}"/>
                             <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
