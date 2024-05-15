@@ -15,6 +15,7 @@ using CarService.PresentationLayer.WPF.MVVM.Services;
 using Microsoft.Identity.Client.NativeInterop;
 using CarService.Entities.Enums;
 using CarService.PresentationLayer.WPF.MVVM.Stores;
+using System.Windows.Controls;
 
 namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 {
@@ -174,8 +175,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        private DateTime changedDate = DateTime.Now;
-        public DateTime ChangedDate
+        private DateOnly changedDate = DateOnly.FromDateTime(DateTime.Today);
+        public DateOnly ChangedDate
         {
             get { return changedDate; }
             set
@@ -184,6 +185,30 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+    
+        private int updatedHour = 0;
+        public int UpdatedHour
+        {
+            get { return updatedHour; }
+            set
+            {
+                updatedHour = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int updatedMinute = 0;
+        public int UpdatedMinute
+        {
+            get { return updatedMinute; }
+            set
+            {
+                updatedMinute = value;
+                OnPropertyChanged();
+            }
+        }
+
+        
 
         //Constructor
         public MechanicViewModel()
@@ -314,8 +339,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
             else
             {
-                CurrentAppointment.DeliveryDate = changedDate;
-
+                TimeOnly to = new TimeOnly(UpdatedHour,UpdatedMinute,0);
+                CurrentAppointment.DeliveryDate = new DateTime(ChangedDate, to);
                 appointmentController.SaveChanges(CurrentAppointment);
                 RefreshCommand.Execute(null);
                 MessageBox.Show("Appointment rescheduled successfully!");
