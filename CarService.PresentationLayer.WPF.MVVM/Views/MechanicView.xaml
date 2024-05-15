@@ -129,21 +129,11 @@
                 </Border>
 
                 <Border Grid.Column="0" Grid.Row="8">
-                    <ComboBox x:Name="TimeSlot" SelectedValue ="{Binding UpdatedHour}" >
-                        <ComboBoxItem Content="07"/>
-                        <ComboBoxItem Content="08"/>
-                        <ComboBoxItem Content="09"/>
-                        <ComboBoxItem Content="10"/>
-                        <ComboBoxItem Content="11"/>
-                        <ComboBoxItem Content="12"/>
-                        <ComboBoxItem Content="13"/>
-                        <ComboBoxItem Content="14"/>
-                        <ComboBoxItem Content="15"/>
-                    </ComboBox>
+                    <ComboBox x:Name="TimeSlot" SelectedItem ="{Binding UpdatedHour}" ItemsSource="{Binding AvailableHours}"/>
                 </Border>
 
                 <Border Grid.Column="1" Grid.Row="8">
-                    <ComboBox x:Name="TimeDuration" SelectedValue ="{Binding UpdatedMinute}" >
+                    <ComboBox x:Name="TimeDuration" SelectedItem ="{Binding UpdatedMinute}" >
                         <ComboBoxItem Content="00"/>
                         <ComboBoxItem Content="15"/>
                         <ComboBoxItem Content="30"/>

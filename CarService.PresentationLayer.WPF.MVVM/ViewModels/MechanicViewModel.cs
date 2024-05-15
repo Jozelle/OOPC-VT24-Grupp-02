@@ -175,8 +175,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        private DateOnly changedDate = DateOnly.FromDateTime(DateTime.Today);
-        public DateOnly ChangedDate
+        private DateTime changedDate = DateTime.Now;
+        public DateTime ChangedDate
         {
             get { return changedDate; }
             set
@@ -185,7 +185,9 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-    
+        public ObservableCollection<int> AvailableHours = new ObservableCollection<int> { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+        public ObservableCollection<int> AvailableMinutes = new ObservableCollection<int>{ 0, 15, 30, 45 };
+
         private int updatedHour = 0;
         public int UpdatedHour
         {
@@ -339,8 +341,12 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
             else
             {
-                TimeOnly to = new TimeOnly(UpdatedHour,UpdatedMinute,0);
-                CurrentAppointment.DeliveryDate = new DateTime(ChangedDate, to);
+
+
+                TimeSpan ts = new TimeSpan(UpdatedHour, UpdatedMinute, 0);
+
+                DateTime nDate = new DateTime(ChangedDate.Year, ChangedDate.Month, ChangedDate.Day, UpdatedHour, updatedMinute, 0);
+                CurrentAppointment.DeliveryDate = nDate;
                 appointmentController.SaveChanges(CurrentAppointment);
                 RefreshCommand.Execute(null);
                 MessageBox.Show("Appointment rescheduled successfully!");
@@ -348,3 +354,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         }); 
     }
 }
+
+
+
