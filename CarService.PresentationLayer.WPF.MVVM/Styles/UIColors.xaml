@@ -11,4 +11,13 @@
     <SolidColorBrush x:Key="primaryColorMediumBrush">#FFC1587B</SolidColorBrush>
     <SolidColorBrush x:Key="primaryColorLightBrush">pink</SolidColorBrush>
     <SolidColorBrush x:Key="primaryColorWhiteBrush">LavenderBlush</SolidColorBrush>
+    
+    <!--Gradients-->
+    <LinearGradientBrush x:Key="threeColorGradientBrush"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop Color="{StaticResource primaryColorMedium}" Offset="0"/>
+        <GradientStop Color="{StaticResource primaryColorLight}" Offset="0.5"/>
+        <GradientStop Color="{StaticResource primaryColorMedium}" Offset="1"/>
+    </LinearGradientBrush>
 </ResourceDictionary>

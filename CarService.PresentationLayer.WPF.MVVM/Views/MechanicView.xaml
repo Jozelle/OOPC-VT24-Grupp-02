@@ -27,7 +27,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Mechanic view" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script" />
-                <Button Grid.Column="1" x:Name="RefreshButton" Content="Refresh" Command="{Binding RefreshCommand}"/>
+                <Button Grid.Column="1" Content="Refresh" Command="{Binding RefreshCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
 
             </Grid>
 
@@ -40,8 +40,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox x:Name="searchVehicleTB" Grid.Column="0" Text="{Binding InputRegNo}"  />
-                    <Button x:Name="searchVehicleButton" Grid.Column="1" Content="Search" Command="{Binding SearchAppointmentByRegNo}" />
+                    <TextBox Grid.Column="0" Text="{Binding InputRegNo}"  />
+                    <Button Grid.Column="1" Content="Search" Command="{Binding SearchAppointmentByRegNo}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
 
                 </Grid>
             </Border>
@@ -86,12 +86,12 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="30"/>
    
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Add items"/>
@@ -99,8 +99,8 @@
                 <Border Grid.Column="0" Grid.Row="1" >
                     <TextBox Text="{Binding InputItemId}" />
                 </Border>
-
-                <Button Grid.Column="1" Grid.Row="1" x:Name="SearchItemButton" Content="Search" Command="{Binding GetItemsCommand}"/>
+                
+                <Button Grid.Column="1" Grid.Row="1" Content="Search" Command="{Binding GetItemsCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
 
                 <Border  Grid.Column="0" Grid.Row="2" >
                     <ComboBox x:Name="cbItems" ItemsSource="{Binding CurrentItems}"
@@ -111,19 +111,19 @@
                     <TextBox x:Name="QuantityTB" Text="{Binding ItemQuantity}"/>
                 </Border>
 
-                <Button Grid.Column="1" Grid.Row="3" x:Name="AddItemButton" Content="Add item" Command="{Binding AddItemCommand}"/>
+                <Button Grid.Column="1" Grid.Row="3" Content="Add item" Command="{Binding AddItemCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
                 <Label Grid.Row="4" Content="Add comment"/>
                 <Border Grid.Column="0" Grid.Row="5">
-                    <TextBox x:Name="AddCommentTB" Text="{Binding InputComment}"/>
+                    <TextBox Text="{Binding InputComment}"/>
                 </Border>
-                <Button Grid.Column="1" Grid.Row="5" x:Name="AddCommentButton" Content="Add comment" Command="{Binding AddCommentCommand}"/>
+                <Button Grid.Column="1" Grid.Row="5" Content="Add comment" VerticalAlignment="Bottom" Command="{Binding AddCommentCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
 
-                <Border Grid.Column="0" Grid.Row="6">
+                <Border Grid.Column="0" Grid.Row="6" Height="30">
                     <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" ItemsSource="{Binding AppointmentStatuses}" SelectedItem="{Binding AppointmentStatus}"/>
 
                 </Border>
 
-                <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="6" Content="Update status" VerticalAlignment="Center" Height="41" Command="{Binding UpdateStatusCommand}"/>
+                <Button Grid.Column="1" Grid.Row="6" Content="Update status" Command="{Binding UpdateStatusCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
             </Grid>
 
             <Grid>
@@ -144,15 +144,15 @@
                 </Border>
 
                 <Border Grid.Column="1" Grid.Row="1">
-                    <ComboBox x:Name="TimeSlot" SelectedItem ="{Binding UpdatedHour}" ItemsSource="{Binding AvailableHours}"/>
+                    <ComboBox SelectedItem ="{Binding UpdatedHour}" ItemsSource="{Binding AvailableHours}"/>
                 </Border>
 
                 <Border Grid.Column="2" Grid.Row="1">
-                    <ComboBox x:Name="TimeDuration" SelectedItem ="{Binding UpdatedMinute}" ItemsSource="{Binding AvailableMinutes}"/>
+                    <ComboBox SelectedItem ="{Binding UpdatedMinute}" ItemsSource="{Binding AvailableMinutes}"/>
                 </Border>
 
                 <Border Grid.Row="2" Grid.ColumnSpan="3">
-                    <Button x:Name="btn_Reschedule" Content="Update delivery date" Command="{Binding RescheduleCommand}"/>
+                    <Button Content="Update delivery date" Command="{Binding RescheduleCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
                 </Border>
 
 
