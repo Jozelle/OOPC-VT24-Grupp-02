@@ -185,10 +185,30 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<int> AvailableHours = new ObservableCollection<int> { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
-        public ObservableCollection<int> AvailableMinutes = new ObservableCollection<int>{ 0, 15, 30, 45 };
 
-        private int updatedHour = 0;
+        private List<int> availableHours = new List<int> { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+        public List<int> AvailableHours 
+        { 
+            get { return availableHours; } 
+            set  
+            {  
+                availableHours = value; 
+                OnPropertyChanged(); 
+            } 
+        }
+
+        private List<int> availableMinutes = new List<int> { 0, 15, 30, 45 };
+
+        public List<int> AvailableMinutes 
+        { 
+            get { return availableMinutes; } 
+            set 
+            { 
+                availableMinutes = value; 
+                OnPropertyChanged(); 
+            } 
+        }
+        private int updatedHour;
         public int UpdatedHour
         {
             get { return updatedHour; }
@@ -199,7 +219,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        private int updatedMinute = 0;
+        private int updatedMinute;
         public int UpdatedMinute
         {
             get { return updatedMinute; }
@@ -340,11 +360,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 MessageBox.Show("Please select an appointment.");
             }
             else
-            {
-
-
+            { 
                 TimeSpan ts = new TimeSpan(UpdatedHour, UpdatedMinute, 0);
-
                 DateTime nDate = new DateTime(ChangedDate.Year, ChangedDate.Month, ChangedDate.Day, UpdatedHour, updatedMinute, 0);
                 CurrentAppointment.DeliveryDate = nDate;
                 appointmentController.SaveChanges(CurrentAppointment);
