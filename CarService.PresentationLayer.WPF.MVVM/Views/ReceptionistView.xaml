@@ -130,7 +130,7 @@
 
                             <TextBlock Grid.Column="0" Text="{Binding AppointmentId}"/>
                             <TextBlock Grid.Column="1" Text="{Binding Vehicle.RegistrationNumber}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding SubmissionDate}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding SubmissionDate, ConverterCulture='eu-eu', StringFormat='yyyy/MM/dd'}"/>
                             <TextBlock Grid.Column="3" Text="{Binding Purpose}"/>
                             <TextBlock Grid.Column="4" Text="{Binding Status}"/>
                         </Grid>

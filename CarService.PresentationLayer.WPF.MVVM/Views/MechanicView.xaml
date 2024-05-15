@@ -93,6 +93,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Add items"/>
                 <!--<Button Content="Show journal" Grid.Column="1" Grid.Row="0" Command="{Binding ShowJournal}"/>-->
@@ -126,17 +128,40 @@
                     <DatePicker SelectedDate="{Binding ChangedDate}"/>
                 </Border>
 
+                <Border Grid.Column="0" Grid.Row="8">
+                    <ComboBox x:Name="TimeSlot" SelectedValue ="{Binding UpdatedHour}" >
+                        <ComboBoxItem Content="07"/>
+                        <ComboBoxItem Content="08"/>
+                        <ComboBoxItem Content="09"/>
+                        <ComboBoxItem Content="10"/>
+                        <ComboBoxItem Content="11"/>
+                        <ComboBoxItem Content="12"/>
+                        <ComboBoxItem Content="13"/>
+                        <ComboBoxItem Content="14"/>
+                        <ComboBoxItem Content="15"/>
+                    </ComboBox>
+                </Border>
+
+                <Border Grid.Column="1" Grid.Row="8">
+                    <ComboBox x:Name="TimeDuration" SelectedValue ="{Binding UpdatedMinute}" >
+                        <ComboBoxItem Content="00"/>
+                        <ComboBoxItem Content="15"/>
+                        <ComboBoxItem Content="30"/>
+                        <ComboBoxItem Content="45"/>
+                    </ComboBox>
+                </Border>
+
                 <Border Grid.Column="1" Grid.Row="7">
                     <Button x:Name="btn_Reschedule" Content="Update delivery date" Command="{Binding RescheduleCommand}"/>
                 </Border>
 
-                <Border Grid.Column="0" Grid.Row="8">
+                <Border Grid.Column="0" Grid.Row="9">
                     <ComboBox x:Name="ChooseStatusBox" SelectedIndex="0" Margin="-1,0,0,0" Opacity="0.5" ItemsSource="{Binding AppointmentStatuses}" SelectedItem="{Binding AppointmentStatus}"/>
 
                 </Border>
 
 
-                <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="8" Content="Update status" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}"/>
+                <Button x:Name="btn_SaveStatus" Grid.Column="1" Grid.Row="9" Content="Update status" VerticalAlignment="Center" Height="30" Command="{Binding UpdateStatusCommand}"/>
             </Grid>
         </StackPanel>
         <Border Background="FloralWhite" Grid.Column="1" CornerRadius="0 10 10 0">
@@ -155,8 +180,8 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding AppointmentId}"/>
                             <DataGridTextColumn Header="RegNo" Binding="{Binding VehicleRegistrationNumber}"/>
-                            <DataGridTextColumn Header="SubmissionDate" Binding="{Binding SubmissionDate}" />
-                            <DataGridTextColumn Header="DeliveryDate" Binding="{Binding DeliveryDate}"/>
+                            <DataGridTextColumn Header="SubmissionDate" Binding="{Binding SubmissionDate, ConverterCulture='eu-eu', StringFormat='yyyy/MM.dd'}"/>
+                            <DataGridTextColumn Header="DeliveryDate" Binding="{Binding DeliveryDate, ConverterCulture='eu-eu'}"/>
                             <DataGridTextColumn Header="Description" Binding="{Binding Purpose}"/>
                             <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
                         </DataGrid.Columns>
@@ -194,7 +219,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Column="0" Text="{Binding Time}"/>
+                                    <TextBlock Grid.Column="0" Text="{Binding Time, ConverterCulture='eu-eu'}"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Author.FirstName}"/>
                                     <TextBlock Grid.Column="2" Text="{Binding Message}"/>
 
