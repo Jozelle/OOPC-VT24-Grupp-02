@@ -17,7 +17,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" HorizontalAlignment="Stretch">
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <TextBlock Text="Add customer" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
 
 
@@ -62,15 +62,15 @@
                 <Label Content="Email" Grid.Row="7"/>
                 <TextBox Text="{Binding Email}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3"/>
             </Grid>
+            <Button Grid.Column="0" Content="Add new customer" Margin="0,5,0,0" Command="{Binding AddCustomerCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
 
         </StackPanel>
 
-        <Button Grid.Column="0" Content="Add new customer" VerticalAlignment="Top" Height="30" Command="{Binding AddCustomerCommand}" Margin="0,340,0,0"/>
+        
 
 
 
-
-        <StackPanel Grid.Column="1" HorizontalAlignment="Stretch">
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
             <TextBlock Text="Add vehicle" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
 
             <Grid>
@@ -104,11 +104,11 @@
                 <TextBox Text="{Binding Year}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4"/>
 
             </Grid>
-
+        <Button Grid.Column="1" Content="Add new vehicle" VerticalAlignment="Top" Height="30" Margin="0,5,0,0" Command="{Binding AddVehicleCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
         </StackPanel>
 
 
 
-        <Button Grid.Column="1" Content="Add new vehicle" VerticalAlignment="Top" Height="30" Command="{Binding AddVehicleCommand}" Margin="0,340,0,0"/>
+        
     </Grid>
 </UserControl>
