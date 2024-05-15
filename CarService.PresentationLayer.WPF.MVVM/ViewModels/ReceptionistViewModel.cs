@@ -83,7 +83,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-      
+
 
         private AppointmentStatus selectedAppointmentStatus = AppointmentStatus.CarReceived;
         public AppointmentStatus SelectedAppointmentStatus
@@ -119,7 +119,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-     
+
 
         private ObservableCollection<Appointment> todaysAppointments = null!;
         public ObservableCollection<Appointment> TodaysAppointments
@@ -132,7 +132,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        private Vehicle currentVehicle = null!; 
+        private Vehicle currentVehicle = null!;
         public Vehicle CurrentVehicle
         {
             get { return currentVehicle; }
@@ -151,6 +151,61 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             set
             {
                 rescheduleDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime changedDate = DateTime.Now;
+        public DateTime ChangedDate
+        {
+            get { return changedDate; }
+            set
+            {
+                changedDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<int> availableHours = new List<int> { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+        public List<int> AvailableHours
+        {
+            get { return availableHours; }
+            set
+            {
+                availableHours = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<int> availableMinutes = new List<int> { 0, 15, 30, 45 };
+
+        public List<int> AvailableMinutes
+        {
+            get { return availableMinutes; }
+            set
+            {
+                availableMinutes = value;
+                OnPropertyChanged();
+            }
+        }
+        private int updatedHour;
+        public int UpdatedHour
+        {
+            get { return updatedHour; }
+            set
+            {
+                updatedHour = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int updatedMinute;
+        public int UpdatedMinute
+        {
+            get { return updatedMinute; }
+            set
+            {
+                updatedMinute = value;
                 OnPropertyChanged();
             }
         }
@@ -238,7 +293,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 RefreshCommand.Execute(null);
                 MessageBox.Show("Status updated successfully!");
 
-                
+
             }
         });
 
@@ -257,7 +312,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                     Time = DateTime.Now,
                     Message = InputComment,
                     Appointment = CurrentAppointment
-                   
+
                 };
 
                 // Add the comment to the collection of comments for the selected appointment
@@ -269,25 +324,43 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 CurrentAppointment.Comments.Add(comment);
             }
         });
-
         private ICommand rescheduleCommand = null!;
         public ICommand RescheduleCommand => rescheduleCommand ??= rescheduleCommand = new RelayCommand(() =>
         {
-           
             if (CurrentAppointment == null)
             {
                 MessageBox.Show("Please select an appointment.");
             }
             else
             {
-                CurrentAppointment.SubmissionDate = RescheduleDate;
-                CurrentAppointment.DeliveryDate = CurrentAppointment.SubmissionDate.AddDays(1);
-               
+                TimeSpan ts = new TimeSpan(UpdatedHour, UpdatedMinute, 0);
+                DateTime nDate = new DateTime(ChangedDate.Year, ChangedDate.Month, ChangedDate.Day, UpdatedHour, updatedMinute, 0);
+                CurrentAppointment.SubmissionDate = nDate;
                 appointmentController.SaveChanges(CurrentAppointment);
                 RefreshCommand.Execute(null);
                 MessageBox.Show("Appointment rescheduled successfully!");
             }
+            
         });
+
+        //private ICommand rescheduleCommand = null!;
+        //public ICommand RescheduleCommand => rescheduleCommand ??= rescheduleCommand = new RelayCommand(() =>
+        //{
+
+        //    if (CurrentAppointment == null)
+        //    {
+        //        MessageBox.Show("Please select an appointment.");
+        //    }
+        //    else
+        //    {
+        //        CurrentAppointment.SubmissionDate = RescheduleDate;
+        //        CurrentAppointment.DeliveryDate = CurrentAppointment.SubmissionDate.AddDays(1);
+
+        //        appointmentController.SaveChanges(CurrentAppointment);
+        //        RefreshCommand.Execute(null);
+        //        MessageBox.Show("Appointment rescheduled successfully!");
+        //    }
+        //});
     }
 }
 

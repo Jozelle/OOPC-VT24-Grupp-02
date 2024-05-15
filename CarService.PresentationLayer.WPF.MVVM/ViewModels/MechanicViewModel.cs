@@ -16,6 +16,8 @@ using Microsoft.Identity.Client.NativeInterop;
 using CarService.Entities.Enums;
 using CarService.PresentationLayer.WPF.MVVM.Stores;
 using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Windows.Media.Animation;
 
 namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
 {
@@ -186,7 +188,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        private List<int> availableHours = new List<int> { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+        private List<int> availableHours = new List<int> { 07, 08, 09, 10, 11, 12, 13, 14, 15, 16 };
         public List<int> AvailableHours 
         { 
             get { return availableHours; } 
@@ -197,7 +199,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             } 
         }
 
-        private List<int> availableMinutes = new List<int> { 0, 15, 30, 45 };
+        private List<int> availableMinutes = new List<int> { 00, 15, 30, 45 };
 
         public List<int> AvailableMinutes 
         { 
