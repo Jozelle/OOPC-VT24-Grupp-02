@@ -19,16 +19,16 @@
 
                 <TextBlock Text="EmployeeID" Foreground="{StaticResource primaryColorMediumBrush}" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
 
-                <Border BorderThickness="1" BorderBrush="{StaticResource primaryColorMediumBrush}" Margin="70 7" CornerRadius="5">
+                <Border BorderThickness="1" BorderBrush="{StaticResource primaryColorMediumBrush}" Margin="70 7" Width="336">
                     <TextBox x:Name="tbxEmployeeID" FontSize="14" Text="{Binding Username}"/>
                 </Border>
 
                 <TextBlock Text="Password" Foreground="{StaticResource primaryColorMediumBrush}" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe Script"/>
 
-                <Border BorderThickness="1" BorderBrush="{StaticResource primaryColorMediumBrush}" Margin="70 7" CornerRadius="5">
+                <Border BorderThickness="1" BorderBrush="{StaticResource primaryColorMediumBrush}" Margin="70 7" Width="336" >
                     <local:PasswordUserControl x:Name="passwordBox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Border>
-                <Button x:Name="btnSignIn" Content="Sign in" Width="336"  Margin="5" Command="{Binding LoginCommand}"/>
+                <Button x:Name="btnSignIn" Content="Sign in" Width="336"  Margin="5" Command="{Binding LoginCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}" />
             </StackPanel>
         </Border>
     </Grid>
