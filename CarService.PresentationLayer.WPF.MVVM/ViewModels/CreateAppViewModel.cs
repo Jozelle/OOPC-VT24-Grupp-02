@@ -105,6 +105,72 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private List<int> availableHours = new List<int> { 07, 08, 09, 10, 11, 12, 13, 14, 15, 16 };
+        public List<int> AvailableHours
+        {
+            get { return availableHours; }
+            set
+            {
+                availableHours = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<int> availableMinutes = new List<int> { 00, 15, 30, 45 };
+
+        public List<int> AvailableMinutes
+        {
+            get { return availableMinutes; }
+            set
+            {
+                availableMinutes = value;
+                OnPropertyChanged();
+            }
+        }
+        private int updatedHour;
+        public int UpdatedHour
+        {
+            get { return updatedHour; }
+            set
+            {
+                updatedHour = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int updatedMinute;
+        public int UpdatedMinute
+        {
+            get { return updatedMinute; }
+            set
+            {
+                updatedMinute = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<int> availableDuration = new List<int> { 30, 60, 90, 120};
+        public List<int> AvailableDuration
+        {
+            get { return availableDuration; }
+            set
+            {
+                availableDuration = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int choosenDuration;
+        public int ChoosenDuration
+        {
+            get { return choosenDuration; }
+            set
+            {
+                choosenDuration = value;
+                OnPropertyChanged();
+            }
+        }
         public CreateAppViewModel()
         {
             vehicleController = new VehicleController();
@@ -225,10 +291,14 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
             else
             {
+                TimeSpan ts = new TimeSpan(UpdatedHour, UpdatedMinute, 0);
+                DateTime nDate = new DateTime(ChoosenDateTime.Year, ChoosenDateTime.Month, ChoosenDateTime.Day, UpdatedHour, updatedMinute, 0);
+            
                 Appointment appointment = new Appointment();
                 {
-                    appointment.SubmissionDate = ChoosenDateTime;
-                    appointment.DeliveryDate = ChoosenDateTime.AddDays(1);
+
+                    appointment.SubmissionDate = nDate;
+                    appointment.DeliveryDate = nDate.AddMinutes(ChoosenDuration);
                     appointment.Status = Entities.Enums.AppointmentStatus.Booked;
                     appointment.Purpose = ErrorDescription;
                     appointment.VehicleRegistrationNumber = CurrentVehicle.RegistrationNumber;

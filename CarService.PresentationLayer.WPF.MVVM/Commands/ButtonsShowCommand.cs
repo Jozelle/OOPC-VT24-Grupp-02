@@ -9,6 +9,9 @@ namespace CarService.PresentationLayer.WPF.MVVM.Commands
 {
     class ButtonsShowCommand : CommandBase
     {
+
+
+
         private readonly ButtonVisibilityStore _buttonVisibilityStore;
         public ButtonsShowCommand(ButtonVisibilityStore buttonVisibilityStore)
         {
@@ -18,5 +21,9 @@ namespace CarService.PresentationLayer.WPF.MVVM.Commands
         {
             _buttonVisibilityStore.CurrentButtonVisibility = true;
         }
+
+       
+
+      
     }
 }
