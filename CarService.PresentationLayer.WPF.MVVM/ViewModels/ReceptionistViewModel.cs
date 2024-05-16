@@ -321,50 +321,15 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
             else
             {
-                TimeSpan duration = CurrentAppointment.DeliveryDate - CurrentAppointment.SubmissionDate;
-
                 TimeSpan ts = new TimeSpan(UpdatedHour, UpdatedMinute, 0);
                 DateTime nDate = new DateTime(ChangedDate.Year, ChangedDate.Month, ChangedDate.Day, UpdatedHour, updatedMinute, 0);
                 CurrentAppointment.SubmissionDate = nDate;
-                currentAppointment.DeliveryDate = nDate + duration;
-
-                TimeSpan closingTime = new TimeSpan(17, 00, 0);  
-                if (CurrentAppointment.DeliveryDate.TimeOfDay > closingTime)
-                {
-                    TimeSpan timeAfterClosing = CurrentAppointment.DeliveryDate.TimeOfDay - closingTime;
-
-                    TimeSpan openHours = new TimeSpan(10, 0, 0);
-
-                    DateTime deliveryDay = CurrentAppointment.DeliveryDate.AddDays(1);
-
-                    TimeOnly openingTime = new TimeOnly(7, 00, 00);
-                    TimeOnly deliveryTime = openingTime.Add(timeAfterClosing);
-
-                    DateTime newDelivery;
-
-                    if (deliveryDay.DayOfWeek == DayOfWeek.Sunday)
-                    {
-                        DateTime newDate = deliveryDay.AddDays(1);
-                        newDelivery = new DateTime(newDate.Year, newDate.Month, newDate.Day, deliveryTime.Hour, deliveryTime.Minute, 0);
-                    }
-                    else if (deliveryDay.DayOfWeek == DayOfWeek.Saturday)
-                    {
-                        DateTime newDate = deliveryDay.AddDays(2);
-                        newDelivery = new DateTime(newDate.Year, newDate.Month, newDate.Day, deliveryTime.Hour, deliveryTime.Minute, 0);
-                    }
-                    else
-                    {
-                        newDelivery = new DateTime(deliveryDay.Year, deliveryDay.Month, deliveryDay.Day, deliveryTime.Hour, deliveryTime.Minute, 0);
-                    }
-
-                    CurrentAppointment.DeliveryDate = newDelivery;
-                }
-
                 appointmentController.SaveChanges(CurrentAppointment);
                 RefreshCommand.Execute(null);
                 MessageBox.Show("Appointment rescheduled successfully!");
             }
             
+           
         });
 
         //private ICommand rescheduleCommand = null!;

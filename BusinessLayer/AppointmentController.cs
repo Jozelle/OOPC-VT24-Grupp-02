@@ -62,11 +62,11 @@ namespace CarService.BusinessLayer
         }
 
 
-        public int EnterItem(Appointment app, Item item, int quantity)
+        public int EnterItem(Appointment app, Item item, int quantity, int mechanicId)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                UsedItem usedItem = new UsedItem() { AppointmentId = app.AppointmentId, ItemId = item.ItemId, Quantity = quantity };
+                UsedItem usedItem = new UsedItem() { AppointmentId = app.AppointmentId, ItemId = item.ItemId, Quantity = quantity, AddedById = mechanicId };
 
                 uow.UsedItems.Add(usedItem);
                 return uow.Complete();

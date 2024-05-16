@@ -299,12 +299,13 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             {
                 if (quantity>0) 
                 {
-                    int affectedRows = appointmentController.EnterItem(CurrentAppointment, CurrentItem, quantity);
+                    int affectedRows = appointmentController.EnterItem(CurrentAppointment, CurrentItem, quantity, UserSessionStore.UserId);
 
                     UsedItem newUsage = new UsedItem();
                     newUsage.Appointment = CurrentAppointment;
                     newUsage.Item = CurrentItem;
                     newUsage.Quantity = quantity;
+                    newUsage.AddedById = UserSessionStore.UserId;
 
                     if (CurrentAppointment.UsedItems == null)
                     {
