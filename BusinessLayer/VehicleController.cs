@@ -1,5 +1,6 @@
 ﻿using CarService.Entities;
 using DataLayer;
+using System.Collections.Generic;
 
 namespace CarService.BusinessLayer
 {
@@ -53,5 +54,14 @@ namespace CarService.BusinessLayer
                 }
             }
         }
-    }
+        public List<Vehicle> GetVehiclesByCustomer(Customer customer)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                List<string> regNumbers = uow.Customers.GetVehicleByCustomer(customer);
+
+                return uow.Vehicles.GetRange(regNumbers);
+            }
+        }
+     }
 }

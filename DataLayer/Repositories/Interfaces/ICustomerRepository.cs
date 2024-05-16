@@ -13,8 +13,6 @@ namespace CarService.DataLayer.Repositories.Interfaces
 
         Customer GetByPhoneNo(string phoneNo);
 
-
-
-
+        List<string> GetVehicleByCustomer(Customer customer);
     }
 }

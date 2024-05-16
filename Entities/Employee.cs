@@ -15,6 +15,7 @@ namespace CarService.Entities
     public class Mechanic : Employee
     {
         public Specialization? Specialization { get; set; }
+        public ICollection<UsedItem> UsedItems { get; set; }
     }
 
     public class Receptionist : Employee

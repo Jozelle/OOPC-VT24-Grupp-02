@@ -48,7 +48,8 @@
                              Style="{StaticResource menuButton}" 
                              Tag="{StaticResource primaryColorDark}"
                              Command="{Binding GoToReceptionistViewCommand}" 
-                             Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
+                             Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"
+                             IsChecked="{Binding ReceptionistIsChecked}">
                     <TextBlock Text="Receptionist" Style="{StaticResource menuButtonText}"/>
                 </RadioButton>
 
@@ -64,8 +65,9 @@
                              Style="{StaticResource menuButton}" 
                              Tag="{StaticResource primaryColorDark}" 
                              Command="{Binding GoToMechanicViewCommand}" 
-                             Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}">
-                    <TextBlock Text="Manage appointment" Style="{StaticResource menuButtonText}"/>
+                             Visibility="{Binding IsButtonsVisible, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"
+                             IsChecked="{Binding MechanicIsChecked}">
+                    <TextBlock Text="Mechanic" Style="{StaticResource menuButtonText}"/>
                 </RadioButton>
 
                 <RadioButton Grid.Row="5" 

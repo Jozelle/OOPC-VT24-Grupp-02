@@ -9,5 +9,6 @@ namespace CarService.DataLayer.Repositories.Interfaces
 
         Vehicle GetByRegistrationNo(string regNo);
         List<Appointment> GetJournal(string regNo);
+        List<Vehicle> GetRange(List<string> regNumbers);
     }
 }

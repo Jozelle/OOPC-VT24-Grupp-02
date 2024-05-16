@@ -13,15 +13,15 @@ namespace CarService.DataLayer.Repositories
 
         public ICollection<Mechanic> GetMechanics()
         {
-            return Context.Set<Employee>().OfType<Mechanic>().ToList();
+            return Table.OfType<Mechanic>().ToList();
         }
         public ICollection<Receptionist> GetReceptionist()
         {
-            return Context.Set<Employee>().OfType<Receptionist>().ToList();
+            return Table.OfType<Receptionist>().ToList();
         }
         public bool IsReceptionist(int id)
         {
-            var employee = Context.Set<Employee>().Find(id);
+            var employee = Table.Find(id);
             if (employee is Receptionist)
             {
                 return true;
@@ -33,7 +33,7 @@ namespace CarService.DataLayer.Repositories
         }
         public Mechanic? GetMechanic(int id)
         {
-            var employee = Context.Set<Employee>().Find(id);
+            var employee = Table.Find(id);
             if (employee is Mechanic)
             {
                 return (Mechanic)employee;
@@ -42,7 +42,7 @@ namespace CarService.DataLayer.Repositories
         }
         public Receptionist? GetReceptionist(int id)
         {
-            var employee = Context.Set<Employee>().Find(id);
+            var employee = Table.Find(id);
             if (employee is Receptionist)
             {
                 return (Receptionist)employee;
@@ -51,7 +51,7 @@ namespace CarService.DataLayer.Repositories
         }
         public bool VerifyEmployee(int id, string password)
         {
-            return Context.Set<Employee>()
+            return Table
                 .Any(x => x.EmployeeId == id && x.Password.Equals(password));
         }
     }

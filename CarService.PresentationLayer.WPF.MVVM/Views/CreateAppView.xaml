@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CarService.PresentationLayer.WPF.MVVM.Views"
              xmlns:vm="clr-namespace:CarService.PresentationLayer.WPF.MVVM.ViewModels"
-             mc:Ignorable="d" Height="691">
+             mc:Ignorable="d">
 
     <UserControl.DataContext>
         <vm:CreateAppViewModel/>
@@ -19,37 +19,6 @@
 
         <StackPanel Margin="5">
             <TextBlock Text="Create appointment" Grid.Column="0" FontSize="20" HorizontalAlignment="Center" Foreground="#FFC1587B" FontFamily="Segoe Script"/>
-
-            <Label Content="Vehicle" FontFamily="Segoe Script" FontSize="16" Foreground="#FFC1587B"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
-                <Label Content="Registration number"/>
-                <TextBox Text="{Binding RegistrationNumber}" Grid.Column="1" Height="30" VerticalAlignment="Center"/>
-                <Button Grid.Column="2" Content="Search" Command="{Binding SearchVehicleCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
-
-                <Label Content="Make" Grid.Column="0" Grid.Row="1"/>
-                <TextBox Text="{Binding CurrentVehicle.Make}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
-
-                <Label Content="Model" Grid.Column="0" Grid.Row="2"/>
-                <TextBox Text="{Binding CurrentVehicle.Model}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
-
-                <Label Content="Year" Grid.Column="0" Grid.Row="3"/>
-                <TextBox Text="{Binding CurrentVehicle.Year}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"/>
-
-                <Button Grid.Column="2" Grid.Row="4" Content="Save changes" Command="{Binding SaveVehicleCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
-            </Grid>
-
             <Label Content="Customer" FontFamily="Segoe Script" FontSize="16" Foreground="#FFC1587B"/>
 
             <Grid>
@@ -61,6 +30,7 @@
 
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
@@ -101,9 +71,41 @@
                 <TextBox Text="{Binding CurrentCustomer.Email}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3"/>
 
                 <Button Grid.Column="3" Grid.Row="8" Content="Save changes" Command="{Binding SaveCustomerCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
+
+                <Label Content="Previous vehicles" Grid.Row="9"/>
+                <ComboBox Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding CustomerVehicles}" SelectedItem="{Binding CurrentVehicle}"/>
             </Grid>
 
+            <Label Content="Vehicle" FontFamily="Segoe Script" FontSize="16" Foreground="#FFC1587B"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label Content="Registration number"/>
+                <TextBox Text="{Binding RegistrationNumber}" Grid.Column="1" Height="30" VerticalAlignment="Center"/>
+                <Button Grid.Column="2" Content="Search" Command="{Binding SearchVehicleCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
 
+                <Label Content="Make" Grid.Column="0" Grid.Row="1"/>
+                <TextBox Text="{Binding CurrentVehicle.Make}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
+
+                <Label Content="Model" Grid.Column="0" Grid.Row="2"/>
+                <TextBox Text="{Binding CurrentVehicle.Model}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
+
+                <Label Content="Year" Grid.Column="0" Grid.Row="3"/>
+                <TextBox Text="{Binding CurrentVehicle.Year}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"/>
+
+                <Button Grid.Column="2" Grid.Row="4" Content="Save changes" Command="{Binding SaveVehicleCommand}" Style="{StaticResource normalButton}" Tag="{StaticResource primaryColorDark}"/>
+            </Grid>
+            
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>

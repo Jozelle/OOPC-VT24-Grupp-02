@@ -13,5 +13,8 @@ namespace CarService.Entities
 
         public int Quantity { get; set; }
 
+        public int AddedById { get; set; }
+        public Mechanic AddedBy { get; set; }
+
     }
 }

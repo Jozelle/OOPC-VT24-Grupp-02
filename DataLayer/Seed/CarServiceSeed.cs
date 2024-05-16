@@ -275,7 +275,8 @@ namespace CarService.DataLayer.Seed
             {
                 ItemId = 15,
                 Appointment = app3,
-                Quantity = 4
+                Quantity = 4,
+                AddedById = 2
             });
 
             context.UsedItems.Add(new UsedItem()
@@ -283,6 +284,7 @@ namespace CarService.DataLayer.Seed
                 ItemId = 1,
                 Appointment = app2,
                 Quantity = 2,
+                AddedById = 2
             });
 
             context.UsedItems.Add(new UsedItem()
@@ -290,6 +292,7 @@ namespace CarService.DataLayer.Seed
                 ItemId = 12,
                 Appointment = app2,
                 Quantity = 1,
+                AddedById = 1
             });
 
             context.SaveChanges();

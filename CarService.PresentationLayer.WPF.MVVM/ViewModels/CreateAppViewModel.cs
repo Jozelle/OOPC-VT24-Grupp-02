@@ -5,6 +5,7 @@ using CarService.PresentationLayer.WPF.MVVM.Stores;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,6 +84,16 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
+        private ObservableCollection<Vehicle> customerVehicles;
+        public ObservableCollection<Vehicle> CustomerVehicles
+        {
+            get { return customerVehicles; }
+            set
+            {
+                customerVehicles = value;
+                OnPropertyChanged();
+            }
+        }
         public CreateAppViewModel()
         {
             vehicleController = new VehicleController();
@@ -90,6 +101,8 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             appointmentController = new AppointmentController();
         }
 
+
+        
         private ICommand searchVehicleCommand = null!;
         public ICommand SearchVehicleCommand => searchVehicleCommand ??= searchVehicleCommand = new RelayCommand(() =>
         {
@@ -112,8 +125,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
             else if (CurrentVehicle.RegistrationNumber.ToUpper() != RegistrationNumber.ToUpper())
             {
-                MessageBox.Show("Something went wrong, please enter vehicle details and try again!");
-                CurrentVehicle = null!;
+                MessageBox.Show("Are you sure you want to save? Type the vehicles registration number in the search box and press the save-button again to confirm.");
             }
             else
             {
@@ -158,7 +170,12 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             {
                 MessageBox.Show("Nothing was found!");
             }
+            else
+            {
+                CustomerVehicles = new ObservableCollection<Vehicle>(vehicleController.GetVehiclesByCustomer(CurrentCustomer));
+            }
         });
+
         private ICommand saveCustomerCommand = null!;
         public ICommand SaveCustomerCommand => saveCustomerCommand ??= saveCustomerCommand = new RelayCommand(() =>
         {

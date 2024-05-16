@@ -26,6 +26,20 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
         public ICommand NavigateCreateVehicleCommand;
         public ICommand ButtonsHideCommand;
 
+        private bool receptionistIsChecked;
+        public bool ReceptionistIsChecked
+        {
+            get => receptionistIsChecked;
+            set => receptionistIsChecked = value;
+        }
+
+        private bool mechanicIsChecked;
+        public bool MechanicIsChecked
+        {
+            get => mechanicIsChecked;
+            set => mechanicIsChecked = value;
+        }
+
         public MainViewModel(NavigationStore navigationStore, ButtonVisibilityStore buttonVisibilityStore)
         {
             _navigationStore = navigationStore;

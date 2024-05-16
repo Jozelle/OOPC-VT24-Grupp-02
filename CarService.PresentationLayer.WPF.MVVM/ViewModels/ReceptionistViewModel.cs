@@ -143,18 +143,6 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        private DateTime rescheduleDate = DateTime.Now;
-
-        public DateTime RescheduleDate
-        {
-            get { return rescheduleDate; }
-            set
-            {
-                rescheduleDate = value;
-                OnPropertyChanged();
-            }
-        }
-
         private DateTime changedDate = DateTime.Now;
         public DateTime ChangedDate
         {
@@ -177,7 +165,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        private List<int> availableMinutes = new List<int> { 0, 15, 30, 45 };
+        private List<int> availableMinutes = new List<int> { 00, 15, 30, 45 };
 
         public List<int> AvailableMinutes
         {
@@ -188,7 +176,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-        private int updatedHour;
+        private int updatedHour = 7;
         public int UpdatedHour
         {
             get { return updatedHour; }
@@ -199,7 +187,7 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
             }
         }
 
-        private int updatedMinute;
+        private int updatedMinute = 00;
         public int UpdatedMinute
         {
             get { return updatedMinute; }
