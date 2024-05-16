@@ -94,6 +94,17 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string confirmationText = string.Empty;
+        public string ConfirmationText
+        {
+            get { return confirmationText; }
+            set
+            {
+                confirmationText = value;
+                OnPropertyChanged();
+            }
+        }
         public CreateAppViewModel()
         {
             vehicleController = new VehicleController();
@@ -229,7 +240,19 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                 {
                     MessageBox.Show($"Appointment was saved! {rowsChanged}");
                     //Print bekräftelse
+
+                    StringBuilder stringBuilder = new StringBuilder();
+
                 }
+            }
+        });
+
+        private ICommand confirmationCommand = null!;
+        public ICommand ConfirmationCommand => confirmationCommand ??= confirmationCommand = new RelayCommand(() =>
+        {
+            if (ConfirmationText != string.Empty)
+            {
+                MessageBox.Show("Mail sent! (not..)");
             }
         });
     }
