@@ -241,7 +241,10 @@ namespace CarService.PresentationLayer.WPF.MVVM.ViewModels
                     MessageBox.Show($"Appointment was saved! {rowsChanged}");
                     //Print bekräftelse
 
-                    StringBuilder stringBuilder = new StringBuilder();
+                    ConfirmationText = new string($"Hello {CurrentCustomer.FirstName} {CurrentCustomer.LastName}!" + 
+                    $"\n\nWe have created a booking for your car {appointment.VehicleRegistrationNumber}. " +
+                    $"\nError descirption: {appointment.Purpose}" +
+                    $"\nSubmission: {appointment.SubmissionDate}");
 
                 }
             }
