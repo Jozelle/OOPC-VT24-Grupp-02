@@ -1,5 +1,6 @@
 ﻿using CarService.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace CarService.DataLayer.Context
 {
@@ -18,10 +19,12 @@ namespace CarService.DataLayer.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarService;Integrated Security=True");
-            //optionsBuilder.UseSqlServer(@"Server=ROGER\SQLEXPRESS;Database=test3;Trusted_Connection=true;TrustServerCertificate=true");
+            var config = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+                .Build();
 
-            optionsBuilder.UseSqlServer(@"Server=REMOVED-HOST, 56077;Database=REMOVED-IDENTIFIER;User=REMOVED-IDENTIFIER;Password=REMOVED-PASSWORD;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer(config.GetConnectionString("CarService"));
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -45,7 +48,5 @@ namespace CarService.DataLayer.Context
                 .IsRequired()
                 .OnDelete(DeleteBehavior.ClientNoAction);
         }
-        //REMOVED-HOST, 56077
-        //REMOVED-IDENTIFIER    REMOVED-PASSWORD
     }
 }
